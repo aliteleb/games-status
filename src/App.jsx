@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from "./layouts/partials/Navbar.jsx";
+import Navbar from "./components/partials/Navbar.jsx";
 import Home from './components/pages/Home';
 import Games from './components/pages/Games'
 import Groups from './components/pages/Groups'
