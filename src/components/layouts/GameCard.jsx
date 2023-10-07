@@ -7,7 +7,7 @@ function GameCard() {
 
             <div className={'flex flex-col h-full drop-shadow-xl bg-black'}>
                 <img src={'/src/assets/game-placeholder.jpg'}  alt={'game'}/>
-                <div className={'h-1 bg-red-800'}></div>
+                <div className={'h-1 bg-red-600'}></div>
                 <div className={'px-2 py-1'}>
                     <h1>
                         <Skeleton width={'90%'} height={'14px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0} />
