@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+    .custom-scrollbar{ scroll-behavior: smooth; }
+    .custom-scrollbar::-webkit-scrollbar {
+        @apply w-0.5;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        @apply bg-transparent border-0 rounded-none;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        @apply rounded-none bg-gray-700;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:window-inactive {
+        @apply bg-gray-600;
+    }
+    .container {
+        @apply
+        mx-auto
+        max-w-screen-xl
+    }
+}
+
+@layer base {
+
+    @keyframes placeHolderShimmer {
+        0% {
+            background-position: -468px 0
+        }
+
+        to {
+            background-position: 468px 0
+        }
+    }
+
+    .animated-box {
+        padding: 9px 8px 1px 10px;
+        width: calc(100% - 40px);
+        display: inline-block
+    }
+    .animated-background {
+        animation-duration: 1.5s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-name: placeHolderShimmer;
+        background: #161618;
+        background: linear-gradient(90deg,#27282e 8%,#424349 18%,#27282e 33%);
+        background-size: 800px 104px;
+        height: 32px;
+        position: relative
+    }
+}
