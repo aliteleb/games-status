@@ -7,6 +7,9 @@ export default {
     'bg-gray-800',
   ],
   theme: {
+    fontFamily: {
+      sans: ['Readex Pro', 'sans-serif'],
+    },
     extend: {},
   },
   plugins: [],
