@@ -1,4 +1,5 @@
 import {NavLink} from "react-router-dom";
+import React from "react";
 import SearchIcon from "../icons/SearchIcon.jsx";
 import MenuIcon from "../icons/MenuIcon.jsx";
 import UsersIcon from "../icons/UsersIcon.jsx";
@@ -6,10 +7,15 @@ import InboxIcon from "../icons/InboxIcon.jsx";
 import NotificationIcon from "../icons/NotificationIcon.jsx";
 import UserIcon from "../icons/UserIcon.jsx";
 import LogoIcon from "../icons/LogoIcon.jsx";
+import Sidebar from "./Sidebar.jsx";
+import { sidebarContextApi } from "../../App.jsx";
 
 function Navbar() {
+
+    let useContext = React.useContext(sidebarContextApi)
     return (
         <nav className="flex justify-between items-center px-1 md:px-6 text-white max-h-16 bg-black bg-opacity-60">
+            {useContext.toggleSidebar && <Sidebar />}
             <div className="flex">
                 <MenuIcon className={'cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                 <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>

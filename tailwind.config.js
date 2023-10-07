@@ -11,7 +11,11 @@ export default {
     fontFamily: {
       sans: ['Readex Pro', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      backgroundColor: {
+        'custom-black': '#161618', // Define your custom color as 'custom'
+      },
+    },
   },
   plugins: [],
 }
