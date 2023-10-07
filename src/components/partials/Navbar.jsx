@@ -58,7 +58,7 @@ function Navbar() {
                     </NavLink>
                 </div>
             </nav>
-            <div id={'sidebar'} className='flex flex-col w-64 pl-5 h-screen pt-4 absolute top-0 -left-64 transition-all bg-custom-black'>
+            <div id={'sidebar'} className='flex flex-col w-64 pl-5 h-screen pt-4 absolute top-0 -left-64 transition-all bg-custom-black z-10'>
                 <div onClick={()=>{ document.querySelector('#sidebar').style.left = '-16rem';}} className='cursor-pointer'>
                     <Xmark className={'text-white'}/>
                 </div>
