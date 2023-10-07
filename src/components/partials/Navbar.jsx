@@ -41,7 +41,7 @@ function Navbar() {
                     <NavLink to="/markets" className="mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">MARKETS</NavLink>
                     <NavLink to="/free-keys" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">FREE KEYS</NavLink>
                     <NavLink to="/get-karma" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">GET KARMA</NavLink>
-                    <NavLink to="/forum" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400" transition duration-100 ease-in-out>FORUM</NavLink>
+                    <NavLink to="/forum" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400">FORUM</NavLink>
                 </div>
             </div>
             <div className="flex">
