@@ -26,31 +26,5 @@
 
 @layer base {
 
-    @keyframes placeHolderShimmer {
-        0% {
-            background-position: -468px 0
-        }
 
-        to {
-            background-position: 468px 0
-        }
-    }
-
-    .animated-box {
-        padding: 9px 8px 1px 10px;
-        width: calc(100% - 40px);
-        display: inline-block
-    }
-    .animated-background {
-        animation-duration: 1.5s;
-        animation-fill-mode: forwards;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-        animation-name: placeHolderShimmer;
-        background: #161618;
-        background: linear-gradient(90deg,#27282e 8%,#424349 18%,#27282e 33%);
-        background-size: 800px 104px;
-        height: 32px;
-        position: relative
-    }
 }

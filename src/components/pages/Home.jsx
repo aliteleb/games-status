@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className={'container'}>
 
-        <div className={'flex flex-wrap justify-between'}>
+        <div className={'flex flex-wrap justify-between mt-10'}>
             <div className={'w-6/12'}>
                 <GameCard/>
             </div>

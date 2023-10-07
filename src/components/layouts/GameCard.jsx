@@ -3,17 +3,17 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 function GameCard() {
     return (
-        <div className={'p-2  h-full'}>
+        <div className={'p-2 h-full'}>
 
-            <div className={'border flex flex-col  h-full'}>
+            <div className={'border flex flex-col h-full shadow'}>
                 <img src={'/src/assets/game-placeholder.jpg'}  alt={'game'}/>
+                <div className={'h-1 bg-red-800'}></div>
                 <div className={'px-2 py-1 my-auto'}>
                     <h1>
-                        <Skeleton height={'16px'} />
+                        <Skeleton width={'90%'} height={'14px'} />
                     </h1>
-                    <h2><Skeleton  width={'80%'} height={'12px'}/></h2>
+                    <h2><Skeleton width={'70%'} height={'12px'}/></h2>
                 </div>
-
             </div>
 
         </div>
