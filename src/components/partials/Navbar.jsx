@@ -9,11 +9,11 @@ import LogoIcon from "../icons/LogoIcon.jsx";
 
 function Navbar() {
     return (
-        <nav className="flex justify-between items-center px-6 text-white max-h-16 bg-black bg-opacity-60">
+        <nav className="flex justify-between items-center px-1 md:px-6 text-white max-h-16 bg-black bg-opacity-60">
             <div className="flex">
                 <MenuIcon className={'cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
-                <SearchIcon className={'hidden sm:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
-                <UsersIcon className={'hidden sm:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
+                <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
+                <UsersIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
             </div>
             <div className="flex items-center justify-center">
                 <div className="hidden sm:block">
@@ -22,7 +22,7 @@ function Navbar() {
                     <NavLink to="/groups" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">GROUPS</NavLink>
                     <NavLink to="/protections" className="mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">PROTECTIONS</NavLink>
                 </div>
-                <div className="mx-6">
+                <div className="mx-3 md:mx-6">
                     <NavLink to="/" className="relative">
                         <LogoIcon className={'mt-5'}/>
                         <div className="cursor-auto" style={{
@@ -46,9 +46,9 @@ function Navbar() {
             </div>
             <div className="flex">
                 <NavLink to="/messages">
-                    <InboxIcon className="hidden sm:inline-block mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
+                    <InboxIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
                 </NavLink>
-                <NotificationIcon className="hidden sm:inline-block mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
+                <NotificationIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
                 <NavLink to="/login">
                     <UserIcon className="hover:text-gray-400 transition duration-100 ease-in-out"/>
                 </NavLink>
