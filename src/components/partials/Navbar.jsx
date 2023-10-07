@@ -2,43 +2,45 @@ import { NavLink, Route } from "react-router-dom";
 
 function Navbar() {
     return (
-        <nav>
-            <div>
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <nav className="flex justify-between px-6 pt-4">
+            <div className="flex">
+                <div className="cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" height="50px" width="40px">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
                     </svg>
                 </div>
-                <div>
+                <div className="ml-3 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                 </div>
-                <div>
+                <div className="ml-3 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                     </svg>
                 </div>
             </div>
-            <NavLink to="/games">GAMES</NavLink>
-            <NavLink to="/nfos">NFOS</NavLink>
-            <NavLink to="/groups">GROUPS</NavLink>
-            <NavLink to="/protections">PROTECTIONS</NavLink>
-            <div style={{ padding: '1px' }}>
-                <NavLink to="/">
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="70" viewBox="0 0 420 450">
-                        <g>
-                        <path className="logo-path2" fillOpacity="0" strokeWidth="5" stroke="#ED1C24" d="M147,383.5 147,341.9 64.3,294.1 64.3,125.9 64.3,125.9 210,41.7 219,46.9 219,352.3 255,331.5 280,239.8 301.7,304.5 337.7,283.7 337.7,136.3 301.7,115.5 301.7,228 280,166.5 255,228 255,26.2 210,0.2 28.3,105.1 28.3,314.9 147,383.5"></path>
-                        <path className="logo-path1" fillOpacity="0" strokeWidth="5" stroke="#ED1C24" d="M273,36.5 273,78.1 355.7,125.9 355.7,294.1 210,378.3 201,373.1 201,310.7 118.3,263 118.3,157 201,109.3 201,67.7 82.3,136.3 82.3,283.7 165,331.5 165,393.8 210,419.8 391.7,314.9 391.7,105.1z"></path>
-                        </g>
-                    </svg>
-                </NavLink>
+            <div className="flex">
+                <NavLink to="/games" className="cursor-pointer">GAMES</NavLink>
+                <NavLink to="/nfos" className="cursor-pointer">NFOS</NavLink>
+                <NavLink to="/groups" className="cursor-pointer">GROUPS</NavLink>
+                <NavLink to="/protections" className="cursor-pointer">PROTECTIONS</NavLink>
+                <div style={{ padding: '1px' }}>
+                    <NavLink to="/">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="70" viewBox="0 0 420 450">
+                            <g>
+                            <path className="logo-path2" fillOpacity="0" strokeWidth="5" stroke="#ED1C24" d="M147,383.5 147,341.9 64.3,294.1 64.3,125.9 64.3,125.9 210,41.7 219,46.9 219,352.3 255,331.5 280,239.8 301.7,304.5 337.7,283.7 337.7,136.3 301.7,115.5 301.7,228 280,166.5 255,228 255,26.2 210,0.2 28.3,105.1 28.3,314.9 147,383.5"></path>
+                            <path className="logo-path1" fillOpacity="0" strokeWidth="5" stroke="#ED1C24" d="M273,36.5 273,78.1 355.7,125.9 355.7,294.1 210,378.3 201,373.1 201,310.7 118.3,263 118.3,157 201,109.3 201,67.7 82.3,136.3 82.3,283.7 165,331.5 165,393.8 210,419.8 391.7,314.9 391.7,105.1z"></path>
+                            </g>
+                        </svg>
+                    </NavLink>
+                </div>
+                <NavLink to="/markets" className="cursor-pointer">MARKETS</NavLink>
+                <NavLink to="/free-keys" className="cursor-pointer">FREE KEYS</NavLink>
+                <NavLink to="/get-karma" className="cursor-pointer">GET KARMA</NavLink>
+                <NavLink to="/forum" className="cursor-pointer">FORUM</NavLink>
             </div>
-            <NavLink to="/markets">MARKETS</NavLink>
-            <NavLink to="/free-keys">FREE KEYS</NavLink>
-            <NavLink to="/get-karma">GET KARMA</NavLink>
-            <NavLink to="/forum">FORUM</NavLink>
-            <div>
+            <div className="flex">
                 <NavLink to="/messages">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -63,5 +65,5 @@ function Navbar() {
     );
 
 }
-
+// className="w-6 h-6"
 export default Navbar;
