@@ -5,6 +5,7 @@ export default {
   ],
   safelist: [
     'bg-gray-800',
+    'bg-[#27282e]',
   ],
   theme: {
     fontFamily: {
