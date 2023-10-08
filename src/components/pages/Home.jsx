@@ -11,10 +11,10 @@ function Home() {
         </div>
         <div className={'h-[1px] bg-[#494a4f] mb-2 mt-1'}/>
         <div className={'flex flex-wrap justify-between'}>
-            <div className={'w-6/12'}>
+            <div className={'w-full md:w-6/12'}>
                 <GameCard/>
             </div>
-            <div className="w-6/12 grid grid-cols-2">
+            <div className="w-full md:w-6/12 grid grid-cols-2">
                 <GameCard/>
                 <GameCard/>
                 <GameCard/>
