@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className={'container'}>
         <div className={'h-12'}/>
-        <div className={'flex flex-wrap justify-between'}>
+        <div className={'flex flex-wrap justify-between px-2 md:px-1'}>
             <div className={'text-white text-lg font-bold'}>Hot Games</div>
             <div className={'text-white text-sm'}><div className={'inline-block mx-1 w-[7px] h-[7px] bg-green-700 rounded-full animate-pulse'}></div>Live updates</div>
         </div>
