@@ -7,7 +7,7 @@ import InboxIcon from "../icons/InboxIcon.jsx";
 import NotificationIcon from "../icons/NotificationIcon.jsx";
 import UserIcon from "../icons/UserIcon.jsx";
 import LogoIcon from "../icons/LogoIcon.jsx";
-import Xmark from "../icons/Xmark.jsx";
+import Sidebar from "./Sidebar.jsx";
 
 function Navbar() {
 
@@ -58,20 +58,7 @@ function Navbar() {
                     </NavLink>
                 </div>
             </nav>
-            <div id={'sidebar'} className='flex flex-col w-64 pl-5 h-screen pt-4 absolute top-0 -left-64 transition-all bg-custom-black z-10'>
-                <div onClick={()=>{ document.querySelector('#sidebar').style.left = '-16rem';}} className='cursor-pointer'>
-                    <Xmark className={'text-white'}/>
-                </div>
-                <Link to="login" className='flex items-center mt-4 '>
-                    <UserIcon/>
-                    <span className='ml-[10px] text-white'>LOGIN | SIGN UP</span>
-                </Link>
-                <Link className='mt-8 text-white' to="/">HOME</Link>
-                <Link className='mt-8 text-white' to="/games">GAMES</Link>
-                <Link className='mt-8 text-white' to="/free-keys">FREE KEYS</Link>
-                <Link className='mt-8 text-white' to="/groups">GROUPS</Link>
-                <Link className='mt-8 text-white' to="/markets">MARKETS</Link>
-            </div>
+            <Sidebar />
         </>
     );
 
