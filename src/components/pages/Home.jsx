@@ -7,7 +7,7 @@ function Home() {
         <div className={'h-12'}/>
         <div className={'flex flex-wrap justify-between px-2 md:px-1'}>
             <div className={'text-white text-lg font-bold'}>Hot Games</div>
-            <div className={'text-white text-sm'}><div className={'inline-block mx-1 w-[7px] h-[7px] bg-green-700 rounded-full animate-pulse'}></div>Live updates</div>
+            <div className={'text-white text-sm'}><div className={'inline-block mx-2 w-[7px] h-[7px] bg-green-700 rounded-full animate-pulse'}></div>Live updates</div>
         </div>
         <div className={'h-[1px] bg-[#494a4f] mb-2 mt-1'}/>
         <div className={'flex flex-wrap justify-between'}>
