@@ -6,7 +6,7 @@ function GameCard() {
         <div className={'p-2 h-full'}>
 
             <div className={'flex flex-col h-full shadow-md shadow-black bg-black'}>
-                <img src={'/src/assets/game-placeholder.jpg'}  alt={'game'}/>
+                <img className={'pointer-events-none'} src={'/src/assets/game-placeholder.jpg'}  alt={'game'}/>
                 <div className={'h-1 bg-red-600'}></div>
                 <div className={'px-2 py-1'}>
                     <h1>
