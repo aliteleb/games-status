@@ -32,8 +32,8 @@ const GameCard = (props) => {
         <div className={'h-full ' + props.className || ''}>
 
             <div className={'flex flex-col h-full shadow-md shadow-black bg-black'}>
-                <img className={'pointer-events-none'} src={props.image || '/src/assets/game-placeholder.jpg'} alt={'game'}/>
-                <div className={'h-1 bg-' + color}></div>
+                <img className={'pointer-events-none border-b-4 border-'+color} src={props.image || '/src/assets/game-placeholder.jpg'} alt={'game'}/>
+
                 <div className={'grid grid-cols-[1fr_30px] md:grid-cols-[1fr_40px]'}>
                     <div className={'px-2 py-1'}>
                         <h1 className={'text-gray-200'}>

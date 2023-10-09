@@ -10,10 +10,13 @@ export default {
         'text-green-500',
         'text-cracked',
         'bg-cracked',
+        'border-cracked',
         'text-uncracked',
         'bg-uncracked',
+        'border-uncracked',
         'text-unreleased',
         'bg-unreleased',
+        'border-unreleased',
     ],
     theme: {
         fontFamily: {
