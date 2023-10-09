@@ -8,6 +8,7 @@ export default {
         'bg-[#27282e]',
         'text-red-600',
         'text-green-500',
+        'border-gray-600',
         'text-cracked',
         'bg-cracked',
         'border-cracked',
