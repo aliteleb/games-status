@@ -28,15 +28,11 @@ function Navbar() {
                     <div className="mx-3 md:mx-6">
                         <NavLink to="/" className="relative">
                             <img src="/public/logo.png" className="w-16 h-16 mt-10" alt="Logo" />
-                            <div className="cursor-auto" style={{
-                                borderLeft: '75px solid transparent',
-                                borderRight: '75px solid transparent',
-                                borderTop: '46.6px solid rgba(0,0,0,.6)',
-                                position: 'absolute',
-                                right: '50%',
-                                top: '81%',
-                                transform: 'translateX(50%)',
-                                zIndex: '-1'
+                            <div className="cursor-auto w-[10rem] h-[10rem] absolute bg-[#101012]" style={{
+                                top: '-40%',
+                                left: '-75%',
+                                zIndex: '-1',
+                                clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)'
                             }}></div>
                         </NavLink>
                     </div>
