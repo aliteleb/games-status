@@ -27,7 +27,7 @@ function Navbar() {
                     </div>
                     <div className="mx-3 md:mx-6">
                         <NavLink to="/" className="relative">
-                            <img src="/public/logo.png" className="w-20 h-20 mt-6" alt="Logo" />
+                            <img src="/public/logo.png" className="w-16 h-16 mt-10" alt="Logo" />
                             <div className="cursor-auto" style={{
                                 borderLeft: '75px solid transparent',
                                 borderRight: '75px solid transparent',
