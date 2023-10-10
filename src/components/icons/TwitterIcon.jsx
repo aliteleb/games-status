@@ -1,8 +1,8 @@
-import {BsTwitter} from 'react-icons/bs'
+import {RiTwitterXFill} from 'react-icons/ri'
 
 function TwitterIcon() {
   return (
-    <BsTwitter className='w-6 h-8 hover:text-twitter transition duration-200'/>
+    <RiTwitterXFill className='w-6 h-8 hover:text-twitter transition duration-200'/>
   )
 }
 

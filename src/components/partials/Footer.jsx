@@ -11,10 +11,10 @@ function Footer() {
             <div className="sm:flex sm:items-center sm:justify-between">
                 <div className='flex mb-6 sm:mb-0 text-gray-400'>
                     <Link to="#">
-                        <TwitterIcon />
-                    </Link>
-                    <Link to="#" className="ml-5 ">
                         <Facebook />
+                    </Link>
+                    <Link to="#" className="ml-5">
+                        <TwitterIcon />
                     </Link>
                     <Link to="#" className="ml-5 ">
                         <Instagram />
