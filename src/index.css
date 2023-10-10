@@ -26,7 +26,5 @@
 }
 
 @layer base {
-    *{
-        user-select: none;
-    }
+
 }
