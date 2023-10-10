@@ -19,38 +19,28 @@ import Contact from './components/pages/Contact'
 import Terms from './components/pages/Terms'
 import FrequencyQuestions from './components/pages/FrequencyQuestions'
 
-export let sidebarContextApi = React.createContext()
 
 function App() {
-
-  let [toggleSidebar, setToggleSidebar] = React.useState(false)
-
-  function sidebarToggle(){
-    setToggleSidebar(!toggleSidebar)
-  }
-
   return (
     <BrowserRouter>
-      <sidebarContextApi.Provider value={{sidebarToggle, toggleSidebar}}>
-        <Navbar/>
-        <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/games' element={<Games />}/>
-          <Route path='/nfos' element={<NFOS />}/>
-          <Route path='/groups' element={<Groups />}/>
-          <Route path='/protections' element={<Protections />}/>
-          <Route path='/markets' element={<Markets />}/>
-          <Route path='/free-keys' element={<FreeKeys />}/>
-          <Route path='/get-karma' element={<GetKarma />}/>
-          <Route path='/forum' element={<Forum />}/>
-          <Route path='/messages' element={<Messages />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/terms-conditions' element={<Terms />} />
-          <Route path='/frequency-questions' element={<FrequencyQuestions />} />
-        </Routes>
-      </sidebarContextApi.Provider>
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/games' element={<Games />}/>
+        <Route path='/nfos' element={<NFOS />}/>
+        <Route path='/groups' element={<Groups />}/>
+        <Route path='/protections' element={<Protections />}/>
+        <Route path='/markets' element={<Markets />}/>
+        <Route path='/free-keys' element={<FreeKeys />}/>
+        <Route path='/get-karma' element={<GetKarma />}/>
+        <Route path='/forum' element={<Forum />}/>
+        <Route path='/messages' element={<Messages />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/terms-conditions' element={<Terms />} />
+        <Route path='/frequency-questions' element={<FrequencyQuestions />} />
+      </Routes>
       <Footer />
     </BrowserRouter>
   )

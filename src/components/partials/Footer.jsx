@@ -22,16 +22,16 @@ function Footer() {
                 </div>
                 <ul className="w-1/2 flex flex-col md:flex-row flex-wrap gap-1 md:gap-5 items-center justify-end mb-6 text-sm font-medium text-gray-500 sm:mb-0">
                     <li>
-                        <Link to="/about" className="hover:underline hover:text-gray-300 ">About</Link>
+                        <Link to="/about" className="hover:text-gray-300 ">About</Link>
                     </li>
                     <li>
-                        <Link to="/contact" className="hover:underline hover:text-gray-300">Contact</Link>
+                        <Link to="/contact" className="hover:text-gray-300">Contact</Link>
                     </li>
                     <li>
-                        <Link to="/terms-conditions" className="hover:underline hover:text-gray-300 duration-200">Terms & Conditions</Link>
+                        <Link to="/terms-conditions" className="hover:text-gray-300 duration-200">Terms & Conditions</Link>
                     </li>
                     <li>
-                        <Link to="/frequency-questions" className="hover:underline hover:text-gray-300">Frequency Questions</Link>
+                        <Link to="/frequency-questions" className="hover:text-gray-300">Frequency Questions</Link>
                     </li>
                 </ul>
             </div>
@@ -40,9 +40,9 @@ function Footer() {
                 <div>Crack-Watcher © 2023, All Rights Reserved.</div>
                 <br/>
                 <div className="font-bold">Developed By</div>
-                <Link to="https://www.facebook.com/aliteleb183" target='_blank' className="hover:underline hover:text-gray-300 duration-200">Ali Teleb</Link>
+                <Link to="https://www.facebook.com/aliteleb183" target='_blank' className="hover:text-gray-300 duration-200">Ali Teleb</Link>
                 <span className="mx-1">&</span>
-                <Link to="https://www.facebook.com/mohamedashour774499/" target='_blank' className="hover:underline hover:text-gray-300 duration-200">Mohamed Ashour</Link>.
+                <Link to="https://www.facebook.com/mohamedashour774499/" target='_blank' className="hover:text-gray-300 duration-200">Mohamed Ashour</Link>.
             </span>
         </div>
     </footer>

@@ -13,11 +13,11 @@ import ForumIcon from '../icons/ForumIcon'
 function Sidebar() {
 
   function collapseSidebar(){
-    document.querySelector('#sidebar').style.left = '-16rem';
+    document.querySelector('#sidebar').style.left = '-18rem';
   }
 
   return (
-    <div id={'sidebar'} className='flex flex-col w-64 pl-5 h-screen pt-6 fixed top-0 -left-64 transition-all bg-custom-black z-10'>
+    <div id={'sidebar'} className='flex flex-col w-64 xl:w-72 pl-5 h-screen pt-6 fixed top-0 -left-72 transition-all bg-custom-black z-10'>
       <div onClick={collapseSidebar} className='cursor-pointer w-fit'>
           <Xmark className={'text-white'}/>
       </div>
