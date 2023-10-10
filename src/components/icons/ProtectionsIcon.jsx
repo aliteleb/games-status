@@ -1,6 +1,6 @@
-import {GiJusticeStar} from 'react-icons/gi'
+import {BsShieldExclamation} from 'react-icons/bs'
 export default function ProtectionsIcon() {
   return (
-    <GiJusticeStar className='text-red-800 w-8 h-10'/>
+    <BsShieldExclamation className='text-red-800 w-8 h-10'/>
   )
 }

@@ -13,6 +13,11 @@ import GetKarma from './components/pages/GetKarma'
 import Forum from './components/pages/Forum'
 import Messages from './components/pages/Messages'
 import Login from './components/pages/Login'
+import Footer from './components/partials/Footer';
+import About from './components/pages/About'
+import Contact from './components/pages/Contact'
+import Terms from './components/pages/Terms'
+import FrequencyQuestions from './components/pages/FrequencyQuestions'
 
 export let sidebarContextApi = React.createContext()
 
@@ -40,8 +45,13 @@ function App() {
           <Route path='/forum' element={<Forum />}/>
           <Route path='/messages' element={<Messages />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/terms-conditions' element={<Terms />} />
+          <Route path='/frequency-questions' element={<FrequencyQuestions />} />
         </Routes>
       </sidebarContextApi.Provider>
+      <Footer />
     </BrowserRouter>
   )
 }

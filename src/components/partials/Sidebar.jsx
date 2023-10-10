@@ -17,7 +17,7 @@ function Sidebar() {
   }
 
   return (
-    <div id={'sidebar'} className='flex flex-col w-64 pl-5 h-screen pt-6 absolute top-0 -left-64 transition-all bg-custom-black z-10'>
+    <div id={'sidebar'} className='flex flex-col w-64 pl-5 h-screen pt-6 fixed top-0 -left-64 transition-all bg-custom-black z-10'>
       <div onClick={collapseSidebar} className='cursor-pointer w-fit'>
           <Xmark className={'text-white'}/>
       </div>
