@@ -6,7 +6,6 @@ import UsersIcon from "../icons/UsersIcon.jsx";
 import InboxIcon from "../icons/InboxIcon.jsx";
 import NotificationIcon from "../icons/NotificationIcon.jsx";
 import UserIcon from "../icons/UserIcon.jsx";
-import LogoIcon from "../icons/LogoIcon.jsx";
 import Sidebar from "./Sidebar.jsx";
 
 function Navbar() {
@@ -28,14 +27,14 @@ function Navbar() {
                     </div>
                     <div className="mx-3 md:mx-6">
                         <NavLink to="/" className="relative">
-                            <LogoIcon className={'mt-5'}/>
+                            <img src="/public/logo.png" className="w-20 h-20 mt-6" alt="Logo" />
                             <div className="cursor-auto" style={{
-                                borderLeft: '65px solid transparent',
-                                borderRight: '65px solid transparent',
-                                borderTop: '36.6px solid rgba(0,0,0,.6)',
+                                borderLeft: '75px solid transparent',
+                                borderRight: '75px solid transparent',
+                                borderTop: '46.6px solid rgba(0,0,0,.6)',
                                 position: 'absolute',
                                 right: '50%',
-                                top: '85%',
+                                top: '81%',
                                 transform: 'translateX(50%)',
                                 zIndex: '-1'
                             }}></div>
