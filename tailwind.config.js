@@ -29,7 +29,7 @@ export default {
                 'uncracked': '#d81106',
                 'unreleased': '#990efd',
                 'custom-black': '#161618',
-                'twitter': '#0ea5e9',
+                'twitter': '#737373',
                 'facebook': '#2563eb',
             },
         },
