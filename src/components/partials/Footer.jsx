@@ -34,13 +34,19 @@ function Footer() {
                         </li>
                     </ul>
                 </div>
-                <hr className="my-2 border-gray-500 mx-auto"/>
-                <span className="block text-sm text-gray-500 text-center">
-                <div className="mb-2">Crack-Watcher © 2023, All Rights Reserved.</div>
-                <div className="font-bold">Developed By</div>
-                <Link to="https://www.facebook.com/aliteleb183" target='_blank' className="hover:text-gray-300 duration-200">Ali Teleb</Link>
-                <span className="mx-1">&</span>
-                <Link to="https://www.facebook.com/mohamedashour774499/" target='_blank' className="hover:text-gray-300 duration-200">Mohamed Ashour</Link>.
+                <hr className="my-2 border-gray-500 mx-auto" />
+            <span className="block text-sm text-gray-500 text-center">
+                <div className='flex flex-col md:flex-row md:justify-between'>
+                    <div className="mb-2"><b>Crack-Watcher</b> © 2023, All Rights Reserved.</div>
+                    <div className='flex items-center justify-center flex-col md:flex-row'>
+                        <div className="font-bold mx-2">Developed By</div>
+                        <div>
+                            <Link to="https://www.facebook.com/aliteleb183" target='_blank' className="hover:text-gray-300 duration-200">Ali Teleb</Link>
+                            <span className="mx-1">&</span>
+                            <Link to="https://www.facebook.com/mohamedashour774499/" target='_blank' className="hover:text-gray-300 duration-200">Mohamed Ashour</Link>
+                        </div>
+                    </div>
+                </div>
             </span>
             </div>
         </footer>
