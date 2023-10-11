@@ -2,6 +2,22 @@
     user-select: none;
 }
 
+*{ scroll-behavior: smooth; }
+*::-webkit-scrollbar {
+    width: 5px;
+}
+*::-webkit-scrollbar-track {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+*::-webkit-scrollbar-thumb {
+    background: #303a47;
+}
+*::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0, 0, 0, 1);
+}
+
 a.active {
     color: #da1105;
 }

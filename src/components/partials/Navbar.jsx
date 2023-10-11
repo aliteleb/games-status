@@ -11,7 +11,7 @@ import Sidebar from "./Sidebar.jsx";
 function Navbar() {
     return (
         <>
-            <nav className="flex justify-between items-center px-1 md:px-6 text-white max-h-16 bg-custom-black">
+            <nav className="flex justify-between items-center px-1 md:px-6 mb-12 text-white max-h-16 bg-custom-black">
                 <div className="flex">
                     <MenuIcon onClick={()=>{ document.querySelector('#sidebar').style.left = '0';}} className={'cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                     <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
