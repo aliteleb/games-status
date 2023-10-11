@@ -264,7 +264,10 @@ export default function SignUp() {
             </select>
           </div>
           <div className='cursor-pointer w-max mt-6 text-white bg-btn hover:bg-btn-hover transition duration-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2'>
-            <Link to="/login">Sign Up</Link>
+            <button>Sign Up</button>
+          </div>
+          <div className='mt-4 text-sm'>Already have an account?
+            <Link to="/login" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Login</Link>
           </div>
         </div>
         <div className="h-12"></div>
