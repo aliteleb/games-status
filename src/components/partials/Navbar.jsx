@@ -12,7 +12,7 @@ function Navbar() {
 
     return (
         <>
-            <nav className="flex justify-between items-center px-1 md:px-6 text-white max-h-16 bg-black bg-opacity-60">
+            <nav className="flex justify-between items-center px-1 md:px-6 text-white max-h-16 bg-custom-black">
                 <div className="flex">
                     <MenuIcon onClick={()=>{ document.querySelector('#sidebar').style.left = '0';}} className={'cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                     <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
@@ -28,7 +28,7 @@ function Navbar() {
                     <div className="mx-3 md:mx-6">
                         <NavLink to="/" className="relative">
                             <img src="/public/logo.png" className="w-16 h-16 mt-10" alt="Logo" />
-                            <div className="cursor-auto w-[10rem] h-[10rem] absolute bg-[#101012]" style={{
+                            <div className="cursor-auto w-[10rem] h-[10rem] absolute bg-custom-black" style={{
                                 top: '-40%',
                                 left: '-75%',
                                 zIndex: '-1',
