@@ -9,11 +9,19 @@ import GroupsIcon from '../icons/GroupsIcon'
 import MarketsIcon from '../icons/MarketsIcon'
 import ProtectionsIcon from '../icons/ProtectionsIcon'
 import ForumIcon from '../icons/ForumIcon'
+import { authContextApi } from '../Auth/Auth'
 
 function Sidebar() {
 
   function collapseSidebar(){
     document.querySelector('#sidebar').style.left = '-18rem';
+  }
+
+  let useAuth = React.useContext(authContextApi)
+
+  function clear(){
+    useAuth.logout()
+    collapseSidebar()
   }
 
   return (
@@ -22,7 +30,7 @@ function Sidebar() {
           <Xmark className={'text-white'}/>
       </div>
     <nav>
-      <NavLink onClick={collapseSidebar} to="login" className='flex items-center mt-4'>
+      <NavLink onClick={collapseSidebar} to={useAuth.user? "/" : "/login"} className='flex items-center mt-4'>
           <UserIcon className={'text-red-800'}/>
           <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>LOGIN | SIGN UP</span>
       </NavLink>
@@ -61,6 +69,13 @@ function Sidebar() {
           <ForumIcon/>
           <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>FORUM</span>
       </NavLink>
+
+      {useAuth.user && 
+      <NavLink onClick={clear} className='flex items-center absolute bottom-8 mt-4 text-white' to="/login">
+          <ForumIcon/>
+          <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>Logout</span>
+      </NavLink>}
+
     </nav>
     </div>
   )

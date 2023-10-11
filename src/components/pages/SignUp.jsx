@@ -1,6 +1,29 @@
 import { Link } from 'react-router-dom'
+import React from 'react'
+import { authContextApi } from '../Auth/Auth'
 
 export default function SignUp() {
+
+  let useAuth = React.useContext(authContextApi)
+
+  let [user, setUser] = React.useState({
+    username: "",
+    password: "",
+    email: "",
+    country: "",
+  })
+
+  function handleChange(e){
+    setUser(prevUser => ({
+      ...prevUser,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  function handleSignUp(){
+    useAuth.login(user.username)
+  }
+
   return (
       <>
         <div className="text-center text-xl mx-2 my-6 text-gray-200"> Create new account </div>
@@ -8,19 +31,19 @@ export default function SignUp() {
           <header className='border-b-2 pb-[10px] font-bold text-xl'>Sign Up</header>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="username">Username</label>
-            <input type="text"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+            <input name='username' value={user.username} onChange={handleChange} type="text"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
           </div>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="password">Password</label>
-            <input type="password"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+            <input name='password' value={user.password} onChange={handleChange} type="password"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
           </div>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="email">Email Address (No Spam!)</label>
-            <input type="text"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+            <input name='email' value={user.email} onChange={handleChange} type="text"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
           </div>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="country">Country</label>
-            <select className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'>
+            <select name='country' value={user.country} onChange={handleChange} className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'>
               <option value="AF">Afghanistan</option>
               <option value="AL">Albania</option>
               <option value="DZ">Algeria</option>
@@ -264,7 +287,7 @@ export default function SignUp() {
             </select>
           </div>
           <div className='cursor-pointer w-max mt-6 text-white bg-btn hover:bg-btn-hover transition duration-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2'>
-            <button>Sign Up</button>
+            <Link to={useAuth.user ? "/" : "/sign-up"} onClick={handleSignUp}>Sign Up</Link>
           </div>
           <div className='mt-4 text-sm'>Already have an account?
             <Link to="/login" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Login</Link>

@@ -7,8 +7,12 @@ import InboxIcon from "../icons/InboxIcon.jsx";
 import NotificationIcon from "../icons/NotificationIcon.jsx";
 import UserIcon from "../icons/UserIcon.jsx";
 import Sidebar from "./Sidebar.jsx";
+import { authContextApi } from "../Auth/Auth.jsx";
 
 function Navbar() {
+
+    let useAuth = React.useContext(authContextApi)
+
     return (
         <>
             <nav className="flex justify-between items-center px-1 md:px-6 mb-12 text-white max-h-16 bg-custom-black">
@@ -47,7 +51,7 @@ function Navbar() {
                         <InboxIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
                     </NavLink>
                     <NotificationIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
-                    <NavLink to="/login">
+                    <NavLink to={useAuth.user ? "/" : "/login"}>
                         <UserIcon className="hover:text-gray-400 transition duration-100 ease-in-out"/>
                     </NavLink>
                 </div>
