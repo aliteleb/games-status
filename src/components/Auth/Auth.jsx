@@ -9,7 +9,6 @@ function Auth({children}) {
   let login = (user)=> {
     setUser(user)
   }
-  console.log(user);
 
   let logout = ()=> {
     setUser(null)

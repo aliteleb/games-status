@@ -20,6 +20,7 @@ import Terms from './components/pages/Terms'
 import FrequencyQuestions from './components/pages/FrequencyQuestions'
 import SignUp from './components/pages/SignUp';
 import Auth from './components/Auth/Auth';
+import Error from './components/pages/Error';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/terms-conditions' element={<Terms />} />
           <Route path='/frequency-questions' element={<FrequencyQuestions />} />
+          <Route path='*' element={<Error />} />
         </Routes>
         <Footer />
       </Auth>
