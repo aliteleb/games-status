@@ -49,6 +49,7 @@ function App() {
           <Route path='*' element={<Error />} />
         </Routes>
         <Footer />
+        <button>sdasfda</button>
       </Auth>
     </BrowserRouter>
   )
