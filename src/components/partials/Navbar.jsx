@@ -1,4 +1,4 @@
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useLocation} from "react-router-dom";
 import React from "react";
 import SearchIcon from "../icons/SearchIcon.jsx";
 import MenuIcon from "../icons/MenuIcon.jsx";
@@ -9,7 +9,6 @@ import UserIcon from "../icons/UserIcon.jsx";
 import Sidebar from "./Sidebar.jsx";
 
 function Navbar() {
-
     return (
         <>
             <nav className="flex justify-between items-center px-1 md:px-6 text-white max-h-16 bg-custom-black">

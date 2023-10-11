@@ -1,6 +1,18 @@
-a.active{
+* {
+    user-select: none;
+}
+
+a.active {
     color: #da1105;
 }
-a.active:hover{
-     color: #da1105;
- }
+
+a.active:hover {
+    color: #da1105;
+}
+a.active span {
+    color: #da1105;
+}
+
+a.active span:hover {
+    color: #da1105;
+}
