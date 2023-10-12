@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class AuthController extends Controller
             return response()->api(
                 status: "error",
                 data: $validator->errors(),
-                message: "Whoops! Something went wrong.",
+                message: __("Whoops! Something went wrong."),
                 status_code: 422
             );
         }
@@ -29,18 +30,26 @@ class AuthController extends Controller
         try {
             return response()->api(
                 data: User::create($validator->validate()),
-                message: "User registered successfully"
+                message: __("User registered successfully.")
             );
 
         } catch (\Exception $e) {
             // Handle registration error
-            return response()->json(['message' => 'Registration failed. ' . $e->getMessage()], 500);
+            return response()->api(
+                status: "error",
+                message: __("An error occurred!."),
+                status_code: 500
+            );
         }
 
     }
 
     public function login(Request $request)
     {
-        // ... (same as previous example)
+        return [];
+    }
+    public function user(Request $request)
+    {
+        return [];
     }
 }

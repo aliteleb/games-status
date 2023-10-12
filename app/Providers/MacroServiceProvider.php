@@ -20,7 +20,7 @@ class MacroServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        ResponseFactory::macro('api', function ($status = 'success', $data = null, $message = "", $status_code = 200) {
+        ResponseFactory::macro('api', function ($status = 'success', $message = "", $status_code = 200, $data = null) {
 
             $response = [
                 'status' => $status,
