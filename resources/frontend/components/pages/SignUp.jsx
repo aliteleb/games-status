@@ -1,6 +1,5 @@
 import {Link} from 'react-router-dom'
 import React from 'react'
-import axios from '../api/Axios'
 import {z} from 'zod';
 import {FaCheck} from "react-icons/fa";
 
@@ -23,7 +22,7 @@ export default function SignUp() {
         country_code: z.string().min(2, "Invalid Country").max(2, "Invalid Country"),
     });
 
-    const validateForm = (data) =>{
+    const validateForm = (data) => {
         const validationResult = formDataSchema.safeParse(data);
 
         // Check for password match separately
@@ -44,10 +43,19 @@ export default function SignUp() {
             }, {}));
         }
     }
+
+
+
+    const inputValidation = (input) => {
+        let error = (formErrors[input] && (formData[input] || formData.validate_all)) ? (<div className='text-orange-400 text-sm mt-1'>{formErrors[input]}</div>) : null;
+        let success = (!formErrors[input] && formData[input]) ? (<div className='absolute top-2 right-2 text-green-500'> <FaCheck/> </div>) : null;
+        return [error, success];
+    }
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData((prevData) => {
-            const updatedData = { ...prevData, [name]: value };
+            const updatedData = {...prevData, [name]: value};
+            formData.validate_all = false;
             validateForm(updatedData);
             return updatedData;
         });
@@ -56,8 +64,11 @@ export default function SignUp() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        formData.validate_all = true;
         validateForm(formData);
     };
+
 
     return (
         <>
@@ -72,63 +83,37 @@ export default function SignUp() {
                         value={formData.username}
                         type="text"
                         className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'
+                        autoComplete="one-time-code"
                     />
-                    {formErrors.username && (
-                        <div className='text-orange-400 text-sm mt-1'>{formErrors.username}</div>
-                    )}
-                    {(!formErrors.username && formData.username) && (
-                        <div className='absolute top-2 right-2 text-green-500'>
-                            <FaCheck />
-                        </div>
-                    )}
+                    {inputValidation('username')}
                 </div>
                 <div className='mt-6 flex flex-col relative'>
                     <label htmlFor="password">Password</label>
-                    <input autoComplete='off' onChange={handleInputChange}
+                    <input autoComplete='one-time-code' onChange={handleInputChange}
                            name='password'
                            value={formData.password}
                            type="password"
                            className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
-                    {formErrors.password && (
-                        <div className='text-orange-400 text-sm mt-1'>{formErrors.password}</div>
-                    )}
-                    {(!formErrors.password && formData.password) && (
-                        <div className='absolute top-2 right-2 text-green-500'>
-                            <FaCheck />
-                        </div>
-                    )}
+                    {inputValidation('password')}
                 </div>
                 <div className='mt-6 flex flex-col relative'>
                     <label htmlFor="password">Confirm Password</label>
-                    <input autoComplete='off' onChange={handleInputChange}
+                    <input autoComplete='one-time-code' onChange={handleInputChange}
                            name='confirmPassword'
                            value={formData.confirmPassword}
                            type="password"
                            className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
-                    {formErrors.confirmPassword && (
-                        <div className='text-orange-400 text-sm mt-1'>{formErrors.confirmPassword}</div>
-                    )}
-                    {(!formErrors.confirmPassword && formData.confirmPassword) && (
-                        <div className='absolute top-2 right-2 text-green-500'>
-                            <FaCheck />
-                        </div>
-                    )}
+                    {inputValidation('confirmPassword')}
                 </div>
                 <div className='mt-6 flex flex-col relative'>
                     <label htmlFor="email">Email Address (No Spam!)</label>
-                    <input autoComplete='off' onChange={handleInputChange}
+                    <input autoComplete='one-time-code' onChange={handleInputChange}
                            name='email'
                            value={formData.email}
                            type="text"
                            className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
-                    {formErrors.email && (
-                        <div className='text-orange-400 text-sm mt-1'>{formErrors.email}</div>
-                    )}
-                    {(!formErrors.email && formData.email) && (
-                        <div className='absolute top-2 right-2 text-green-500'>
-                            <FaCheck />
-                        </div>
-                    )}
+
+                    {inputValidation('email')}
                 </div>
                 <div className='mt-6 flex flex-col relative'>
                     <label htmlFor="country">Country</label>
@@ -379,19 +364,10 @@ export default function SignUp() {
                         <option value="VI">US Virgin Islands</option>
 
                     </select>
-                    {formErrors.country_code && (
-                        <div className='text-orange-400 text-sm mt-1'>{formErrors.country_code}</div>
-                    )}
-                    {(!formErrors.country_code && formData.country_code) && (
-                        <div className='absolute top-2 right-2 text-green-500'>
-                            <FaCheck />
-                        </div>
-                    )}
+                    {inputValidation('country_code')}
+
                 </div>
-                <div
-                    className='cursor-pointer w-max mt-6 text-white bg-btn hover:bg-btn-hover transition duration-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2'>
-                    <button onClick={handleSubmit}>Sign Up</button>
-                </div>
+                    <button onClick={handleSubmit} className='cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2'>Sign Up</button>
                 <div className='mt-4 text-sm'>Already have an account?
                     <Link to="/login" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Login</Link>
                 </div>

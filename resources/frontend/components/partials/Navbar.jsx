@@ -11,13 +11,13 @@ import Sidebar from "./Sidebar.jsx";
 function Navbar() {
     return (
         <>
-            <nav className="flex justify-between items-center px-1 md:px-6 mb-12 text-white max-h-16 bg-custom-black">
-                <div className="flex">
+            <nav className="grid grid-cols-[auto_1fr_auto] px-1 md:px-6 mb-12 text-white max-h-16 bg-custom-black ">
+                <div className="flex items-center">
                     <MenuIcon onClick={()=>{ document.querySelector('#sidebar').style.left = '0';}} className={'cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                     <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                     <UsersIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center h-[4rem]">
                     <div className="hidden sm:block">
                         <NavLink to="/games" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">GAMES</NavLink>
                         <NavLink to="/nfos" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">NFOS</NavLink>
@@ -42,7 +42,7 @@ function Navbar() {
                         <NavLink to="/forum" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400">FORUM</NavLink>
                     </div>
                 </div>
-                <div className="flex">
+                <div className="flex items-center">
                     <NavLink to="/messages">
                         <InboxIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
                     </NavLink>
