@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom'
 import React from 'react'
 import axios from '../api/Axios'
 import {z} from 'zod';
+import {FaCheck} from "react-icons/fa";
 
 export default function SignUp() {
 
@@ -19,7 +20,7 @@ export default function SignUp() {
         email: z.string().email("Invalid email address").max(32, "Email must be 32 characters or fewer"),
         password: z.string().min(8, "Password must be at least 8 characters").max(32, "Password must be 32 characters or fewer"),
         confirmPassword: z.string().min(8, "Confirm password must be at least 8 characters").max(32, "Confirm password must be 32 characters or fewer"),
-        country_code: z.string().min(3, "Invalid Country").max(2, "Invalid Country"),
+        country_code: z.string().min(2, "Invalid Country").max(2, "Invalid Country"),
     });
 
     const validateForm = (data) =>{
@@ -63,18 +64,25 @@ export default function SignUp() {
             <div className="text-center text-xl mx-2 my-6 text-gray-200"> Create new account</div>
             <div className='w-full max-w-screen-xl mx-auto p-6 bg-custom-black bg-opacity-60 rounded-md text-gray-300'>
                 <header className='border-b-2 pb-[10px] font-bold text-xl'>Sign Up</header>
-                <div className='mt-6 flex flex-col'>
+                <div className='mt-6 flex flex-col relative'>
                     <label htmlFor="username">Username</label>
-                    <input onChange={handleInputChange}
-                           name='username'
-                           value={formData.username}
-                           type="text"
-                           className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+                    <input
+                        onChange={handleInputChange}
+                        name='username'
+                        value={formData.username}
+                        type="text"
+                        className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'
+                    />
                     {formErrors.username && (
                         <div className='text-orange-400 text-sm mt-1'>{formErrors.username}</div>
                     )}
+                    {(!formErrors.username && formData.username) && (
+                        <div className='absolute top-2 right-2 text-green-500'>
+                            <FaCheck />
+                        </div>
+                    )}
                 </div>
-                <div className='mt-6 flex flex-col'>
+                <div className='mt-6 flex flex-col relative'>
                     <label htmlFor="password">Password</label>
                     <input autoComplete='off' onChange={handleInputChange}
                            name='password'
@@ -84,8 +92,13 @@ export default function SignUp() {
                     {formErrors.password && (
                         <div className='text-orange-400 text-sm mt-1'>{formErrors.password}</div>
                     )}
+                    {(!formErrors.password && formData.password) && (
+                        <div className='absolute top-2 right-2 text-green-500'>
+                            <FaCheck />
+                        </div>
+                    )}
                 </div>
-                <div className='mt-6 flex flex-col'>
+                <div className='mt-6 flex flex-col relative'>
                     <label htmlFor="password">Confirm Password</label>
                     <input autoComplete='off' onChange={handleInputChange}
                            name='confirmPassword'
@@ -95,8 +108,13 @@ export default function SignUp() {
                     {formErrors.confirmPassword && (
                         <div className='text-orange-400 text-sm mt-1'>{formErrors.confirmPassword}</div>
                     )}
+                    {(!formErrors.confirmPassword && formData.confirmPassword) && (
+                        <div className='absolute top-2 right-2 text-green-500'>
+                            <FaCheck />
+                        </div>
+                    )}
                 </div>
-                <div className='mt-6 flex flex-col'>
+                <div className='mt-6 flex flex-col relative'>
                     <label htmlFor="email">Email Address (No Spam!)</label>
                     <input autoComplete='off' onChange={handleInputChange}
                            name='email'
@@ -106,8 +124,13 @@ export default function SignUp() {
                     {formErrors.email && (
                         <div className='text-orange-400 text-sm mt-1'>{formErrors.email}</div>
                     )}
+                    {(!formErrors.email && formData.email) && (
+                        <div className='absolute top-2 right-2 text-green-500'>
+                            <FaCheck />
+                        </div>
+                    )}
                 </div>
-                <div className='mt-6 flex flex-col'>
+                <div className='mt-6 flex flex-col relative'>
                     <label htmlFor="country">Country</label>
                     <select onChange={handleInputChange}
                             name='country_code'
@@ -358,6 +381,11 @@ export default function SignUp() {
                     </select>
                     {formErrors.country_code && (
                         <div className='text-orange-400 text-sm mt-1'>{formErrors.country_code}</div>
+                    )}
+                    {(!formErrors.country_code && formData.country_code) && (
+                        <div className='absolute top-2 right-2 text-green-500'>
+                            <FaCheck />
+                        </div>
                     )}
                 </div>
                 <div
