@@ -45,3 +45,10 @@ a.active span {
 a.active span:hover {
     color: #da1105;
 }
+
+input.custom-input:-webkit-autofill {
+    background-color: transparent;
+}
+input.custom-input:-webkit-autofill:hover {
+    background-color: transparent;
+}

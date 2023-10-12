@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 import axios from '../api/Axios'
-import { useNavigate } from 'react-router-dom'
 import Validation from '../validation/Validation'
 
 export default function SignUp() {
@@ -10,10 +9,8 @@ export default function SignUp() {
     username: "",
     password: "",
     email: "",
-    country_code: "",
+    country_code: "AF",
   })
-
-  let navigate = useNavigate()
 
   let handleChange = (e)=>{
     setUser(prevUser => ({
@@ -21,8 +18,6 @@ export default function SignUp() {
       [e.target.name]: e.target.value
     }))
   }
-
-  Validation(user)
 
   let handleSubmit = async (e)=>{
     e.preventDefault()
@@ -35,7 +30,6 @@ export default function SignUp() {
         email: "",
         country_code: "",
       }))
-      navigate('/login')
 
     }catch(err){
       console.log("Failed to send user data");
@@ -49,28 +43,43 @@ export default function SignUp() {
           <header className='border-b-2 pb-[10px] font-bold text-xl'>Sign Up</header>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="username">Username</label>
-            <input onChange={handleChange} name='username' value={user.username} type="text"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
-            <p className={`${Validation(user).username === "Valid username" ? "text-green-500" : "text-red-500"}`}>
+            <input autoComplete='off' onChange={handleChange}
+              name='username'
+              value={user.username}
+              type="text"
+              className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+              <p className={`${Validation(user).username === "Valid username" ? "text-green-500" : "text-red-500"}`}>
               {Validation(user).username}
             </p>
           </div>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="password">Password</label>
-            <input onChange={handleChange} name='password' value={user.password} type="password"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+            <input autoComplete='off'onChange={handleChange}
+              name='password'
+              value={user.password}
+              type="password" 
+              className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
             <p className={`${Validation(user).password === "Password must be at least 8 characters" ? "text-red-500" : ""}`}>
               {Validation(user).password}
             </p>
           </div>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="email">Email Address (No Spam!)</label>
-            <input onChange={handleChange} name='email' value={user.email} type="text"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+            <input autoComplete='off' onChange={handleChange}
+              name='email'
+              value={user.email}
+              type="text" 
+              className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
             <p className={`${Validation(user).email === "Valid email address" ? "text-green-500" : "text-red-500"}`}>
               {Validation(user).email}
             </p>
           </div>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="country">Country</label>
-            <select onChange={handleChange} name='country_code' value={user.country_code} className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'>
+            <select onChange={handleChange}
+              name='country_code'
+              value={user.country_code}
+              className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'>
               <option value="AF">Afghanistan</option>
               <option value="AL">Albania</option>
               <option value="DZ">Algeria</option>
