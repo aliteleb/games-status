@@ -15,12 +15,13 @@ export default function SignUp() {
     const [formErrors, setFormErrors] = React.useState({});
 
     const formDataSchema = z.object({
-        username: z.string().min(3).max(16),
-        email: z.string().email().max(32),
-        password: z.string().min(3).max(32),
-        confirmPassword: z.string().min(3).max(32),
-        country_code: z.string().min(2).max(2),
+        username: z.string().min(3, "Username must be at least 3 characters").max(16, "Username must be 16 characters or fewer"),
+        email: z.string().email("Invalid email address").max(32, "Email must be 32 characters or fewer"),
+        password: z.string().min(3, "Password must be at least 3 characters").max(32, "Password must be 32 characters or fewer"),
+        confirmPassword: z.string().min(3, "Confirm password must be at least 3 characters").max(32, "Confirm password must be 32 characters or fewer"),
+        country_code: z.string().min(3, "Invalid Country").max(2, "Invalid Country"),
     });
+
 
     const validateForm = (data) =>{
         const validationResult = formDataSchema.safeParse(data);
