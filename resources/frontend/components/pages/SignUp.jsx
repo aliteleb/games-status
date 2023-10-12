@@ -20,9 +20,6 @@ export default function SignUp() {
         password: z.string().min(3).max(32),
         confirmPassword: z.string().min(3).max(32),
         country_code: z.string().min(2).max(2),
-    }).refine((data) => data.password === data.confirmPassword, {
-        message: "Passwords don't match",
-        path: "confirmPassword"
     });
 
     const validateForm = (data) =>{
