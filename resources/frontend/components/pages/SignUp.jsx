@@ -58,7 +58,7 @@ export default function SignUp() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        validateForm();
+        validateForm(formData);
     };
 
     return (
