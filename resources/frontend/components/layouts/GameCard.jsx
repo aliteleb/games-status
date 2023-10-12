@@ -10,8 +10,7 @@ const GameCard = (props) => {
     // props = false; // Uncomment this to see the component as a placeholder
 
     let color = props.statusText ? props.statusText.toLowerCase() : 'gray-600';
-    let icon = <IconBxsTimeFive className={'inline-block mr-0.5 w-4 h-4 text-' + color}/>;
-    let days = "";
+    let icon, days;
     switch (props.statusText || '') {
         case "CRACKED":
             icon = <CheckMarkIcon className={'inline-block mr-0.5 w-4 h-4 text-' + color}/>;
@@ -24,7 +23,6 @@ const GameCard = (props) => {
         default:
             icon = <IconBxsTimeFive className={'inline-block mr-0.5 w-4 h-4 text-' + color}/>;
             days = "D-" + props.days;
-
     }
 
 

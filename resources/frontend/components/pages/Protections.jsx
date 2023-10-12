@@ -1,9 +1,7 @@
 import React from 'react'
 
-function Protections() {
-  return (
-    <div>Protections</div>
-  )
+export default function Protections() {
+    return (
+        <div>Protections</div>
+    )
 }
-
-export default Protections

@@ -1,6 +1,6 @@
 import GameCard from "../layouts/GameCard.jsx";
 
-function Home() {
+export default function Home() {
     return (
         <div className={'container'}>
             <div className={'flex flex-wrap justify-between px-2 md:px-1 mt-12'}>
@@ -31,5 +31,3 @@ function Home() {
         </div>
     )
 }
-
-export default Home

@@ -1,9 +1,7 @@
 import React from 'react'
 
-function FreeKeys() {
+export default function FreeKeys() {
   return (
     <div>FreeKeys</div>
   )
 }
-
-export default FreeKeys

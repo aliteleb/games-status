@@ -34,7 +34,11 @@ class UpdateGamesInfo extends Command
         while (true) {
             try {
                 // Your existing code
-                $this->process();
+                if(!$this->process()){
+                    $this->info("Done!");
+                    return;
+                }
+
                 // Sleep for a specific time before the next iteration (e.g., 5 minutes)
             } catch (\Exception $e) {
                 $this->error("An error occurred: " . $e->getMessage());
@@ -47,7 +51,8 @@ class UpdateGamesInfo extends Command
     function process()
     {
         $game = Game::where('type', 'game')->whereNull('release_date')->inRandomOrder()->first();
-
+        if(!$game)
+            return false;
         try {
             $steam_game = Http::get("https://store.steampowered.com/api/appdetails?appids=" . $game->steam_appid);
 
@@ -61,10 +66,19 @@ class UpdateGamesInfo extends Command
                 }
 
                 if (!isset($data[$game->steam_appid]) || !isset($data[$game->steam_appid]["success"])) {
-                    $this->info("Game `{$game->name} - {$game->steam_appid}` Skipped.");
+                    $game->type='invalid';
+                    $game->save();
+                    $this->info("Game `{$game->name} - {$game->steam_appid}` Invalid.");
                     return;
                 }
 
+                if(!isset($steam_game[$game->steam_appid]["data"]))
+                {
+                    $game->type='invalid';
+                    $game->save();
+                    $this->info("Game `{$game->name} - {$game->steam_appid}` Invalid.");
+                    return;
+                }
                 $data = $steam_game[$game->steam_appid]["data"];
                 $game->release_date = $data['release_date']['date'];
                 $game->drm_protection_id = 1;
