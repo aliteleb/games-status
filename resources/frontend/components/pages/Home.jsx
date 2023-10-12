@@ -24,10 +24,7 @@ export default function Home() {
                     <GameCard/>
                     <GameCard/>
                 </div>
-
             </div>
-
-
         </div>
     )
 }

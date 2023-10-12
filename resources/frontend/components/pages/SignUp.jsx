@@ -8,19 +8,19 @@ export default function SignUp() {
           <header className='border-b-2 pb-[10px] font-bold text-xl'>Sign Up</header>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="username">Username</label>
-            <input type="text"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+            <input type="text" name="username" className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
           </div>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="password">Password</label>
-            <input type="password"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+            <input type="password" name="password"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
           </div>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="email">Email Address (No Spam!)</label>
-            <input type="text"  className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+            <input type="text" name="email" className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
           </div>
           <div className='mt-6 flex flex-col'>
             <label htmlFor="country">Country</label>
-            <select className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'>
+            <select name="country" className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'>
               <option value="AF">Afghanistan</option>
               <option value="AL">Albania</option>
               <option value="DZ">Algeria</option>
