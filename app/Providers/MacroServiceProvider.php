@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Routing\ResponseFactory;
 use Illuminate\Support\ServiceProvider;
 
-class ApiResponseServiceProvider extends ServiceProvider
+class MacroServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -20,15 +20,16 @@ class ApiResponseServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        ResponseFactory::macro('api', function ($status = 'success', $data = null, $message = "", $statusCode = 200) {
+        ResponseFactory::macro('api', function ($status = 'success', $data = null, $message = "", $status_code = 200) {
+
             $response = [
                 'status' => $status,
-                'data' => $data,
-                'status_code' => $statusCode,
                 'message' => $message,
+                'status_code' => $status_code,
+                'data' => $data,
             ];
 
-            return response()->json($response, $statusCode);
+            return response()->json($response, $status_code);
         });
     }
 }

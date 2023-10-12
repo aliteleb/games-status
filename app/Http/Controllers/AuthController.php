@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -19,14 +18,17 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return response()->api(
+                status: "error",
+                data: $validator->errors(),
+                message: "Whoops! Something went wrong.",
+                status_code: 422
+            );
         }
 
         try {
-            $user = User::create($validator->validate());
-
             return response()->api(
-                data: $user,
+                data: User::create($validator->validate()),
                 message: "User registered successfully"
             );
 
