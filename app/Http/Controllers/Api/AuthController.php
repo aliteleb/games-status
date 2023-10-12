@@ -50,6 +50,6 @@ class AuthController extends Controller
     }
     public function user(Request $request)
     {
-        return [];
+        return auth()->user();
     }
 }
