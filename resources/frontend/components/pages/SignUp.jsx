@@ -19,8 +19,8 @@ export default function SignUp() {
             <input type="text" name="email" className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
           </div>
           <div className='mt-6 flex flex-col'>
-            <label htmlFor="country">Country</label>
-            <select name="country" className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'>
+            <label htmlFor="country_code">Country</label>
+            <select name="country_code" className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'>
               <option value="AF">Afghanistan</option>
               <option value="AL">Albania</option>
               <option value="DZ">Algeria</option>
