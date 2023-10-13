@@ -1,9 +1,7 @@
 import {Link} from 'react-router-dom'
 import React from 'react'
 import ApiClient from "../../services/ApiClient.js";
-import {BiUserCheck} from "react-icons/bi";
-import {BsArrowBarRight} from "react-icons/bs";
-import {FaArrowRightLong, FaArrowRightToBracket} from "react-icons/fa6";
+import {MdDoneOutline} from 'react-icons/md'
 
 export default function SignUp() {
 
@@ -364,20 +362,16 @@ export default function SignUp() {
                     </div>
                 {
                     ((response && response.data.status === "success") &&
-                        <div className='flex flex-col my-32 justify-center items-center drop-shadow-[0px_0px_200px_rgb(255,255,255)]'>
-                            <BiUserCheck className="w-24 h-24 rounded-full bg-gray-900/20 p-4 my-8 border border-gray-800"/>
-                            <h2 className='text-gray-400 text-2xl'>Registration successful</h2>
-                            <div className='text-gray-400 text-md mx-4 my-2'>Back to</div>
+                        <div className='flex flex-col my-32 justify-center items-center'>
+                            <MdDoneOutline className='bg-gray-500 rounded-full w-20 h-20 p-3'/>
+                            <h2 className='text-gray-400 text-2xl mt-12'>Success!</h2>
+                            <div className='text-gray-400 text-md mx-4 mt-6'>You have registered for your account</div>
                                 <Link to="/login" className='text-gray-400 hover:text-gray-300 transition duration-200 mt-12'>
-
-                                    <FaArrowRightLong className="w-3 h-3 inline"/>
-                                    <span className="text-xl"> Login</span>
+                                    <span className="text-sm p-[16px] text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 transition duration-200">Login to your account</span>
                                 </Link>
                         </div>
                     )
                 }
-
-
             </div>
         </>
     )
