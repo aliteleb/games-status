@@ -58,6 +58,25 @@ export default function SignUp() {
         }
     }
 
+    const validationResult = formDataSchema.safeParse(formData);
+
+    if (!validationResult.error) {
+        validationResult.error = { errors: [] };
+    }
+    if (!validationResult.error.errors) {
+        validationResult.error.errors = { errors: [] };
+    }
+
+    for(let key in formErrors){
+        validationResult.error.errors.push({
+            message: formErrors[key],
+            path: [key],
+        });
+    }
+    setFormErrors(validationResult.error.errors)
+
+    console.log(formErrors);
+
 
     const inputValidation = (input) => {
         let error = (formErrors[input] && (formData[input] || formData.validate_all)) ? (<div className='text-orange-400 text-sm mt-1'>{formErrors[input]}</div>) : null;
@@ -81,14 +100,14 @@ export default function SignUp() {
         validateForm(formData);
 
         try{
-                let response = await axios.post('/register', {
-                username: formData.username,
-                password: formData.password,
-                password_confirmation: formData.confirmPassword,
-                email: formData.email,
-                country_code: formData.country_code})
+            let response = await axios.post('/register', {
+            username: formData.username,
+            password: formData.password,
+            password_confirmation: formData.confirmPassword,
+            email: formData.email,
+            country_code: formData.country_code})
 
-                setResponse(response)
+            setResponse(response)
 
             setFormData(prevFormData => ({
                 ...prevFormData,
@@ -104,7 +123,6 @@ export default function SignUp() {
         }
     };
 
-    console.log(response);
 
     return (
         <>
@@ -414,7 +432,6 @@ export default function SignUp() {
                     <h2 className='text-gray-400'>Registration successful</h2>
                     <Link to="/login" className='text-gray-400 hover:text-gray-300 transition duration-200'>Go to Login page</Link>
                 </div>: null}
-
             </div>
             <div className="h-12"></div>
         </>
