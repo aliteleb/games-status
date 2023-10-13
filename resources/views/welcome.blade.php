@@ -16,11 +16,11 @@
 
     <script>
         // Pass authentication status and user information to React
-        // window.authData = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => auth()->user()]) !!};
+        window.authData = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => auth()->user()]) !!};
     </script>
 
     @viteReactRefresh
-    @vite(['resources/frontend/index.jsx'])
+    @vite('resources/frontend/index.jsx')
 </head>
 <body class="bg-[#27282e]">
 <div id="root"></div>

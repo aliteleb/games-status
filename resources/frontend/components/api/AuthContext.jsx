@@ -4,8 +4,12 @@ import ApiClient from "./ApiClient.jsx";
 
 export const AppContext = createContext(undefined, undefined);
 
-export const AuthProvider = ({children}) => {
+const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
+
+    const updateUser = newUser => {
+        setUser(newUser);
+    };
 
     useEffect(() => {
         // Fetch user data from your authentication provider
@@ -24,17 +28,23 @@ export const AuthProvider = ({children}) => {
         };
 
         // Call the function to fetch user data
-        fetchUser();
+        // fetchUser();
+
+        if(window.authData.isAuthenticated){
+            setUser(window.authData.user);
+        }
 
     }, []);
 
     return (
-        <AppContext.Provider value={{user}}>
+        <AppContext.Provider value={{user, updateUser }}>
             {children}
         </AppContext.Provider>
     );
 };
 
-export const useAuth = () => {
+const useAuth = () => {
     return useContext(AppContext);
 };
+
+export { AuthProvider, useAuth };
