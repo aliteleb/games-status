@@ -5,7 +5,7 @@ import {BsFacebook, BsInstagram} from "react-icons/bs";
 
 function Footer() {
     return (
-        <footer className="bg-black bg-opacity-60 shadow mt-20">
+        <footer className="bg-black bg-opacity-60 shadow mt-56">
             <div className="w-full max-w-screen-xl mx-auto p-4 md:py-4">
                 <div className="flex flex-wrap items-center justify-between gap-x-2">
                     <div className='flex text-gray-400 gap-x-3 py-1'>
