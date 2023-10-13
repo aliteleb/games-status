@@ -363,14 +363,15 @@ export default function SignUp() {
                         </div>
                     </div>
                 {
-                    ((response && response.data.status === "success") &&
+                    ((response && response.data.status === "success" || true) &&
                         <div className='flex flex-col my-32 justify-center items-center drop-shadow-[0px_0px_200px_rgb(255,255,255)]'>
                             <BiUserCheck className="w-24 h-24 rounded-full bg-gray-900/20 p-4 my-8 border border-gray-800"/>
                             <h2 className='text-gray-400 text-2xl'>Registration successful</h2>
-                            <div className='text-gray-400 text-lg mt-3'>Go to</div>
+                            <div className='text-gray-400 text-md mx-4 my-2'>Back to</div>
+                                <Link to="/login" className='text-gray-400 hover:text-gray-300 transition duration-200 mt-12'>
 
-                                <Link to="/login" className='text-gray-400 text-xl hover:text-gray-300 transition duration-200 mt-12'>
-                                    <FaArrowRightLong className="w-3 h-3 inline"/> Login page
+                                    <FaArrowRightLong className="w-3 h-3 inline"/>
+                                    <span className="text-xl"> Login</span>
                                 </Link>
                         </div>
                     )
