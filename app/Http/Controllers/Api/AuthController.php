@@ -1,10 +1,11 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -35,7 +36,6 @@ class AuthController extends Controller
             );
 
         } catch (\Exception $e) {
-            // Handle registration error
             return response()->api(
                 status: "error",
                 message: __("An error occurred!."),
@@ -47,8 +47,30 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        return [];
+        // Retrieve user credentials from the request
+        $credentials = $request->only('username', 'password');
+
+        // Attempt to authenticate the user
+        if (Auth::attempt($credentials)) {
+
+            // Get the authenticated user
+            $user = Auth::user();
+
+            return response()->api(
+                data: $user,
+                message: __("Login successful.")
+            );
+
+        }
+
+        // Authentication failed
+        return response()->api(
+            status: "error",
+            message: __("Invalid credentials."),
+            status_code: 401
+        );
     }
+
     public function user(Request $request)
     {
         return auth()->user();
