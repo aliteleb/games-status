@@ -58,24 +58,6 @@ export default function SignUp() {
         }
     }
 
-    const validationResult = formDataSchema.safeParse(formData);
-
-    if (!validationResult.error) {
-        validationResult.error = { errors: [] };
-    }
-    if (!validationResult.error.errors) {
-        validationResult.error.errors = { errors: [] };
-    }
-
-    for(let key in formErrors){
-        validationResult.error.errors.push({
-            message: formErrors[key],
-            path: [key],
-        });
-    }
-    setFormErrors(validationResult.error.errors)
-
-    console.log(formErrors);
 
 
     const inputValidation = (input) => {
