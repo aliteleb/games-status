@@ -1,13 +1,16 @@
 import {Link} from 'react-router-dom'
 import React from 'react'
 import ApiClient from "../../services/ApiClient.js";
+import {BiUserCheck} from "react-icons/bi";
+import {BsArrowBarRight} from "react-icons/bs";
+import {FaArrowRightLong, FaArrowRightToBracket} from "react-icons/fa6";
 
 export default function SignUp() {
 
     let [formData, setFormData] = React.useState({
         username: "",
         password: "",
-        confirmPassword: "",
+        password_confirmation: "",
         email: "",
         country_code: "AF",
     });
@@ -36,7 +39,7 @@ export default function SignUp() {
             ApiClient.post('/register', {
                 username: formData.username,
                 password: formData.password,
-                password_confirmation: formData.confirmPassword,
+                password_confirmation: formData.password_confirmation,
                 email: formData.email,
                 country_code: formData.country_code
             }).then((res) => {
@@ -55,10 +58,9 @@ export default function SignUp() {
     return (
         <>
             {response === undefined && <div className="text-center text-xl mx-2 my-6 text-gray-200"> Create new account</div>}
-            <div
-                className={`w-full max-w-screen-xl mx-auto p-6 bg-custom-black bg-opacity-60 rounded-md text-gray-300 ${(response && response.data.status === "success") ? "mt-28" : ""}`}>
-                {response === undefined ?
-                    <div>
+            <div className={`w-full max-w-screen-xl mx-auto p-6 bg-custom-black/50 rounded-md text-gray-300 overflow-hidden`}>
+
+                    <div className={(response && response.data.status === "success") ? "hidden" : ""}>
                         <header className='border-b-2 pb-[10px] font-bold text-xl'>Sign Up</header>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="username">Username</label>
@@ -84,11 +86,11 @@ export default function SignUp() {
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="password">Confirm Password</label>
                             <input autoComplete='one-time-code' onChange={handleInputChange}
-                                   name='confirmPassword'
-                                   value={formData.confirmPassword}
+                                   name='password_confirmation'
+                                   value={formData.password_confirmation}
                                    type="password"
                                    className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
-                            {inputValidation('confirmPassword')}
+                            {inputValidation('password_confirmation')}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="email">Email Address (No Spam!)</label>
@@ -359,15 +361,23 @@ export default function SignUp() {
                         <div className='mt-4 text-sm'>Already have an account?
                             <Link to="/login" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Login</Link>
                         </div>
-                    </div> : (response && response.data.status === "success") ?
-                        <div className='flex flex-col justify-center items-center'>
-                            <h2 className='text-gray-400 text-3xl'>Registration successful</h2>
-                            <div className='text-gray-400 text-xl mt-3'>Go to</div>
-                            <Link to="/login" className='text-gray-400 mt-3 text-2xl hover:text-gray-300 transition duration-200'>Login page</Link>
-                        </div> : null}
+                    </div>
+                {
+                    ((response && response.data.status === "success") &&
+                        <div className='flex flex-col my-32 justify-center items-center drop-shadow-[0px_0px_200px_rgb(255,255,255)]'>
+                            <BiUserCheck className="w-24 h-24 rounded-full bg-gray-900/20 p-4 my-8 border border-gray-800"/>
+                            <h2 className='text-gray-400 text-2xl'>Registration successful</h2>
+                            <div className='text-gray-400 text-lg mt-3'>Go to</div>
+
+                                <Link to="/login" className='text-gray-400 text-xl hover:text-gray-300 transition duration-200 mt-12'>
+                                    <FaArrowRightLong className="w-3 h-3 inline"/> Login page
+                                </Link>
+                        </div>
+                    )
+                }
+
 
             </div>
-            <div className="h-12"></div>
         </>
     )
 }
