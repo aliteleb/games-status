@@ -360,9 +360,10 @@ export default function SignUp() {
                             <Link to="/login" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Login</Link>
                         </div>
                     </div> : (response && response.data.status === "success") ?
-                        <div>
-                            <h2 className='text-gray-400'>Registration successful</h2>
-                            <Link to="/login" className='text-gray-400 hover:text-gray-300 transition duration-200'>Go to Login page</Link>
+                        <div className='flex flex-col justify-center items-center'>
+                            <h2 className='text-gray-400 text-3xl'>Registration successful</h2>
+                            <div className='text-gray-400 text-xl mt-3'>Go to</div>
+                            <Link to="/login" className='text-gray-400 mt-3 text-2xl hover:text-gray-300 transition duration-200'>Login page</Link>
                         </div> : null}
 
             </div>
