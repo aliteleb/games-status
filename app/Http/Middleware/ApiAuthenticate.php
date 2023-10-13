@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 namespace App\Http\Middleware;
 
@@ -11,7 +11,6 @@ class ApiAuthenticate
     {
         if(!auth()->check())
         {
-
             return response()->api('error', 'Unauthenticated.', 401);
         }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,8 +31,9 @@ class AuthController extends Controller
         }
 
         try {
+            $user = User::create($validator->validate());
             return response()->api(
-                data: User::create($validator->validate()),
+                data: UserResource($user),
                 message: __("User registered successfully.")
             );
 
@@ -47,17 +49,13 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // Retrieve user credentials from the request
         $credentials = $request->only('username', 'password');
 
-        // Attempt to authenticate the user
         if (Auth::attempt($credentials)) {
 
-            // Get the authenticated user
             $user = Auth::user();
-
             return response()->api(
-                data: $user,
+                data: new UserResource($user),
                 message: __("Login successful.")
             );
 
