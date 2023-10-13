@@ -23,6 +23,6 @@
     @vite('resources/frontend/index.jsx')
 </head>
 <body class="bg-[#27282e]">
-<div id="root"></div>
+<div id="root" class="flex flex-col justify-between h-screen"></div>
 </body>
 </html>

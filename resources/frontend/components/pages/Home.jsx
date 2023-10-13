@@ -4,8 +4,8 @@ import {useAuth} from "../api/AuthContext.jsx";
 export default function Home() {
 
     return (
-        <div className={'container'}>
-            <div className={'flex flex-wrap justify-between px-2 md:px-1 mt-12'}>
+        <div className='container my-10'>
+            <div className={'flex flex-wrap justify-between px-2 md:px-1'}>
                 <div className={'text-white text-lg font-bold'}>Hot Games</div>
                 <div className={'text-white text-sm'}>
                     <div className={'inline-block mx-2 w-[7px] h-[7px] bg-green-700 rounded-full animate-pulse'}></div>

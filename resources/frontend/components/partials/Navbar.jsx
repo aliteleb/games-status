@@ -13,7 +13,7 @@ function Navbar() {
     const {user} = useAuth();
     return (
         <>
-            <nav className="grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 mb-12 text-white max-h-16 bg-custom-black items-center">
+            <nav className="grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 text-white bg-custom-black items-center">
 
                 <div className="flex items-center">
                     <MenuIcon onClick={() => {
