@@ -7,13 +7,17 @@ import InboxIcon from "../icons/InboxIcon.jsx";
 import NotificationIcon from "../icons/NotificationIcon.jsx";
 import UserIcon from "../icons/UserIcon.jsx";
 import Sidebar from "./Sidebar.jsx";
+import {useAuth} from "../api/AuthContext.jsx";
 
 function Navbar() {
+    const {user} = useAuth();
     return (
         <>
             <nav className="grid grid-cols-[auto_1fr_auto] px-1 md:px-6 mb-12 text-white max-h-16 bg-custom-black ">
                 <div className="flex items-center">
-                    <MenuIcon onClick={()=>{ document.querySelector('#sidebar').style.left = '0';}} className={'cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
+                    <MenuIcon onClick={() => {
+                        document.querySelector('#sidebar').style.left = '0';
+                    }} className={'cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                     <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                     <UsersIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                 </div>
@@ -26,7 +30,7 @@ function Navbar() {
                     </div>
                     <div className="mx-3 md:mx-6">
                         <NavLink to="/" className="relative">
-                            <img src="/assets/images/logo.png" className="w-16 h-16 mt-10" alt="Logo" />
+                            <img src="/assets/images/logo.png" className="w-16 h-16 mt-10" alt="Logo"/>
                             <div className="cursor-auto w-[10rem] h-[10rem] absolute bg-custom-black" style={{
                                 top: '-40%',
                                 left: '-75%',
@@ -47,12 +51,17 @@ function Navbar() {
                         <InboxIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
                     </NavLink>
                     <NotificationIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
-                    <NavLink to="/login">
-                        <UserIcon className="hover:text-gray-400 transition duration-100 ease-in-out"/>
-                    </NavLink>
+
+                    {user && <span>{user.username}</span>}
+                    {!user &&
+                        <NavLink to="/login">
+                            <UserIcon className="hover:text-gray-400 transition duration-100 ease-in-out"/>
+                        </NavLink>
+                    }
+
                 </div>
             </nav>
-            <Sidebar />
+            <Sidebar/>
         </>
     );
 

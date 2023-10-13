@@ -1,6 +1,8 @@
 import GameCard from "../layouts/GameCard.jsx";
+import {useAuth} from "../api/AuthContext.jsx";
 
 export default function Home() {
+
     return (
         <div className={'container'}>
             <div className={'flex flex-wrap justify-between px-2 md:px-1 mt-12'}>
@@ -27,4 +29,5 @@ export default function Home() {
             </div>
         </div>
     )
+
 }

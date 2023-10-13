@@ -11,7 +11,13 @@ class ApiAuthenticate
     {
         if(!auth()->check())
         {
-            return response()->api('error', 'Unauthenticated.', 401);
+
+            return response()->api(
+                status: "error",
+                message: __("Unauthenticated"),
+                status_code: 401,
+                response_code: 200
+            );
         }
 
         return $next($request);

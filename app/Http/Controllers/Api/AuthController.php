@@ -71,6 +71,10 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        return auth()->user();
+        $user = auth()->user();
+        return response()->api(
+            data: new UserResource($user),
+            message: __("Current user")
+        );
     }
 }
