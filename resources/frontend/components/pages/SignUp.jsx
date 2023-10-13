@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom'
 import React from 'react'
 import {z} from 'zod';
 import {FaCheck} from "react-icons/fa";
+import axios from '../api/ApiClient';
 
 export default function SignUp() {
 
@@ -45,7 +46,6 @@ export default function SignUp() {
     }
 
 
-
     const inputValidation = (input) => {
         let error = (formErrors[input] && (formData[input] || formData.validate_all)) ? (<div className='text-orange-400 text-sm mt-1'>{formErrors[input]}</div>) : null;
         let success = (!formErrors[input] && formData[input]) ? (<div className='absolute top-2 right-2 text-green-500'> <FaCheck/> </div>) : null;
@@ -62,11 +62,31 @@ export default function SignUp() {
     };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         formData.validate_all = true;
         validateForm(formData);
+
+        try{
+            await axios.post('/register', {
+                username: formData.username,
+                password: formData.password,
+                password_confirmation: formData.confirmPassword,
+                email: formData.email,
+                country_code: formData.country_code})
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                username: "",
+                password: "",
+                confirmPassword: "",
+                email: "",
+                country_code: "",
+            }))
+
+        }catch (err){
+            console.log(err);
+        }
     };
 
 
