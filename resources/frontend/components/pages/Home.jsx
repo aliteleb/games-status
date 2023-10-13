@@ -4,7 +4,7 @@ import {useAuth} from "../api/AuthContext.jsx";
 export default function Home() {
 
     return (
-        <div className='container my-10'>
+        <>
             <div className={'flex flex-wrap justify-between px-2 md:px-1'}>
                 <div className={'text-white text-lg font-bold'}>Hot Games</div>
                 <div className={'text-white text-sm'}>
@@ -27,7 +27,7 @@ export default function Home() {
                     <GameCard/>
                 </div>
             </div>
-        </div>
+        </>
     )
 
 }

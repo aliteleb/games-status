@@ -54,8 +54,7 @@ export default function SignUp() {
 
 
     return (
-        <div className="container my-10">
-
+        <>
             {response === undefined && <div className="text-center text-xl mx-2 my-6 text-gray-200"> Create new account</div>}
 
             <div className={`p-6 bg-custom-black/50 rounded-md text-gray-300 overflow-hidden`}>
@@ -375,6 +374,6 @@ export default function SignUp() {
                     )
                 }
             </div>
-        </div>
+        </>
     )
 }
