@@ -363,7 +363,7 @@ export default function SignUp() {
                         </div>
                     </div>
                 {
-                    ((response && response.data.status === "success" || true) &&
+                    ((response && response.data.status === "success") &&
                         <div className='flex flex-col my-32 justify-center items-center drop-shadow-[0px_0px_200px_rgb(255,255,255)]'>
                             <BiUserCheck className="w-24 h-24 rounded-full bg-gray-900/20 p-4 my-8 border border-gray-800"/>
                             <h2 className='text-gray-400 text-2xl'>Registration successful</h2>
