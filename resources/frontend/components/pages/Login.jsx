@@ -1,8 +1,8 @@
-import axios from '../api/ApiClient'
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {useAuth} from "../api/AuthContext.jsx";
 import { useNavigate } from 'react-router-dom';
+import ApiClient from "../../services/ApiClient.js";
 
 export default function Login() {
 
@@ -24,7 +24,7 @@ export default function Login() {
     let handleSubmit = async (e) => {
         e.preventDefault()
 
-        let response = await axios.post('/login', {
+        let response = await ApiClient.post('/login', {
             username: formData.username,
             password: formData.password
         })
