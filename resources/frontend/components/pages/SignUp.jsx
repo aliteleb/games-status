@@ -28,6 +28,16 @@ export default function SignUp() {
 
         // Check for password match separately
         if (data.password !== data.confirmPassword) {
+
+            validationResult.success = false;
+
+            if (!validationResult.error) {
+                validationResult.error = { errors: [] };
+            }
+            if (!validationResult.error.errors) {
+                validationResult.error.errors = { errors: [] };
+            }
+
             validationResult.error.errors.push({
                 message: "Passwords don't match",
                 path: ["confirmPassword"],

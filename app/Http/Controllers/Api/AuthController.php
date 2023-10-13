@@ -16,8 +16,8 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required|unique:users|string|max:16',
             'email' => 'required|string|email|unique:users|max:32',
-            'password' => 'required|string|min:8|max:32',
-            'password_confirmation' => 'required|string|min:8|max:32|confirmed',
+            'password' => 'required|string|min:8|max:32|confirmed',
+            'password_confirmation' => 'required|string|min:8|max:32',
             'country_code' => 'required|string|min:2|max:2',
         ]);
 
@@ -33,7 +33,7 @@ class AuthController extends Controller
         try {
             $user = User::create($validator->validate());
             return response()->api(
-                data: UserResource($user),
+                data: new UserResource($user),
                 message: __("User registered successfully.")
             );
 
