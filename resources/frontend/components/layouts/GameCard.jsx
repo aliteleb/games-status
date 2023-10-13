@@ -3,7 +3,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import React from 'react';
 import IconBxsTimeFive from "../icons/IconBxsTimeFive.jsx";
 import CheckMarkIcon from "../icons/CheckMarkIcon.jsx";
-import RemoveIcon from "../icons/RemoveIcon.jsx";
+import {IoMdRemoveCircle} from "react-icons/io";
 
 const GameCard = (props) => {
 
@@ -17,14 +17,13 @@ const GameCard = (props) => {
             days = "D+" + props.days;
             break;
         case "UNCRACKED":
-            icon = <RemoveIcon className={'inline-block mr-0.5 w-4 h-4 text-' + color}/>;
+            icon = <IoMdRemoveCircle className={'inline-block mr-0.5 w-4 h-4 text-' + color}/>;
             days = "D+" + props.days;
             break;
         default:
             icon = <IconBxsTimeFive className={'inline-block mr-0.5 w-4 h-4 text-' + color}/>;
             days = "D-" + props.days;
     }
-
 
     return (
         <div className={'h-full flex flex-col h-full shadow-md shadow-black bg-black ' + props.className || ''}>
@@ -37,7 +36,7 @@ const GameCard = (props) => {
                             {props.title || <Skeleton width={'100%'} height={'14px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
                         </h1>
                         <div className="flex flex-wrap">
-                            <h2 className={'w-full text-' + color}>
+                            <h2 className={'w-full text-sm text-' + color}>
                                 {props.statusText && icon}
                                 {props.statusText || <Skeleton width={'80%'} height={'12px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
                                 {props.statusText && <span className="text-sm font-light"> {days}</span>}
