@@ -16,66 +16,6 @@ export default function SignUp() {
 
     const [formErrors, setFormErrors] = React.useState({});
 
-    const formDataSchema = z.object({
-        username: z.string().min(3, "Username must be at least 3 characters").max(16, "Username must be 16 characters or fewer"),
-        email: z.string().email("Invalid email address").max(32, "Email must be 32 characters or fewer"),
-        password: z.string().min(8, "Password must be at least 8 characters").max(32, "Password must be 32 characters or fewer"),
-        confirmPassword: z.string().min(8, "Confirm password must be at least 8 characters").max(32, "Confirm password must be 32 characters or fewer"),
-        country_code: z.string().min(2, "Invalid Country").max(2, "Invalid Country"),
-    });
-
-    const validateForm = (data) => {
-        const validationResult = formDataSchema.safeParse(data);
-
-        // Check for password match separately
-        if (data.password !== data.confirmPassword) {
-
-            validationResult.success = false;
-
-            if (!validationResult.error) {
-                validationResult.error = { errors: [] };
-            }
-            if (!validationResult.error.errors) {
-                validationResult.error.errors = { errors: [] };
-            }
-
-            validationResult.error.errors.push({
-                message: "Passwords don't match",
-                path: ["confirmPassword"],
-            });
-        }
-
-        if (validationResult.success) {
-            setFormErrors({});
-        } else {
-            // Form data is invalid, update the error state
-            setFormErrors(validationResult.error.errors.reduce((acc, error) => {
-                acc[error.path[0]] = error.message;
-                return acc;
-            }, {}));
-        }
-    }
-
-    const validationResult = formDataSchema.safeParse(formData);
-
-    if (!validationResult.error) {
-        validationResult.error = { errors: [] };
-    }
-    if (!validationResult.error.errors) {
-        validationResult.error.errors = { errors: [] };
-    }
-
-    for(let key in formErrors){
-        validationResult.error.errors.push({
-            message: formErrors[key],
-            path: [key],
-        });
-    }
-    setFormErrors(validationResult.error.errors)
-
-    console.log(formErrors);
-
-
     const inputValidation = (input) => {
        return (formErrors[input] !== undefined && <div className='text-orange-400 text-sm mt-1'>{formErrors[input][0]}</div>);
     }
@@ -100,7 +40,7 @@ export default function SignUp() {
                 email: formData.email,
                 country_code: formData.country_code
             }).then((res) => {
-                console.log(res);
+                setResponse(res)
             }).catch(err => {
 
                 setFormErrors(err.response.data.data);
