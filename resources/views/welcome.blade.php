@@ -13,6 +13,12 @@
     <noscript>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;700&display=swap">
     </noscript>
+
+    <script>
+        // Pass authentication status and user information to React
+        window.authData = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => auth()->user()]) !!};
+    </script>
+
     @viteReactRefresh
     @vite(['resources/frontend/index.jsx'])
 </head>

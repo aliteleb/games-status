@@ -26,7 +26,7 @@ export default function Login() {
             })
 
             if(response.status){
-                console.log("Login Sucessfully");
+                console.log("Login Successfully");
             }
 
         }catch (err){
