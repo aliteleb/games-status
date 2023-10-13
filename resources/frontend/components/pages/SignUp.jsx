@@ -1,8 +1,6 @@
 import {Link} from 'react-router-dom'
 import React from 'react'
-import {z} from 'zod';
-import {FaCheck} from "react-icons/fa";
-import axios from '../api/ApiClient';
+import ApiClient from "../../services/ApiClient.js";
 
 export default function SignUp() {
 
@@ -18,76 +16,14 @@ export default function SignUp() {
 
     const [formErrors, setFormErrors] = React.useState({});
 
-    const englishCharactersRegex = /^[A-Za-z]+$/;
-
-    const formDataSchema = z.object({
-        username: z.string()
-            .min(3, "Username must be at least 3 characters")
-            .max(16, "Username must be 16 characters or fewer")
-            .refine((value) => englishCharactersRegex.test(value), {
-                message: "Username must contain only English characters",
-            }),
-        email: z.string()
-            .email("Invalid email address")
-            .max(32, "Email must be 32 characters or fewer")
-            .refine((value) => englishCharactersRegex.test(value), {
-                message: "Email must contain only English characters",
-            }),
-        password: z.string()
-            .min(8, "Password must be at least 8 characters")
-            .max(32, "Password must be 32 characters or fewer"),
-        confirmPassword: z.string()
-            .min(8, "Confirm password must be at least 8 characters")
-            .max(32, "Confirm password must be 32 characters or fewer"),
-        country_code: z.string()
-            .min(2, "Invalid Country")
-            .max(2, "Invalid Country")
-    });
-
-    const validateForm = (data) => {
-        const validationResult = formDataSchema.safeParse(data);
-
-        // Check for password match separately
-        if (data.password !== data.confirmPassword) {
-
-            validationResult.success = false;
-
-            if (!validationResult.error) {
-                validationResult.error = {errors: []};
-            }
-            if (!validationResult.error.errors) {
-                validationResult.error.errors = {errors: []};
-            }
-
-            validationResult.error.errors.push({
-                message: "Passwords don't match",
-                path: ["confirmPassword"],
-            });
-        }
-
-        if (validationResult.success) {
-            setFormErrors({});
-        } else {
-            // Form data is invalid, update the error state
-            setFormErrors(validationResult.error.errors.reduce((acc, error) => {
-                acc[error.path[0]] = error.message;
-                return acc;
-            }, {}));
-        }
-    }
     const inputValidation = (input) => {
-        let error = (formErrors[input] && (formData[input] || formData.validate_all)) ? (<div className='text-orange-400 text-sm mt-1'>{formErrors[input]}</div>) : null;
-        let success = (!formErrors[input] && formData[input]) ? (<div className='absolute top-2 right-2 text-green-500'><FaCheck/></div>) : null;
-        return [error, success];
+       return (formErrors[input] !== undefined && <div className='text-orange-400 text-sm mt-1'>{formErrors[input][0]}</div>);
     }
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
         setFormData((prevData) => {
-            const updatedData = {...prevData, [name]: value};
-            formData.validate_all = false;
-            validateForm(updatedData);
-            return updatedData;
+            return  {...prevData, [name]: value};
         });
     };
 
@@ -95,34 +31,26 @@ export default function SignUp() {
         e.preventDefault();
 
         formData.validate_all = true;
-        validateForm(formData);
 
         try {
-            let response = await axios.post('/register', {
+            ApiClient.post('/register', {
                 username: formData.username,
                 password: formData.password,
                 password_confirmation: formData.confirmPassword,
                 email: formData.email,
                 country_code: formData.country_code
+            }).then((res) => {
+                console.log(res);
+            }).catch(err => {
+
+                setFormErrors(err.response.data.data);
+
             })
-
-            setResponse(response)
-
-            setFormData(prevFormData => ({
-                ...prevFormData,
-                username: "",
-                password: "",
-                confirmPassword: "",
-                email: "",
-                country_code: "",
-            }))
-
         } catch (err) {
-            console.log(err);
         }
+
     };
 
-    console.log(response);
 
     return (
         <>
@@ -141,7 +69,7 @@ export default function SignUp() {
                                 type="text"
                                 className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'
                                 autoComplete="one-time-code"
-                            />
+                            required="required"/>
                             {inputValidation('username')}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
@@ -167,7 +95,7 @@ export default function SignUp() {
                             <input autoComplete='one-time-code' onChange={handleInputChange}
                                    name='email'
                                    value={formData.email}
-                                   type="text"
+                                   type="email"
                                    className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
 
                             {inputValidation('email')}

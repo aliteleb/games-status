@@ -1,6 +1,6 @@
 // AuthContext.js
 import {createContext, useContext, useEffect, useState} from 'react';
-import ApiClient from "./ApiClient.jsx";
+import ApiClient from "../../services/ApiClient.js";
 
 export const AppContext = createContext(undefined, undefined);
 
