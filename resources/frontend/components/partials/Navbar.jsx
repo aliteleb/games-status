@@ -13,7 +13,8 @@ function Navbar() {
     const {user} = useAuth();
     return (
         <>
-            <nav className="grid grid-cols-[auto_1fr_auto] px-1 md:px-6 mb-12 text-white max-h-16 bg-custom-black ">
+            <nav className="grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 mb-12 text-white max-h-16 bg-custom-black items-center">
+
                 <div className="flex items-center">
                     <MenuIcon onClick={() => {
                         document.querySelector('#sidebar').style.left = '0';
@@ -21,7 +22,8 @@ function Navbar() {
                     <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                     <UsersIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                 </div>
-                <div className="flex items-center justify-center h-[4rem]">
+
+                <div className="grid grid-cols-[auto_1fr_auto] sm:grid-cols-[1fr_auto_1fr] items-center justify-center h-[4rem]">
                     <div className="hidden sm:block">
                         <NavLink to="/games" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">GAMES</NavLink>
                         <NavLink to="/nfos" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">NFOS</NavLink>
@@ -30,9 +32,9 @@ function Navbar() {
                     </div>
                     <div className="mx-3 md:mx-6">
                         <NavLink to="/" className="relative">
-                            <img src="/assets/images/logo.png" className="w-16 h-16 mt-10" alt="Logo"/>
+                            <img src="/assets/images/logo.png" className="w-16 h-16 top-5 relative" alt="Logo"/>
                             <div className="cursor-auto w-[10rem] h-[10rem] absolute bg-custom-black" style={{
-                                top: '-40%',
+                                top: '-100%',
                                 left: '-75%',
                                 zIndex: '-1',
                                 clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)'
@@ -46,7 +48,8 @@ function Navbar() {
                         <NavLink to="/forum" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400">FORUM</NavLink>
                     </div>
                 </div>
-                <div className="flex items-center">
+
+                <div className="flex items-center justify-end">
                     <NavLink to="/messages">
                         <InboxIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
                     </NavLink>

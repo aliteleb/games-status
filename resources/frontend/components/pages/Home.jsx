@@ -13,12 +13,12 @@ export default function Home() {
                 </div>
             </div>
             <div className={'h-[1px] bg-[#494a4f] mb-2 mt-1'}/>
-            <div className={'flex flex-wrap justify-between'}>
-                <div className={'w-full md:w-6/12 mb-5 md:mb-0'}>
-                    <GameCard title="Red Dead Redamption" statusText="CRACKED" image="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" className="mx-1 md:mx-2"
+            <div className={'grid grid-cols-[1fr] md:grid-cols-[1fr_1fr] gap-1 px-1 md:px-0'}>
+                <div className={''}>
+                    <GameCard title="Red Dead Redamption" statusText="CRACKED" image="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" className=""
                               size="large" days="364"/>
                 </div>
-                <div className="w-full md:w-6/12 grid grid-cols-[1fr_1fr] px-1 gap-2">
+                <div className="grid grid-cols-[1fr_1fr] px-1 gap-2">
                     <GameCard title="FIFA 22" statusText="UNCRACKED" image="https://cdn.akamai.steamstatic.com/steam/apps/1506830/header.jpg" days="14"/>
                     <GameCard title="Cyberpunk 2077" statusText="CRACKED" image="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg?" days="5"/>
                     <GameCard title="Elden Ring" statusText="CRACKED" image="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" days="66"/>
