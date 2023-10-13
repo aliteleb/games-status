@@ -104,11 +104,12 @@ export default function SignUp() {
         }
     };
 
+    console.log(response);
 
     return (
         <>
             {response === undefined && <div className="text-center text-xl mx-2 my-6 text-gray-200"> Create new account</div>}
-            <div className={`w-full max-w-screen-xl mx-auto p-6 bg-custom-black bg-opacity-60 rounded-md text-gray-300 ${response && response.status === 200 ? "mt-28" : ""}`}>
+            <div className={`w-full max-w-screen-xl mx-auto p-6 bg-custom-black bg-opacity-60 rounded-md text-gray-300 ${(response && response.data.status === "success") ? "mt-28" : ""}`}>
                 {response === undefined ?
                 <div>
                     <header className='border-b-2 pb-[10px] font-bold text-xl'>Sign Up</header>
@@ -408,10 +409,10 @@ export default function SignUp() {
                     <div className='mt-4 text-sm'>Already have an account?
                         <Link to="/login" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Login</Link>
                     </div>
-                </div> : (response && response.status === 200) ?
+                </div> : (response && response.data.status === "success") ?
                 <div>
-                    <h2>Registeration successful</h2>
-                    <Link to="/login">Go to Login page</Link>
+                    <h2 className='text-gray-400'>Registration successful</h2>
+                    <Link to="/login" className='text-gray-400 hover:text-gray-300 transition duration-200'>Go to Login page</Link>
                 </div>: null}
 
             </div>
