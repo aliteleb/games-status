@@ -3,7 +3,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import React from 'react';
 import IconBxsTimeFive from "../icons/IconBxsTimeFive.jsx";
 import CheckMarkIcon from "../icons/CheckMarkIcon.jsx";
-import RemoveIcon from "../icons/RemoveIcon.jsx";
+import {IoMdRemoveCircle} from "react-icons/io";
 
 const GameCard = (props) => {
 
@@ -17,7 +17,7 @@ const GameCard = (props) => {
             days = "D+" + props.days;
             break;
         case "UNCRACKED":
-            icon = <RemoveIcon className={'inline-block mr-0.5 w-4 h-4 text-' + color}/>;
+            icon = <IoMdRemoveCircle className={'inline-block mr-0.5 w-4 h-4 text-' + color}/>;
             days = "D+" + props.days;
             break;
         default:
@@ -25,19 +25,17 @@ const GameCard = (props) => {
             days = "D-" + props.days;
     }
 
-
     return (
-        <div className={'h-full flex flex-col h-full shadow-md shadow-black bg-black ' + props.className || ''}>
+        <div className={'h-full flex flex-col shadow-md shadow-black bg-black ' + props.className || ''}>
 
                 <img className={'pointer-events-none border-b-4 border-'+color} src={props.image || '/assets/images/game-placeholder.jpg'} alt={'game'}/>
-
                 <div className={'grid grid-cols-[1fr_30px] md:grid-cols-[1fr_40px]'}>
                     <div className={'px-2 py-1'}>
                         <h1 className={'text-gray-200'}>
                             {props.title || <Skeleton width={'100%'} height={'14px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
                         </h1>
                         <div className="flex flex-wrap">
-                            <h2 className={'w-full text-' + color}>
+                            <h2 className={'w-full text-sm text-' + color}>
                                 {props.statusText && icon}
                                 {props.statusText || <Skeleton width={'80%'} height={'12px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
                                 {props.statusText && <span className="text-sm font-light"> {days}</span>}

@@ -25,7 +25,7 @@ export default function App()
     return (
         <BrowserRouter>
             <Navbar/>
-            <div className="container my-10 text-gray-200">
+            <div className="container my-10 text-gray-200 px-2 md:px-0">
                 <Routes>
                     <Route path='/' element={<Home />}/>
                     <Route path='/games' element={<Games />}/>

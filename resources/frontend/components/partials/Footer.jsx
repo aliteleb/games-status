@@ -19,7 +19,7 @@ function Footer() {
                             <BsInstagram className='w-5 h-5 hover:text-pink-500 transition duration-200'/>
                         </Link>
                     </div>
-                    <ul className="flex flex-col md:flex-row flex-wrap gap-1 md:gap-5 items-center justify-end mb-6 text-sm font-medium text-gray-500 sm:mb-0">
+                    <ul className="flex flex-col md:flex-row flex-wrap gap-1 md:gap-5 justify-end mb-6 text-sm font-medium text-gray-500 sm:mb-0">
                         <li>
                             <Link to="/about" className="hover:text-gray-300 ">About</Link>
                         </li>
