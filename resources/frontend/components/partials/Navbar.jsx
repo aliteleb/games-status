@@ -56,7 +56,7 @@ function Navbar() {
                     </NavLink>
                     <NotificationIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
 
-                    {user && <span>{user.username}</span>}
+                    {user && <span className="border-[1px] p-2 rounded border-gray-400">{user.username}</span>}
                     {!user &&
                         <NavLink to="/login">
                             <UserIcon className="hover:text-gray-400 transition duration-100 ease-in-out"/>
