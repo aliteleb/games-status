@@ -9,12 +9,19 @@ import GroupsIcon from '../icons/GroupsIcon'
 import MarketsIcon from '../icons/MarketsIcon'
 import ProtectionsIcon from '../icons/ProtectionsIcon'
 import ForumIcon from '../icons/ForumIcon'
+import {useAuth} from "../api/AuthContext";
+
+
+
+export function collapseSidebar(){
+  document.querySelector('#sidebar').style.left = '-18rem';
+}
 
 function Sidebar() {
 
-  function collapseSidebar(){
-    document.querySelector('#sidebar').style.left = '-18rem';
-  }
+  const {user} = useAuth();
+  let loginRef = React.useRef(null)
+  user ? loginRef.current.classList.remove("active") : ""
 
   return (
     <div id={'sidebar'} className='flex flex-col w-64 xl:w-72 pl-5 h-screen pt-6 fixed top-0 -left-72 transition-all bg-custom-black z-10'>
@@ -22,7 +29,8 @@ function Sidebar() {
           <Xmark className={'text-white'}/>
       </div>
     <nav>
-      <NavLink onClick={collapseSidebar} to="login" className='flex items-center mt-4'>
+
+      <NavLink ref={loginRef} onClick={collapseSidebar} to={user ? "/" : "/login"} className={`flex items-center mt-4`}>
           <UserIcon className={'text-red-800'}/>
           <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>LOGIN | SIGN UP</span>
       </NavLink>
