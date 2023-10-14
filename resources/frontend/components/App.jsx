@@ -14,6 +14,7 @@ import FrequencyQuestions from "./pages/FrequencyQuestions.jsx";
 import Terms from "./pages/Terms.jsx";
 import Contact from "./pages/Contact.jsx";
 import About from "./pages/About.jsx";
+import PageNotFound from "./pages/PageNotFound.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import Login from "./pages/Login.jsx";
 import Messages from "./pages/Messages.jsx";
@@ -43,6 +44,7 @@ export default function App()
                     <Route path='/contact' element={<Contact />} />
                     <Route path='/terms-conditions' element={<Terms />} />
                     <Route path='/frequency-questions' element={<FrequencyQuestions />} />
+                    <Route path='*' element={<PageNotFound />} />
                 </Routes>
             </div>
             <Footer />
