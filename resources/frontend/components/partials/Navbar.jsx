@@ -1,4 +1,4 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, Link} from "react-router-dom";
 import React from "react";
 import SearchIcon from "../icons/SearchIcon.jsx";
 import MenuIcon from "../icons/MenuIcon.jsx";
@@ -13,7 +13,7 @@ import NotificationsBar from './NotificationsBar.jsx'
 
 function Navbar() {
     const {user} = useAuth();
-    console.log(user);
+
     return (
         <>
             <nav className="grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 text-white bg-custom-black items-center">
@@ -21,13 +21,15 @@ function Navbar() {
                     <MenuIcon onClick={() => {
                         document.querySelector('#sidebar').style.left = '0';
                     }} className={'cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
-                    <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
+                    <Link to="/search-game">
+                        <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
+                    </Link>
                     <UsersIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
                 </div>
 
                 <div className="grid grid-cols-[auto_1fr_auto] sm:grid-cols-[1fr_auto_1fr] items-center justify-center h-[4rem]">
                     <div className="hidden sm:block text-end">
-                        <NavLink onClick={collapseSidebar} to="/games" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">GAMES</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/search-game" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">GAMES</NavLink>
                         <NavLink onClick={collapseSidebar} to="/nfos" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">NFOS</NavLink>
                         <NavLink onClick={collapseSidebar} to="/groups" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">GROUPS</NavLink>
                         <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">PROTECTIONS</NavLink>

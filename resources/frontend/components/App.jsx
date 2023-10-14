@@ -2,7 +2,6 @@ import React, {useContext} from 'react'
 import './App.css'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import Games from "./pages/Games.jsx";
 import NFOS from "./pages/NFOS.jsx";
 import Navbar from "./partials/Navbar.jsx";
 import Groups from "./pages/Groups.jsx";
@@ -20,6 +19,7 @@ import Login from "./pages/Login.jsx";
 import Messages from "./pages/Messages.jsx";
 import Forum from "./pages/Forum.jsx";
 import Footer from "./partials/Footer.jsx";
+import SearchGames from './pages/SearchGames';
 
 export default function App()
 {
@@ -29,7 +29,6 @@ export default function App()
             <div className="container my-10 text-gray-200 px-2 md:px-0">
                 <Routes>
                     <Route path='/' element={<Home />}/>
-                    <Route path='/games' element={<Games />}/>
                     <Route path='/nfos' element={<NFOS />}/>
                     <Route path='/groups' element={<Groups />}/>
                     <Route path='/protections' element={<Protections />}/>
@@ -45,6 +44,7 @@ export default function App()
                     <Route path='/terms-conditions' element={<Terms />} />
                     <Route path='/frequency-questions' element={<FrequencyQuestions />} />
                     <Route path='*' element={<PageNotFound />} />
+                    <Route path='/search-game' element={<SearchGames />} />
                 </Routes>
             </div>
             <Footer />
