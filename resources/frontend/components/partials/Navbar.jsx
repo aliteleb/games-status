@@ -9,6 +9,7 @@ import UserIcon from "../icons/UserIcon.jsx";
 import Sidebar from "./Sidebar.jsx";
 import {useAuth} from "../api/AuthContext.jsx";
 import { collapseSidebar } from "./Sidebar.jsx";
+import NotificationsBar from './NotificationsBar.jsx'
 
 function Navbar() {
     const {user} = useAuth();
@@ -54,7 +55,9 @@ function Navbar() {
                     <NavLink to="/messages">
                         <InboxIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
                     </NavLink>
-                    <NotificationIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
+                    <div onClick={()=> document.querySelector('#notifications-bar').style.right = '0'}>
+                        <NotificationIcon className="mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out"/>
+                    </div>
 
                     {user && <span className="border-[1px] p-2 rounded border-gray-400">{user.username}</span>}
                     {!user &&
@@ -65,6 +68,7 @@ function Navbar() {
                 </div>
             </nav>
             <Sidebar/>
+            <NotificationsBar/>
         </>
     );
 

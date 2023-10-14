@@ -1,0 +1,31 @@
+import React from 'react'
+import Xmark from '../icons/Xmark';
+
+
+export function collapseSidebar(){
+  document.querySelector('#notifications-bar').style.right = '-19rem';
+}
+
+function NotificationsBar() {
+
+
+  return (
+    <div id={'notifications-bar'} className='flex flex-col w-72 xl:w-[19rem] pl-5 h-screen pt-6 fixed top-0 -right-[19rem] transition-all bg-custom-black z-10'>
+      <div onClick={collapseSidebar} className='cursor-pointer w-fit'>
+          <Xmark className={'text-white'}/>
+      </div>
+      <header className='text-gray-200 flex justify-center mt-4'>
+        <h1>Notifications</h1>
+      </header>
+      <div className="text-gray-200 flex flex-col justify-center mt-4">
+        <h1 className='mt-4 cursor-pointer'>message 1</h1>
+        <h1 className='mt-4 cursor-pointer'>message 2</h1>
+        <h1 className='mt-4 cursor-pointer'>message 3</h1>
+        <h1 className='mt-4 cursor-pointer'>message 4</h1>
+        <h1 className='mt-4 cursor-pointer'>message 5</h1>
+      </div>
+    </div>
+  )
+}
+
+export default NotificationsBar
