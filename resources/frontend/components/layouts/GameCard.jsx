@@ -44,7 +44,7 @@ const GameCard = (props) => {
 
                     </div>
                     <div className={'text-white m-auto relative'}>
-                        <input type='checkbox' className="before:hover:rounded-sm"/>
+                        <input type='checkbox' className="before:hover:ring-2 before:hover:ring-gray-700 before:hover:bg-gray-700 "/>
                     </div>
                 </div>
                 {props.size === "large" && <div className="flex flex-wrap justify-around h-full">
