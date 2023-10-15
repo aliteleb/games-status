@@ -1,7 +1,22 @@
 import GameCard from "../layouts/GameCard.jsx";
-import {useAuth} from "../api/AuthContext.jsx";
+import React from "react";
+import ApiClient from "../../services/ApiClient.js";
 
 export default function Home() {
+
+    let [gamesData, setGamesData] = React.useState([]); 
+
+    React.useEffect(()=> {
+        ApiClient.get('/home')
+        .then((res)=> {
+                setGamesData(res.data)
+        }).catch(err => console.log(err))
+
+    }, [])
+
+    let arr = gamesData.data
+    console.log(arr);
+    // let games = arr.map(game => console.log(game))
 
     return (
         <>
