@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import UserIcon from '../icons/UserIcon'
 import Xmark from '../icons/Xmark'
 import HomeIcon from '../icons/HomeIcon'
@@ -21,16 +21,15 @@ function Sidebar() {
 
   const {user} = useAuth();
 
-
   return (
     <div id={'sidebar'} className='flex flex-col w-64 xl:w-72 pl-5 h-screen pt-6 fixed top-0 -left-72 transition-all bg-custom-black z-10'>
-      <div onClick={collapseSidebar} className='cursor-pointer w-fit'>
+      <div س className='cursor-pointer w-fit'>
           <Xmark className={'text-white'}/>
       </div>
     <nav>
       <NavLink onClick={collapseSidebar} to={user ? "/profile" : "/login"} className={`flex items-center mt-4`}>
           <UserIcon className={'text-red-800'}/>
-          <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>{!user ?'LOGIN | SIGN UP' : user.username}</span>
+          <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>{!user ?'LOGIN | SIGN UP' : 'Profile'}</span>
       </NavLink>
 
 
