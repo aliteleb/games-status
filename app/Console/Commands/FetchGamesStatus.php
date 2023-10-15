@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\DrmProtection;
 use App\Models\Game;
+use App\Models\Group;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -28,33 +29,78 @@ class FetchGamesStatus extends Command
      */
     public function handle()
     {
-        for ($i = 0; $i <= 417; $i++) {
-            $res = Http::get("https://steamcrackedgames.com/api/games/page/" . $i . "/order/-1")->json();
-            if (isset($res['games'])) {
-                $games = $res['games'];
-                foreach ($games as $game) {
-                    $g = Game::where('slug', $game['slug'])->first();
-                    if (!$g)
-                        $g = Game::where('steam_appid', $game['app_id'])->first();
+        $games = Game::where('type', 'game')->whereNull('last_check')->get();
+        $count = $games->count();
+        $this->info("Remaining Games :`{$games->count()}`");
+        for ($i = 0; $i < $count; $i++) {
 
-                    if ($g) {
-                        $g->drm_protection_id = DrmProtection::firstOrCreate(['name' => $game['drm_protection']])->id;
-                        $g->is_aaa = $game['aaa'];
-                        if($game['crack_status'] == 2)
-                        {
-                            $g->crack_date = $game['cracked_date_1'];
-                            $g->is_cracked = true;
-                        }
-                        $this->info($game['name'] . ' Processed');
-                    }
+            $game = $games[$i];
 
+            $debug_res = null;
+            try {
+                $response = Http::post('https://gamestatus.info/back/api/gameinfo/game/search_title/', [
+                    'title' => $game->name,
+                ]);
+
+                $data = $response->json();
+                $debug_res = $response->json();
+                if (count($data) == 0) {
+                    $game->last_check = now();
+                    $game->save();
+                    $this->warn("Game `{$game->name}` Skipped.");
+                    continue;
                 }
-                $this->info('Done.');
+
+                $data = $data[0];
+                $protections = json_decode($data['protections']);
+                $groups = json_decode($data['hacked_groups']);
+
+                /*
+                if($data['title'] !== $game->name){
+                    $game->last_check = now();
+                    $game->save();
+                    $this->warn("Game `{$game->name}` Skipped.");
+                    continue;
+                }
+                */
+
+                if ($protections == null) {
+                    $protection = DrmProtection::firstOrCreate(['name' => strtoupper($data['protections'])]);
+                    $game->protections()->attach([$protection->id]);
+                } else {
+                    foreach ($protections as $p) {
+                        $protection = DrmProtection::firstOrCreate(['name' => strtoupper($p)]);
+                        $game->protections()->attach([$protection->id]);
+                    }
+                }
+
+                if ($groups == null) {
+                    $group = Group::firstOrCreate(['name' => strtoupper($data['hacked_groups'])]);
+                    $game->groups()->attach([$group->id]);
+                } else {
+                    foreach ($groups as $g) {
+                        $group = Group::firstOrCreate(['name' => strtoupper($g)]);
+                        $game->groups()->attach([$group->id]);
+                    }
+                }
+
+                $game->is_aaa = $data['is_AAA'];
+                $game->release_date = $data['release_date'];
+                $game->crack_date = $data['crack_date'];
+                $game->meta_score = $data['mata_score'];
+                $game->user_score = $data['user_score'];
+                $game->is_offline_act = $data['is_offline_act'];
+                $game->last_check = now();
+                $game->need_crack = true;
+                $game->save();
+                $this->info("Game `{$game->name}` processed.");
+            } catch (\Exception $e) {
+                dump($e);
+                // dd($debug_res);
             }
 
-
         }
+        $this->info("Done!");
 
-        $this->info('Page: '.$i);
     }
 }
