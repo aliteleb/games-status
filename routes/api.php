@@ -31,6 +31,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::middleware(ApiAuthenticate::class)->group(function () {
 
     Route::get('/user', [AuthController::class, 'user'])->name('user');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::post('/games/{game_id}/follow', [GameController::class, 'follow'])->name('game.follow');
     Route::post('/games/{game_id}/unfollow', [GameController::class, 'unfollow'])->name('game.follow');

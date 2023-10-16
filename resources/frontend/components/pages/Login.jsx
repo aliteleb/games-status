@@ -24,7 +24,7 @@ export default function Login() {
     let handleSubmit = async (e) => {
         e.preventDefault()
 
-        let response = await ApiClient.post('/login', {
+        let response = await ApiClient().post('/login', {
             username: formData.username,
             password: formData.password
         })
