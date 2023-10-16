@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {useAuth} from "../api/AuthContext.jsx";
 import { useNavigate } from 'react-router-dom';
 import ApiClient from "../../services/ApiClient.js";
+import SuccessToast from '../ToastsMsgs/SuccessToast.jsx'
 
 export default function Login() {
 
@@ -36,9 +37,14 @@ export default function Login() {
         }
     }
 
+    let showToastMsg = ()=>{
+        let msg = document.querySelector('#success')
+        
+    }
+
     return (
         <>
-            <div className='mt-28 w-full max-w-screen-xl mx-auto p-6 bg-custom-black bg-opacity-60 rounded-md text-gray-300'>
+            <div className='mt-28 w-full overflow-hidden max-w-screen-xl mx-auto p-6 bg-custom-black bg-opacity-60 rounded-md text-gray-300'>
                 <header className='border-b-2 pb-[10px] font-bold text-xl'>Login</header>
                 <div className='mt-6 flex flex-col'>
                     <label htmlFor="username">Username</label>
@@ -56,6 +62,7 @@ export default function Login() {
                 </div>
             </div>
             <div className="h-12"></div>
+            <SuccessToast/>
         </>
     )
 }

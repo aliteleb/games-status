@@ -22,7 +22,7 @@
     @viteReactRefresh
     @vite('resources/frontend/index.jsx')
 </head>
-<body class="bg-[#27282e]">
+<body class="bg-[#27282e] overflow-hidden">
 <div id="root" class="flex flex-col justify-between h-screen"></div>
 </body>
 </html>
