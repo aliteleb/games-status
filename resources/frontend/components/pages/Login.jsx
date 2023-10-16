@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {useAuth} from "../api/AuthContext.jsx";
 import { useNavigate } from 'react-router-dom';
 import ApiClient from "../../services/ApiClient.js";
-import SuccessToast from '../ToastsMsgs/SuccessToast.jsx'
+import { toast, Toaster } from 'react-hot-toast';
 
 export default function Login() {
 
@@ -37,10 +37,7 @@ export default function Login() {
         }
     }
 
-    let showToastMsg = ()=>{
-        let msg = document.querySelector('#success')
-        
-    }
+    const notify = () => toast('Here is your toast.');
 
     return (
         <>
@@ -57,12 +54,12 @@ export default function Login() {
                 <button onClick={handleSubmit}
                         className='cursor-pointer w-max mt-6 text-white bg-btn hover:bg-btn-hover transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2'>Login
                 </button>
+                <button onClick={notify}>ssss</button>
                 <div className='mt-4 text-sm'>Don't have an account?
                     <Link to="/sign-up" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Sign Up</Link>
                 </div>
             </div>
             <div className="h-12"></div>
-            <SuccessToast/>
         </>
     )
 }
