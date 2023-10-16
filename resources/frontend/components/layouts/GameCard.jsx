@@ -49,7 +49,7 @@ const GameCard = (props) => {
             setFollow(newFollowState);
 
             const action = newFollowState ? 'follow' : 'unfollow';
-            let response = await ApiClient.post(`/games/${game.id}/${action}`);
+            let response = await ApiClient().post(`/games/${game.id}/${action}`);
 
             if (response.data.status === "success") {
                 // Logic when success

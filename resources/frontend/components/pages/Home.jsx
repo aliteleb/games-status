@@ -7,7 +7,7 @@ export default function Home() {
     let [gamesData, setGamesData] = React.useState([]);
 
     React.useEffect(() => {
-        ApiClient.get('/home')
+        ApiClient().get('/home')
             .then((res) => {
                 setGamesData(res.data)
             }).catch(err => console.log(err))

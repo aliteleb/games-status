@@ -81,4 +81,12 @@ class AuthController extends Controller
             message: __("Current user")
         );
     }
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        return response()->api([
+            'message' => __('Logout successful.'),
+        ]);
+    }
+
 }

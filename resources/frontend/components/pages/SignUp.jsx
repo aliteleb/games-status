@@ -34,7 +34,7 @@ export default function SignUp() {
         formData.validate_all = true;
 
         try {
-            ApiClient.post('/register', {
+            ApiClient().post('/register', {
                 username: formData.username,
                 password: formData.password,
                 password_confirmation: formData.password_confirmation,

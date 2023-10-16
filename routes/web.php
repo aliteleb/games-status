@@ -14,5 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('{any}','welcome')->where('any', '.*');
+Route::get('{any}', function () {
+
+
+    $accept = explode(',', request()->header('accept'));
+    if(in_array('text/html', $accept))
+    {
+        session()->forget('token');
+        session()->regenerateToken();
+        return view('welcome');
+    }
+    else
+        abort(500);
+
+})->where('any', '.*');
+
+
 
