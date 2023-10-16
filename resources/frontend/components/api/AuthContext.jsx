@@ -2,14 +2,20 @@
 import {createContext, useContext, useEffect, useState} from 'react';
 import ApiClient from "../../services/ApiClient.js";
 
-export const AppContext = createContext(undefined, undefined);
+export const AppContext = createContext();
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
 
     const updateUser = newUser => {
         setUser(newUser);
+        localStorage.setItem('userData', JSON.stringify(newUser))
     };
+
+    let logoutFn = () => {
+        setUser(null)
+        localStorage.removeItem('userData')
+    }
 
     useEffect(() => {
         // Fetch user data from your authentication provider
@@ -27,17 +33,23 @@ const AuthProvider = ({children}) => {
             }
         };
 
-        // Call the function to fetch user data
-        // fetchUser();
-
         if(window.authData.isAuthenticated){
             setUser(window.authData.user);
         }
 
+        const storedUserData = localStorage.getItem('userData');
+
+        if (storedUserData) {
+          setUser(JSON.parse(storedUserData));
+        } else {
+          setUser(null);
+        }
+
     }, []);
 
+
     return (
-        <AppContext.Provider value={{user, updateUser }}>
+        <AppContext.Provider value={{user, updateUser, logoutFn }}>
             {children}
         </AppContext.Provider>
     );

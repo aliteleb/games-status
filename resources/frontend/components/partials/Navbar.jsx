@@ -61,7 +61,7 @@ function Navbar() {
                         <NotificationIcon className="mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out"/>
                     </div>
 
-                    {user && <span className="border-[1px] p-2 rounded border-gray-400">{user.username}</span>}
+                    {user && <span className="border-[2px] hover:border-gray-300 transition duration-200 w-12 flex justify-center items-center h-12 p-2 rounded-full cursor-pointer border-gray-400">{<h1>img</h1>}</span>}
                     {!user &&
                         <NavLink to="/login">
                             <UserIcon className="hover:text-gray-400 transition duration-100 ease-in-out"/>
