@@ -4,19 +4,27 @@ import ApiClient from "../../services/ApiClient.js";
 
 export default function Home() {
 
-    let [gamesData, setGamesData] = React.useState([]); 
+    let [gamesData, setGamesData] = React.useState([]);
 
-    React.useEffect(()=> {
+    React.useEffect(() => {
         ApiClient.get('/home')
-        .then((res)=> {
+            .then((res) => {
                 setGamesData(res.data)
-        }).catch(err => console.log(err))
+            }).catch(err => console.log(err))
 
     }, [])
 
-    let arr = gamesData.data
-    console.log(arr);
-    // let games = arr.map(game => console.log(game))
+    let mainGame = null;
+    let sideGames = null;
+    if (gamesData.data && gamesData.data.hot_games) {
+        let mainGameData = gamesData.data.hot_games[0];
+        mainGame =
+            <GameCard title={mainGameData.title} statusText={mainGameData.status_text} image={mainGameData.image} days={mainGameData.days_diff} size='large' animate={true}/>;
+
+        sideGames = gamesData.data.hot_games.slice(1).map((game, index) => (
+            <GameCard key={index} title={game.title} statusText={game.status_text} image={game.image} days={game.days_diff} animate={true}/>
+        ));
+    }
 
     return (
         <>
@@ -29,15 +37,21 @@ export default function Home() {
             </div>
             <div className={'h-[1px] bg-[#494a4f] mb-2 mt-1'}/>
             <div className={'grid grid-cols-[1fr] md:grid-cols-[1fr_1fr] gap-2'}>
-                    <GameCard title="Red Dead Redamption" statusText="CRACKED" image="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg"
-                              size="large" days="364"/>
+
+                {mainGame || <GameCard size='large'/>}
+
                 <div className="grid grid-cols-[1fr_1fr] gap-2 mt-2 md:mt-0">
-                    <GameCard title="FIFA 22" statusText="UNCRACKED" image="https://cdn.akamai.steamstatic.com/steam/apps/1506830/header.jpg" days="14"/>
-                    <GameCard title="Cyberpunk 2077" statusText="CRACKED" image="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg?" days="5"/>
-                    <GameCard title="Elden Ring" statusText="CRACKED" image="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" days="66"/>
-                    <GameCard title="TEKKEN 8" statusText="UNRELEASED" image="https://cdn.akamai.steamstatic.com/steam/apps/1778820/header.jpg" days="17"/>
-                    <GameCard/>
-                    <GameCard/>
+                    {sideGames ||
+                        <>
+                            <GameCard/>
+                            <GameCard/>
+                            <GameCard/>
+                            <GameCard/>
+                            <GameCard/>
+                            <GameCard/>
+                        </>
+                    }
+
                 </div>
             </div>
         </>

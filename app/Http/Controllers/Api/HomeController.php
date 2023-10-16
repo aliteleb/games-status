@@ -10,8 +10,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        sleep(env('API_VIRTUAL_DELAY', 1));
-
         $hot_games = Game::with(['protections', 'groups'])->where('is_hot', true)->orderBy('ordering')->limit(7)->get();
         return response()->api(
             data: ['hot_games' => GameResource::collection($hot_games)],

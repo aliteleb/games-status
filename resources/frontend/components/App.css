@@ -88,3 +88,31 @@ input.custom-input:-webkit-autofill:hover {
     left: -10px;
     top: 5px;
 }
+
+.fade {
+    opacity: 0;
+    animation: fadeIn .5s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.pulse {
+    transform: scale(1);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

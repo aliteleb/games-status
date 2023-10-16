@@ -18,6 +18,8 @@ export default {
         'text-unreleased',
         'bg-unreleased',
         'border-unreleased',
+        'transition',
+        'delay-1000',
     ],
     theme: {
         fontFamily: {

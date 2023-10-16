@@ -16,24 +16,30 @@ class GameResource extends JsonResource
     public function toArray(Request $request): array
     {
 
-        $parsedDate = Carbon::parse($this->release_date);
-        $statusText = '';
+        $release_date = Carbon::parse($this->release_date);
+        $crack_date = Carbon::parse($this->crack_date);
+        $daysDifference = $crack_date->diffInDays($release_date);
 
-        if($this->crack_date == null)
+        if($this->crack_date == null){
             $statusText = 'UNCRACKED';
+            $daysDifference = now()->diffInDays($release_date);
+        }
         else
             $statusText = 'CRACKED';
 
-        if ($parsedDate->isFuture())
+        if ($release_date->isFuture())
             $statusText = 'UNRELEASED';
+
 
 
         return [
             'id' => $this->id,
             'title' => $this->name,
-            'release_date' => $this->release_date,
+            'release_date' => $release_date,
             'crack_date' => $this->crack_date,
-            'statusText' => $statusText,
+            'status_text' => $statusText,
+            'days_diff' => $daysDifference,
+            'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/'.$this->steam_appid.'/header.jpg',
 
             // Include the related data
             'protections' => ProtectionResource::collection($this->whenLoaded('protections')),
