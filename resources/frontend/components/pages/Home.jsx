@@ -22,7 +22,7 @@ export default function Home() {
             <GameCard info={mainGameData} size='large' animate={true}/>;
 
         sideGames = gamesData.data.hot_games.slice(1).map(game => (
-            <GameCard key={game.id} info={game} title={game.title} statusText={game.status_text} image={game.image} days={game.days_diff} animate={true}/>
+            <GameCard key={game.id} info={game} animate={true}/>
         ));
     }
 
