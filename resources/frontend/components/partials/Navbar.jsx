@@ -10,6 +10,7 @@ import Sidebar from "./Sidebar.jsx";
 import {useAuth} from "../api/AuthContext.jsx";
 import { collapseSidebar } from "./Sidebar.jsx";
 import NotificationsBar from './NotificationsBar.jsx'
+import {Toaster} from "react-hot-toast";
 
 function Navbar() {
     const {user} = useAuth();
@@ -71,6 +72,26 @@ function Navbar() {
             </nav>
             <Sidebar/>
             <NotificationsBar/>
+            <Toaster containerStyle={{ top: 110 }} toastOptions={{
+                // Define default options
+                className: '',
+                duration: 2000,
+                style: {
+                    background: '#101010',
+                    color: '#ddd',
+                    border: '1px solid #222',
+                },
+                success: {
+                    iconTheme: {
+                        primary: '#090',
+                        secondary: 'black',
+                    },
+                },
+
+                // Default options for specific types
+
+            }
+            }/>
         </>
     );
 

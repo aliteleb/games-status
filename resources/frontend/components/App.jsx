@@ -20,33 +20,12 @@ import Messages from "./pages/Messages.jsx";
 import Forum from "./pages/Forum.jsx";
 import Footer from "./partials/Footer.jsx";
 import SearchGames from './pages/SearchGames';
-import {Toaster} from "react-hot-toast";
 
 export default function App()
 {
     return (
         <BrowserRouter>
             <Navbar/>
-            <Toaster containerStyle={{ top: 110 }} toastOptions={{
-                // Define default options
-                className: '',
-                duration: 2000,
-                style: {
-                    background: '#101010',
-                    color: '#ddd',
-                    border: '1px solid #222',
-                },
-                success: {
-                    iconTheme: {
-                        primary: '#090',
-                        secondary: 'black',
-                    },
-                },
-
-                // Default options for specific types
-
-            }
-            }/>
             <div className="container my-10 text-gray-200 px-2 md:px-0">
                 <Routes>
                     <Route path='/' element={<Home />}/>
