@@ -12,6 +12,7 @@ class HomeController extends Controller
     {
         $hot_games = Game::select(['id', 'name', 'release_date', 'crack_date', 'steam_appid'])
             ->where('is_hot', true)
+            ->where('ordering', '>', 0)
             ->orderBy('ordering')
             ->limit(7)
             ->get();
