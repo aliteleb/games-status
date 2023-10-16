@@ -23,6 +23,7 @@ export default function Login() {
     }
 
     let handleSubmit = async (e) => {
+
         e.preventDefault()
 
         let response = await ApiClient().post('/login', {
@@ -32,7 +33,7 @@ export default function Login() {
 
         if (response.data.status === "success") {
             updateUser(response.data.data);
-
+            toast.success(response.data.message);
             navigate('/');
         }
     }
