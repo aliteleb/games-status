@@ -80,12 +80,12 @@ function Sidebar() {
             <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>FORUM</span>
         </NavLink>
 
-        { user && <div className='flex justify-center items-center'>
+        { user &&
           <Link onClick={logout} className='flex absolute bottom-12 items-center mt-4 text-white' to="/login">
               <FiLogOut className='w-[30px] h-10 text-red-800'/>
               <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>LOGOUT</span>
           </Link>
-        </div>}
+        }
       </nav>
     </div>
   )
