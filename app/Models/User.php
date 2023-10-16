@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -45,8 +46,19 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $appends = ['following'];
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function games()
+    {
+        return $this->belongsToMany(Game::class);
+    }
+
+    public function getFollowingAttribute(){
+        return DB::table('game_user')->select(['game_id'])->where('user_id', auth()->user()->id)->get()->pluck('game_id');
     }
 }

@@ -19,10 +19,10 @@ export default function Home() {
     if (gamesData.data && gamesData.data.hot_games) {
         let mainGameData = gamesData.data.hot_games[0];
         mainGame =
-            <GameCard title={mainGameData.title} statusText={mainGameData.status_text} image={mainGameData.image} days={mainGameData.days_diff} size='large' animate={true}/>;
+            <GameCard info={mainGameData} size='large' animate={true}/>;
 
         sideGames = gamesData.data.hot_games.slice(1).map(game => (
-            <GameCard key={game.id} title={game.title} statusText={game.status_text} image={game.image} days={game.days_diff} animate={true}/>
+            <GameCard key={game.id} info={game} title={game.title} statusText={game.status_text} image={game.image} days={game.days_diff} animate={true}/>
         ));
     }
 

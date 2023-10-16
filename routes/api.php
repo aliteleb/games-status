@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\GameController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Middleware\ApiAuthenticate;
 use Illuminate\Http\Request;
@@ -30,5 +31,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::middleware(ApiAuthenticate::class)->group(function () {
 
     Route::get('/user', [AuthController::class, 'user'])->name('user');
+
+    Route::post('/games/{game_id}/follow', [GameController::class, 'follow'])->name('game.follow');
+    Route::post('/games/{game_id}/unfollow', [GameController::class, 'unfollow'])->name('game.follow');
 
 });
