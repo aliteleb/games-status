@@ -30,7 +30,10 @@ class GameResource extends JsonResource
         if ($release_date->isFuture())
             $statusText = 'UNRELEASED';
 
-        $is_following = auth()->user()->following->contains($this->id);
+        $user = auth()->user();
+        $is_following = false;
+        if($user)
+            $is_following = auth()->user()->following->contains($this->id);
 
         return [
             'id' => $this->id,
