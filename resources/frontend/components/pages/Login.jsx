@@ -37,8 +37,6 @@ export default function Login() {
         }
     }
 
-    const notify = () => toast('Here is your toast.');
-
     return (
         <>
             <div className='mt-28 w-full overflow-hidden max-w-screen-xl mx-auto p-6 bg-custom-black bg-opacity-60 rounded-md text-gray-300'>
@@ -54,7 +52,6 @@ export default function Login() {
                 <button onClick={handleSubmit}
                         className='cursor-pointer w-max mt-6 text-white bg-btn hover:bg-btn-hover transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2'>Login
                 </button>
-                <button onClick={notify}>ssss</button>
                 <div className='mt-4 text-sm'>Don't have an account?
                     <Link to="/sign-up" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Sign Up</Link>
                 </div>

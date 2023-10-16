@@ -9,12 +9,10 @@ const AuthProvider = ({children}) => {
 
     const updateUser = newUser => {
         setUser(newUser);
-        localStorage.setItem('userData', JSON.stringify(newUser))
     };
 
     let logoutFn = () => {
         setUser(null)
-        localStorage.removeItem('userData')
     }
 
     useEffect(() => {
@@ -35,14 +33,6 @@ const AuthProvider = ({children}) => {
 
         if(window.authData.isAuthenticated){
             setUser(window.authData.user);
-        }
-
-        const storedUserData = localStorage.getItem('userData');
-
-        if (storedUserData) {
-          setUser(JSON.parse(storedUserData));
-        } else {
-          setUser(null);
         }
 
     }, []);

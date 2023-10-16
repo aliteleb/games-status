@@ -9,8 +9,9 @@ import GroupsIcon from '../icons/GroupsIcon'
 import MarketsIcon from '../icons/MarketsIcon'
 import ProtectionsIcon from '../icons/ProtectionsIcon'
 import ForumIcon from '../icons/ForumIcon'
-import {useAuth} from "../api/AuthContext";
+import {useAuth} from "../api/AuthContext"
 import {FiLogOut} from 'react-icons/fi'
+import ApiClient from '../../services/ApiClient'
 
 
 
@@ -22,9 +23,14 @@ function Sidebar() {
 
   const {user, logoutFn} = useAuth();
 
-  let logout = ()=>{
-    logoutFn()
-    collapseSidebar()
+  let logout = async () => {
+
+    let response = await ApiClient().get('/logout')
+    
+    if(response.data){
+      logoutFn()
+      collapseSidebar()
+    }
   }
 
   return (
