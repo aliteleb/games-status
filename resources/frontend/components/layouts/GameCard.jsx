@@ -49,9 +49,14 @@ const GameCard = (props) => {
             setFollow(newFollowState);
 
             const action = newFollowState ? 'follow' : 'unfollow';
-            const response = await ApiClient.post(`/games/${game.id}/${action}`);
+            let response = await ApiClient.post(`/games/${game.id}/${action}`);
 
-            console.log(response);
+            if (response.data.status === "success") {
+                // Logic when success
+            } else {
+                setFollow((prevFollow) => !prevFollow);
+            }
+
 
         } catch (error) {
             setFollow((prevFollow) => !prevFollow);
