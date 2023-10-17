@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom'
 import React from 'react'
 import ApiClient from "../../services/ApiClient.js";
 import {MdDoneOutline} from 'react-icons/md'
+import {toast} from "react-hot-toast";
 
 export default function SignUp({loading, setLoading}) {
 
@@ -42,11 +43,12 @@ export default function SignUp({loading, setLoading}) {
                 email: formData.email,
                 country_code: formData.country_code
             }).then((res) => {
-                setResponse(res)
+                setResponse(res);
+                toast.success(response.data.message);
                 setLoading(false)
             }).catch(err => {
-
                 setFormErrors(err.response.data.data);
+                toast.error(err.response.data.message);
                 setLoading(false)
             })
         } catch (err) {

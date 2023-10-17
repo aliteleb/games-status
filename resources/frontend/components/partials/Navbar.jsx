@@ -1,4 +1,4 @@
-import {NavLink, Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import React from "react";
 import SearchIcon from "../icons/SearchIcon.jsx";
 import MenuIcon from "../icons/MenuIcon.jsx";
@@ -6,9 +6,8 @@ import UsersIcon from "../icons/UsersIcon.jsx";
 import InboxIcon from "../icons/InboxIcon.jsx";
 import NotificationIcon from "../icons/NotificationIcon.jsx";
 import UserIcon from "../icons/UserIcon.jsx";
-import Sidebar from "./Sidebar.jsx";
+import Sidebar, {collapseSidebar} from "./Sidebar.jsx";
 import {useAuth} from "../api/AuthContext.jsx";
-import { collapseSidebar } from "./Sidebar.jsx";
 import NotificationsBar from './NotificationsBar.jsx'
 import {Toaster} from "react-hot-toast";
 
@@ -48,8 +47,10 @@ function Navbar() {
                     </div>
                     <div className="hidden sm:block">
                         <NavLink onClick={collapseSidebar} to="/markets" className="mx-2 cursor-pointer hover:text-gray-400 transition  ">MARKETS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/free-keys" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition  ">FREE KEYS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/get-karma" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition  ">GET KARMA</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/free-keys" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition  ">FREE
+                            KEYS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/get-karma" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition  ">GET
+                            KARMA</NavLink>
                         <NavLink onClick={collapseSidebar} to="/forum" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400">FORUM</NavLink>
                     </div>
                 </div>
@@ -58,11 +59,13 @@ function Navbar() {
                     <NavLink to="/messages">
                         <InboxIcon className="mx-2 hover:text-gray-400 transition  "/>
                     </NavLink>
-                    <div onClick={()=> document.querySelector('#notifications-bar').style.right = '0'}>
+                    <div onClick={() => document.querySelector('#notifications-bar').style.right = '0'}>
                         <NotificationIcon className="mx-2 cursor-pointer hover:text-gray-400 transition  "/>
                     </div>
 
-                    {user && <span className="border-[2px] hover:border-gray-300 transition  w-12 flex justify-center items-center h-12 p-2 rounded-full cursor-pointer border-gray-400">{<h1>img</h1>}</span>}
+                    {user &&
+                        <span className="border-[2px] hover:border-gray-300 transition  w-12 flex justify-center items-center h-12 p-2 rounded-full cursor-pointer border-gray-400">{
+                            <h1>img</h1>}</span>}
                     {!user &&
                         <NavLink to="/login">
                             <UserIcon className="hover:text-gray-400 transition  "/>
@@ -72,8 +75,8 @@ function Navbar() {
             </nav>
             <Sidebar/>
             <NotificationsBar/>
-            <Toaster containerStyle={{ top: 110 }} toastOptions={{
-                // Define default options
+            <Toaster containerStyle={{top: 100}} toastOptions={{
+                position: "top-center",
                 className: '',
                 duration: 2000,
                 style: {
@@ -87,8 +90,6 @@ function Navbar() {
                         secondary: 'black',
                     },
                 },
-
-                // Default options for specific types
 
             }
             }/>

@@ -36,7 +36,7 @@ export default function Login({loading, setLoading}) {
             navigate('/')
             setLoading(false)
         }).catch((err) => {
-            toast.error(err.response.data.message)
+            toast.error(err.response.data.message);
             setLoading(false)
         });
 
