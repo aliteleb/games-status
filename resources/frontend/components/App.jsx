@@ -21,8 +21,10 @@ import Forum from "./pages/Forum.jsx";
 import Footer from "./partials/Footer.jsx";
 import SearchGames from './pages/SearchGames';
 
-export default function App()
-{
+export default function App(){
+
+    let [loading, setLoading] = React.useState(false)
+
     return (
         <BrowserRouter>
             <Navbar/>
@@ -37,8 +39,8 @@ export default function App()
                     <Route path='/get-karma' element={<GetKarma />}/>
                     <Route path='/forum' element={<Forum />}/>
                     <Route path='/messages' element={<Messages />} />
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/sign-up' element={<SignUp />} />
+                    <Route path='/login' element={<Login loading={loading} setLoading={setLoading} />} />
+                    <Route path='/sign-up' element={<SignUp loading={loading} setLoading={setLoading}/>} />
                     <Route path='/about' element={<About />} />
                     <Route path='/contact' element={<Contact />} />
                     <Route path='/terms-conditions' element={<Terms />} />

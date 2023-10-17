@@ -3,9 +3,8 @@ import {Link, useNavigate} from 'react-router-dom'
 import {useAuth} from "../api/AuthContext.jsx";
 import ApiClient from "../../services/ApiClient.js";
 import {toast, Toaster} from 'react-hot-toast';
-import * as toaserrt from "react-dom/test-utils";
 
-export default function Login() {
+export default function Login({loading, setLoading}) {
 
     const {updateUser} = useAuth();
     const navigate = useNavigate();
@@ -23,8 +22,8 @@ export default function Login() {
     }
 
     let handleSubmit = async (e) => {
-
         e.preventDefault()
+        setLoading(true)
 
         ApiClient().post('/login', {
 
@@ -34,8 +33,11 @@ export default function Login() {
         }).then((response) => {
             updateUser(response.data.data);
             toast.success(response.data.message);
+            navigate('/')
+            setLoading(false)
         }).catch((err) => {
             toast.error(err.response.data.message)
+            setLoading(false)
         });
 
 
@@ -54,7 +56,8 @@ export default function Login() {
                     <input name='password' value={formData.password} onChange={handleChange} type="password" className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
                 </div>
                 <button onClick={handleSubmit}
-                        className='cursor-pointer w-max mt-6 text-white bg-btn hover:bg-btn-hover transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2'>Login
+                        className='cursor-pointer w-max mt-6 text-white bg-btn hover:bg-btn-hover transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2'>
+                        {loading ? 'Login...' : 'Login'}
                 </button>
                 <div className='mt-4 text-sm'>Don't have an account?
                     <Link to="/sign-up" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Sign Up</Link>
@@ -71,7 +74,7 @@ export default function Login() {
                 },
                 error: {
                     iconTheme: {
-                        primary: '#090',
+                        primary: '#E02424',
                         secondary: 'black',
                     },
                 },
