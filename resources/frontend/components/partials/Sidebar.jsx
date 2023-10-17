@@ -46,9 +46,9 @@ function Sidebar() {
 
                     {!user &&
                         <div className="mx-2">
-                            <NavLink to="/login">LOGIN</NavLink>
+                            <NavLink className="hover:text-gray-400 transition duration-100 ease-in-out" to="/login">LOGIN</NavLink>
                             <span className="px-1"> | </span>
-                            <NavLink to="/sign-up">SIGN UP</NavLink>
+                            <NavLink className="hover:text-gray-400 transition duration-100 ease-in-out" to="/sign-up">SIGN UP</NavLink>
                         </div>
                     }
                 </div>
