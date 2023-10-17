@@ -39,10 +39,16 @@ function Sidebar() {
           <Xmark className={'text-white'}/>
       </div>
       <nav>
-        <NavLink onClick={collapseSidebar} to={user ? "/profile" : "/login"} className={`flex items-center mt-4`}>
+        <div onClick={collapseSidebar} className={`flex items-center mt-4`}>
             <UserIcon className={'text-red-800'}/>
-            <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>{!user ?'LOGIN | SIGN UP' : 'Profile'}</span>
-        </NavLink>
+            <Link to={user ? "/profile" : "/login"} className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>
+              {!user ?
+              <>
+                <NavLink to="/login">LOGIN</NavLink>
+                <NavLink to="/sign-up"> | SIGN UP</NavLink>
+              </> : 'Profile'}
+            </Link>
+        </div>
 
 
         <NavLink onClick={collapseSidebar} className='flex items-center mt-4' to="/">
