@@ -68,7 +68,7 @@ class AuthController extends Controller
         // Authentication failed
         return response()->api(
             status: "error",
-            message: __("Invalid credentials."),
+            message: __("Invalid username or password"),
             status_code: 401
         );
     }
