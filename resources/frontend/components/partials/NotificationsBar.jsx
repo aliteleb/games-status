@@ -27,7 +27,7 @@ function NotificationsBar() {
           <h1 onClick={collapseSidebar} className='mt-4 cursor-pointer'>message 4</h1>
           <h1 onClick={collapseSidebar} className='mt-4 cursor-pointer'>message 5</h1>
         </div>
-      </> : <h1 className='text-gray-200 mt-6 text-lg'>You must <Link to="/login" onClick={collapseSidebar} className='text-xl cursor-pointer hover:text-gray-100 transition duration-200'>login</Link></h1> }
+      </> : <h1 className='text-gray-200 mt-6 text-lg'>You must <Link to="/login" onClick={collapseSidebar} className='text-xl cursor-pointer hover:text-gray-100 transition '>login</Link></h1> }
 
     </div>
   )

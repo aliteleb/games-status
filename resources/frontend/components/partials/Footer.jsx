@@ -10,13 +10,13 @@ function Footer() {
                 <div className="flex flex-wrap items-center justify-between gap-x-2">
                     <div className='flex text-gray-400 gap-x-3 py-1'>
                         <Link to="#">
-                            <BsFacebook className='w-5 h-5 hover:text-facebook transition duration-200'/>
+                            <BsFacebook className='w-5 h-5 hover:text-facebook transition '/>
                         </Link>
                         <Link to="#">
-                            <RiTwitterXFill className='w-5 h-5 hover:text-twitter transition duration-200'/>
+                            <RiTwitterXFill className='w-5 h-5 hover:text-twitter transition '/>
                         </Link>
                         <Link to="#">
-                            <BsInstagram className='w-5 h-5 hover:text-pink-500 transition duration-200'/>
+                            <BsInstagram className='w-5 h-5 hover:text-pink-500 transition '/>
                         </Link>
                     </div>
                     <ul className="flex flex-col md:flex-row flex-wrap gap-1 md:gap-5 justify-end mb-6 text-sm font-medium text-gray-500 sm:mb-0">
@@ -27,7 +27,7 @@ function Footer() {
                             <Link to="/contact" className="hover:text-gray-300">Contact</Link>
                         </li>
                         <li>
-                            <Link to="/terms-conditions" className="hover:text-gray-300 duration-200">Terms & Conditions</Link>
+                            <Link to="/terms-conditions" className="hover:text-gray-300 ">Terms & Conditions</Link>
                         </li>
                         <li>
                             <Link to="/frequency-questions" className="hover:text-gray-300">Frequency Questions</Link>
@@ -41,9 +41,9 @@ function Footer() {
                     <div className='flex items-center justify-center flex-col md:flex-row'>
                         <div className="font-bold mx-2">Developed By</div>
                         <div>
-                            <Link to="https://www.facebook.com/aliteleb183" target='_blank' className="hover:text-gray-300 duration-200">Ali Teleb</Link>
+                            <Link to="https://www.facebook.com/aliteleb183" target='_blank' className="hover:text-gray-300 ">Ali Teleb</Link>
                             <span className="mx-1">&</span>
-                            <Link to="https://www.facebook.com/mohamedashour774499/" target='_blank' className="hover:text-gray-300 duration-200">Mohamed Ashour</Link>
+                            <Link to="https://www.facebook.com/mohamedashour774499/" target='_blank' className="hover:text-gray-300 ">Mohamed Ashour</Link>
                         </div>
                     </div>
                 </div>

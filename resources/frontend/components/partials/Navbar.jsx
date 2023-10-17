@@ -21,19 +21,19 @@ function Navbar() {
                 <div className="flex items-center">
                     <MenuIcon onClick={() => {
                         document.querySelector('#sidebar').style.left = '0';
-                    }} className={'cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
+                    }} className={'cursor-pointer hover:text-gray-400 transition'}/>
                     <Link to="/search-game">
-                        <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
+                        <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition'}/>
                     </Link>
-                    <UsersIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out'}/>
+                    <UsersIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition'}/>
                 </div>
 
                 <div className="grid grid-cols-[auto_1fr_auto] sm:grid-cols-[1fr_auto_1fr] items-center justify-center h-[4rem]">
                     <div className="hidden sm:block text-end">
-                        <NavLink onClick={collapseSidebar} to="/search-game" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">GAMES</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/nfos" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">NFOS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/groups" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">GROUPS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">PROTECTIONS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/search-game" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">GAMES</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/nfos" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">NFOS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/groups" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">GROUPS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer hover:text-gray-400 transition">PROTECTIONS</NavLink>
                     </div>
                     <div className="mx-3 md:mx-6">
                         <NavLink onClick={collapseSidebar} to="/" className="relative">
@@ -47,25 +47,25 @@ function Navbar() {
                         </NavLink>
                     </div>
                     <div className="hidden sm:block">
-                        <NavLink onClick={collapseSidebar} to="/markets" className="mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">MARKETS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/free-keys" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">FREE KEYS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/get-karma" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out">GET KARMA</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/markets" className="mx-2 cursor-pointer hover:text-gray-400 transition  ">MARKETS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/free-keys" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition  ">FREE KEYS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/get-karma" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition  ">GET KARMA</NavLink>
                         <NavLink onClick={collapseSidebar} to="/forum" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400">FORUM</NavLink>
                     </div>
                 </div>
 
                 <div className="flex items-center justify-end">
                     <NavLink to="/messages">
-                        <InboxIcon className="mx-2 hover:text-gray-400 transition duration-100 ease-in-out"/>
+                        <InboxIcon className="mx-2 hover:text-gray-400 transition  "/>
                     </NavLink>
                     <div onClick={()=> document.querySelector('#notifications-bar').style.right = '0'}>
-                        <NotificationIcon className="mx-2 cursor-pointer hover:text-gray-400 transition duration-100 ease-in-out"/>
+                        <NotificationIcon className="mx-2 cursor-pointer hover:text-gray-400 transition  "/>
                     </div>
 
-                    {user && <span className="border-[2px] hover:border-gray-300 transition duration-200 w-12 flex justify-center items-center h-12 p-2 rounded-full cursor-pointer border-gray-400">{<h1>img</h1>}</span>}
+                    {user && <span className="border-[2px] hover:border-gray-300 transition  w-12 flex justify-center items-center h-12 p-2 rounded-full cursor-pointer border-gray-400">{<h1>img</h1>}</span>}
                     {!user &&
                         <NavLink to="/login">
-                            <UserIcon className="hover:text-gray-400 transition duration-100 ease-in-out"/>
+                            <UserIcon className="hover:text-gray-400 transition  "/>
                         </NavLink>
                     }
                 </div>

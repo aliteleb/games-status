@@ -18,13 +18,13 @@ export default function SignUp({loading, setLoading}) {
     const [formErrors, setFormErrors] = React.useState({});
 
     const inputValidation = (input) => {
-       return (formErrors[input] !== undefined && <div className='text-orange-400 text-sm mt-1'>{formErrors[input][0]}</div>);
+        return (formErrors[input] !== undefined && <div className='text-orange-400 text-sm mt-1'>{formErrors[input][0]}</div>);
     }
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
         setFormData((prevData) => {
-            return  {...prevData, [name]: value};
+            return {...prevData, [name]: value};
         });
     };
 
@@ -356,13 +356,13 @@ export default function SignUp({loading, setLoading}) {
 
                     </div>
                     <button onClick={handleSubmit}
-                            className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]': ''}`}
+                            className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition  font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
                             disabled={loading}
-                            >
-                            {loading ? 'Signing Up...': 'Sign Up'}
+                    >
+                        {loading ? 'Signing Up...' : 'Sign Up'}
                     </button>
-                    <div className='mt-4 text-sm'>Already have an account?
-                        <Link to="/login" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Login</Link>
+                    <div className='mt-4 text-sm text-gray-400'>Already have an account?
+                        <Link to="/login" className='mx-2 text-gray-200 hover:text-gray-300 transition'>Login</Link>
                     </div>
                 </div>
                 {
@@ -371,8 +371,9 @@ export default function SignUp({loading, setLoading}) {
                             <MdDoneOutline className='bg-gray-500 rounded-full w-20 h-20 p-3'/>
                             <h2 className='text-gray-400 text-2xl mt-12'>Success!</h2>
                             <div className='text-gray-400 text-md mx-4 mt-6'>You have registered for your account</div>
-                            <Link to="/login" className='text-gray-400 hover:text-gray-300 transition duration-200 mt-12'>
-                                <span className="text-sm p-[16px] text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 transition duration-200">Login to your account</span>
+                            <Link to="/login" className='text-gray-400 hover:text-gray-300 transition mt-12'>
+                                <span
+                                    className="text-sm p-[16px] text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 transition">Login to your account</span>
                             </Link>
                         </div>
                     )
