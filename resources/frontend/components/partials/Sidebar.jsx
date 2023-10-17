@@ -33,7 +33,7 @@ function Sidebar() {
     }
 
     return (
-        <div id={'sidebar'} className='flex flex-col w-64 xl:w-72 px-3 h-screen pt-6 fixed top-0 -left-72 transition-all bg-custom-black z-10'>
+        <div id={'sidebar'} className='flex flex-col w-64 xl:w-72 px-6 h-screen pt-6 fixed top-0 -left-72 transition-all bg-custom-black z-10'>
             <div onClick={collapseSidebar} className='cursor-pointer w-fit mb-4'>
                 <Xmark className={'text-white'}/>
             </div>
