@@ -56,8 +56,10 @@ export default function Login({loading, setLoading}) {
                     <input name='password' value={formData.password} onChange={handleChange} type="password" className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
                 </div>
                 <button onClick={handleSubmit}
-                        className='cursor-pointer w-max mt-6 text-white bg-btn hover:bg-btn-hover transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2'>
-                        {loading ? 'Login...' : 'Login'}
+                        className={`cursor-pointer w-max mt-6 text-white bg-btn hover:bg-btn-hover transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#ccc]': ''}`}
+                        disabled={loading}  
+                        >
+                        {loading ? 'Login ...' : 'Login'}
                 </button>
                 <div className='mt-4 text-sm'>Don't have an account?
                     <Link to="/sign-up" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Sign Up</Link>

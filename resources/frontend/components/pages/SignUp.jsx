@@ -356,8 +356,10 @@ export default function SignUp({loading, setLoading}) {
 
                     </div>
                     <button onClick={handleSubmit}
-                            className='cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2'>
-                            {loading ? 'Sign Up...': 'Sign Up'}
+                            className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition duration-200 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#ccc]': ''}`}
+                            disabled={loading}
+                            >
+                            {loading ? 'Sign Up ...': 'Sign Up'}
                     </button>
                     <div className='mt-4 text-sm'>Already have an account?
                         <Link to="/login" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Login</Link>
