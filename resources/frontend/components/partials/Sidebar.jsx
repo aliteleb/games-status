@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import UserIcon from '../icons/UserIcon'
 import Xmark from '../icons/Xmark'
 import HomeIcon from '../icons/HomeIcon'
@@ -33,67 +33,68 @@ function Sidebar() {
     }
 
     return (
-        <div id={'sidebar'} className='flex flex-col w-64 xl:w-72 pl-5 h-screen pt-6 fixed top-0 -left-72 transition-all bg-custom-black z-10'>
-            <div onClick={collapseSidebar} className='cursor-pointer w-fit'>
+        <div id={'sidebar'} className='flex flex-col w-64 xl:w-72 px-3 h-screen pt-6 fixed top-0 -left-72 transition-all bg-custom-black z-10'>
+            <div onClick={collapseSidebar} className='cursor-pointer w-fit mb-4'>
                 <Xmark className={'text-white'}/>
             </div>
-            <nav>
-                <div onClick={collapseSidebar} className={`flex items-center mt-4 text-gray-200`}>
+            <nav onClick={collapseSidebar} className="flex flex-col gap-y-3 text-white h-screen">
+                <div className="flex items-center gap-x-4">
                     <UserIcon className={'text-red-800'}/>
-                    {user &&
-                        <NavLink to="/profile" className="ml-[10px]text-white hover:text-gray-400 transition duration-100 ease-in-out">Profile</NavLink>
-                    }
+                    <div>
+                        {user &&
+                            <NavLink to="/profile" className="hover:text-gray-400 transition">Profile</NavLink>
+                        }
 
-                    {!user &&
-                        <div className="mx-2">
-                            <NavLink className="hover:text-gray-400 transition duration-100 ease-in-out" to="/login">LOGIN</NavLink>
-                            <span className="px-1"> | </span>
-                            <NavLink className="hover:text-gray-400 transition duration-100 ease-in-out" to="/sign-up">SIGN UP</NavLink>
-                        </div>
-                    }
+                        {!user &&
+                            <div>
+                                <NavLink className="hover:text-gray-400 transition" to="/login">LOGIN</NavLink>
+                                <span className="px-1"> | </span>
+                                <NavLink className="hover:text-gray-400 transition" to="/sign-up">SIGN UP</NavLink>
+                            </div>
+                        }
+                    </div>
                 </div>
 
-
-                <NavLink onClick={collapseSidebar} className='flex items-center mt-4' to="/">
+                <NavLink className='flex items-center gap-x-4' to="/">
                     <HomeIcon className={'text-red-800'}/>
-                    <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>HOME</span>
+                    <span className='hover:text-gray-400 transition'>HOME</span>
                 </NavLink>
 
-                <NavLink onClick={collapseSidebar} className='flex items-center mt-4 text-white' to="/games">
+                <NavLink className='flex items-center gap-x-4' to="/games">
                     <GamesIcon/>
-                    <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>GAMES</span>
+                    <span className='hover:text-gray-400 transition'>GAMES</span>
                 </NavLink>
 
-                <NavLink onClick={collapseSidebar} className='flex items-center mt-4 text-white' to="/free-keys">
+                <NavLink className='flex items-center gap-x-4' to="/free-keys">
                     <FreeKeysIcon className={'text-red-800'}/>
-                    <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>FREE KEYS</span>
+                    <span className='hover:text-gray-400 transition'>FREE KEYS</span>
                 </NavLink>
 
-                <NavLink onClick={collapseSidebar} className='flex items-center mt-4 text-white' to="/groups">
+                <NavLink className='flex items-center gap-x-4' to="/groups">
                     <GroupsIcon className={'text-red-800'}/>
-                    <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>GROUPS</span>
+                    <span className='hover:text-gray-400 transition'>GROUPS</span>
                 </NavLink>
 
-                <NavLink onClick={collapseSidebar} className='flex items-center mt-4 text-white' to="/markets">
+                <NavLink className='flex items-center gap-x-4' to="/markets">
                     <MarketsIcon className={'text-red-800'}/>
-                    <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>MARKETS</span>
+                    <span className='hover:text-gray-400 transition'>MARKETS</span>
                 </NavLink>
 
-                <NavLink onClick={collapseSidebar} className='flex items-center mt-4 text-white' to="/protections">
+                <NavLink className='flex items-center gap-x-4' to="/protections">
                     <ProtectionsIcon/>
-                    <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>PROTECTIONS</span>
+                    <span className='hover:text-gray-400 transition'>PROTECTIONS</span>
                 </NavLink>
 
-                <NavLink onClick={collapseSidebar} className='flex items-center mt-4 text-white' to="/forum">
+                <NavLink className='flex items-center gap-x-4' to="/forum">
                     <ForumIcon/>
-                    <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>FORUM</span>
+                    <span className='hover:text-gray-400 transition'>FORUM</span>
                 </NavLink>
 
                 {user &&
-                    <Link onClick={logout} className='flex absolute bottom-12 items-center mt-4 text-white' to="/login">
+                    <NavLink onClick={logout} className='flex items-center gap-x-4 mt-auto mb-2' to="/login">
                         <FiLogOut className='w-[30px] h-10 text-red-800'/>
-                        <span className='ml-[10px] text-white hover:text-gray-400 transition duration-100 ease-in-out'>LOGOUT</span>
-                    </Link>
+                        <span className='hover:text-gray-400 transition'>LOGOUT</span>
+                    </NavLink>
                 }
             </nav>
         </div>
