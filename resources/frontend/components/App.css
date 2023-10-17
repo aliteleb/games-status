@@ -118,7 +118,7 @@ input.custom-input:-webkit-autofill:hover {
 }
 
 .disabled-button {
-    background-color: #ccc;
-    color: #999;
+    background-color: #282c39;
+    color: #bababa;
     cursor: not-allowed;
 }
