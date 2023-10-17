@@ -1,9 +1,9 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useAuth} from "../api/AuthContext.jsx";
-import { useNavigate } from 'react-router-dom';
 import ApiClient from "../../services/ApiClient.js";
-import { toast, Toaster } from 'react-hot-toast';
+import {toast, Toaster} from 'react-hot-toast';
+import * as toaserrt from "react-dom/test-utils";
 
 export default function Login() {
 
@@ -26,18 +26,19 @@ export default function Login() {
 
         e.preventDefault()
 
-        let response = await ApiClient().post('/login', {
+        ApiClient().post('/login', {
+
             username: formData.username,
             password: formData.password
-        })
 
-        if (response.data.status === "success") {
+        }).then((response) => {
             updateUser(response.data.data);
             toast.success(response.data.message);
-            navigate('/');
-        }else{
-            toast.error(response.data.message)
-        }
+        }).catch((err) => {
+            toast.error(err.response.data.message)
+        });
+
+
     }
 
     return (
@@ -59,25 +60,25 @@ export default function Login() {
                     <Link to="/sign-up" className='mx-2 text-white hover:text-gray-300 transition duration-200'>Sign Up</Link>
                 </div>
             </div>
-            <Toaster containerStyle={{ top: 110 }} toastOptions={{
-                    // Define default options
-                    className: '',
-                    duration: 2000,
-                    style: {
-                        background: '#101010',
-                        color: '#ddd',
-                        border: '1px solid #222',
+            <Toaster containerStyle={{top: 110}} toastOptions={{
+                // Define default options
+                className: '',
+                duration: 2000,
+                style: {
+                    background: '#101010',
+                    color: '#ddd',
+                    border: '1px solid #222',
+                },
+                error: {
+                    iconTheme: {
+                        primary: '#090',
+                        secondary: 'black',
                     },
-                    error: {
-                        iconTheme: {
-                            primary: '#090',
-                            secondary: 'black',
-                        },
-                    },
-    
-                    // Default options for specific types
-    
-                }
+                },
+
+                // Default options for specific types
+
+            }
             }/>
 
             <div className="h-12"></div>
