@@ -23,6 +23,8 @@ import SearchGames from './pages/SearchGames';
 
 export default function App(){
 
+    window.ondragstart = () => false;
+
     let [loading, setLoading] = React.useState(false)
 
     return (
