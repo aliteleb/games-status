@@ -37,6 +37,9 @@ export default {
                 'btn': '#313b48',
                 'btn-hover': '#20262e'
             },
+            maxHeight: {
+                'height': 'fit-content',
+              },
         },
 
     },
