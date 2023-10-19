@@ -40,11 +40,11 @@ class GameController extends Controller
 
     public function protections(Request $request)
     {
-        //sleep(1);
+        sleep(1);
         $protections = DrmProtection::select('id', 'name', 'slug')
             ->whereHas('games')
             ->withCount('games')
-            ->paginate(6);
+            ->paginate(12);
 
         foreach ($protections as $protection)
         {

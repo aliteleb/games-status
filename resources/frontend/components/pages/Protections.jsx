@@ -46,14 +46,20 @@ export default function Protections() {
         };
     }, [nextPage, isLoading]);
 
-    const showProtections = protections.map((drm, index) => (
+    const showProtections = protections?.map((drm, index) => (
         <ProtectionCard animate={true} info={drm} key={index} />
     ));
+
+    const placeholders = [];
+    for (let i = 0; i < 12; i++) {
+        placeholders.push(<ProtectionCard key={i}/>);
+    }
 
     return (
         <>
             <div className="mt-12 border-b border-gray-500/50 pb-2 text-xl">Protections</div>
             <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
+                {protections.length > 0 || placeholders}
                 {showProtections}
             </div>
             <div className="p-4">
