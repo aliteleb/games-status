@@ -4,12 +4,6 @@ import Skeleton from 'react-loading-skeleton';
 
 const ProtectionsCard = (props) => {
 
-    // let protection = {
-    //     name: null,
-    //     slug: null,
-    //     games_count: null,
-    //     last_game: null,
-    // };
     let protection = null;
     if (props.info !== undefined)
         protection = props.info;
@@ -17,7 +11,7 @@ const ProtectionsCard = (props) => {
     let is_animated = props.animate === true ? 'fade ' : '';
 
     return (
-        <div className={`bg-[#161515] rounded maxHeight shadow-lg border border-gray-700 ${props.className || ''}`}>
+        <div className={`bg-[#161515] rounded maxHeight shadow-lg border transform border-gray-700 hover:translate-x-1 hover:border-gray-600 transition ${props.className || ''}`}>
             <div className={`flex flex-col`} >
                 {protection &&
                 <>

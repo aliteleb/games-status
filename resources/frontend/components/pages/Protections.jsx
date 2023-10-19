@@ -29,11 +29,13 @@ export default function Protections() {
     for (let i = 0; i < 12; i++) {
         placeholder.push(<ProtectionCard />);
     }
-    console.log(placeholder);
 
     return (
-        <div className='mt-12 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6 '>
-            {showprotections || placeholder}
-        </div>
+        <>
+            <div className='mt-12 border-b border-gray-500/50 pb-2'>Protection</div>
+            <div className='mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6'>
+                {showprotections || placeholder}
+            </div>
+        </>
     )
 }
