@@ -22,7 +22,7 @@ export default function Protections() {
     return (
         <div className='mt-12 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6 '>
             {protections.data.map(drm =>
-                <ProtectionCard info={drm}/>
+                <ProtectionCard animate={true} info={drm}/>
             )}
         </div>
     )
