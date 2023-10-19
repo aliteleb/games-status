@@ -41,7 +41,9 @@ class GameController extends Controller
     public function protections(Request $request)
     {
         $protections = DrmProtection::select('id', 'name', 'slug')
-            ->withCount('games')->paginate();
+            ->whereHas('games')
+            ->withCount('games')
+            ->paginate(12);
 
         foreach ($protections as $protection)
         {
@@ -49,8 +51,15 @@ class GameController extends Controller
             $game = DB::table('game_drm_protection')->where('drm_protection_id', $protection->id)->orderBy('id', 'desc')->first();
             if($game)
             {
-                $game = Game::select('name', 'slug')->find($game->id);
+                $id = $game->game_id;
+                $game = Game::select('name', 'slug')->find($id);
                 $protection->last_game = $game;
+
+                if(!$game)
+                {
+                    $protection->asd = $id;
+                    DB::table('game_drm_protection')->where('game_id', $id)->delete();
+                }
             }
         }
 
