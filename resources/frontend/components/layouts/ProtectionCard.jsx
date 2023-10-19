@@ -11,11 +11,11 @@ const ProtectionsCard = (props) => {
     let is_animated = props.animate === true ? 'fade ' : '';
 
     return (
-        <div className={`bg-[#161515] rounded maxHeight shadow-lg border transform border-gray-700 hover:translate-x-1 hover:border-gray-600 transition ${props.className || ''}`}>
+        <div className={`group bg-[#161515] rounded maxHeight shadow border transform border-gray-700/80 hover:border-gray-600 hover:shadow-lg overflow-hidden transition ${props.className || ''}`}>
             <div className={`flex flex-col`} >
                 {protection &&
                 <>
-                    <h1 className='text-center bg-slate-600 py-3 rounded-t'>
+                    <h1 className='text-center bg-slate-600/80 py-3 group-hover:bg-slate-600 transition'>
                         <span className={`${is_animated}`}>{protection.name}</span>
                     </h1>
                     <h2 className='p-5 bg-slate-600/10'>Games
