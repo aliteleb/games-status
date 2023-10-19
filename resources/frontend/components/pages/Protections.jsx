@@ -18,9 +18,12 @@ export default function Protections() {
 
 
     let showprotections = null
-    showprotections = protections.data.map(drm =>
-        <ProtectionCard animate={true} info={drm}/>
-    )
+    if(protections){
+        showprotections = protections.data.map(drm =>
+            <ProtectionCard animate={true} info={drm}/>
+        )
+    }
+
 
     const placeholder = [];
     for (let i = 0; i < 12; i++) {
