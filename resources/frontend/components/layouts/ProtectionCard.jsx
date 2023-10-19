@@ -19,8 +19,11 @@ const ProtectionsCard = (props) => {
         <div className={`bg-[#161515] rounded maxHeight shadow-lg border border-gray-700 ${protection.className || ''}`}>
             <div className={`flex flex-col`} >
                 <h1 className='text-center bg-slate-600 py-3 rounded-t'><span className={`${is_animated}`}>{protection.name}</span></h1>
-                <h2 className='py-5 px-5 bg-slate-600/10'>Games <span className={`${is_animated}`}>(<b>{protection.games_count}</b>)</span></h2>
-                <h3 className='py-5 px-5 bg-slate-700/10 text-center'>Last Game: <div className={`${is_animated} text-center`}>{protection.last_game?.name || "N/A"}</div></h3>
+                <h2 className='p-5 bg-slate-600/10'>Games <span className={`${is_animated}`}>(<b>{protection.games_count}</b>)</span></h2>
+                <h3 className='p-5 bg-slate-700/10 grid grid-cols-[auto_1fr]'>
+                    <span className=''>Last Game:</span>
+                    <span className={`${is_animated} col-auto text-center`}>{protection.last_game?.name || "N/A"}</span>
+                </h3>
             </div>
         </div>
     );
