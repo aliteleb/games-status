@@ -9,10 +9,16 @@ class DrmProtection extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'slug'];
+    protected $hidden = ['pivot'];
+
+    public function latest()
+    {
+        return $this->belongsToMany(Game::class, 'game_drm_protection', 'drm_protection_id', 'game_id');
+    }
 
     public function games()
     {
-        return $this->belongsToMany(DrmProtection::class, 'game_drm_protection', 'drm_protection_id', 'game_id');
+        return $this->belongsToMany(Game::class, 'game_drm_protection', 'drm_protection_id', 'game_id');
     }
 }

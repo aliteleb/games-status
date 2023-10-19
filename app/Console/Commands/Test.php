@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\DrmProtection;
 use App\Models\Game;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
@@ -28,13 +29,13 @@ class Test extends Command
      */
     public function handle(): void
     {
-        $games = Game::all();
+        $drms = DrmProtection::all();
 
-        foreach ($games as $game)
+        foreach ($drms as $drm)
         {
-            $game->slug = str()->slug($game->name);
-            $game->save();
-            $this->info("Game `{$game->name}` processed successfully.");
+            $drm->slug = str()->slug($drm->name);
+            $drm->save();
+            $this->info("DRM `{$drm->name}` processed successfully.");
         }
 
         $this->info('Test command processed successfully.');

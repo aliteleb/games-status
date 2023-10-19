@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\DrmProtection;
 use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,4 +38,26 @@ class GameController extends Controller
         );
     }
 
+    public function protections(Request $request)
+    {
+        $protections = DrmProtection::select('id', 'name', 'slug')
+            ->withCount('games')->paginate();
+
+        foreach ($protections as $protection)
+        {
+            $protection->last_game = null;
+            $game = DB::table('game_drm_protection')->where('drm_protection_id', $protection->id)->orderBy('id', 'desc')->first();
+            if($game)
+            {
+                $game = Game::select('name', 'slug')->find($game->id);
+                $protection->last_game = $game;
+            }
+        }
+
+        return response()->api(
+            data: $protections,
+            message: __("Protections")
+        );
+
+    }
 }

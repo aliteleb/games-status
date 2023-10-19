@@ -24,10 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 */
 
+# Auth routes
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
+# Basic routes
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+Route::get('/protections', [GameController::class, 'protections'])->name('protections');
+
+# Under Auth
 Route::middleware(ApiAuthenticate::class)->group(function () {
 
     Route::get('/user', [AuthController::class, 'user'])->name('user');
