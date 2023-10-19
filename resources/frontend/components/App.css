@@ -103,6 +103,7 @@ input.custom-input:-webkit-autofill:hover {
 .pulse {
     transform: scale(1);
     animation: pulse 1.5s infinite;
+    -webkit-animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
