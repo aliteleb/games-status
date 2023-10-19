@@ -17,13 +17,20 @@ export default function Protections() {
     }, [])
 
 
-    console.log(protections);
+    let showprotections = null
+    showprotections = protections.data.map(drm =>
+        <ProtectionCard animate={true} info={drm}/>
+    )
+
+    const placeholder = [];
+    for (let i = 0; i < 12; i++) {
+        placeholder.push(<ProtectionCard />);
+    }
+    console.log(placeholder);
 
     return (
         <div className='mt-12 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6 '>
-            {protections.data.map(drm =>
-                <ProtectionCard animate={true} info={drm}/>
-            )}
+            {showprotections || placeholder}
         </div>
     )
 }
