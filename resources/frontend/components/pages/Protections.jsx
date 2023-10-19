@@ -4,7 +4,7 @@ import ProtectionCard from "../layouts/ProtectionCard.jsx";
 
 export default function Protections() {
 
-    let [protections, setProtections] = React.useState({data: []})
+    let [protections, setProtections] = React.useState(null)
 
     React.useEffect(() => {
         ApiClient().get('/protections')
