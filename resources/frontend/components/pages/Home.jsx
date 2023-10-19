@@ -31,7 +31,7 @@ export default function Home() {
             <div className={'flex flex-wrap justify-between'}>
                 <div className={'text-white text-lg font-bold'}>Hot Games</div>
                 <div className={'text-white text-sm'}>
-                    <div className={'inline-block mx-2 w-[7px] h-[7px] bg-green-700 rounded-full animate-pulse'}></div>
+                    <div className={'inline-block mx-2 w-[7px] h-[7px] bg-green-700 rounded-full pulse'}></div>
                     Live updates
                 </div>
             </div>
