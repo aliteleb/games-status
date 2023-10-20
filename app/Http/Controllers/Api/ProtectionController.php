@@ -24,7 +24,7 @@ class ProtectionController extends Controller
         if(request()->query('page'))
             $next_page = request()->query('page') + 1;
 
-        if($next_page >= $total_pages)
+        if($next_page > $total_pages)
             $next_page = null;
 
         if($next_page)
