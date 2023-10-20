@@ -41,6 +41,17 @@ class GameController extends Controller
 
     public function protections(Request $request)
     {
+        /*
+        SELECT drm_protections.name, games.name
+FROM drm_protections
+JOIN (
+    SELECT gdp.drm_protection_id, MAX(gdp.id) AS latest_game_id
+    FROM game_drm_protection gdp
+    GROUP BY gdp.drm_protection_id
+) AS latest_games
+ON drm_protections.id = latest_games.drm_protection_id
+JOIN games ON latest_games.latest_game_id = games.id;
+        */
         sleep(1);
         $protections = DrmProtection::select('id', 'name', 'slug')
             ->whereHas('games')
