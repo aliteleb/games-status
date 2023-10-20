@@ -1,15 +1,83 @@
-import React from 'react'
-import {Link} from "react-router-dom";
+import React, { useState, useEffect, useRef } from 'react';
+import ApiClient from '../../services/ApiClient';
+import GroupCard from '../layouts/GroupCard';
 
-export default function Groups() {
+
+export default function Protections() {
+    const [groups, setGroups] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [nextPage, setNextPage] = useState(null);
+
+    const loadGroups = (pageUrl) => {
+        if (pageUrl) {
+            setIsLoading(true);
+            ApiClient().get(pageUrl)
+                .then((res) => {
+                    setGroups((prevGroups) => [...prevGroups, ...res.data.data.data]);
+                    setNextPage(res.data.data.next_page_url);
+                    setIsLoading(false);
+                })
+                .catch((err) => {
+                    setIsLoading(false);
+                    console.log('Failed to get the data', err);
+                });
+        }
+    };
+
+    useEffect(() => {
+        loadGroups('/groups');
+    }, []); // Load initial data
+
+    const scrollListener = useRef(null);
+
+    useEffect(() => {
+        scrollListener.current = () => {
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPosition = window.scrollY;
+            if (scrollPosition >= totalHeight && !isLoading && nextPage) {
+                loadGroups(nextPage);
+            }
+        };
+
+        window.addEventListener('scroll', scrollListener.current);
+
+        return () => {
+            // Clean up the event listener when the component unmounts
+            window.removeEventListener('scroll', scrollListener.current);
+        };
+    }, [nextPage, isLoading]);
+
+    const showGroups = groups?.map((group, index) => (
+        <GroupCard animate={true} info={group} key={index} />
+    ));
+
+    const placeholders = [];
+    for (let i = 0; i < 12; i++) {
+        placeholders.push(<GroupCard key={i}/>);
+    }
+
     return (
-        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-            <div className="mx-auto text-center">
-                <h1 className="mb-4 text-7xl font-extrabold lg:text-9xl">GROUPS</h1>
-                <p className="mb-4 text-3xl tracking-tight font-bold text-gray-200 md:text-4xl">This page has not been created yet.</p>
-                <p className="mb-4 text-lg font-light text-gray-300">You'll find lots to explore on the home page. </p>
-                <Link to="/" className="inline-flex text-white bg-gray-600 hover:bg-gray-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-4">Back to Homepage</Link>
+        <>
+            <div className="mt-12 border-b border-gray-500/50 pb-2 text-xl">Groups</div>
+            <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
+                {groups.length > 0 || placeholders}
+                {showGroups}
             </div>
-        </div>
-    )
+            <div className="p-4">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="50"
+                    height="50"
+                    viewBox="0 0 24 24"
+                    className={`spinner_P7sC mx-auto ${isLoading ? '' : 'hidden'}`}
+                    fill="#ddd"
+                >
+                    <path
+                        d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"
+                        className="spinner_P7sC"
+                    />
+                </svg>
+            </div>
+        </>
+    );
 }
