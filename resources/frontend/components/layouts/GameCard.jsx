@@ -45,25 +45,25 @@ const GameCard = (props) => {
     let customStyles = props.animate === true ? 'fade ' : '';
 
     const handleFollowChange = async () => {
-        try {
-            const newFollowState = !follow;
-            setFollow(newFollowState);
-
-            const action = newFollowState ? 'follow' : 'unfollow';
-            let response = await ApiClient().post(`/games/${game.id}/${action}`);
-
+        const newFollowState = !follow;
+        setFollow(newFollowState);
+      
+        const action = newFollowState ? 'follow' : 'unfollow';
+      
+        ApiClient()
+          .post(`/games/${game.id}/${action}`)
+          .then((response) => {
             if (response.data.status === "success") {
-                toast.success(response.data.message)
+              toast.success(response.data.message);
             } else {
-                setFollow((prevFollow) => !prevFollow);
-                toast.error(response.data.message)
+              setFollow((prevFollow) => !prevFollow);
+              toast.error(response.data.message);
             }
-
-
-        } catch (error) {
+          })
+          .catch((error) => {
             setFollow((prevFollow) => !prevFollow);
-        }
-    };
+          });
+      };
 
 
     return (
