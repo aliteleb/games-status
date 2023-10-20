@@ -15,8 +15,8 @@ const GroupCard = (props) => {
             <div className={`flex flex-col`} >
                 {group &&
                 <>
-                    <GroupsIcon className='text-red-800 w-52 h-20 opacity-20 absolute top-2/4 left-2/4 transform translate-x-[17%] xl:translate-x-[15%] sm:translate-x-[-5%] translate-y-[-30%]'/>
-                    <div className='text-center bg-red-900 opacity-90 py-3 group-hover:bg-red-700 transition'>
+                    <GroupsIcon className='text-red-800 w-52 h-20 opacity-20 absolute top-12 right-[-3rem]'/>
+                    <div className='text-center bg-red-900 opacity-90 py-3 group-hover:bg-red-700'>
                         <span className={`${is_animated}`}>{group.name}</span>
                     </div>
 
