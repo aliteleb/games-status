@@ -8,6 +8,7 @@ const Protection = () => {
   const {slug} = useParams()
 
     const [games, setGames] = React.useState([])
+    const [response, setResponse] = React.useState(null)
     const [isLoading, setIsLoading] = React.useState(false);
     const [nextPage, setNextPage] = React.useState(null);
 
@@ -18,6 +19,7 @@ const Protection = () => {
                 .then((res) => {
                     setGames((prevGames) => [...prevGames, ...res.data.data.games]);
                     setNextPage(res.data.data.next_page_url);
+                    setResponse(res.data)
                     setIsLoading(false);
                 })
                 .catch((err) => {
@@ -62,7 +64,7 @@ const Protection = () => {
 
   return (
     <>
-        <div className="mt-12 border-b border-gray-500/50 pb-2 text-xl"></div>
+        <div className="mt-12 border-b border-gray-500/50 pb-2 text-xl">{response?.message}</div>
         <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
             {games.length > 0 || placeholders}
             {showGames}

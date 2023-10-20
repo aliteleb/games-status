@@ -16,7 +16,7 @@ function Navbar() {
 
     return (
         <>
-            <nav className="grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 text-white bg-custom-black items-center">
+            <nav className="fixed w-full z-50 grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 text-white bg-custom-black items-center">
                 <div className="flex items-center">
                     <MenuIcon onClick={() => {
                         document.querySelector('#sidebar').style.left = '0';
