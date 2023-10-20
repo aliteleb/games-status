@@ -21,7 +21,7 @@ class GameController extends Controller
 
         return response()->api(
             data: ['followers_count' => $game->users->count()],
-            message: __("You're now following '$game->name.'"),
+            message: __("You're now following '$game->name'"),
         );
     }
 
