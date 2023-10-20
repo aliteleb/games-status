@@ -15,7 +15,7 @@ const ProtectionsCard = (props) => {
             <div className={`flex flex-col`} >
                 {protection &&
                 <>
-                    <BsShieldExclamation className='text-red-800 w-64 h-24 opacity-20 absolute top-2/4 left-2/4 transform translate-x-[8%] translate-y-[-30%]'/>
+                    <BsShieldExclamation className='text-red-800 w-64 h-24 opacity-20 absolute top-2/4 left-2/4 transform translate-x-[5%] sm:translate-x-[-5%] xl:translate-x-[10%] translate-y-[-30%]'/>
                     <div className='text-center bg-red-900 opacity-90 py-3 group-hover:bg-red-700 transition'>
                         <span className={`${is_animated}`}>{protection.name}</span>
                     </div>

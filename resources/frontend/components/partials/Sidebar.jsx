@@ -3,12 +3,12 @@ import {NavLink} from 'react-router-dom'
 import UserIcon from '../icons/UserIcon'
 import Xmark from '../icons/Xmark'
 import HomeIcon from '../icons/HomeIcon'
-import GamesIcon from '../icons/GamesIcon'
+import {IoGameControllerOutline} from 'react-icons/io5'
 import FreeKeysIcon from '../icons/FreeKeysIcon'
 import GroupsIcon from '../icons/GroupsIcon'
 import MarketsIcon from '../icons/MarketsIcon'
 import {BsShieldExclamation} from 'react-icons/bs'
-import ForumIcon from '../icons/ForumIcon'
+import {SiGotomeeting} from 'react-icons/si'
 import {useAuth} from "../api/AuthContext"
 import {FiLogOut} from 'react-icons/fi'
 import ApiClient from '../../services/ApiClient'
@@ -61,7 +61,7 @@ function Sidebar() {
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/games">
-                    <GamesIcon/>
+                    <IoGameControllerOutline className='text-red-800 w-8 h-10'/>
                     <span className='hover:text-gray-400 transition'>GAMES</span>
                 </NavLink>
 
@@ -86,7 +86,7 @@ function Sidebar() {
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/forum">
-                    <ForumIcon/>
+                    <SiGotomeeting className='text-red-800 w-8 h-10'/>
                     <span className='hover:text-gray-400 transition'>FORUM</span>
                 </NavLink>
 
