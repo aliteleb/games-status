@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ApiClient from '../../services/ApiClient';
 import ProtectionCard from '../layouts/ProtectionCard.jsx';
 
+
 export default function Protections() {
     const [protections, setProtections] = useState([]);
     const [isLoading, setIsLoading] = useState(false);

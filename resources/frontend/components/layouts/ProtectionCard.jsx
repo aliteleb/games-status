@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Skeleton from 'react-loading-skeleton';
-
+import {BsShieldExclamation} from 'react-icons/bs'
 
 const ProtectionsCard = (props) => {
 
@@ -11,10 +11,11 @@ const ProtectionsCard = (props) => {
     let is_animated = props.animate === true ? 'fade ' : '';
 
     return (
-        <div className={`group bg-black/50 rounded maxHeight ${protection?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>
+        <div className={`relative group bg-black/50 rounded maxHeight ${protection?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>
             <div className={`flex flex-col`} >
                 {protection &&
                 <>
+                    <BsShieldExclamation className='text-red-800 w-64 h-24 opacity-20 absolute top-2/4 left-2/4 transform translate-x-[8%] translate-y-[-30%]'/>
                     <div className='text-center bg-red-900 opacity-90 py-3 group-hover:bg-red-700 transition'>
                         <span className={`${is_animated}`}>{protection.name}</span>
                     </div>

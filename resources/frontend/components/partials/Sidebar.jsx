@@ -7,7 +7,7 @@ import GamesIcon from '../icons/GamesIcon'
 import FreeKeysIcon from '../icons/FreeKeysIcon'
 import GroupsIcon from '../icons/GroupsIcon'
 import MarketsIcon from '../icons/MarketsIcon'
-import ProtectionsIcon from '../icons/ProtectionsIcon'
+import {BsShieldExclamation} from 'react-icons/bs'
 import ForumIcon from '../icons/ForumIcon'
 import {useAuth} from "../api/AuthContext"
 import {FiLogOut} from 'react-icons/fi'
@@ -81,7 +81,7 @@ function Sidebar() {
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/protections">
-                    <ProtectionsIcon/>
+                    <BsShieldExclamation className='text-red-800 w-8 h-10'/>
                     <span className='hover:text-gray-400 transition'>PROTECTIONS</span>
                 </NavLink>
 
