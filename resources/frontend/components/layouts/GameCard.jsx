@@ -5,6 +5,7 @@ import IconBxsTimeFive from "../icons/IconBxsTimeFive.jsx";
 import CheckMarkIcon from "../icons/CheckMarkIcon.jsx";
 import {IoMdRemoveCircle} from "react-icons/io";
 import ApiClient from "../../services/ApiClient.js";
+import toast, { Toaster } from 'react-hot-toast';
 
 const GameCard = (props) => {
 
@@ -52,9 +53,10 @@ const GameCard = (props) => {
             let response = await ApiClient().post(`/games/${game.id}/${action}`);
 
             if (response.data.status === "success") {
-                // Logic when success
+                toast.success(response.data.message)
             } else {
                 setFollow((prevFollow) => !prevFollow);
+                toast.error(response.data.message)
             }
 
 
@@ -104,8 +106,6 @@ const GameCard = (props) => {
                     <Skeleton width={'100%'} height={'100%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>
                 </div>
             </div>}
-
-
         </div>
     );
 }

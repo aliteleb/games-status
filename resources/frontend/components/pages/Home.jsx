@@ -2,6 +2,7 @@ import GameCard from "../layouts/GameCard.jsx";
 import React from "react";
 import ApiClient from "../../services/ApiClient.js";
 
+
 export default function Home() {
 
     let [gamesData, setGamesData] = React.useState([]);
