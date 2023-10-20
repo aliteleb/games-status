@@ -47,9 +47,9 @@ const GameCard = (props) => {
     const handleFollowChange = async () => {
         const newFollowState = !follow;
         setFollow(newFollowState);
-      
+
         const action = newFollowState ? 'follow' : 'unfollow';
-      
+
         ApiClient()
           .post(`/games/${game.id}/${action}`)
           .then((response) => {

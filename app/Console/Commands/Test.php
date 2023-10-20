@@ -36,7 +36,7 @@ class Test extends Command
         {
             $group->slug = str()->slug($group->name);
             $group->save();
-            $this->info("DRM `{$group->name}` processed successfully.");
+            $this->info("Group `{$group->name}` processed successfully.");
         }
 
         $this->info('Test command processed successfully.');
