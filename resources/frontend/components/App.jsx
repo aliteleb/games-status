@@ -31,7 +31,7 @@ export default function App(){
     return (
         <BrowserRouter>
             <Navbar/>
-            <div className="container my-20 text-gray-200 px-2 md:px-0">
+            <div className="container mt-20 pt-5 text-gray-200 px-2 md:px-0">
                 <Routes>
                     <Route path='/' element={<Home />}/>
                     <Route path='/nfos' element={<NFOS />}/>
@@ -48,9 +48,10 @@ export default function App(){
                     <Route path='/contact' element={<Contact />} />
                     <Route path='/terms-conditions' element={<Terms />} />
                     <Route path='/frequency-questions' element={<FrequencyQuestions />} />
-                    <Route path='*' element={<PageNotFound />} />
                     <Route path='/search-game' element={<SearchGames />} />
                     <Route path='/protection/:slug' element={<Protection />} />
+                    <Route path='*' element={<PageNotFound />} />
+
                 </Routes>
             </div>
             <Footer />

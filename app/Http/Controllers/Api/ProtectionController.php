@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
 use App\Models\DrmProtection;
-use Illuminate\Support\Carbon;
-use function Symfony\Component\String\u;
 
 class ProtectionController extends Controller
 {

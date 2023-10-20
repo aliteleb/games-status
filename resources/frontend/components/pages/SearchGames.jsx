@@ -2,7 +2,8 @@ import React from 'react'
 
 function SearchGames() {
   return (
-    <div className='p-6 bg-custom-black/50 rounded overflow-x-scroll'>
+    <div className='bg-custom-black/50 rounded overflow-x-scroll'>
+
         <header>
             <input type="text" placeholder='Search Game Title...' className='w-full h-10 rounded-sm px-3 bg-gray-600 focus:outline-none'/>
             <div className='flex mt-4'>

@@ -1,11 +1,12 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import GameCard from '../layouts/GameCard';
 import ApiClient from '../../services/ApiClient'
+import Skeleton from "react-loading-skeleton";
 
 const Protection = () => {
 
-  const {slug} = useParams()
+    const {slug} = useParams()
 
     const [games, setGames] = React.useState([])
     const [response, setResponse] = React.useState(null)
@@ -47,29 +48,35 @@ const Protection = () => {
         window.addEventListener('scroll', scrollListener.current);
 
         return () => {
-            // Clean up the event listener when the component unmounts
             window.removeEventListener('scroll', scrollListener.current);
         };
     }, [nextPage, isLoading]);
 
     const showGames = games?.map((drm, index) => (
-        <GameCard animate={true} info={drm} key={index} />
+        <GameCard animate={true} info={drm} key={index}/>
     ));
 
 
-  const placeholders = [];
-  for (let i = 0; i < 12; i++) {
-      placeholders.push(<GameCard className="w-[400px]" key={i}/>);
-  }
+    const placeholders = [];
+    for (let i = 0; i < 12; i++) {
+        placeholders.push(<GameCard className="w-[400px]" key={i}/>);
+    }
 
-  return (
-    <>
-        <div className="mt-12 border-b border-gray-500/50 pb-2 text-xl">{response?.message}</div>
-        <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
-            {games.length > 0 || placeholders}
-            {showGames}
-        </div>
-        <div className="p-4">
+    return (
+        <>
+            <div className="mt-12 border-b border-gray-500/50 pb-2 text-xl">
+                {response?.message}
+                {!response &&
+                    <div className="w-full md:w-1/3">
+                        <Skeleton width={'100%'} height={'20px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={10}/>
+                    </div>
+                }
+            </div>
+            <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
+                {games.length > 0 || placeholders}
+                {showGames}
+            </div>
+            <div className="p-4">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="50"
@@ -84,9 +91,9 @@ const Protection = () => {
                     />
                 </svg>
             </div>
-    </>
-        
-  );
+        </>
+
+    );
 };
 
 export default Protection;
