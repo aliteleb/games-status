@@ -1,6 +1,7 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import {BsShieldExclamation} from 'react-icons/bs'
+import { Link } from 'react-router-dom';
 
 const ProtectionsCard = (props) => {
 
@@ -11,7 +12,7 @@ const ProtectionsCard = (props) => {
     let is_animated = props.animate === true ? 'fade ' : '';
 
     return (
-        <div className={`relative group bg-[#16191e] rounded maxHeight ${protection?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>
+        <Link to={`/protection/${protection?.slug}`} className={`relative group bg-[#16191e] rounded maxHeight ${protection?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>
             <div className={`flex flex-col`} >
                 {protection &&
                 <>
@@ -57,7 +58,7 @@ const ProtectionsCard = (props) => {
                 }
 
             </div>
-        </div>
+        </Link>
     );
 }
 

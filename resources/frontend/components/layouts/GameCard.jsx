@@ -5,7 +5,7 @@ import IconBxsTimeFive from "../icons/IconBxsTimeFive.jsx";
 import CheckMarkIcon from "../icons/CheckMarkIcon.jsx";
 import {IoMdRemoveCircle} from "react-icons/io";
 import ApiClient from "../../services/ApiClient.js";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const GameCard = (props) => {
 
