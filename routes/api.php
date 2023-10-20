@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\GameController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\ProtectionController;
 use App\Http\Middleware\ApiAuthenticate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 # Basic routes
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/protections', [GameController::class, 'protections'])->name('protections');
+Route::get('/protection/{slug}', [ProtectionController::class, 'protection'])->name('protection');
 Route::get('/groups', [GameController::class, 'groups'])->name('groups');
 
 # Under Auth

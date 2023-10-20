@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $hot_games = Game::select(['id', 'name', 'release_date', 'crack_date', 'steam_appid'])
+        $hot_games = Game::select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid'])
             ->where('is_hot', true)
             ->orderBy('ordering')
             ->limit(7)

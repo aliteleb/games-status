@@ -115,32 +115,4 @@ class GameController extends Controller
 
     }
 
-    public function group1s(Request $request)
-    {
-        $protections = Group::select('id', 'name', 'slug')
-            ->whereHas('games')
-            ->withCount('games')
-            ->paginate(12);
-
-        foreach ($protections as $protection) {
-            $protection->last_game = null;
-            $game = DB::table('game_group')->where('group_id', $protection->id)->orderBy('id', 'desc')->first();
-            if ($game) {
-                $id = $game->game_id;
-                $game = Game::select('name', 'slug')->find($id);
-                $protection->last_game = $game;
-
-                if (!$game) {
-                    $protection->asd = $id;
-                    DB::table('game_group')->where('game_id', $id)->delete();
-                }
-            }
-        }
-
-        return response()->api(
-            data: $protections,
-            message: __("Groups")
-        );
-
-    }
 }
