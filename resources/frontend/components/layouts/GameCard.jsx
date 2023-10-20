@@ -54,7 +54,7 @@ const GameCard = (props) => {
           .post(`/games/${game.id}/${action}`)
           .then((response) => {
             if (response.data.status === "success") {
-              toast.success(response.data.message);
+                action === "follow" ? toast.success(response.data.message) : toast(response.data.message)
             } else {
               setFollow((prevFollow) => !prevFollow);
               toast.error(response.data.message);
