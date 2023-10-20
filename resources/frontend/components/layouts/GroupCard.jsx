@@ -10,7 +10,7 @@ const GroupCard = (props) => {
     let is_animated = props.animate === true ? 'fade ' : '';
 
     return (
-        <div className={`relative group bg-black/50 rounded maxHeight ${group?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>
+        <div className={`relative group bg-[#16191e] rounded maxHeight ${group?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>
             <div className={`flex flex-col`} >
                 {group &&
                 <>
@@ -18,14 +18,14 @@ const GroupCard = (props) => {
                         <span className={`${is_animated}`}>{group.name}</span>
                     </div>
 
-                    <div className='p-5 bg-slate-700/10 grid grid-cols-[auto_1fr]'>
+                    <div className='p-5 grid grid-cols-[auto_1fr]'>
                         <span className="text-sm text-gray-300">Games</span>
                         <span className={`${is_animated} col-auto text-center font-bold`}>{group.games_count}</span>
                     </div>
 
-                    <div className='p-5 bg-slate-700/10 grid grid-cols-[auto_1fr]'>
+                    <div className='p-5 grid grid-cols-[auto_1fr]'>
                         <span className="text-sm text-gray-300">Last Game</span>
-                        <span className={`${is_animated} col-auto text-center font-bold`}>{group.last_game?.name}</span>
+                        <span className={`${is_animated} col-auto text-center font-bold px-2`}>{group.last_game?.name}</span>
                     </div>
                 </>
                 }

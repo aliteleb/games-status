@@ -14,7 +14,7 @@ class ApiAuthenticate
 
             return response()->api(
                 status: "error",
-                message: __("Unauthenticated"),
+                message: __("You must login to do this action"),
                 status_code: 401,
                 response_code: 200
             );

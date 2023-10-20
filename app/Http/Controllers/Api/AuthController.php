@@ -13,8 +13,6 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        sleep(env('API_VIRTUAL_DELAY', 1));
-
         $validator = Validator::make($request->all(), [
             'username' => 'required|unique:users|string|min:3|max:16',
             'email' => 'required|string|email|unique:users|min:5|max:32',
@@ -51,8 +49,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        sleep(env('API_VIRTUAL_DELAY', 1));
-
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
