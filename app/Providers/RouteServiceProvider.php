@@ -32,7 +32,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
             Route::middleware(['api', ApiTokenProtection::class])
                 ->prefix('api')
-                ->as('api')
+                ->as('api.')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
