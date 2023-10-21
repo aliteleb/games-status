@@ -65,7 +65,7 @@ const Protection = () => {
     return (
         <>
             <div className="border-b border-gray-500/50 pb-2 text-xl">
-                <span className='text-2xl'>{response?.data.name}</span>
+                <span className='text-2xl font-bold'>{response?.data.name}</span>
                 <span className='text-md'>{response ? ' Games' : ''}</span>
                 {!response &&
                     <div className="w-full md:w-1/3">
