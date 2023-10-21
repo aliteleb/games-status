@@ -32,7 +32,7 @@ export default function App(){
     return (
         <BrowserRouter>
             <Navbar/>
-            <div className="container my-20 pt-10 text-gray-200 px-2 md:px-0">
+            <div className="container py-28 m-[auto] text-gray-200 px-2 md:px-0">
                 <Routes>
                     <Route path='/' element={<Home />}/>
                     <Route path='/nfos' element={<NFOS />}/>
@@ -52,7 +52,7 @@ export default function App(){
                     <Route path='/search-game' element={<SearchGames />} />
                     <Route path='/protection/:slug' element={<Protection />} />
                     <Route path='/group/:slug' element={<Group />} />
-                    
+
                     <Route path='*' element={<PageNotFound />} />
                 </Routes>
             </div>
