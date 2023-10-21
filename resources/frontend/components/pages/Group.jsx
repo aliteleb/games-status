@@ -65,7 +65,8 @@ const Group = () => {
     return (
         <>
             <div className="border-b border-gray-500/50 pb-2 text-xl">
-                {response?.message}
+                <span className='text-2xl'>{response?.data.name}</span>
+                <span className='text-md'>{response ? ' Games' : ''}</span>
                 {!response &&
                     <div className="w-full md:w-1/3">
                         <Skeleton width={'100%'} height={'20px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={10}/>

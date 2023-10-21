@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .container {
+        @apply
+        mx-auto
+        max-w-screen-xl
+    }
+}
+
