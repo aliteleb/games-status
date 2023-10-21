@@ -1,6 +1,7 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import GroupsIcon from '../icons/GroupsIcon';
+import { Link } from 'react-router-dom';
 
 const GroupCard = (props) => {
 
@@ -14,7 +15,7 @@ const GroupCard = (props) => {
         <div className={`relative group bg-[#16191e] rounded maxHeight ${group?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>
             <div className={`flex flex-col`} >
                 {group &&
-                <>
+                <Link to={`/group/${group?.slug}`}>
                     <GroupsIcon className='text-red-800 w-52 h-20 opacity-20 absolute top-12 right-[-3rem]'/>
                     <div className='text-center bg-red-900 opacity-90 py-3 group-hover:bg-red-700'>
                         <span className={`${is_animated}`}>{group.name}</span>
@@ -29,7 +30,7 @@ const GroupCard = (props) => {
                         <span className="text-sm text-gray-300">Last Game</span>
                         <span className={`${is_animated} col-auto text-center font-bold px-2`}>{group.last_game?.name}</span>
                     </div>
-                </>
+                </Link>
                 }
                 {!group &&
                     <>
