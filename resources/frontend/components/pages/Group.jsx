@@ -66,7 +66,7 @@ const Group = () => {
         <>
             <div className="border-b border-gray-500/50 pb-2 text-xl">
                 <span className='text-2xl'>{response?.data.name}</span>
-                <span className='text-md'>{response ? ' Games' : ''}</span>
+                <span className='text-md '>{response ? ' Games' : ''}</span>
                 {!response &&
                     <div className="w-full md:w-1/3">
                         <Skeleton width={'100%'} height={'20px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={10}/>
@@ -77,13 +77,13 @@ const Group = () => {
                 {games.length > 0 || placeholders}
                 {showGames}
             </div>
-            <div className={`p-4 ${isLoading ? 'opacity-0' : ''}` }>
+            <div className={`p-4 ` }>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="50"
                     height="50"
                     viewBox="0 0 24 24"
-                    className={`spinner_P7sC mx-auto ${isLoading ? 'opacity-0' : ''}`}
+                    className={`spinner_P7sC mx-auto ${isLoading ? '' : 'opacity-0'}`}
                     fill="#ddd"
                 >
                     <path

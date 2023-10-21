@@ -69,7 +69,7 @@ export default function Protections() {
                     width="50"
                     height="50"
                     viewBox="0 0 24 24"
-                    className={`spinner_P7sC mx-auto ${isLoading ? '' : 'hidden'}`}
+                    className={`spinner_P7sC mx-auto ${isLoading ? '' : 'opacity-0'}`}
                     fill="#ddd"
                 >
                     <path
