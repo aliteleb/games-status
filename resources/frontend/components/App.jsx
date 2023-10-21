@@ -32,7 +32,7 @@ export default function App(){
     return (
         <BrowserRouter>
             <Navbar/>
-            <div className="container mt-20 pt-5 text-gray-200 px-2 md:px-0">
+            <div className="container mt-20 pt-10 text-gray-200 px-2 md:px-0">
                 <Routes>
                     <Route path='/' element={<Home />}/>
                     <Route path='/nfos' element={<NFOS />}/>

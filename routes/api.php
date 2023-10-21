@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\GameController;
+use App\Http\Controllers\Api\GroupController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\ProtectionController;
 use App\Http\Middleware\ApiAuthenticate;
@@ -34,6 +35,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/protections', [GameController::class, 'protections'])->name('protections');
 Route::get('/protection/{slug}', [ProtectionController::class, 'protection'])->name('protection');
 Route::get('/groups', [GameController::class, 'groups'])->name('groups');
+Route::get('/group/{slug}', [GroupController::class, 'group'])->name('group');
 
 # Under Auth
 Route::middleware(ApiAuthenticate::class)->group(function () {

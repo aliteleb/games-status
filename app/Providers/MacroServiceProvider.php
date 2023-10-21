@@ -32,7 +32,7 @@ class MacroServiceProvider extends ServiceProvider
             if($response_code)
                 return response()->json($response, $response_code);
 
-            sleep(env('API_VIRTUAL_DELAY', 1));
+            usleep( 500000);
             return response()->json($response, $status_code);
         });
     }
