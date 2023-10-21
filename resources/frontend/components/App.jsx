@@ -22,6 +22,7 @@ import Footer from "./partials/Footer.jsx";
 import SearchGames from './pages/SearchGames';
 import Protection from './pages/Protection';
 import Group from './pages/Group';
+import Game from './pages/Game';
 
 export default function App(){
 
@@ -52,6 +53,7 @@ export default function App(){
                     <Route path='/search-game' element={<SearchGames />} />
                     <Route path='/protection/:slug' element={<Protection />} />
                     <Route path='/group/:slug' element={<Group />} />
+                    <Route path='/games/:slug' element={<Game />} />
 
                     <Route path='*' element={<PageNotFound />} />
                 </Routes>
