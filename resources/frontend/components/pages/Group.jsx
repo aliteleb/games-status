@@ -64,7 +64,7 @@ const Group = () => {
 
     return (
         <>
-            <div className="mt-12 border-b border-gray-500/50 pb-2 text-xl">
+            <div className="border-b border-gray-500/50 pb-2 text-xl">
                 {response?.message}
                 {!response &&
                     <div className="w-full md:w-1/3">
@@ -82,7 +82,7 @@ const Group = () => {
                     width="50"
                     height="50"
                     viewBox="0 0 24 24"
-                    className={`spinner_P7sC mx-auto ${isLoading ? '' : 'hidden'}`}
+                    className={`spinner_P7sC mx-auto ${isLoading ? '' : 'opacity-0'}`}
                     fill="#ddd"
                 >
                     <path
