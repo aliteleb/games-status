@@ -21,7 +21,7 @@ class ApiTokenProtection
 
         $header = request()->header('token');
         if($session !== $header){
-            //abort(500);
+            // abort(500);
         }
 
         session()->put('token', base64_encode(substr($session, 0, 64)));

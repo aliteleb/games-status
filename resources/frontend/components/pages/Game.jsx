@@ -12,7 +12,7 @@ function Game() {
                     <div>
                         <div>
                             <div className='flex justify-between'>
-                                <div className='text-xl text-white/40 font-extralight'>Status</div>
+                                <div className='text-lg text-white/40 font-extralight'>STATUS</div>
                                 <div className='text-lg text-red-600'>316 DAYS AND COUNTING</div>
                             </div>
                             <div className='text-[3.5rem] rounded text-red-600 font-bold text-center -mt-5'>UNCRACKED</div>
@@ -24,11 +24,11 @@ function Game() {
                         <div className='grid grid-cols-2 gap-y-4 justify-between'>
                             <div>
                                 <div className='text-[#dddddd99] font-extralight'>RELEASE DATE</div>
-                                <div className='text-xl'>NOV 05, 2019</div>
+                                <div className='text-xl text-gray-100'>NOV 05, 2019</div>
                             </div>
                             <div>
                                 <div className='text-[#dddddd99] font-extralight'>DRM PROTECTION</div>
-                                <div className='text-xl'>ROCKSTAR</div>
+                                <div className='text-xl text-gray-100'>ROCKSTAR</div>
                             </div>
                             <div>
                                 <div className='text-[#dddddd99] font-extralight'>CRACK DATE</div>
