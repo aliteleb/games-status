@@ -77,13 +77,13 @@ const Group = () => {
                 {games.length > 0 || placeholders}
                 {showGames}
             </div>
-            <div className="p-4">
+            <div className={`p-4 ${isLoading ? 'opacity-0' : ''}` }>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="50"
                     height="50"
                     viewBox="0 0 24 24"
-                    className={`spinner_P7sC mx-auto ${isLoading ? '' : 'opacity-0'}`}
+                    className={`spinner_P7sC mx-auto ${isLoading ? 'opacity-0' : ''}`}
                     fill="#ddd"
                 >
                     <path
