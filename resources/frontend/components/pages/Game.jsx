@@ -3,7 +3,7 @@ import React from 'react'
 function Game() {
     return (
         <>
-            <div className='flex relative text-gray-300 border-t-[5px] border-red-700 h-[22rem] shadow-lg overflow-hidden rounded-br-md rounded-bl-md'>
+            <div className='flex relative text-gray-300 border-t-[5px] border-uncracked h-[22rem] shadow-lg overflow-hidden rounded-br-md rounded-bl-md'>
                 <img className='absolute w-full h-full z-[-1] object-cover opacity-70' src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_hero.jpg"
                      style={{aspectRatio: '1920/620'}}
                      alt=""/>
