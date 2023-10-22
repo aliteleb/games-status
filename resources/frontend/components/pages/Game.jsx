@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {AiOutlineArrowUp, AiOutlineArrowDown} from 'react-icons/ai'
+import {IoIosArrowUp, IoIosArrowDown} from 'react-icons/io'
 
 function Game() {
 
@@ -100,7 +100,7 @@ function Game() {
                 </div>
             </div>
 
-            <section className="bg-black/50 py-8 lg:py-16 antialiased relative z-20  -mb-[7rem]">
+            <section className="bg-black/50 py-8 lg:py-16 antialiased relative z-20">
                 <div className="px-4 pb-36">
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
@@ -200,9 +200,9 @@ function Game() {
                         </footer>
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
-                                <AiOutlineArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
                                 <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
-                                <AiOutlineArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
                             Very straight-to-point article. Really worth time reading. Thank you!
@@ -307,9 +307,9 @@ function Game() {
                         </footer>
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
-                                <AiOutlineArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
-                                <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
-                                <AiOutlineArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                    <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
                             Very straight-to-point article. Really worth time reading. Thank you!
@@ -414,9 +414,9 @@ function Game() {
                         </footer>
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
-                                <AiOutlineArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
-                                <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
-                                <AiOutlineArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                    <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
                             Very straight-to-point article. Really worth time reading. Thank you!
@@ -520,9 +520,9 @@ function Game() {
                         </footer>
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
-                                <AiOutlineArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
-                                <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
-                                <AiOutlineArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                    <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
                             Very straight-to-point article. Really worth time reading. Thank you!
