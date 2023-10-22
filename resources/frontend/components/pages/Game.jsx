@@ -103,7 +103,7 @@ function Game() {
                                     />
                                     Michael Gough
                                 </p>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                <p className="text-sm text-gray-400">
                                     <time pubdate="" dateTime="2022-02-08" title="February 8th, 2022">
                                         Feb. 8, 2022
                                     </time>
@@ -203,7 +203,7 @@ function Game() {
                                     />
                                     Jese Leos
                                 </p>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                <p className="text-sm text-gray-400">
                                     <time pubdate="" dateTime="2022-02-12" title="February 12th, 2022">
                                         Feb. 12, 2022
                                     </time>
@@ -300,7 +300,7 @@ function Game() {
                                     />
                                     Bonnie Green
                                 </p>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                <p className="text-sm text-gray-400">
                                     <time pubdate="" dateTime="2022-03-12" title="March 12th, 2022">
                                         Mar. 12, 2022
                                     </time>
@@ -398,7 +398,7 @@ function Game() {
                                     />
                                     Helene Engels
                                 </p>
-                                <p className="text-sm text-gray-600 max-w-[65rem]">
+                                <p className="text-sm text-gray-400">
                                     <time pubdate="" dateTime="2022-06-23" title="June 23rd, 2022">
                                         Jun. 23, 2022
                                     </time>
