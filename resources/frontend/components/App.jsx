@@ -53,7 +53,7 @@ export default function App(){
                     <Route path='/search-game' element={<SearchGames />} />
                     <Route path='/protection/:slug' element={<Protection />} />
                     <Route path='/group/:slug' element={<Group />} />
-                    <Route path='/games/:slug' element={<Game />} />
+                    <Route path='/game/:slug' element={<Game />} />
 
                     <Route path='*' element={<PageNotFound />} />
                 </Routes>

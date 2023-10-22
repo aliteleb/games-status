@@ -13,9 +13,9 @@ function Game() {
                         <div>
                             <div className='flex justify-between'>
                                 <div className='text-lg text-white/40 font-extralight'>STATUS</div>
-                                <div className='text-lg text-red-600'>316 DAYS AND COUNTING</div>
+                                <div className='text-lg text-uncracked'>316 DAYS AND COUNTING</div>
                             </div>
-                            <div className='text-[3.5rem] rounded text-red-600 font-bold text-center -mt-5'>UNCRACKED</div>
+                            <div className='text-[3.5rem] rounded text-uncracked font-bold text-center -mt-5'>UNCRACKED</div>
                         </div>
                         <div className='w-full my-5'>
                             <div className='text-[#dddddd99] font-extralight'>GAME</div>
@@ -45,11 +45,15 @@ function Game() {
                     <div className='text-center'>AD2</div>
                     <div className='text-center'>AD3</div>
                     <div className='text-center'>
-                        <div className='text-xl'>FOLLOWERS</div>
-                        <div className='my-2 text-3xl'>105297</div>
-                        <button className="bg-red-500 transition hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                            Follow
-                        </button>
+                        <div className='text-3xl'>FOLLOWERS</div>
+                        <div className='my-2 text-2xl'>105,297</div>
+                        <div className="flex flex-wrap justify-center py-2 rounded ">
+                            <input
+                                type='checkbox'
+                                className="mx-4 before:ring-4 before:ring-gray-700 before:hover:ring-4 before:hover:bg-gray-700/70 before:checked:bg-gray-700 before:hover:checked:bg-gray-700 relative"/>
+                            <span className="text-xl">Follow</span>
+                        </div>
+
                     </div>
                 </div>
             </div>
