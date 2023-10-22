@@ -200,9 +200,9 @@ function Game() {
                         </footer>
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
-                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer hover:text-gray-500 text-2xl text-gray-300'/>
                                 <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
-                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer hover:text-gray-500 transition text-2xl text-gray-300'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
                             Very straight-to-point article. Really worth time reading. Thank you!
@@ -307,9 +307,9 @@ function Game() {
                         </footer>
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
-                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                                     <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
-                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
                             Very straight-to-point article. Really worth time reading. Thank you!
@@ -414,9 +414,9 @@ function Game() {
                         </footer>
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
-                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                                     <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
-                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
                             Very straight-to-point article. Really worth time reading. Thank you!
@@ -520,9 +520,9 @@ function Game() {
                         </footer>
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
-                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                                     <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
-                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
                             Very straight-to-point article. Really worth time reading. Thank you!
@@ -557,9 +557,6 @@ function Game() {
                     </article>
                 </div>
             </section>
-
-
-
         </>
     )
 }
