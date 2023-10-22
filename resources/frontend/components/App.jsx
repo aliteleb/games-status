@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import './App.css'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home.jsx";
@@ -24,7 +24,7 @@ import Protection from './pages/Protection';
 import Group from './pages/Group';
 import Game from './pages/Game';
 
-export default function App(){
+export default function App() {
 
     window.ondragstart = () => false;
 
@@ -33,32 +33,33 @@ export default function App(){
     return (
         <BrowserRouter>
             <Navbar/>
-            <div className="container py-28 m-[auto] text-gray-200 px-2 md:px-0">
-                <Routes>
-                    <Route path='/' element={<Home />}/>
-                    <Route path='/nfos' element={<NFOS />}/>
-                    <Route path='/groups' element={<Groups />}/>
-                    <Route path='/protections' element={<Protections />}/>
-                    <Route path='/markets' element={<Markets />}/>
-                    <Route path='/free-keys' element={<FreeKeys />}/>
-                    <Route path='/get-karma' element={<GetKarma />}/>
-                    <Route path='/forum' element={<Forum />}/>
-                    <Route path='/messages' element={<Messages />} />
-                    <Route path='/login' element={<Login loading={loading} setLoading={setLoading} />} />
-                    <Route path='/sign-up' element={<SignUp loading={loading} setLoading={setLoading}/>} />
-                    <Route path='/about' element={<About />} />
-                    <Route path='/contact' element={<Contact />} />
-                    <Route path='/terms-conditions' element={<Terms />} />
-                    <Route path='/frequency-questions' element={<FrequencyQuestions />} />
-                    <Route path='/search-game' element={<SearchGames />} />
-                    <Route path='/protection/:slug' element={<Protection />} />
-                    <Route path='/group/:slug' element={<Group />} />
-                    <Route path='/game/:slug' element={<Game />} />
+                <div className="container py-28 m-[auto] text-gray-200 px-2 md:px-0">
+                    <Routes>
+                        <Route path='/' element={<Home/>}/>
+                        <Route path='/nfos' element={<NFOS/>}/>
+                        <Route path='/groups' element={<Groups/>}/>
+                        <Route path='/protections' element={<Protections/>}/>
+                        <Route path='/markets' element={<Markets/>}/>
+                        <Route path='/free-keys' element={<FreeKeys/>}/>
+                        <Route path='/get-karma' element={<GetKarma/>}/>
+                        <Route path='/forum' element={<Forum/>}/>
+                        <Route path='/messages' element={<Messages/>}/>
+                        <Route path='/login' element={<Login loading={loading} setLoading={setLoading}/>}/>
+                        <Route path='/sign-up' element={<SignUp loading={loading} setLoading={setLoading}/>}/>
+                        <Route path='/about' element={<About/>}/>
+                        <Route path='/contact' element={<Contact/>}/>
+                        <Route path='/terms-conditions' element={<Terms/>}/>
+                        <Route path='/frequency-questions' element={<FrequencyQuestions/>}/>
+                        <Route path='/search-game' element={<SearchGames/>}/>
+                        <Route path='/protection/:slug' element={<Protection/>}/>
+                        <Route path='/group/:slug' element={<Group/>}/>
+                        <Route path='/game/:slug' element={<Game/>}/>
 
-                    <Route path='*' element={<PageNotFound />} />
-                </Routes>
-            </div>
-            <Footer />
+                        <Route path='*' element={<PageNotFound/>}/>
+                    </Routes>
+                </div>
+
+            <Footer/>
         </BrowserRouter>
     );
 }

@@ -3,10 +3,11 @@ import React from 'react'
 function Game() {
     return (
         <>
-            <div className="">
-                <img className="opacity-30 absolute top-0 left-0 w-full h-full"
-                     src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
-                <div className=" absolute top-[4rem] w-full h-full -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
+            <div className="max-h-[50rem] h-full absolute top-0 left-0 w-full">
+                <img className="opacity-30 absolute top-0 left-0 w-full h-full" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 absolute top-[100%] left-0 w-full h-full -scale-y-100" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 absolute top-[200%] left-0 w-full h-full" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <div className="absolute top-[4rem] w-full h-[300%] -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
             </div>
 
             <div className='flex relative z-20 text-gray-300 border-t-[5px] border-uncracked h-[22rem] shadow-lg overflow-hidden'>
