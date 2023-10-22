@@ -14,7 +14,7 @@ function Game() {
                      style={{aspectRatio: '1920/620'}}
                      alt=""/>
                 <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt=""/>
-                <div className='flex w-full items-center justify-between bg-black/80 py-3 px-5 ئ'>
+                <div className='flex w-full items-center justify-between bg-black/80 py-3 px-5'>
                     <div>
                         <div>
                             <div className='flex justify-between'>
