@@ -34,7 +34,7 @@ function Sidebar() {
 
     return (
         <div id={'sidebar'} className='z-[51] flex flex-col w-64 xl:w-72 px-6 h-screen pt-6 fixed top-0 -left-72 transition-all bg-app-black/70'>
-            <div onClick={collapseSidebar} className='bg-app-black cursor-pointer w-full mb-4'>
+            <div onClick={collapseSidebar} className='cursor-pointer w-full mb-4'>
                 <Xmark className={'text-white'}/>
             </div>
             <nav onClick={collapseSidebar} className="flex flex-col gap-y-3 text-white h-screen">

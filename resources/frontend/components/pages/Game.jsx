@@ -201,7 +201,7 @@ function Game() {
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
                                 <IoIosArrowUp onClick={increaseCount} className='cursor-pointer hover:text-gray-500 text-2xl text-gray-300'/>
-                                <div className={`min-w-[2.3rem] flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                <div className={`min-w-[2.3rem] font-bold flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
                                 <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer hover:text-gray-500 transition text-2xl text-gray-300'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
@@ -308,7 +308,7 @@ function Game() {
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
                                 <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
-                                    <div className={`min-w-[2.3rem] flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                    <div className={`font-bold min-w-[2.3rem] flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
                                 <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
@@ -415,7 +415,7 @@ function Game() {
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
                                 <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
-                                    <div className={`min-w-[2.3rem] flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                    <div className={`font-bold min-w-[2.3rem] flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
                                 <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
@@ -521,7 +521,7 @@ function Game() {
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
                                 <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
-                                    <div className={`min-w-[2.3rem] flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                    <div className={`font-bold min-w-[2.3rem] flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
                                 <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
