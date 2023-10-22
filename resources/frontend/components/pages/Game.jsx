@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {AiOutlineArrowUp, AiOutlineArrowDown} from 'react-icons/ai'
 
 function Game() {
@@ -13,9 +13,24 @@ function Game() {
         setCount(count = count - 1)
     }
 
+    useEffect(() => {
+        const body = document.body,
+            html = document.documentElement;
+        const height = Math.max(
+            body.scrollHeight,
+            body.offsetHeight,
+            html.clientHeight,
+            html.scrollHeight,
+            html.offsetHeight
+        );
+        const footerHeight = document.getElementsByTagName('footer')[0].offsetHeight;
+        document.getElementById('blurred-bg').style.height = height - footerHeight + 'px';
+        console.log(height);
+    }, []);
+
     return (
         <>
-            <div className="max-h-[50rem] h-full absolute top-0 left-0 w-full">
+            <div id="blurred-bg" className="w-full h-full absolute top-0 left-0 overflow-hidden">
                 <img className="opacity-30 absolute top-0 left-0 w-full h-full" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
                 <img className="opacity-30 absolute top-[100%] left-0 w-full h-full -scale-y-100" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
                 <img className="opacity-30 absolute top-[200%] left-0 w-full h-full" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
