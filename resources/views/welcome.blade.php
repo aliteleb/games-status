@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="csrf_token" content="{{ session()->get('token') !== null? base64_decode(session()->get('token')) : csrf_token() }}"/>
-    <link rel="icon" type="image/svg+xml" href="assets/images/logo.png"/>
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Crack Watcher</title>
 

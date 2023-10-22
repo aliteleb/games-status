@@ -3,7 +3,12 @@ import React from 'react'
 function Game() {
     return (
         <>
-            <div className='flex relative text-gray-300 border-t-[5px] border-uncracked h-[22rem] shadow-lg overflow-hidden rounded-br-md rounded-bl-md'>
+            <div className="">
+                <img className="max-w-screen-xl opacity-50 absolute top-0 w-1/2 h-full -translate-x-1/2 left-1/2 "
+                     src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <div className=" max-w-screen-xl absolute top-[4rem] w-full h-full -translate-x-1/2 left-1/2 backdrop-blur-xl"/>
+            </div>
+            <div className='flex relative z-0 text-gray-300 border-t-[5px] border-uncracked h-[22rem] shadow-lg overflow-hidden rounded-br-md rounded-bl-md'>
                 <img className='absolute w-full h-full z-[-1] object-cover opacity-70' src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_hero.jpg"
                      style={{aspectRatio: '1920/620'}}
                      alt=""/>
@@ -12,7 +17,7 @@ function Game() {
                     <div>
                         <div>
                             <div className='flex justify-between'>
-                                <div className='text-lg text-white/40 font-extralight'>STATUS</div>
+                                <div className='text-lg text-white/40 font-extralight mr-2'>STATUS</div>
                                 <div className='text-lg text-uncracked'>316 DAYS AND COUNTING</div>
                             </div>
                             <div className='text-[3.5rem] rounded text-uncracked font-bold text-center -mt-5'>UNCRACKED</div>
