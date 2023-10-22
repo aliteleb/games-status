@@ -4,18 +4,18 @@
 
 *{ scroll-behavior: smooth; }
 *::-webkit-scrollbar {
-    width: 5px;
+    width: 3px;
 }
 *::-webkit-scrollbar-track {
-    background: #101012;
+    background: #00000099;
     border: none;
     border-radius: 0;
 }
 *::-webkit-scrollbar-thumb {
-    background: #303a47;
+    background: rgba(255, 0, 0, 0.5);
 }
 *::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(0, 0, 0, 1);
+    background: rgba(255, 0, 0, 0.5);
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
