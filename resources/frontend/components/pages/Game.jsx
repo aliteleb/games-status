@@ -489,7 +489,6 @@ function Game() {
             </section>
 
 
-            <div className="h-[20rem]"/>
         </>
     )
 }
