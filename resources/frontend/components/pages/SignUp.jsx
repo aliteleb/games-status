@@ -61,7 +61,7 @@ export default function SignUp({loading, setLoading}) {
         <>
             {response === undefined && <div className="text-center text-xl mx-2 my-6 text-gray-200"> Create new account</div>}
 
-            <div className={`p-6 bg-custom-black/50 rounded-md text-gray-300 overflow-hidden`}>
+            <div className={`p-6 bg-app-black/50 rounded-md text-gray-300 overflow-hidden`}>
 
                 <div className={(response && response.data.status === "success") ? "hidden" : ""}>
                     <header className='border-b-2 pb-[10px] font-bold text-xl'>Sign Up</header>

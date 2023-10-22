@@ -16,7 +16,7 @@ function Navbar() {
 
     return (
         <>
-            <nav className="fixed w-full z-50 grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 text-white bg-custom-black/70 items-center backdrop-blur-xl">
+            <nav className="fixed w-full z-50 grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 text-white bg-app-black/70 items-center backdrop-blur-xl">
                 <div className="flex items-center">
                     <MenuIcon onClick={() => {
                         document.querySelector('#sidebar').style.left = '0';
@@ -37,7 +37,7 @@ function Navbar() {
                     <div className="mx-3 md:mx-6">
                         <NavLink onClick={collapseSidebar} to="/" className="relative">
                             <img src="/assets/images/logo.png" className="w-16 h-16 top-5 relative" alt="Logo"/>
-                            <div className="cursor-auto w-[10rem] h-[10rem] absolute bg-custom-black/70" style={{
+                            <div className="cursor-auto w-[10rem] h-[10rem] absolute bg-app-black/70" style={{
                                 top: '-100%',
                                 left: '-75%',
                                 zIndex: '-1',

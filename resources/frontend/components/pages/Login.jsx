@@ -43,7 +43,7 @@ export default function Login({loading, setLoading}) {
     }
 
     return (
-        <div className='w-full overflow-hidden max-w-screen-xl mx-auto p-6 bg-custom-black bg-opacity-60 rounded-md text-gray-300'>
+        <div className='w-full overflow-hidden max-w-screen-xl mx-auto p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300'>
             <header className='border-b-2 pb-[10px] font-bold text-xl'>Login</header>
             <div className='mt-6 flex flex-col'>
                 <label htmlFor="username">Username</label>

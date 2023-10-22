@@ -12,7 +12,7 @@ function NotificationsBar() {
 
   let {user} = useAuth()
   return (
-    <div id={'notifications-bar'} className='z-55 flex flex-col w-72 xl:w-[19rem] pl-5 h-screen pt-6 fixed top-0 -right-[19rem] transition-all bg-custom-black z-[51]'>
+    <div id={'notifications-bar'} className='z-55 flex flex-col w-72 xl:w-[19rem] pl-5 h-screen pt-6 fixed top-0 -right-[19rem] transition-all bg-app-black z-[51]'>
       <div onClick={collapseSidebar} className='cursor-pointer w-fit'>
           <Xmark className={'text-white'}/>
       </div>

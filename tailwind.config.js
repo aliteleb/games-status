@@ -30,7 +30,7 @@ export default {
                 'cracked': '#00e304',
                 'uncracked': '#d81106',
                 'unreleased': '#990efd',
-                'custom-black': '#0c0a09',
+                'app-black': '#0c0a09',
                 'twitter': '#737373',
                 'facebook': '#2563eb',
                 'body': '#27282e',
