@@ -24,17 +24,25 @@ function Game() {
             html.offsetHeight
         );
         const footerHeight = document.getElementsByTagName('footer')[0].offsetHeight;
-        document.getElementById('blurred-bg').style.height = height - footerHeight + 'px';
+        document.getElementById('blurred-bg').style.height = height + 'px';
         console.log(height);
     }, []);
 
     return (
         <>
-            <div id="blurred-bg" className="w-full h-full absolute top-0 left-0 overflow-hidden">
-                <img className="opacity-30 absolute top-0 left-0 w-full h-full" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
-                <img className="opacity-30 absolute top-[100%] left-0 w-full h-full -scale-y-100" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
-                <img className="opacity-30 absolute top-[200%] left-0 w-full h-full" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
-                <div className="absolute top-[4rem] w-full h-[300%] -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
+            <div id="blurred-bg" className="w-full h-screen absolute top-0 left-0 overflow-hidden">
+                <img className="opacity-30 top-0 w-full h-screen" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 top-[100%] w-full h-screen -scale-y-100" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 top-0 w-full h-screen" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 top-[100%] w-full h-screen -scale-y-100" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 top-0 w-full h-screen" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 top-[100%] w-full h-screen -scale-y-100" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 top-0 w-full h-screen" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 top-[100%] w-full h-screen -scale-y-100" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 top-0 w-full h-screen" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+                <img className="opacity-30 top-[100%] w-full h-screen -scale-y-100" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg" alt="bg"/>
+
+                <div className="absolute top-[4rem] w-full h-[200%] -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
             </div>
 
             <div className='flex relative z-20 text-gray-300 border-t-[5px] border-uncracked h-[22rem] shadow-lg overflow-hidden'>
@@ -92,8 +100,8 @@ function Game() {
                 </div>
             </div>
 
-            <section className="bg-black/50 py-8 lg:py-16 antialiased relative z-20">
-                <div className="px-4">
+            <section className="bg-black/50 py-8 lg:py-16 antialiased relative z-20  -mb-[7rem]">
+                <div className="px-4 pb-36">
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
                             Comments (20)
@@ -549,6 +557,7 @@ function Game() {
                     </article>
                 </div>
             </section>
+
 
 
         </>
