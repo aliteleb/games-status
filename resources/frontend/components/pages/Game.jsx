@@ -9,7 +9,7 @@ function Game() {
                 <div className=" absolute top-[4rem] w-full h-full -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
             </div>
 
-            <div className='flex relative z-20 text-gray-300 border-t-[5px] border-uncracked h-[22rem] shadow-lg overflow-hidden rounded-br-md rounded-bl-md'>
+            <div className='flex relative z-20 text-gray-300 border-t-[5px] border-uncracked h-[22rem] shadow-lg overflow-hidden'>
                 <img className='absolute w-full h-full z-[-1] object-cover opacity-70' src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_hero.jpg"
                      style={{aspectRatio: '1920/620'}}
                      alt=""/>
@@ -68,18 +68,18 @@ function Game() {
                 <div className="max-w-2xl px-4">
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-                            Discussion (20)
+                            Comments (20)
                         </h2>
                     </div>
                     <form className="mb-6">
-                        <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                        <div className="border-gray-400 py-2 px-4 mb-4 rounded-lg rounded-t-lg border">
                             <label htmlFor="comment" className="sr-only">
                                 Your comment
                             </label>
                             <textarea
                                 id="comment"
                                 rows={6}
-                                className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                                className="bg-transparent px-0 w-full text-md min-h-[6.2rem] border-0 focus:ring-0 focus:outline-none text-gray-200"
                                 placeholder="Write a comment..."
                                 required=""
                                 defaultValue={""}
@@ -87,12 +87,12 @@ function Game() {
                         </div>
                         <button
                             type="submit"
-                            className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+                            className="inline-flex items-center py-2.5 px-4 text-sm bg-btn hover:bg-btn-hover transition font-medium text-center text-white rounded-lg"
                         >
                             Post comment
                         </button>
                     </form>
-                    <article className="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
+                    <article className="p-6 text-base rounded-lg">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
                                 <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
@@ -112,7 +112,7 @@ function Game() {
                             <button
                                 id="dropdownComment1Button"
                                 data-dropdown-toggle="dropdownComment1"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 rounded-lg bg-btn hover:bg-btn-hover"
                                 type="button"
                             >
                                 <svg
@@ -192,7 +192,7 @@ function Game() {
                             </button>
                         </div>
                     </article>
-                    <article className="p-6 mb-3 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
+                    <article className="p-6 mb-3 ml-6 lg:ml-12 text-base rounded-lg">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
                                 <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
@@ -212,7 +212,7 @@ function Game() {
                             <button
                                 id="dropdownComment2Button"
                                 data-dropdown-toggle="dropdownComment2"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg bg-btn hover:bg-btn-hover"
                                 type="button"
                             >
                                 <svg
@@ -289,7 +289,7 @@ function Game() {
                             </button>
                         </div>
                     </article>
-                    <article className="p-6 mb-3 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                    <article className="p-6 mb-3 text-base border-t border-gray-200 dark:border-gray-700">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
                                 <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
@@ -309,7 +309,7 @@ function Game() {
                             <button
                                 id="dropdownComment3Button"
                                 data-dropdown-toggle="dropdownComment3"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-btn hover:bg-btn-hover"
                                 type="button"
                             >
                                 <svg
@@ -387,7 +387,7 @@ function Game() {
                             </button>
                         </div>
                     </article>
-                    <article className="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                    <article className="p-6 text-base border-t border-gray-200 dark:border-gray-700">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
                                 <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
@@ -407,7 +407,7 @@ function Game() {
                             <button
                                 id="dropdownComment4Button"
                                 data-dropdown-toggle="dropdownComment4"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 rounded-lg bg-btn hover:bg-btn-hover"
                                 type="button"
                             >
                                 <svg
