@@ -65,7 +65,7 @@ function Game() {
             </div>
 
             <section className="bg-black/50 py-8 lg:py-16 antialiased relative z-20">
-                <div className="max-w-2xl px-4">
+                <div className="px-4">
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
                             Comments (20)
@@ -95,7 +95,7 @@ function Game() {
                     <article className="p-6 text-base rounded-lg">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
-                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                                <p className="inline-flex items-center mr-3 text-sm text-gray-200 font-semibold">
                                     <img
                                         className="mr-2 w-6 h-6 rounded-full"
                                         src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
@@ -112,7 +112,7 @@ function Game() {
                             <button
                                 id="dropdownComment1Button"
                                 data-dropdown-toggle="dropdownComment1"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 rounded-lg bg-btn hover:bg-btn-hover"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-btn hover:bg-btn-hover rounded"
                                 type="button"
                             >
                                 <svg
@@ -162,7 +162,7 @@ function Game() {
                                 </ul>
                             </div>
                         </footer>
-                        <p className="text-gray-500 dark:text-gray-400">
+                        <p className="text-gray-400 max-w-[65rem]">
                             Very straight-to-point article. Really worth time reading. Thank you!
                             But tools are just the instruments for the UX designers. The knowledge
                             of the design tools are as important as the creation of the design
@@ -195,7 +195,7 @@ function Game() {
                     <article className="p-6 mb-3 ml-6 lg:ml-12 text-base rounded-lg">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
-                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                                <p className="inline-flex items-center mr-3 text-sm text-gray-200 font-semibold">
                                     <img
                                         className="mr-2 w-6 h-6 rounded-full"
                                         src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
@@ -212,7 +212,7 @@ function Game() {
                             <button
                                 id="dropdownComment2Button"
                                 data-dropdown-toggle="dropdownComment2"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg bg-btn hover:bg-btn-hover"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded bg-btn hover:bg-btn-hover"
                                 type="button"
                             >
                                 <svg
@@ -262,7 +262,7 @@ function Game() {
                                 </ul>
                             </div>
                         </footer>
-                        <p className="text-gray-500 dark:text-gray-400">
+                        <p className="text-gray-400 max-w-[65rem]">
                             Much appreciated! Glad you liked it ☺️
                         </p>
                         <div className="flex items-center mt-4 space-x-4">
@@ -292,7 +292,7 @@ function Game() {
                     <article className="p-6 mb-3 text-base border-t border-gray-200 dark:border-gray-700">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
-                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                                <p className="inline-flex items-center mr-3 text-sm text-gray-200 font-semibold">
                                     <img
                                         className="mr-2 w-6 h-6 rounded-full"
                                         src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
@@ -309,7 +309,7 @@ function Game() {
                             <button
                                 id="dropdownComment3Button"
                                 data-dropdown-toggle="dropdownComment3"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-btn hover:bg-btn-hover"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-btn hover:bg-btn-hover rounded"
                                 type="button"
                             >
                                 <svg
@@ -359,7 +359,7 @@ function Game() {
                                 </ul>
                             </div>
                         </footer>
-                        <p className="text-gray-500 dark:text-gray-400">
+                        <p className="text-gray-400 max-w-[65rem]">
                             The article covers the essentials, challenges, myths and stages the UX
                             designer should consider while creating the design strategy.
                         </p>
@@ -390,7 +390,7 @@ function Game() {
                     <article className="p-6 text-base border-t border-gray-200 dark:border-gray-700">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
-                                <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                                <p className="inline-flex items-center mr-3 text-sm text-gray-200 font-semibold">
                                     <img
                                         className="mr-2 w-6 h-6 rounded-full"
                                         src="https://flowbite.com/docs/images/people/profile-picture-4.jpg"
@@ -398,7 +398,7 @@ function Game() {
                                     />
                                     Helene Engels
                                 </p>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                <p className="text-sm text-gray-600 max-w-[65rem]">
                                     <time pubdate="" dateTime="2022-06-23" title="June 23rd, 2022">
                                         Jun. 23, 2022
                                     </time>
@@ -407,7 +407,7 @@ function Game() {
                             <button
                                 id="dropdownComment4Button"
                                 data-dropdown-toggle="dropdownComment4"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 rounded-lg bg-btn hover:bg-btn-hover"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 rounded bg-btn hover:bg-btn-hover"
                                 type="button"
                             >
                                 <svg
@@ -456,7 +456,7 @@ function Game() {
                                 </ul>
                             </div>
                         </footer>
-                        <p className="text-gray-500 dark:text-gray-400">
+                        <p className="text-gray-400 max-w-[65rem]">
                             Thanks for sharing this. I do came from the Backend development and
                             explored some of the tools to design my Side Projects.
                         </p>
