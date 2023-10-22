@@ -1,6 +1,18 @@
 import React from 'react'
+import {AiOutlineArrowUp, AiOutlineArrowDown} from 'react-icons/ai'
 
 function Game() {
+
+    let [count, setCount] = React.useState(0)
+
+    let increaseCount = ()=> {
+        setCount(count = count + 1)
+    }
+
+    let decreaseCount = ()=> {
+        setCount(count = count - 1)
+    }
+
     return (
         <>
             <div className="max-h-[50rem] h-full absolute top-0 left-0 w-full">
@@ -163,12 +175,19 @@ function Game() {
                                 </ul>
                             </div>
                         </footer>
-                        <p className="text-gray-400 max-w-[65rem]">
+                        <div className='flex items-center'>
+                            <div className='flex flex-col items-center'>
+                                <AiOutlineArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                <AiOutlineArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                            </div>
+                        <p className="mx-6 text-gray-400 max-w-[65rem]">
                             Very straight-to-point article. Really worth time reading. Thank you!
                             But tools are just the instruments for the UX designers. The knowledge
                             of the design tools are as important as the creation of the design
                             strategy.
                         </p>
+                        </div>
                         <div className="flex items-center mt-4 space-x-4">
                             <button
                                 type="button"
@@ -263,9 +282,19 @@ function Game() {
                                 </ul>
                             </div>
                         </footer>
-                        <p className="text-gray-400 max-w-[65rem]">
-                            Much appreciated! Glad you liked it ☺️
+                        <div className='flex items-center'>
+                            <div className='flex flex-col items-center'>
+                                <AiOutlineArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                <AiOutlineArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                            </div>
+                        <p className="mx-6 text-gray-400 max-w-[65rem]">
+                            Very straight-to-point article. Really worth time reading. Thank you!
+                            But tools are just the instruments for the UX designers. The knowledge
+                            of the design tools are as important as the creation of the design
+                            strategy.
                         </p>
+                        </div>
                         <div className="flex items-center mt-4 space-x-4">
                             <button
                                 type="button"
@@ -360,10 +389,19 @@ function Game() {
                                 </ul>
                             </div>
                         </footer>
-                        <p className="text-gray-400 max-w-[65rem]">
-                            The article covers the essentials, challenges, myths and stages the UX
-                            designer should consider while creating the design strategy.
+                        <div className='flex items-center'>
+                            <div className='flex flex-col items-center'>
+                                <AiOutlineArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                <AiOutlineArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                            </div>
+                        <p className="mx-6 text-gray-400 max-w-[65rem]">
+                            Very straight-to-point article. Really worth time reading. Thank you!
+                            But tools are just the instruments for the UX designers. The knowledge
+                            of the design tools are as important as the creation of the design
+                            strategy.
                         </p>
+                        </div>
                         <div className="flex items-center mt-4 space-x-4">
                             <button
                                 type="button"
@@ -457,10 +495,19 @@ function Game() {
                                 </ul>
                             </div>
                         </footer>
-                        <p className="text-gray-400 max-w-[65rem]">
-                            Thanks for sharing this. I do came from the Backend development and
-                            explored some of the tools to design my Side Projects.
+                        <div className='flex items-center'>
+                            <div className='flex flex-col items-center'>
+                                <AiOutlineArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                                <div className={`my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                <AiOutlineArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300'/>
+                            </div>
+                        <p className="mx-6 text-gray-400 max-w-[65rem]">
+                            Very straight-to-point article. Really worth time reading. Thank you!
+                            But tools are just the instruments for the UX designers. The knowledge
+                            of the design tools are as important as the creation of the design
+                            strategy.
                         </p>
+                        </div>
                         <div className="flex items-center mt-4 space-x-4">
                             <button
                                 type="button"
