@@ -62,6 +62,8 @@ function Game() {
         .then(res => setGame(res.data.data))
         .catch(err => console.log('Failed to get data', err))
 
+
+
     }, []);
 
 
@@ -84,7 +86,11 @@ function Game() {
 
     days = `D${statusText === "CRACKED" || statusText === "UNCRACKED" ? "+" : "-"}${game.days_diff}`;
 
-    console.log(game.drm_protection);
+    const container = document.getElementById('game-container');
+    if (game.name) {
+        container.style.boxShadow = "-10px 10px #970606, 10px -10px #970606";
+    }
+
     return (
         <>
             <div id="blurred-bg" className={`w-full h-screen absolute top-0 left-0 overflow-hidden`}>
@@ -102,7 +108,8 @@ function Game() {
                 <div className="absolute top-[4rem] w-full h-[200%] -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
             </div>
 
-            <div style={{boxShadow: "-10px 10px #970606, 10px -10px #970606"}}>
+            <div id='game-container'>
+
                 <div className={`flex relative z-20 text-gray-300  border-t-[5px] border-${game.status_color} h-[22rem] shadow-lg overflow-hidden`}>
                     <img className={`absolute w-full h-full z-[-1] object-cover opacity-70`} src={`${game.cover}`}
                         style={{aspectRatio: '1920/620'}}
@@ -200,7 +207,7 @@ function Game() {
                                     defaultValue={""}
                                 />
                             </div>
-                            <button type="button" class="transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            <button type="button" className="transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                 Post comment
                             </button>
 
