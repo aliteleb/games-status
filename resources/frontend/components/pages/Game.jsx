@@ -165,7 +165,7 @@ function Game() {
                     <div className='w-1/3 text-center'>
                         <div className='text-3xl'>FOLLOWERS</div>
                         <div className='my-2 text-2xl'>
-                            {game.followers_count || <Skeleton width={'30%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                            {game.name ? game.followers_count : <Skeleton width={'30%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                         </div>
                         <div className="flex flex-wrap justify-center py-2 rounded ">
                             <input
