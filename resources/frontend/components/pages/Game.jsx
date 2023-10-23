@@ -115,7 +115,7 @@ function Game() {
                         <div>
                             <div className='flex'>
                                 <div className='text-lg text-white/40 font-extralight mr-2'>STATUS</div>
-                                <div className={`text-lg mx-[4.7rem] text-${game.status_color}`}>
+                                <div className={`text-lg mx-[3.6rem] text-${game.status_color}`}>
                                     {game.status_long || <Skeleton width={'100%'} height={'14px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
                                 </div>
                             </div>
