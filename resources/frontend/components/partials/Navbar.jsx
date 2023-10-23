@@ -37,7 +37,7 @@ function Navbar() {
                     </div>
                     <div className="mx-3 md:mx-6">
                         <NavLink onClick={collapseSidebar} to="/" className="relative">
-                            <img src="/assets/images/logo.png" className="w-16 h-16 top-5 relative" alt="Logo"/>
+                            <img src="/assets/images/logo.png" className="w-16 h-16 top-5 relative animate-glow" alt="Logo"/>
                             <div className="cursor-auto w-[10rem] h-[10rem] absolute bg-app-black/70" style={{
                                 top: '-100%',
                                 left: '-75%',
