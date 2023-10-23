@@ -109,8 +109,8 @@ function Game() {
                         style={{aspectRatio: '1920/620'}}
                         alt=""/>
 
-                    <div className='grid grid-cols-1 sm:grid-cols-[1fr_1fr] md:grid-cols-[auto_1fr_1fr] w-full bg-black/80 justify-items-center'>
-                        <img className={`col-span-2 sm:col-auto w-full object-cover h-[22rem] ${game.poster && 'fade'}`}  src={game.poster? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt="" />
+                    <div className='grid grid-cols-1 sm:grid-cols-[1fr_1fr] md:grid-cols-[auto_2fr_1fr] w-full bg-black/80 justify-items-center'>
+                        <img className={`w-[270px] col-span-2 sm:col-auto w-full object-cover h-[22rem] ${game.poster && 'fade'}`}  src={game.poster? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt="" />
                         <div className="h-[22rem] w-full px-4 py-2">
                             <div className="grid grid-rows-[1fr_1fr] w-max">
                                 <div className='flex justify-between'>
@@ -119,8 +119,8 @@ function Game() {
                                         {game.status_long || <Skeleton height={'14px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
                                     </div>
                                 </div>
-                                <div className={`text-${game.status_color} text-[3.5rem] rounded font-bold -mt-[2.4rem]`}>
-                                    {game.status_text || <Skeleton height={'40px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={0}/>}
+                                <div className={`text-${game.status_color} w-full text-[3.5rem] rounded font-bold -mt-[2.4rem]`}>
+                                    {game.status_text || <Skeleton width={'15rem'} height={'40px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={'30px'}/>}
                                 </div>
                             </div>
                             <div className='w-full my-5'>
@@ -159,7 +159,7 @@ function Game() {
                             </div>
                         </div>
                         <div className='text-center border-t md:border-0 border-gray-300 w-[80%] pt-3 md:col-span-1 col-span-2 m-auto'>
-                            <div className='text-3xl'>FOLLOWERS</div>
+                            <div className='text-xl'>FOLLOWERS</div>
                             <div className='my-2 text-2xl'>
                                 {game.name ? game.followers_count : <Skeleton width={'30%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                             </div>
