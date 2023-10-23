@@ -114,7 +114,7 @@ function Comment({count, increaseCount, decreaseCount}) {
             </div>
 
         </article>
-        <article className="p-6 mb-3 ml-6 lg:ml-12 text-base rounded-lg">
+        <article className="px-6 py-0 mb-3 ml-6 lg:ml-12 text-base rounded-lg">
             <footer className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
                     <p className="inline-flex items-center mr-3 text-sm text-gray-200 font-semibold">
