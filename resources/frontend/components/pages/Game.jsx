@@ -119,7 +119,7 @@ function Game() {
                                 </div>
                             </div>
                             <div className={`text-${game.status_color} text-[3.5rem] rounded  font-bold -mt-5`}>
-                                {game.status_text || <Skeleton height={'40px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                                {game.status_text || <Skeleton height={'40px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={0}/>}
                             </div>
                         </div>
                         <div className='w-full my-5'>
