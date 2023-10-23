@@ -44,6 +44,7 @@ class GameController extends Controller
         $game->image = 'https://cdn.cloudflare.steamstatic.com/steam/apps/'.$game->steam_appid.'/header.jpg';
         $game->is_following = $is_following;
         $game->release_date = $release_date->format('M d, Y');
+        $game->crack_date = $crack_date->format('M d, Y');
 
         return response()->api(
             data: $game,
