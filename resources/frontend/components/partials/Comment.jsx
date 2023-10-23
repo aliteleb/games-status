@@ -3,7 +3,7 @@ import {IoIosArrowUp, IoIosArrowDown} from 'react-icons/io'
 
 function Comment({count, increaseCount, decreaseCount}) {
   return (
-    <>
+    <div className='border-b-2 border-gray-500'>
         <article className="p-6 text-base rounded-lg">
             <footer className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
@@ -224,7 +224,7 @@ function Comment({count, increaseCount, decreaseCount}) {
             </div>
 
         </article>
-    </>
+    </div>
   )
 }
 

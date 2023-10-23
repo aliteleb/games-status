@@ -25,8 +25,19 @@ function Game() {
         );
         const footerHeight = document.getElementsByTagName('footer')[0].offsetHeight;
         document.getElementById('blurred-bg').style.height = height + 'px';
-        console.log(height);
+
+                    
+        const commentsContainer = document.getElementById('comments');
+        if (commentsContainer) {
+            const comments = commentsContainer.children;
+            const lastComment = comments[comments.length - 1];
+            lastComment.classList.remove('border-b-2')
+        }
+
     }, []);
+
+    let comments = document.getElementById('comments')
+    console.log(comments);
 
     return (
         <>
@@ -128,9 +139,11 @@ function Game() {
                             Post comment
                         </button>
                     </form>
-                    <Comment count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
-                    <Comment count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
-                    <Comment count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
+                    <div id='comments'>
+                        <Comment  count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
+                        <Comment  count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
+                        <Comment  count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
+                    </div>
                 </div>
             </section>
         </>
