@@ -109,9 +109,9 @@ function Game() {
                         style={{aspectRatio: '1920/620'}}
                         alt=""/>
 
-                    <div className='grid md:grid-cols-[auto_1fr_1fr] w-full bg-black/80 '>
+                    <div className='grid grid-cols-1 sm:grid-cols-[1fr_1fr] md:grid-cols-[auto_1fr_1fr] w-full bg-black/80 justify-items-center'>
                         <img className={`h-[22rem] ${game.poster && 'fade'}`}  src={game.poster? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt="" />
-                        <div className="h-[22rem] px-4 py-2">
+                        <div className="h-[22rem] w-full px-4 py-2">
                             <div className="grid grid-rows-[1fr_1fr] w-max">
                                 <div className='flex justify-between'>
                                     <div className='text-lg text-white/40 font-extralight'>STATUS</div>
@@ -158,7 +158,7 @@ function Game() {
                                 </div>
                             </div>
                         </div>
-                        <div className='text-center m-auto'>
+                        <div className='text-center border-t md:border-0 border-gray-300 w-[80%] pt-3 md:col-span-1 col-span-2 m-auto'>
                             <div className='text-3xl'>FOLLOWERS</div>
                             <div className='my-2 text-2xl'>
                                 {game.name ? game.followers_count : <Skeleton width={'30%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
