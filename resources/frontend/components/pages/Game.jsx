@@ -160,9 +160,9 @@ function Game() {
                             </div>
                         </div>
                         <div className="w-1/3 flex flex-wrap justify-between">
-                            <div className='text-center'>AD1</div>
-                            <div className='text-center'>AD2</div>
-                            <div className='text-center'>AD3</div>
+                            <div className='text-center'></div>
+                            <div className='text-center'></div>
+                            <div className='text-center'></div>
                         </div>
                         <div className='w-1/3 text-center'>
                             <div className='text-3xl'>FOLLOWERS</div>
@@ -206,9 +206,9 @@ function Game() {
 
                         </form>
                         <div id='comments'>
-                            <Comment  count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
-                            <Comment  count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
-                            <Comment  count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
+                            <Comment count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
+                            <Comment count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
+                            <Comment count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
                         </div>
                     </div>
                 </section>
