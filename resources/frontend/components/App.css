@@ -143,3 +143,13 @@ input.custom-input:-webkit-autofill:hover {
 .animate-glow {
     animation: glow 10s infinite ease-in-out;
 }
+
+.fade30 {
+    opacity: 0;
+    animation: fadeIn30 .5s forwards;
+}
+@keyframes fadeIn30 {
+    to {
+        opacity: 0.3;
+    }
+}

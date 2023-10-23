@@ -50,7 +50,7 @@ function Game() {
         const footerHeight = document.getElementsByTagName('footer')[0].offsetHeight;
         document.getElementById('blurred-bg').style.height = height + 'px';
 
-                    
+
         const commentsContainer = document.getElementById('comments');
         if (commentsContainer) {
             const comments = commentsContainer.children;
@@ -79,27 +79,25 @@ function Game() {
             game.status_long = `${game.days_diff} DAYS AND COUNTING`
             break
         default:
-            ""
+            break;
     }
 
     days = `D${statusText === "CRACKED" || statusText === "UNCRACKED" ? "+" : "-"}${game.days_diff}`;
 
-    // let customStyles = props.animate === true ? 'fade ' : '';
-
     console.log(game.drm_protection);
     return (
         <>
-            <div id="blurred-bg" className="w-full h-screen absolute top-0 left-0 overflow-hidden">
-                <img className="opacity-30 top-0 w-full h-screen" src={`${game.poster}`} alt="bg"/>
-                <img className="opacity-30 top-[100%] w-full h-screen -scale-y-100" src={`${game.poster}`} alt="bg"/>
-                <img className="opacity-30 top-0 w-full h-screen" src={`${game.poster}`} alt="bg"/>
-                <img className="opacity-30 top-[100%] w-full h-screen -scale-y-100" src={`${game.poster}`} alt="bg"/>
-                <img className="opacity-30 top-0 w-full h-screen" src={`${game.poster}`} alt="bg"/>
-                <img className="opacity-30 top-[100%] w-full h-screen -scale-y-100" src={`${game.poster}`} alt="bg"/>
-                <img className="opacity-30 top-0 w-full h-screen" src={`${game.poster}`} alt="bg"/>
-                <img className="opacity-30 top-[100%] w-full h-screen -scale-y-100" src={`${game.poster}`} alt="bg"/>
-                <img className="opacity-30 top-0 w-full h-screen" src={`${game.poster}`} alt="bg"/>
-                <img className="opacity-30 top-[100%] w-full h-screen -scale-y-100" src={`${game.poster}`} alt="bg"/>
+            <div id="blurred-bg" className={`w-full h-screen absolute top-0 left-0 overflow-hidden`}>
+                <img className={` top-0 w-full h-screen ${game.poster && 'fade30'} opacity-30`} src={`${game.poster}`} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
 
                 <div className="absolute top-[4rem] w-full h-[200%] -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
             </div>
@@ -109,50 +107,66 @@ function Game() {
                      style={{aspectRatio: '1920/620'}}
                      alt=""/>
 
-                {!game.poster ? <img style={{ width: '231.33px', objectFit: 'cover' }} src="/assets/images/game-placeholder.jpg" alt="" /> : <img src={`${game.poster}`} alt="" />}
+                    <img className={`${game.poster && 'fade'}`} style={{ width: '300px', height: '100%', objectFit: 'cover' }} src={game.poster? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt="" />
+
                 <div className='flex w-full items-center justify-between bg-black/80 py-3 px-5'>
-                    <div>
+                    <div className="w-1/3">
                         <div>
                             <div className='flex'>
                                 <div className='text-lg text-white/40 font-extralight mr-2'>STATUS</div>
                                 <div className={`text-lg mx-[3.6rem] text-${game.status_color}`}>
-                                    {game.status_long || <Skeleton width={'100%'} height={'14px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
+                                    {game.status_long || <Skeleton height={'14px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
                                 </div>
                             </div>
                             <div className={`text-${game.status_color} text-[3.5rem] rounded  font-bold -mt-5`}>
-                                {game.status_text || <Skeleton width={'100%'} height={'40px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                                {game.status_text || <Skeleton height={'40px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                             </div>
                         </div>
                         <div className='w-full my-5'>
                             <div className='text-[#dddddd99] font-extralight'>GAME</div>
-                            <div className='text-gray-100 text-xl'>{game.name}</div>
+                            <div className='text-xl'>
+                                {game.name || <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                            </div>
                         </div>
                         <div className='grid grid-cols-2 gap-y-4 justify-between'>
                             <div>
                                 <div className='text-[#dddddd99] font-extralight'>RELEASE DATE</div>
-                                <div className='text-xl text-gray-100'>{game.release_date}</div>
+                                <div className='text-xl'>
+                                    {game.release_date || <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                                </div>
                             </div>
                             <div>
                                 <div className='text-[#dddddd99] font-extralight'>DRM PROTECTION</div>
-                                <div className='text-xl text-gray-100'>{game.protections.map(drm => <Link to={`/${drm.slug}`} key={drm.id}>{drm.name}</Link>)}</div>
+                                <div className='text-xl'>
+                                    {game.protections.map(drm => <Link className="inline-block transition hover:opacity-70" to={`/protection/${drm.slug}`} key={drm.id}>{drm.name}</Link>)}
+                                    {game.protections.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                                </div>
                             </div>
                             <div>
                                 <div className='text-[#dddddd99] font-extralight'>CRACK DATE</div>
-                                <div className='text-xl'>{game.crack_date}</div>
+                                <div className='text-xl'>
+                                    {game.crack_date || <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                                </div>
                             </div>
                             <div>
                                 <div className='text-[#dddddd99] font-extralight'>SCENE GROUP</div>
-                                <div className='text-xl'>{game.groups.map(group => <Link to={`${group.slug}`} key={group.id}>{group.name}</Link>)}</div>
+                                <div className='text-xl'>
+                                    {game.groups.map(group => <Link className="inline-block transition hover:opacity-70" to={`/group/${group.slug}`} key={group.id}>{group.name}</Link>)}
+                                    {game.groups.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div className='text-center'>AD1</div>
-                    <div className='text-center'>AD2</div>
-                    <div className='text-center'>AD3</div>
-                    <div className='text-center'>
+                    <div className="w-1/3 flex flex-wrap justify-between">
+                        <div className='text-center'>AD1</div>
+                        <div className='text-center'>AD2</div>
+                        <div className='text-center'>AD3</div>
+                    </div>
+                    <div className='w-1/3 text-center'>
                         <div className='text-3xl'>FOLLOWERS</div>
-                        <div className='my-2 text-2xl'>{game.followers_count}</div>
+                        <div className='my-2 text-2xl'>
+                            {game.followers_count || <Skeleton width={'30%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                        </div>
                         <div className="flex flex-wrap justify-center py-2 rounded ">
                             <input
                                 type='checkbox'
