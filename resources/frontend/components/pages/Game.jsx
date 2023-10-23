@@ -103,7 +103,7 @@ function Game() {
             <section className="bg-black/50 py-8 lg:py-16 antialiased relative z-20">
                 <div className="px-4 pb-36">
                     <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
+                        <h2 className="text-lg lg:text-2xl font-bold text-gray-900">
                             Comments (20)
                         </h2>
                     </div>
@@ -123,7 +123,7 @@ function Game() {
                         </div>
                         <button
                             type="submit"
-                            className="inline-flex items-center py-2.5 px-4 text-sm bg-btn hover:bg-btn-hover transition font-medium text-center text-white rounded-lg"
+                            className="inline-flex items-center py-2.5 px-4 text-sm transition font-medium text-center text-white rounded-lg"
                         >
                             Post comment
                         </button>
@@ -148,7 +148,7 @@ function Game() {
                             <button
                                 id="dropdownComment1Button"
                                 data-dropdown-toggle="dropdownComment1"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-btn hover:bg-btn-hover rounded"
+                                className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 y-400 rounded"
                                 type="button"
                             >
                                 <svg
@@ -165,16 +165,16 @@ function Game() {
                             {/* Dropdown menu */}
                             <div
                                 id="dropdownComment1"
-                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow"
                             >
                                 <ul
-                                    className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                    className="py-1 text-sm text-gray-700 y-200"
                                     aria-labelledby="dropdownMenuIconHorizontalButton"
                                 >
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Edit
                                         </a>
@@ -182,7 +182,7 @@ function Game() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Remove
                                         </a>
@@ -190,7 +190,7 @@ function Game() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Report
                                         </a>
@@ -201,7 +201,7 @@ function Game() {
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
                                 <IoIosArrowUp onClick={increaseCount} className='cursor-pointer hover:text-gray-500 text-2xl text-gray-300'/>
-                                <div className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                <div className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${count > 0 ? 'text-green-600' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
                                 <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer hover:text-gray-500 transition text-2xl text-gray-300'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
@@ -214,7 +214,7 @@ function Game() {
                         <div className="flex items-center mt-4 space-x-4">
                             <button
                                 type="button"
-                                className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
+                                className="flex items-center text-sm text-gray-500 hover:underline y-400 font-medium"
                             >
                                 <svg
                                     className="mr-1.5 w-3.5 h-3.5"
@@ -255,7 +255,7 @@ function Game() {
                             <button
                                 id="dropdownComment2Button"
                                 data-dropdown-toggle="dropdownComment2"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 rounded bg-btn hover:bg-btn-hover"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-300 rounded"
                                 type="button"
                             >
                                 <svg
@@ -272,16 +272,16 @@ function Game() {
                             {/* Dropdown menu */}
                             <div
                                 id="dropdownComment2"
-                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow"
                             >
                                 <ul
-                                    className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                    className="py-1 text-sm text-gray-700 y-200"
                                     aria-labelledby="dropdownMenuIconHorizontalButton"
                                 >
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Edit
                                         </a>
@@ -289,7 +289,7 @@ function Game() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Remove
                                         </a>
@@ -297,7 +297,7 @@ function Game() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Report
                                         </a>
@@ -308,7 +308,7 @@ function Game() {
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
                                 <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
-                                    <div className={`font-bold min-w-[2.7rem] flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                    <div className={`font-bold min-w-[2.7rem] flex justify-center my-2 ${count > 0 ? 'text-green-600' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
                                 <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
@@ -321,7 +321,7 @@ function Game() {
                         <div className="flex items-center mt-4 space-x-4">
                             <button
                                 type="button"
-                                className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
+                                className="flex items-center text-sm text-gray-500 hover:underline y-400 font-medium"
                             >
                                 <svg
                                     className="mr-1.5 w-3.5 h-3.5"
@@ -342,7 +342,7 @@ function Game() {
                             </button>
                         </div>
                     </article>
-                    <article className="p-6 mb-3 text-base border-t border-gray-200 dark:border-gray-700">
+                    <article className="p-6 mb-3 text-base border-t border-gray-200">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
                                 <p className="inline-flex items-center mr-3 text-sm text-gray-200 font-semibold">
@@ -362,7 +362,7 @@ function Game() {
                             <button
                                 id="dropdownComment3Button"
                                 data-dropdown-toggle="dropdownComment3"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-btn hover:bg-btn-hover rounded"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-300 rounded"
                                 type="button"
                             >
                                 <svg
@@ -379,16 +379,16 @@ function Game() {
                             {/* Dropdown menu */}
                             <div
                                 id="dropdownComment3"
-                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow"
                             >
                                 <ul
-                                    className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                    className="py-1 text-sm text-gray-700 y-200"
                                     aria-labelledby="dropdownMenuIconHorizontalButton"
                                 >
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Edit
                                         </a>
@@ -396,7 +396,7 @@ function Game() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Remove
                                         </a>
@@ -404,7 +404,7 @@ function Game() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Report
                                         </a>
@@ -415,7 +415,7 @@ function Game() {
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
                                 <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
-                                    <div className={`font-bold min-w-[2.7rem] flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                    <div className={`font-bold min-w-[2.7rem] flex justify-center my-2 ${count > 0 ? 'text-green-600' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
                                 <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
@@ -428,7 +428,7 @@ function Game() {
                         <div className="flex items-center mt-4 space-x-4">
                             <button
                                 type="button"
-                                className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
+                                className="flex items-center text-sm text-gray-500 hover:underline y-400 font-medium"
                             >
                                 <svg
                                     className="mr-1.5 w-3.5 h-3.5"
@@ -449,7 +449,7 @@ function Game() {
                             </button>
                         </div>
                     </article>
-                    <article className="p-6 text-base border-t border-gray-200 dark:border-gray-700">
+                    <article className="p-6 text-base border-t border-gray-200">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
                                 <p className="inline-flex items-center mr-3 text-sm text-gray-200 font-semibold">
@@ -469,7 +469,7 @@ function Game() {
                             <button
                                 id="dropdownComment4Button"
                                 data-dropdown-toggle="dropdownComment4"
-                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-40 rounded bg-btn hover:bg-btn-hover"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-300 y-40 rounded "
                                 type="button"
                             >
                                 <svg
@@ -485,16 +485,16 @@ function Game() {
                             {/* Dropdown menu */}
                             <div
                                 id="dropdownComment4"
-                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                                className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow"
                             >
                                 <ul
-                                    className="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                    className="py-1 text-sm text-gray-700 y-200"
                                     aria-labelledby="dropdownMenuIconHorizontalButton"
                                 >
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Edit
                                         </a>
@@ -502,7 +502,7 @@ function Game() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Remove
                                         </a>
@@ -510,7 +510,7 @@ function Game() {
                                     <li>
                                         <a
                                             href="#"
-                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            className="block py-2 px-4 hover:bg-gray-100"
                                         >
                                             Report
                                         </a>
@@ -521,7 +521,7 @@ function Game() {
                         <div className='flex items-center'>
                             <div className='flex flex-col items-center'>
                                 <IoIosArrowUp onClick={increaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
-                                    <div className={`font-bold min-w-[2.7rem] flex justify-center my-2 ${count > 0 ? 'text-green-700' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
+                                    <div className={`font-bold min-w-[2.7rem] flex justify-center my-2 ${count > 0 ? 'text-green-600' : count === 0 ? 'text-gray-300' : 'text-red-700'}`}>{count}</div>
                                 <IoIosArrowDown onClick={decreaseCount} className='cursor-pointer text-2xl text-gray-300 hover:text-gray-500 transition'/>
                             </div>
                         <p className="mx-6 text-gray-400 max-w-[65rem]">
@@ -534,7 +534,7 @@ function Game() {
                         <div className="flex items-center mt-4 space-x-4">
                             <button
                                 type="button"
-                                className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium"
+                                className="flex items-center text-sm text-gray-500 hover:underline y-400 font-medium"
                             >
                                 <svg
                                     className="mr-1.5 w-3.5 h-3.5"
