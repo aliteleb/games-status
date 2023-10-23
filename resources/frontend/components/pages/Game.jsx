@@ -29,11 +29,11 @@ function Game() {
         }
     )
 
-    let increaseCount = ()=> {
+    let increaseCount = () => {
         setCount(count = count + 1)
     }
 
-    let decreaseCount = ()=> {
+    let decreaseCount = () => {
         setCount(count = count - 1)
     }
 
@@ -59,9 +59,8 @@ function Game() {
         }
 
         ApiClient().get(`/game/${slug}`)
-        .then(res => setGame(res.data.data))
-        .catch(err => console.log('Failed to get data', err))
-
+            .then(res => setGame(res.data.data))
+            .catch(err => console.log('Failed to get data', err))
 
 
     }, []);
@@ -106,10 +105,11 @@ function Game() {
             <div>
                 <div className={`flex relative z-20 text-gray-300  border-t-[5px] border-${game.status_color} h-[22rem] shadow-lg overflow-hidden`}>
                     <img className={`absolute w-full h-full z-[-1] object-cover opacity-70`} src={`${game.cover}`}
-                        style={{aspectRatio: '1920/620'}}
-                        alt=""/>
+                         style={{aspectRatio: '1920/620'}}
+                         alt=""/>
 
-                        <img className={`${game.poster && 'fade'}`} style={{ width: '300px', height: '100%', objectFit: 'cover' }} src={game.poster? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt="" />
+                    <img className={`${game.poster && 'fade'}`} style={{width: '300px', height: '100%', objectFit: 'cover'}}
+                         src={game.poster ? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
 
                     <div className='flex w-full items-center justify-between bg-black/80 py-3 px-5'>
                         <div className="w-1/3">
@@ -140,8 +140,10 @@ function Game() {
                                 <div>
                                     <div className='text-[#dddddd99] font-extralight'>DRM PROTECTION</div>
                                     <div className='text-xl'>
-                                        {game.protections.map(drm => <Link className="inline-block transition hover:opacity-70" to={`/protection/${drm.slug}`} key={drm.id}>{drm.name}</Link>)}
-                                        {game.protections.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                                        {game.protections.map(drm => <Link className="inline-block transition hover:opacity-70" to={`/protection/${drm.slug}`}
+                                                                           key={drm.id}>{drm.name}</Link>)}
+                                        {game.protections.length === 0 &&
+                                            <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                                     </div>
                                 </div>
                                 <div>
@@ -153,7 +155,8 @@ function Game() {
                                 <div>
                                     <div className='text-[#dddddd99] font-extralight'>SCENE GROUP</div>
                                     <div className='text-xl'>
-                                        {game.groups.map(group => <Link className="inline-block transition hover:opacity-70" to={`/group/${group.slug}`} key={group.id}>{group.name}</Link>)}
+                                        {game.groups.map(group => <Link className="inline-block transition hover:opacity-70" to={`/group/${group.slug}`}
+                                                                        key={group.id}>{group.name}</Link>)}
                                         {game.groups.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                                     </div>
                                 </div>
@@ -200,7 +203,8 @@ function Game() {
                                     defaultValue={""}
                                 />
                             </div>
-                            <button type="button" className="transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            <button type="button"
+                                    className="transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                 Post comment
                             </button>
 
