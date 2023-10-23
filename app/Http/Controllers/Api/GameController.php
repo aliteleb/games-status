@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\GameResource;
 use App\Models\Game;
 use App\Models\Group;
 use Illuminate\Http\Request;
@@ -10,6 +11,21 @@ use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {
+    public function show(Request $request, $slug)
+    {
+        $game = Game::select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid'])
+            ->with(['protections:id,name,slug', 'groups:id,name,slug'])
+            ->withCount('users as followers_count')
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        return response()->api(
+            data: $game,
+            message: $game->name.__(" Page")
+        );
+
+    }
+
     public function follow(Request $request, $game_id)
     {
         $game = Game::select(['id', 'name'])
