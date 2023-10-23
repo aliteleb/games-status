@@ -113,13 +113,13 @@ function Game() {
                 <div className='flex w-full items-center justify-between bg-black/80 py-3 px-5'>
                     <div>
                         <div>
-                            <div className='flex justify-between'>
+                            <div className='flex'>
                                 <div className='text-lg text-white/40 font-extralight mr-2'>STATUS</div>
-                                <div className={`text-lg text-${game.status_color}`}>
+                                <div className={`text-lg mx-[4.7rem] text-${game.status_color}`}>
                                     {game.status_long || <Skeleton width={'100%'} height={'14px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
                                 </div>
                             </div>
-                            <div className={`text-${game.status_color} text-[3.5rem] rounded  font-bold text-center -mt-5`}>
+                            <div className={`text-${game.status_color} text-[3.5rem] rounded  font-bold -mt-5`}>
                                 {game.status_text || <Skeleton width={'100%'} height={'40px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                             </div>
                         </div>
