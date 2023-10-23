@@ -41,7 +41,9 @@ class GameController extends Controller
 
         $game->status_text = $statusText;
         $game->days_diff = $daysDifference;
-        $game->image = 'https://cdn.cloudflare.steamstatic.com/steam/apps/'.$game->steam_appid.'/header.jpg';
+        $game->header = 'https://cdn.cloudflare.steamstatic.com/steam/apps/'.$game->steam_appid.'/header.jpg';
+        $game->poster = 'https://cdn.cloudflare.steamstatic.com/steam/apps/'.$game->steam_appid.'/library_600x900.jpg';
+        $game->cover = 'https://cdn.cloudflare.steamstatic.com/steam/apps/'.$game->steam_appid.'/library_hero.jpg';
         $game->is_following = $is_following;
         $game->release_date = $release_date->format('M d, Y');
         $game->crack_date = $crack_date->format('M d, Y');
