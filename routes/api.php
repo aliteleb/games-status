@@ -32,10 +32,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 # Basic routes
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
-Route::get('/protections', [GameController::class, 'protections'])->name('protections');
-Route::get('/protection/{slug}', [ProtectionController::class, 'protection'])->name('protection');
-Route::get('/groups', [GameController::class, 'groups'])->name('groups');
-Route::get('/group/{slug}', [GroupController::class, 'group'])->name('group');
+Route::get('/game/{slug}', [GameController::class, 'show'])->name('game');
+Route::get('/protections', [ProtectionController::class, 'index'])->name('protections');
+Route::get('/protection/{slug}', [ProtectionController::class, 'show('])->name('protection');
+Route::get('/groups', [GroupController::class, 'index'])->name('groups');
+Route::get('/group/{slug}', [GroupController::class, 'show'])->name('group');
 
 # Under Auth
 Route::middleware(ApiAuthenticate::class)->group(function () {
