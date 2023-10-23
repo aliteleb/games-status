@@ -125,7 +125,7 @@ function Game() {
                         <div className='w-full my-5'>
                             <div className='text-[#dddddd99] font-extralight'>GAME</div>
                             <div className='text-xl'>
-                                {game.name || <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                                {game.name || <Skeleton width={'90%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                             </div>
                         </div>
                         <div className='grid grid-cols-2 gap-y-4 justify-between'>
