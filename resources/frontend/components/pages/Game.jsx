@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import Comment from '../partials/Comment'
 import ApiClient from '../../services/ApiClient'
 import Skeleton from 'react-loading-skeleton';
@@ -108,7 +108,8 @@ function Game() {
                 <img className={`absolute w-full h-full z-[-1] object-cover opacity-70`} src={`${game.cover}`}
                      style={{aspectRatio: '1920/620'}}
                      alt=""/>
-                <img src={`${game.poster}`} alt=""/>
+
+                {!game.poster ? <img style={{ width: '231.33px', objectFit: 'cover' }} src="/assets/images/game-placeholder.jpg" alt="" /> : <img src={`${game.poster}`} alt="" />}
                 <div className='flex w-full items-center justify-between bg-black/80 py-3 px-5'>
                     <div>
                         <div>
@@ -133,7 +134,7 @@ function Game() {
                             </div>
                             <div>
                                 <div className='text-[#dddddd99] font-extralight'>DRM PROTECTION</div>
-                                <div className='text-xl text-gray-100'>{game.protections.map(drm => drm.name)}</div>
+                                <div className='text-xl text-gray-100'>{game.protections.map(drm => <Link to={`/${drm.slug}`} key={drm.id}>{drm.name}</Link>)}</div>
                             </div>
                             <div>
                                 <div className='text-[#dddddd99] font-extralight'>CRACK DATE</div>
@@ -141,7 +142,7 @@ function Game() {
                             </div>
                             <div>
                                 <div className='text-[#dddddd99] font-extralight'>SCENE GROUP</div>
-                                <div className='text-xl'>{game.groups.map(group => group.name)}</div>
+                                <div className='text-xl'>{game.groups.map(group => <Link to={`${group.slug}`} key={group.id}>{group.name}</Link>)}</div>
                             </div>
                         </div>
                     </div>
