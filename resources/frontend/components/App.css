@@ -55,12 +55,11 @@ input.custom-input:-webkit-autofill:hover {
     background-color: transparent;
 }
 
-.relative input{
+.game-card .relative input{
     appearance: none;
 }
 
-.relative input::before{
-    content: "";
+.game-card .relative input::before{
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -80,7 +79,7 @@ input.custom-input:-webkit-autofill:hover {
     -o-transition: 0.2s;
 }
 
-.relative input[type="checkbox"]:checked::after{
+.game-card  .relative input[type="checkbox"]:checked::after{
     content: '\2714 \fe0e';
     font-size: 14px;
     position: absolute;

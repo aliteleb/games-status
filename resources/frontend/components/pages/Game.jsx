@@ -172,7 +172,7 @@ function Game() {
                             <div className="flex flex-wrap justify-center py-2 rounded ">
                                 <input
                                     type='checkbox'
-                                    className="mx-4 w-32 h-9 appearance-none bg-red-700 before:-content-['FOLLOW'] before:absolute relative"/>
+                                    className="mx-4 w-32 h-9 appearance-none border border-red-700 cursor-pointer transition rounded-full after:font-extrabold before:h-full pt-1 pl-2 hover:bg-red-700 relative after:absolute after:top-[20%] after:left-2 checked:after:content-['✓'] checked:bg-red-700 checked:border-red-700 before:block before:text-center checked:before:content-['Following'] before:content-['Follow']"/>
                             </div>
 
                         </div>
