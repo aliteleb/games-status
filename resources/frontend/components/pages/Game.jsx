@@ -86,11 +86,6 @@ function Game() {
 
     days = `D${statusText === "CRACKED" || statusText === "UNCRACKED" ? "+" : "-"}${game.days_diff}`;
 
-    const container = document.getElementById('game-container');
-    if (game.name) {
-        container.style.boxShadow = "-10px 10px #970606, 10px -10px #970606";
-    }
-
     return (
         <>
             <div id="blurred-bg" className={`w-full h-screen absolute top-0 left-0 overflow-hidden`}>
@@ -108,8 +103,7 @@ function Game() {
                 <div className="absolute top-[4rem] w-full h-[200%] -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
             </div>
 
-            <div id='game-container'>
-
+            <div>
                 <div className={`flex relative z-20 text-gray-300  border-t-[5px] border-${game.status_color} h-[22rem] shadow-lg overflow-hidden`}>
                     <img className={`absolute w-full h-full z-[-1] object-cover opacity-70`} src={`${game.cover}`}
                         style={{aspectRatio: '1920/620'}}
@@ -178,8 +172,7 @@ function Game() {
                             <div className="flex flex-wrap justify-center py-2 rounded ">
                                 <input
                                     type='checkbox'
-                                    className="mx-4 before:ring-4 before:ring-gray-700 before:hover:ring-4 before:hover:bg-gray-700/70 before:checked:bg-gray-700 before:hover:checked:bg-gray-700 relative"/>
-                                <span className="text-xl">Follow</span>
+                                    className="mx-4 w-32 h-9 appearance-none bg-red-700 before:-content-['FOLLOW'] before:absolute relative"/>
                             </div>
 
                         </div>
