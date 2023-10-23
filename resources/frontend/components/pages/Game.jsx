@@ -111,12 +111,12 @@ function Game() {
 
                     <div className='grid grid-cols-1 sm:grid-cols-[1fr_1fr] md:grid-cols-[250px_2fr_1fr] w-full bg-black/80 justify-items-center'>
                         <img className={`col-span-2 sm:col-auto w-full object-cover h-[22rem] ${game.poster && 'fade'}`}  src={game.poster? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt="" />
-                        <div className="h-[22rem] w-full px-4 py-2">
-                            <div className="grid grid-rows-[1fr_1fr] w-max">
+                        <div className="h-[22rem] w-full px-4 py-2 text-center sm:text-left">
+                            <div className="grid grid-rows-[1fr_1fr] w-max mx-auto sm:mx-0 mt-2 sm:mt-0">
                                 <div className='flex justify-between'>
-                                    <div className='text-lg text-white/40 font-extralight'>STATUS</div>
+                                    <div className='text-lg text-white/40 font-extralight'>{game.status_text && 'STATUS'}</div>
                                     <div className={`text-lg text-${game.status_color}`}>
-                                        {game.status_long || <Skeleton height={'14px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
+                                        {game.status_long || <Skeleton height={'20px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
                                     </div>
                                 </div>
                                 <div className={`text-${game.status_color} w-full text-[3rem] rounded font-bold -mt-[2rem]`}>
