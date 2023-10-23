@@ -7,6 +7,7 @@ use App\Http\Resources\GameResource;
 use App\Models\Game;
 use App\Models\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
@@ -18,6 +19,30 @@ class GameController extends Controller
             ->withCount('users as followers_count')
             ->where('slug', $slug)
             ->firstOrFail();
+
+        $release_date = Carbon::parse($game->release_date);
+        $crack_date = Carbon::parse($game->crack_date);
+        $daysDifference = $crack_date->diffInDays($release_date);
+
+        if($game->crack_date == null){
+            $statusText = 'UNCRACKED';
+            $daysDifference = now()->diffInDays($release_date);
+        }
+        else
+            $statusText = 'CRACKED';
+
+        if ($release_date->isFuture())
+            $statusText = 'UNRELEASED';
+
+        $user = auth()->user();
+        $is_following = false;
+        if($user)
+            $is_following = auth()->user()->following->contains($game->id);
+
+        $game->status_text = $statusText;
+        $game->days_diff = $daysDifference;
+        $game->image = 'https://cdn.cloudflare.steamstatic.com/steam/apps/'.$game->steam_appid.'/header.jpg';
+        $game->is_following = $is_following;
 
         return response()->api(
             data: $game,

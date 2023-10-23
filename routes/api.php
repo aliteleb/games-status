@@ -34,7 +34,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/game/{slug}', [GameController::class, 'show'])->name('game');
 Route::get('/protections', [ProtectionController::class, 'index'])->name('protections');
-Route::get('/protection/{slug}', [ProtectionController::class, 'show('])->name('protection');
+Route::get('/protection/{slug}', [ProtectionController::class, 'show'])->name('protection');
 Route::get('/groups', [GroupController::class, 'index'])->name('groups');
 Route::get('/group/{slug}', [GroupController::class, 'show'])->name('group');
 
