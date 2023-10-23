@@ -110,7 +110,7 @@ function Game() {
                         alt=""/>
 
                     <div className='grid grid-cols-1 sm:grid-cols-[1fr_1fr] md:grid-cols-[auto_1fr_1fr] w-full bg-black/80 justify-items-center'>
-                        <img className={`h-[22rem] ${game.poster && 'fade'}`}  src={game.poster? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt="" />
+                        <img className={`col-span-2 sm:col-auto w-full object-cover h-[22rem] ${game.poster && 'fade'}`}  src={game.poster? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt="" />
                         <div className="h-[22rem] w-full px-4 py-2">
                             <div className="grid grid-rows-[1fr_1fr] w-max">
                                 <div className='flex justify-between'>
