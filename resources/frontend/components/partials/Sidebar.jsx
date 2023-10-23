@@ -15,7 +15,8 @@ import ApiClient from '../../services/ApiClient'
 
 
 export function collapseSidebar() {
-    document.querySelector('#sidebar').style.left = '-18rem';
+    document.getElementById('sidebar').style.left = '-18rem';
+    document.getElementById('left-nav').style.opacity = '1';
 }
 
 function Sidebar() {
@@ -33,11 +34,11 @@ function Sidebar() {
     }
 
     return (
-        <div id={'sidebar'} className='z-[51] flex flex-col w-64 xl:w-72 px-6 h-screen pt-6 fixed top-0 -left-72 transition-all bg-app-black/70'>
-            <div onClick={collapseSidebar} className='cursor-pointer w-full mb-4'>
+        <div id={'sidebar'} className='z-[51] flex flex-col w-64 xl:w-72 h-screen pt-6 fixed top-0 -left-72 transition-all '>
+            <div onClick={collapseSidebar} className='cursor-pointer w-full mb-4 px-6'>
                 <Xmark className={'text-white'}/>
             </div>
-            <nav onClick={collapseSidebar} className="flex flex-col gap-y-3 text-white h-screen">
+            <nav onClick={collapseSidebar} className="flex flex-col gap-y-3 px-6 text-white h-screen bg-app-black/70">
                 <div className="flex items-center gap-x-4">
                     <UserIcon className={'text-red-800'}/>
                     <div>

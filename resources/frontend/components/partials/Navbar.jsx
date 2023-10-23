@@ -17,9 +17,10 @@ function Navbar() {
     return (
         <>
             <nav className="fixed w-full z-50 grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 text-white bg-app-black/70 items-center backdrop-blur-xl">
-                <div className="flex items-center">
+                <div className="flex items-center" id="left-nav">
                     <MenuIcon onClick={() => {
-                        document.querySelector('#sidebar').style.left = '0';
+                        document.getElementById('sidebar').style.left = '0';
+                        document.getElementById('left-nav').style.opacity = '0';
                     }} className={'cursor-pointer hover:text-gray-400 transition'}/>
                     <Link to="/search-game">
                         <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition'}/>
