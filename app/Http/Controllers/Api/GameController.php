@@ -19,7 +19,7 @@ class GameController extends Controller
             ->with(['protections:id,name,slug', 'groups:id,name,slug',
                 'comments' => function($query){
                      $query->with(['user','replies', 'reactions'])
-                        ->select(['id', 'body', 'game_id', 'created_at', 'updated_at'])->latest();
+                        ->select(['id', 'body', 'user_id', 'game_id', 'created_at', 'updated_at'])->latest();
                      return $query;
                  }
             ])
