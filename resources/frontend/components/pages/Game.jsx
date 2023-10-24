@@ -137,9 +137,9 @@ function Game() {
                                     </div>
                                 </div>
                                 <div>
-                                    <div className='text-[#dddddd99] font-extralight'>DRM PROTECTION</div>
+                                    <div className='text-[#dddddd99] font-extralight'>DRM PROTECTIONS</div>
                                     <div className='text-xl'>
-                                        {game.protections.map(drm => <Link className="inline-block transition hover:opacity-70" to={`/protection/${drm.slug}`} key={drm.id}>{drm.name}</Link>)}
+                                        {game.protections.map(drm => <Link className="inline-block mx-1 transition hover:opacity-70" to={`/protection/${drm.slug}`} key={drm.id}>{drm.name}</Link>)}
                                         {game.protections.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                                     </div>
                                 </div>
@@ -150,9 +150,9 @@ function Game() {
                                     </div>
                                 </div>
                                 <div>
-                                    <div className='text-[#dddddd99] font-extralight'>SCENE GROUP</div>
+                                    <div className='text-[#dddddd99] font-extralight'>SCENE GROUPS</div>
                                     <div className='text-xl'>
-                                        {game.groups.map(group => <Link className="inline-block transition hover:opacity-70" to={`/group/${group.slug}`} key={group.id}>{group.name}</Link>)}
+                                        {game.groups.map(group => <Link className="inline-block mx-1 transition hover:opacity-70" to={`/group/${group.slug}`} key={group.id}>{group.name}</Link>)}
                                         {game.groups.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                                     </div>
                                 </div>
