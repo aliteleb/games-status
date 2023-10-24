@@ -5,6 +5,7 @@ import Skeleton from "react-loading-skeleton";
 function Comment(props) {
 
     let [comment, setComment] = React.useState(null);
+    let [reply, setReply] = React.useState(false)
 
     useEffect(() => {
         setComment({
@@ -40,6 +41,7 @@ function Comment(props) {
             ]
         })
     }, [])
+
 
     return (
         <div className='border-b-2 border-gray-500'>
@@ -107,9 +109,9 @@ function Comment(props) {
                                 <Skeleton count={3} width={'100%'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
                             }
                         </p>
-                        <div className="mx-6 flex items-center mt-4 space-x-4">
+                        <div className="mx-6 flex flex-col mt-4 space-x-4">
                             {comment?.body &&
-                                <button type="button" className="flex items-center text-sm text-gray-500 hover:underline y-400 font-medium">
+                                <button onClick={() => setReply(!reply)} type="button" className="flex items-center text-sm text-gray-500 hover:underline y-400 font-medium">
                                     <svg className="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                               d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
@@ -117,6 +119,26 @@ function Comment(props) {
                                     Reply
                                 </button>
                             }
+
+                            {reply && 
+                            <form>
+                                <div className="flex flex-col mt-3">
+                                    <label
+                                        htmlFor="large-input"
+                                        classname="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    >
+                                        To Above User
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="large-input"
+                                        className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 mt-2 rounded-md"
+                                    />
+                                </div>
+                                <button>Post</button>
+                            </form>
+                            }
+
                             {!(comment?.body) &&
                                 <Skeleton width={'4rem'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
                             }
