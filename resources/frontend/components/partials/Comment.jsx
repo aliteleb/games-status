@@ -67,18 +67,17 @@ function Comment(props) {
                             }
                         </p>
                     </div>
-                    <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
-                            className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
+                    <button className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
                         <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
                             <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
                         </svg>
                     </button>
                     {/* Dropdown menu */}
-                    <div id="dropdownComment1" className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow">
-                        <ul className="py-1 text-sm text-gray-700 y-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-                            <li><a href="#" className="block py-2 px-4 hover:bg-gray-100">Edit</a></li>
-                            <li><a href="#" className="block py-2 px-4 hover:bg-gray-100">Remove</a></li>
-                            <li><a href="#" className="block py-2 px-4 hover:bg-gray-100">Report</a></li>
+                    <div className="z-10 w-36 bg-black/20 rounded divide-y shadow absolute mt-[140px]" style={{ right: '10px'}}>
+                        <ul className="py-1 text-sm text-gray-300 y-200">
+                            <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Edit</a></li>
+                            <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Remove</a></li>
+                            <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Report</a></li>
                         </ul>
                     </div>
                 </footer>
@@ -120,7 +119,7 @@ function Comment(props) {
                                 </button>
                             }
 
-                            {reply && 
+                            {reply &&
                             <form>
                                 <div className="flex flex-col mt-3">
                                     <label
@@ -173,18 +172,17 @@ function Comment(props) {
                                     }
                                 </p>
                             </div>
-                            <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
-                                    className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
+                            <button className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
                                 <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
                                     <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
                                 </svg>
                             </button>
                             {/* Dropdown menu */}
-                            <div id="dropdownComment1" className="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow">
-                                <ul className="py-1 text-sm text-gray-700 y-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-                                    <li><a href="#" className="block py-2 px-4 hover:bg-gray-100">Edit</a></li>
-                                    <li><a href="#" className="block py-2 px-4 hover:bg-gray-100">Remove</a></li>
-                                    <li><a href="#" className="block py-2 px-4 hover:bg-gray-100">Report</a></li>
+                            <div className="z-10 w-36 bg-black/20 rounded divide-y shadow absolute mt-[140px]" style={{ right: '10px'}}>
+                                <ul className="py-1 text-sm text-gray-300 y-200">
+                                    <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Edit</a></li>
+                                    <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Remove</a></li>
+                                    <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Report</a></li>
                                 </ul>
                             </div>
                         </footer>
