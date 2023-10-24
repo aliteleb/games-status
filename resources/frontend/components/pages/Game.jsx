@@ -238,7 +238,7 @@ function Game() {
                         <div id='comments'>
                             {comments.map(comment => {
                                 return(
-                                    <Comment info={comment}/>
+                                    <Comment key={comment.id} info={comment} />
                                 )
                             })}
                         </div>
