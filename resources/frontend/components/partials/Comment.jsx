@@ -5,7 +5,7 @@ import Skeleton from "react-loading-skeleton";
 import ApiClient from '../../services/ApiClient'
 import {toast} from 'react-hot-toast';
 
-function Comment(props) {
+function Comment(props, {setComments}) {
 
     let [comment, setComment] = React.useState(null);
     let [reply, setReply] = React.useState(false)
@@ -64,6 +64,7 @@ function Comment(props) {
             setLoading(false);
             toast.success(res.data.message);
             setReplies({ body: "" });
+            setComments(res.data.data)
         })
         .catch((err) => {
             setLoading(false);
@@ -79,7 +80,6 @@ function Comment(props) {
             console.log(err);
         });
     }
-    
     
 
     let handleChange = (e) => {
@@ -213,13 +213,7 @@ function Comment(props) {
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
                                 <p className="inline-flex items-center mr-3 text-sm text-gray-200 font-semibold">
-                                    {(reply?.user_image && reply?.user_image) &&
-                                        <img className="mr-2 w-6 h-6 rounded-full" src={reply.user_image} alt={reply.username}/>
-                                    }
-                                    {!(reply?.user_image) &&
-                                        <Skeleton width={'1.5rem'} height={'1.5rem'} className="mr-2" circle={true} baseColor={'#33333399'} highlightColor={'#424349'}
-                                                  borderRadius={0}/>
-                                    }
+                                <img className="mr-2 w-6 h-6 rounded-full" src={reply?.user_image ? reply?.user_image : "https://t4.ftcdn.net/jpg/04/43/35/29/240_F_443352949_1eX3IagFInYtf3d3tkXDSQkymM2HfSXq.jpg"} alt={reply?.username}/>
                                     {reply?.username && reply.username}
                                     {!(reply?.username) &&
                                         <Skeleton width={'5rem'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
@@ -231,6 +225,7 @@ function Comment(props) {
                                         <Skeleton width={'6rem'} height={'12px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
                                     }
                                 </p>
+
                             </div>
                             <button className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
                                 <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
@@ -247,25 +242,25 @@ function Comment(props) {
                             </div>
                         </footer>
                         <div className='flex items-center'>
-                            {reply?.votes &&
-                                <div className='flex flex-col items-center'>
-                                    <button
-                                        className={`${reply.voted === "up" ? "text-green-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}
-                                    >
-                                        <IoIosArrowUp/>
-                                    </button>
-                                    <div
-                                        className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${reply.votes > 0 ? 'text-green-600' : reply.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{reply.votes}
-                                    </div>
-                                    <button
-                                        className={`${reply.voted === "down" ? "text-red-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}>
-                                        <IoIosArrowDown />
-                                    </button>
+                        {reply?.votes !== null &&
+                            <div className='flex flex-col items-center'>
+                                <button
+                                className={`${reply?.voted === "up" ? "text-green-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}
+                                >
+                                    <IoIosArrowUp/>
+                                </button>
+                                <div
+                                    className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${reply?.votes > 0 ? 'text-green-600' : reply?.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{reply?.votes}
                                 </div>
-                            }
-                            {!(reply?.votes) &&
-                                <Skeleton width={'2rem'} height={'6rem'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={10}/>
-                            }
+                                <button
+                                className={`${reply?.voted === "down" ? "text-red-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}>
+                                    <IoIosArrowDown />
+                                </button>
+                            </div>
+                        }
+                        {(reply?.votes == null) &&
+                            <Skeleton width={'2rem'} height={'6rem'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={10}/>
+                        }
                             <div>
                                 <p className="mx-6 text-gray-400 w-[9rem] sm:w-[20rem] md:w-[30rem] max-w-[65rem]">
                                     {reply?.body && reply.body}
