@@ -54,7 +54,6 @@ function Game() {
 
         }, 500)
 
-
         ApiClient().get(`/game/${slug}`)
         .then(res => {
             setGame(res.data.data)
@@ -89,7 +88,9 @@ function Game() {
 
     days = `D${statusText === "CRACKED" || statusText === "UNCRACKED" ? "+" : "-"}${game.days_diff}`;
 
-    let handleSubmit = () => {
+
+    let handleSubmit = (e) => {
+        e.preventDefault()
         setMainCommentLoading(true)
 
         ApiClient().post(`/comments/create`, {
@@ -100,7 +101,7 @@ function Game() {
             setMainCommentLoading(false)
             console.log(res.data.data)
             setComments(res.data.data)
-
+            setCreateComment({comment_value: ""})
             toast.success(res.data.message)
         })
         .catch(err => {
@@ -167,7 +168,7 @@ function Game() {
                                 <div>
                                     <div className='text-[#dddddd99] font-extralight'>DRM PROTECTIONS</div>
                                     <div className='text-xl'>
-                                        {game.protections.map(drm => <Link className="inline-block mx-1 transition hover:opacity-70" to={`/protection/${drm.slug}`} key={drm.id}>{drm.name}</Link>)}
+                                        {game.protections.map((drm,index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70" to={`/protection/${drm.slug}`}>{drm.name}</Link>)}
                                         {game.protections.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                                     </div>
                                 </div>
@@ -180,7 +181,7 @@ function Game() {
                                 <div>
                                     <div className='text-[#dddddd99] font-extralight'>SCENE GROUPS</div>
                                     <div className='text-xl'>
-                                        {game.groups.map(group => <Link className="inline-block mx-1 transition hover:opacity-70" to={`/group/${group.slug}`} key={group.id}>{group.name}</Link>)}
+                                        {game.groups.map((group,index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70" to={`/group/${group.slug}`}>{group.name}</Link>)}
                                         {game.groups.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                                     </div>
                                 </div>
@@ -209,16 +210,18 @@ function Game() {
                             </h2>
                         </div>
                         <div className="mb-6">
-                                <input type="text"
-                                    name='comment_value'
-                                    value={createComment.comment_value}
-                                    id="comment"
-                                    className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 rounded-md "
-                                    placeholder="Write a comment..."
-                                    required=""
-                                    defaultValue={""}
-                                    onChange={handleChange}
-                                />
+                                <form onSubmit={handleSubmit}>
+                                    <input type="text"
+                                        autoComplete='one-time-code'
+                                        name='comment_value'
+                                        value={createComment.comment_value}
+                                        id="comment"
+                                        className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 rounded-md "
+                                        placeholder="Write a comment..."
+                                        required=""
+                                        onChange={handleChange}
+                                    />
+                                </form>
                             <button onClick={handleSubmit} type="button"
                                 className={`transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${mainCommentLoading ? 'disabled:bg-black/20  disabled:border-black/10 dsiabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
                                 disabled={mainCommentLoading}
@@ -238,7 +241,7 @@ function Game() {
                         <div id='comments'>
                             {comments.map(comment => {
                                 return(
-                                    <Comment key={comment.id} info={comment} />
+                                    <Comment  key={comment.id} info={comment} />
                                 )
                             })}
                         </div>

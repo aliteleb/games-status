@@ -118,7 +118,7 @@ function Comment(props) {
                             }
 
                             {reply &&
-                            <form>
+                            <form onSubmit={(e)=> e.preventDefault()}>
                                 <div className="flex flex-col mt-3">
                                     <label
                                         htmlFor="large-input"
@@ -128,6 +128,7 @@ function Comment(props) {
                                     </label>
                                     <input
                                         type="text"
+                                        autoComplete='one-time-code'
                                         id="large-input"
                                         className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 mt-2 rounded-md"
                                     />
