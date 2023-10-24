@@ -40,6 +40,26 @@ class CommentController extends Controller
             'body' => $body,
         ]);
 
+        $user = auth()->user();
+        $comment->map(function ($comment) use ($user) {
+            $comment->voted = null;
+            $comment->reactions->map(function ($reaction) use ($comment, $user){
+                if($reaction->user_id == $user->id)
+                    $comment->voted = $reaction->type;
+            });
+            $comment->votes = count($comment->reactions);
+
+
+            if($comment->user)
+                $comment->username = $comment->user->username;
+            else
+                $comment->username = 'N/A';
+
+            unset($comment->reactions);
+            unset($comment->user);
+
+        });
+
         $comments = Comment::where('game_id', $game->id)->latest()->get();
         return response()->api(
             data: $comments,
