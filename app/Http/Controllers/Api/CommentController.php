@@ -14,6 +14,7 @@ class CommentController extends Controller
     {
         $slug = $request->input('slug');
         $body = $request->input('body');
+        $reply_to = $request->input('reply_to');
 
         // Define the validation rules
         $rules = [
@@ -33,11 +34,14 @@ class CommentController extends Controller
         }
 
         $game = Game::select('id')->where('slug', $slug)->firstOrFail();
+        if($reply_to)
+            Comment::find($reply_to);
 
-        $comment = Comment::create([
+        Comment::create([
             'user_id' => auth()->user()->id,
             'game_id' => $game->id,
             'body' => $body,
+            'reply_to' => $body,
         ]);
 
         $user = auth()->user();
