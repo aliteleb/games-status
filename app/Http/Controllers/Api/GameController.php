@@ -36,12 +36,6 @@ class GameController extends Controller
             });
             $comment->votes = count($comment->reactions);
 
-
-            if($comment->user)
-                $comment->username = $comment->user->username;
-            else
-                $comment->username = 'N/A';
-
             unset($comment->reactions);
             unset($comment->user);
 

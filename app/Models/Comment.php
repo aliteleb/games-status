@@ -10,10 +10,10 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'game_id', 'body', 'reply_to'];
-    protected $appends = ['time'];
+    protected $appends = ['time', 'username', 'votes'];
     protected $hidden = ['created_at', 'updated_at'];
 
-    protected $with = ['user:username'];
+    protected $with = ['user:id,username', 'reactions', 'replies'];
     protected $withCount = ['reactions'];
 
     public function user()
@@ -32,7 +32,7 @@ class Comment extends Model
     }
     public function replies()
     {
-        return $this->hasMany(Comment::class, 'reply_to');
+        return $this->hasMany(Comment::class, 'reply_to')->orderBy('id', 'desc');
     }
     public function getTimeAttribute()
     {
@@ -44,5 +44,23 @@ class Comment extends Model
         } catch (\Exception $e) {
             return 'N/A';
         }
+    }
+
+    public function getUsernameAttribute()
+    {
+        if($this->user)
+            return $this->user->username;
+        else
+            return 'N/A';
+
+    }
+
+    public function getVotesAttribute(){
+
+        if($this->reactions)
+            return count($this->reactions);
+        else
+            return 0;
+
     }
 }
