@@ -58,6 +58,7 @@ function Game() {
         ApiClient().get(`/game/${slug}`)
         .then(res => {
             setGame(res.data.data)
+            setComments(res.data.data)
         })
         .catch(err => console.log('Failed to get data', err))
 
@@ -97,8 +98,9 @@ function Game() {
         })
         .then(res => {
             setMainCommentLoading(false)
+            setComments(res.data.data)
+  
             toast.success(res.data.message)
-            console.log(res)
         })
         .catch(err => {
             setMainCommentLoading(false)
@@ -110,6 +112,8 @@ function Game() {
             console.log(err)
         })
     }
+
+    console.log(game);
 
     return (
         <>

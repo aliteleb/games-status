@@ -46,20 +46,13 @@ function Comment(props) {
     }, [])
 
 
-
-
     return (
         <div className='border-b-2 border-gray-500'>
             <article className="p-6 text-base rounded-lg">
                 <footer className="flex justify-between items-center mb-2">
                     <div className="flex items-center">
                         <p className="inline-flex items-center mr-3 text-sm text-gray-200 font-semibold">
-                            {(comment?.user_image && comment?.username) &&
-                                <img className="mr-2 w-6 h-6 rounded-full" src={comment.user_image} alt={comment.username}/>
-                            }
-                            {!(comment?.user_image) &&
-                                <Skeleton width={'1.5rem'} height={'1.5rem'} className="mr-2" circle={true} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={0}/>
-                            }
+                            <img className="mr-2 w-6 h-6 rounded-full" src={comment?.user_image ? comment?.user_image : "https://t4.ftcdn.net/jpg/04/43/35/29/240_F_443352949_1eX3IagFInYtf3d3tkXDSQkymM2HfSXq.jpg"} alt={comment?.username}/>
                             {comment?.username && comment.username}
                             {!(comment?.username) &&
                                 <Skeleton width={'5rem'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
