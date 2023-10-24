@@ -118,23 +118,23 @@ function Game() {
     return (
         <>
             <div id="blurred-bg" className={`w-full h-screen absolute top-0 left-0 overflow-hidden`}>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
 
                 <div className="absolute top-[4rem] w-full h-[200%] -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
             </div>
 
             <div>
                 <div className={`flex relative z-20 text-gray-300 border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`} style={{boxShadow: '-3px 3px 10px #000'}}>
-                    <img className={`absolute w-full h-full z-[-1] object-cover`} src={`${game.cover}`}
+                    <img className={`absolute w-full h-full z-[-1] object-cover`} src={game.cover && game.cover}
                         style={{aspectRatio: '1920/620'}}
                         alt=""/>
 
