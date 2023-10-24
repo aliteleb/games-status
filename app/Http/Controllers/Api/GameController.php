@@ -19,13 +19,13 @@ class GameController extends Controller
             ->with(['protections:id,name,slug', 'groups:id,name,slug',
                 'comments' => function($query){
                      $query->with(['user','replies', 'reactions'])
-                        ->select(['id', 'body', 'user_id', 'game_id', 'created_at', 'updated_at'])->latest();
+                         ->whereNull('reply_to')
+                        ->latest();
                      return $query;
                  }
             ])
             ->withCount('users as followers_count')
             ->where('slug', $slug)
-            ->whereNull('reply_to')
             ->firstOrFail();
 
         $game->comments->map(function ($comment) use ($user) {
