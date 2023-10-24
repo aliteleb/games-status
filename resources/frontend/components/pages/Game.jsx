@@ -89,16 +89,16 @@ function Game() {
     return (
         <>
             <div id="blurred-bg" className={`w-full h-screen absolute top-0 left-0 overflow-hidden`}>
-                <img className={` top-0 w-full h-screen ${game.poster && 'fade30'} opacity-30`} src={`${game.poster}`} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.poster && 'fade30'}`} src={`${game.poster}`} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
+                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
+                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={`${game.cover}`} alt="bg"/>
 
                 <div className="absolute top-[4rem] w-full h-[200%] -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
             </div>
@@ -114,7 +114,7 @@ function Game() {
                         <div className="h-[22rem] w-full px-4 py-2 text-center sm:text-left">
                             <div className="grid grid-rows-[1fr_1fr] w-max mx-auto sm:mx-0 mt-2 sm:mt-0">
                                 <div className='flex justify-between'>
-                                    <div className='text-lg text-white/40 font-extralight'>{game.status_text && 'STATUS'}</div>
+                                    <div className='text-white/40 font-extralight'>{game.status_text && 'STATUS'}</div>
                                     <div className={`text-lg text-${game.status_color}`}>
                                         {game.status_long || <Skeleton height={'20px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
                                     </div>
