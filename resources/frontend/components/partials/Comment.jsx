@@ -15,6 +15,7 @@ function Comment(props) {
             likes: 15,
             dislikes: 3,
             votes: 12,
+            voted: "up",
             replies: [
                 {
                     username: 'Jese Leos',
@@ -23,7 +24,8 @@ function Comment(props) {
                     time: '2 minutes ago',
                     likes: 0,
                     dislikes: 2,
-                    votes: -2
+                    votes: -2,
+                    voted: "up"
                 },
                 {
                     username: 'Ahmed Samir',
@@ -32,7 +34,8 @@ function Comment(props) {
                     time: '20 seconds ago',
                     likes: 5,
                     dislikes: 2,
-                    votes: 3
+                    votes: 3,
+                    voted: null
                 },
             ]
         })
@@ -80,10 +83,20 @@ function Comment(props) {
                 <div className='flex items-center'>
                     {comment?.votes &&
                         <div className='flex flex-col items-center'>
-                            <IoIosArrowUp className='cursor-pointer hover:text-gray-500 text-2xl text-gray-300'/>
+                            <button
+                                disabled={comment.voted === "up"}
+                            className='cursor-pointer disabled:pointer-events-none disabled:text-green-600 hover:text-gray-500  text-2xl text-gray-300'  
+                            >
+                                <IoIosArrowUp/>
+                            </button>
                             <div
-                                className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${comment.votes > 0 ? 'text-green-600' : comment.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{comment.votes}</div>
-                            <IoIosArrowDown className='cursor-pointer hover:text-gray-500 transition text-2xl text-gray-300'/>
+                                className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${comment.votes > 0 ? 'text-green-600' : comment.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{comment.votes}
+                            </div>
+                            <button
+                            disabled={comment.voted === "down"}
+                            className='cursor-pointer disabled:pointer-events-none disabled:text-red-600 hover:text-gray-500  text-2xl text-gray-300'>
+                                <IoIosArrowDown />
+                            </button>
                         </div>
                     }
                     {!(comment?.votes) &&
@@ -158,10 +171,18 @@ function Comment(props) {
                         <div className='flex items-center'>
                             {reply?.votes &&
                                 <div className='flex flex-col items-center'>
-                                    <IoIosArrowUp className='cursor-pointer hover:text-gray-500 text-2xl text-gray-300'/>
+                                    <button
+                                    disabled={reply.voted === "up"}
+                                    className='cursor-pointe disabled:pointer-events-none disabled:text-green-600 hover:text-gray-500  text-2xl text-gray-300'>
+                                        <IoIosArrowUp/>
+                                    </button>
                                     <div
                                         className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${reply.votes > 0 ? 'text-green-600' : reply.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{reply.votes}</div>
-                                    <IoIosArrowDown className='cursor-pointer hover:text-gray-500 transition text-2xl text-gray-300'/>
+                                    <button
+                                    disabled={reply.voted === "down"}
+                                    className='cursor-pointer disabled:pointer-events-none disabled:text-red-600 hover:text-gray-500  text-2xl text-gray-300'>
+                                        <IoIosArrowDown/>
+                                    </button>
                                 </div>
                             }
                             {!(reply?.votes) &&
