@@ -32,7 +32,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         // 404
-        if (env('APP_ENV', 'local' == 'local')) {
+        if (env('APP_ENV', 'local' == 'production')) {
             if ($request->wantsJson() && $exception instanceof ModelNotFoundException) {
                 return response()->api(status: 'error', message: 'object not found', status_code: 404);
             }
