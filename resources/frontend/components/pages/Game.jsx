@@ -206,7 +206,7 @@ function Game() {
                     <div className="px-4 pb-36">
                         <div className="flex justify-between items-center mb-6">
                             <h2 className="text-lg lg:text-2xl font-bold text-gray-300">
-                                Comments (20)
+                                Comments ({comments.length})
                             </h2>
                         </div>
                         <div className="mb-6">
