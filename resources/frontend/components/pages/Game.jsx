@@ -8,7 +8,6 @@ function Game() {
 
     const {slug} = useParams(null)
 
-    let [count, setCount] = React.useState(0)
     let [game, setGame] = React.useState(
         {
             status_text: null,
@@ -28,14 +27,6 @@ function Game() {
             followers_count: null
         }
     )
-
-    let increaseCount = ()=> {
-        setCount(count = count + 1)
-    }
-
-    let decreaseCount = ()=> {
-        setCount(count = count - 1)
-    }
 
     useEffect(() => {
         const body = document.body,
@@ -104,8 +95,8 @@ function Game() {
             </div>
 
             <div>
-                <div className={`flex relative z-20 text-gray-300  border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`}>
-                    <img className={`absolute w-full h-full z-[-1] object-cover opacity-70`} src={`${game.cover}`}
+                <div className={`flex relative z-20 text-gray-300 border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`} style={{boxShadow: '-3px 3px 10px #000'}}>
+                    <img className={`absolute w-full h-full z-[-1] object-cover`} src={`${game.cover}`}
                         style={{aspectRatio: '1920/620'}}
                         alt=""/>
 
@@ -181,28 +172,23 @@ function Game() {
                             </h2>
                         </div>
                         <form className="mb-6">
-                            <div className="border-gray-400 py-2 px-4 mb-4 rounded-lg rounded-t-lg border">
-                                <label htmlFor="comment" className="sr-only">
-                                    Your comment
-                                </label>
-                                <textarea
+                                <input type="text"
                                     id="comment"
-                                    rows={6}
-                                    className="bg-transparent resize-none px-0 w-full text-md min-h-[6.2rem] border-0 focus:ring-0 focus:outline-none text-gray-200"
+                                    className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 rounded-md "
                                     placeholder="Write a comment..."
                                     required=""
                                     defaultValue={""}
                                 />
-                            </div>
                             <button type="button" className="transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                 Post comment
                             </button>
 
                         </form>
                         <div id='comments'>
-                            <Comment count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
-                            <Comment count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
-                            <Comment count={count} increaseCount={increaseCount} decreaseCount={decreaseCount}/>
+                            <Comment info={{count: 12}}/>
+                            <Comment info={{count: -2}}/>
+                            <Comment info={{count: 0}}/>
+                            <Comment info={{count: 5}}/>
                         </div>
                     </div>
                 </section>
