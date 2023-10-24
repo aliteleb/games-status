@@ -20,7 +20,6 @@ class GameController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-        return $game;
         $release_date = Carbon::parse($game->release_date);
         $crack_date = Carbon::parse($game->crack_date);
         $daysDifference = $crack_date->diffInDays($release_date);
