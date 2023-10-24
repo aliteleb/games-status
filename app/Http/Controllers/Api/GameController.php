@@ -15,7 +15,11 @@ class GameController extends Controller
     public function show(Request $request, $slug)
     {
         $game = Game::select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid'])
-            ->with(['protections:id,name,slug', 'groups:id,name,slug', 'comments:id,body,game_id'])
+            ->with(['protections:id,name,slug', 'groups:id,name,slug',
+                'comments' => function($query){
+                    return $query->select(['id', 'body', 'game_id', 'created_at', 'updated_at']);
+                 }
+            ])
             ->withCount('users as followers_count')
             ->where('slug', $slug)
             ->firstOrFail();
