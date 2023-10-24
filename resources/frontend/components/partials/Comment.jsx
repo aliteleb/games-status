@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, {useEffect} from 'react'
 import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io'
 import Skeleton from "react-loading-skeleton";
+import ApiClient from '../../services/ApiClient'
 
 function Comment(props) {
 
@@ -44,6 +46,28 @@ function Comment(props) {
         // })
         setComment(props.info)
     }, [])
+
+    let formRef = React.useRef(null)
+
+    let handleReplySubmit = (e) => {
+        e.preventDefault()
+        let formData = new FormData(formRef.current)
+        
+        ApiClient().post(`/comments/create`, formData)
+        .then(res => {
+            toast.success(res.data.message)
+        })
+        .catch(err => {
+            setMainCommentLoading(false)
+            let message = err.response.data.message
+            if(Array.isArray(err.response.data.data.body) && err.response.data.data.body.length > 0){
+                message = err.response.data.data.body[0]
+            }
+            toast.error(message)
+            console.log(err)
+        })
+        
+    }
 
 
     return (
@@ -118,23 +142,25 @@ function Comment(props) {
                             }
 
                             {reply &&
-                            <form onSubmit={(e)=> e.preventDefault()}>
+                            <form onSubmit={handleReplySubmit} ref={formRef}>
                                 <div className="flex flex-col mt-3">
                                     <label
                                         htmlFor="large-input"
-                                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                        className="block mb-2 text-sm font-medium text-gray-300"
                                     >
-                                        To Above User
+                                        to <span className='text-gray-400 text-sm underline'>{comment.username}</span>
                                     </label>
                                     <input
+                                        name='body'
                                         type="text"
                                         autoComplete='one-time-code'
                                         id="large-input"
                                         className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 mt-2 rounded-md"
                                     />
+                                    <input type="hidden" name='reply_to' value={comment.id}/>
                                 </div>
                                 <button
-                                class={`transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${loading ? 'disabled:bg-[#282c39] dsiabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
+                                className={`transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${loading ? 'disabled:bg-[#282c39] dsiabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
                                 disabled={loading}
                                 >
 
@@ -161,8 +187,8 @@ function Comment(props) {
 
             </article>
             {(comment?.replies.length > 0) &&
-                comment.replies.map((reply) => {
-                    return <article className="px-6 pb-4 mb-3 ml-6 lg:ml-12 text-base rounded-lg">
+                comment.replies.map((reply,index) => {
+                    return <article key={index} className="px-6 pb-4 mb-3 ml-6 lg:ml-12 text-base rounded-lg">
                         <footer className="flex justify-between items-center mb-2">
                             <div className="flex items-center">
                                 <p className="inline-flex items-center mr-3 text-sm text-gray-200 font-semibold">
