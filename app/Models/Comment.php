@@ -11,6 +11,7 @@ class Comment extends Model
 
     protected $fillable = ['user_id', 'game_id', 'body'];
     protected $appends = ['time'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     protected $with = ['user:username'];
 
@@ -31,8 +32,12 @@ class Comment extends Model
 
     public function getTimeAttribute()
     {
+
         try {
-            return $this->created_at->diffForHumans();
+            if($this->created_at)
+                return $this->created_at->diffForHumans();
+            else
+                return 'N/A';
         } catch (\Exception $e) {
             return 'N/A';
         }
