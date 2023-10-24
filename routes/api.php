@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\GameController;
 use App\Http\Controllers\Api\GroupController;
 use App\Http\Controllers\Api\HomeController;
@@ -46,5 +47,7 @@ Route::middleware(ApiAuthenticate::class)->group(function () {
 
     Route::post('/games/{game_id}/follow', [GameController::class, 'follow'])->name('game.follow');
     Route::post('/games/{game_id}/unfollow', [GameController::class, 'unfollow'])->name('game.follow');
+
+    Route::post('/comments/create', [CommentController::class, 'user'])->name('user');
 
 });

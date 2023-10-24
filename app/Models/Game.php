@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Game extends Model
 {
     use HasFactory;
+
     protected $hidden = ['pivot'];
 
     public function genres()
@@ -28,5 +29,10 @@ class Game extends Model
     public function protections()
     {
         return $this->belongsToMany(DrmProtection::class, 'game_drm_protection', 'game_id', 'drm_protection_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

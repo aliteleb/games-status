@@ -11,14 +11,17 @@ class Comment extends Model
 
     protected $fillable = ['user_id', 'game_id', 'body'];
 
+    protected $with = ['user:username'];
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     public function game()
     {
         return $this->belongsTo(Game::class, 'game_id');
     }
+
     public function reactions()
     {
         return $this->belongsTo(Reaction::class, 'comment_id');
