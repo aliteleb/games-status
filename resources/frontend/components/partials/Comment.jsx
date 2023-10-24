@@ -3,12 +3,16 @@ import React, {useEffect} from 'react'
 import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io'
 import Skeleton from "react-loading-skeleton";
 import ApiClient from '../../services/ApiClient'
+import {toast} from 'react-hot-toast';
 
 function Comment(props) {
 
     let [comment, setComment] = React.useState(null);
     let [reply, setReply] = React.useState(false)
     let [loading, setLoading] = React.useState(false)
+    let [replies, setReplies] =  React.useState({
+        body: "",
+    })
 
 
     useEffect(() => {
@@ -50,25 +54,40 @@ function Comment(props) {
     let formRef = React.useRef(null)
 
     let handleReplySubmit = (e) => {
-        e.preventDefault()
-        let formData = new FormData(formRef.current)
-        
+        e.preventDefault();
+        setLoading(true);
+    
+        let formData = new FormData(formRef.current);
+    
         ApiClient().post(`/comments/create`, formData)
-        .then(res => {
-            toast.success(res.data.message)
+        .then((res) => {
+            setLoading(false);
+            toast.success(res.data.message);
+            setReplies({ body: "" });
         })
-        .catch(err => {
-            setMainCommentLoading(false)
-            let message = err.response.data.message
-            if(Array.isArray(err.response.data.data.body) && err.response.data.data.body.length > 0){
-                message = err.response.data.data.body[0]
+        .catch((err) => {
+            setLoading(false);
+            let message = "An error occurred.";
+            if (err.response && err.response.data) {
+                if (Array.isArray(err.response.data.data.body) && err.response.data.data.body.length > 0) {
+                    message = err.response.data.data.body[0];
+                } else {
+                    message = err.response.data.message;
+                }
             }
-            toast.error(message)
-            console.log(err)
-        })
-        
+            toast.error(message);
+            console.log(err);
+        });
     }
+    
+    
 
+    let handleChange = (e) => {
+        setReplies(prevReplies => ({
+            ...prevReplies,
+            [e.target.name]: e.target.value
+        }))
+    }
 
     return (
         <div className='border-b-2 border-gray-500'>
@@ -151,7 +170,9 @@ function Comment(props) {
                                         to <span className='text-gray-400 text-sm underline'>{comment.username}</span>
                                     </label>
                                     <input
+                                    onChange={handleChange}
                                         name='body'
+                                        value={replies.body}
                                         type="text"
                                         autoComplete='one-time-code'
                                         id="large-input"
