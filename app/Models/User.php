@@ -59,6 +59,6 @@ class User extends Authenticatable
     }
 
     public function getFollowingAttribute(){
-        return DB::table('game_user')->select(['game_id'])->where('user_id', auth()->user()->id)->get()->pluck('game_id');
+        return DB::table('game_user')->select(['game_id'])->where('user_id', $this->id)->get()->pluck('game_id');
     }
 }

@@ -18,7 +18,7 @@ class GameController extends Controller
         $game = Game::select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid'])
             ->with(['protections:id,name,slug', 'groups:id,name,slug',
                 'comments' => function($query){
-                     $query->with(['replies', 'reactions'])
+                     $query->with(['user','replies', 'reactions'])
                         ->select(['id', 'body', 'game_id', 'created_at', 'updated_at']);
                      return $query;
                  }
@@ -34,12 +34,15 @@ class GameController extends Controller
                    $comment->voted = $reaction->type;
             });
             $comment->votes = count($comment->reactions);
-            unset($comment->reactions);
+
 
             if($comment->user)
-                $comment->username = $comment->user->name;
+                $comment->username = $comment->user->username;
             else
                 $comment->username = 'N/A';
+
+            unset($comment->reactions);
+            unset($comment->user);
 
         });
         $release_date = Carbon::parse($game->release_date);
