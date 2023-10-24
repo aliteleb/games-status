@@ -5,7 +5,7 @@ import Skeleton from "react-loading-skeleton";
 import ApiClient from '../../services/ApiClient'
 import {toast} from 'react-hot-toast';
 
-function Comment(props, {setComments}) {
+function Comment(props) {
 
     let [comment, setComment] = React.useState(null);
     let [reply, setReply] = React.useState(false)
@@ -64,7 +64,7 @@ function Comment(props, {setComments}) {
             setLoading(false);
             toast.success(res.data.message);
             setReplies({ body: "" });
-            setComments(res.data.data)
+            props.setComments(res.data.data)
         })
         .catch((err) => {
             setLoading(false);
