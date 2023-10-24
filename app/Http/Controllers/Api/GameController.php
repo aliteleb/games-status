@@ -15,11 +15,12 @@ class GameController extends Controller
     public function show(Request $request, $slug)
     {
         $game = Game::select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid'])
-            ->with(['protections:id,name,slug', 'groups:id,name,slug', 'comments:id,body'])
+            ->with(['protections:id,name,slug', 'groups:id,name,slug', 'comments:id,body,game_id'])
             ->withCount('users as followers_count')
             ->where('slug', $slug)
             ->firstOrFail();
 
+        return $game;
         $release_date = Carbon::parse($game->release_date);
         $crack_date = Carbon::parse($game->crack_date);
         $daysDifference = $crack_date->diffInDays($release_date);
