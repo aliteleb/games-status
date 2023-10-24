@@ -35,6 +35,12 @@ class GameController extends Controller
             });
             $comment->votes = count($comment->reactions);
             unset($comment->reactions);
+
+            if($comment->user)
+                $comment->username = $comment->user->name;
+            else
+                $comment->username = 'N/A';
+
         });
         $release_date = Carbon::parse($game->release_date);
         $crack_date = Carbon::parse($game->crack_date);
