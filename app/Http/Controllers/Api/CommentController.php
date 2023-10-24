@@ -40,8 +40,9 @@ class CommentController extends Controller
             'body' => $body,
         ]);
 
+        $comments = Comment::where('game_id', $game->id)->latest()->get();
         return response()->api(
-            data: $comment,
+            data: $comments,
             message: 'Comment created successfully',
         );
 
