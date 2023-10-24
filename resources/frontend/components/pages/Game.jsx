@@ -58,8 +58,6 @@ function Game() {
         .then(res => setGame(res.data.data))
         .catch(err => console.log('Failed to get data', err))
 
-
-
     }, []);
 
 

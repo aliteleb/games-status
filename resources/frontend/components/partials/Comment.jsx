@@ -15,7 +15,7 @@ function Comment(props) {
             likes: 15,
             dislikes: 3,
             votes: 12,
-            voted: "up",
+            voted: "down",
             replies: [
                 {
                     username: 'Jese Leos',
@@ -25,7 +25,7 @@ function Comment(props) {
                     likes: 0,
                     dislikes: 2,
                     votes: -2,
-                    voted: "up"
+                    voted: "down"
                 },
                 {
                     username: 'Ahmed Samir',
@@ -84,8 +84,7 @@ function Comment(props) {
                     {comment?.votes &&
                         <div className='flex flex-col items-center'>
                             <button
-                                disabled={comment.voted === "up"}
-                            className='cursor-pointer disabled:pointer-events-none disabled:text-green-600 hover:text-gray-500  text-2xl text-gray-300'  
+                            className={`${comment.voted === "up" ? "text-green-700 hover:text-green-700" : ""} cursor-pointer hover:text-gray-500  text-2xl text-gray-300`}  
                             >
                                 <IoIosArrowUp/>
                             </button>
@@ -93,8 +92,7 @@ function Comment(props) {
                                 className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${comment.votes > 0 ? 'text-green-600' : comment.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{comment.votes}
                             </div>
                             <button
-                            disabled={comment.voted === "down"}
-                            className='cursor-pointer disabled:pointer-events-none disabled:text-red-600 hover:text-gray-500  text-2xl text-gray-300'>
+                            className={`${comment.voted === "down" ? "text-red-700 hover:text-red-700" : ""} cursor-pointer hover:text-gray-500  text-2xl text-gray-300`}>
                                 <IoIosArrowDown />
                             </button>
                         </div>
@@ -172,15 +170,13 @@ function Comment(props) {
                             {reply?.votes &&
                                 <div className='flex flex-col items-center'>
                                     <button
-                                    disabled={reply.voted === "up"}
-                                    className='cursor-pointe disabled:pointer-events-none disabled:text-green-600 hover:text-gray-500  text-2xl text-gray-300'>
+                                    className={`cursor-pointe hover:text-gray-500 ${reply.voted === "up" ? "text-green-700 hover:text-green-700" : ""} text-2xl text-gray-300`}>
                                         <IoIosArrowUp/>
                                     </button>
                                     <div
                                         className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${reply.votes > 0 ? 'text-green-600' : reply.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{reply.votes}</div>
                                     <button
-                                    disabled={reply.voted === "down"}
-                                    className='cursor-pointer disabled:pointer-events-none disabled:text-red-600 hover:text-gray-500  text-2xl text-gray-300'>
+                                    className={`cursor-pointer hover:text-gray-500 ${reply.voted === "down" ? "text-red-700 hover:text-red-700" : ""} text-2xl text-gray-300`}>
                                         <IoIosArrowDown/>
                                     </button>
                                 </div>
