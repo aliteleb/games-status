@@ -3,12 +3,17 @@ import {Link, useParams} from 'react-router-dom';
 import Comment from '../partials/Comment'
 import ApiClient from '../../services/ApiClient'
 import Skeleton from 'react-loading-skeleton';
+import {toast} from 'react-hot-toast';
 
 function Game() {
 
     const {slug} = useParams(null)
 
     let [mainCommentLoading, setMainCommentLoading] = React.useState(false)
+    let [createComment, setCreateComment] = React.useState({
+        comment_value: "",
+    })
+    // let [comments, setComments] = React.useState([])
 
     let [game, setGame] = React.useState(
         {
@@ -26,7 +31,8 @@ function Game() {
             crack_date: null,
             scene_group: null,
             groups: [],
-            followers_count: null
+            followers_count: null,
+            comments: [],
         }
     )
 
@@ -56,14 +62,23 @@ function Game() {
             lastComment.classList.remove('border-b-2')
         }
 
+        console.log(`/game/${slug}`);
         ApiClient().get(`/game/${slug}`)
-        .then(res => setGame(res.data.data))
+        .then(res => {
+            setGame(res.data.data)
+        })
         .catch(err => console.log('Failed to get data', err))
 
     }, []);
 
 
-    let comments = document.getElementById('comments')
+    let handleChange = (e) => {
+        setCreateComment(prevComment => ({
+            ...prevComment,
+            [e.target.name]: e.target.value
+        }))
+    }
+
 
     game.status_color = game.status_text ? game.status_text.toLowerCase() : 'gray-600'
     let icon, days
@@ -84,6 +99,25 @@ function Game() {
 
     let handleSubmit = () => {
         setMainCommentLoading(true)
+
+        ApiClient().post(`/comments/create`, {
+            'slug': slug,
+            'body': createComment.comment_value
+        })
+        .then(res => {
+            setMainCommentLoading(false)
+            toast.success(res.data.message)
+            console.log(res)
+        })
+        .catch(err => {
+            setMainCommentLoading(false)
+            let message = err.response.data.message
+            if(Array.isArray(err.response.data.data.body) && err.response.data.data.body.length > 0){
+                message = err.response.data.data.body[0]
+            }
+            toast.error(message)
+            console.log(err)
+        })
     }
 
     return (
@@ -180,13 +214,16 @@ function Game() {
                                 Comments (20)
                             </h2>
                         </div>
-                        <form className="mb-6">
+                        <div className="mb-6">
                                 <input type="text"
+                                    name='comment_value'
+                                    value={createComment.comment_value}
                                     id="comment"
                                     className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 rounded-md "
                                     placeholder="Write a comment..."
                                     required=""
                                     defaultValue={""}
+                                    onChange={handleChange}
                                 />
                             <button onClick={handleSubmit} type="button"
                                 className={`transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${mainCommentLoading ? 'disabled:bg-black/20  disabled:border-black/10 dsiabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
@@ -203,12 +240,13 @@ function Game() {
                             }
                             </button>
 
-                        </form>
+                        </div>
                         <div id='comments'>
-                            <Comment info={{count: 12}}/>
-                            <Comment info={{count: -2}}/>
-                            <Comment info={{count: 0}}/>
-                            <Comment info={{count: 5}}/>
+                            {game.comments.map(comment => {
+                               return(
+                                <Comment info={comment}/>
+                               ) 
+                            })}
                         </div>
                     </div>
                 </section>

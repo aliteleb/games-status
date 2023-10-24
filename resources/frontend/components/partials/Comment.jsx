@@ -5,43 +5,44 @@ import Skeleton from "react-loading-skeleton";
 function Comment(props) {
 
     let [comment, setComment] = React.useState(null);
-    let [reply, setReply] = React.useState(false)
+    // let [reply, setReply] = React.useState(false)
     let [loading, setLoading] = React.useState(false)
 
 
     useEffect(() => {
-        setComment({
-            username: 'Michael Gough',
-            user_image: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg',
-            body: 'Very straight-to-point article. Really worth time reading. Thank you! But tools are just the instruments for the UX designers. The knowledge of the design tools are as important as the creation of the design strategy.',
-            time: '5 minutes ago',
-            likes: 15,
-            dislikes: 3,
-            votes: 12,
-            voted: "up",
-            replies: [
-                {
-                    username: 'Jese Leos',
-                    user_image: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg',
-                    body: 'Very straight-to-point article. Really worth time reading. Thank you! But tools are just the instruments for the UX designers. The knowledge of the design tools are as important as the creation of the design strategy.',
-                    time: '2 minutes ago',
-                    likes: 0,
-                    dislikes: 2,
-                    votes: -2,
-                    voted: "down"
-                },
-                {
-                    username: 'Ahmed Samir',
-                    user_image: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg',
-                    body: 'Very straight-to-point article. Really worth time reading. Thank you! But tools are just the instruments for the UX designers. The knowledge of the design tools are as important as the creation of the design strategy.',
-                    time: '20 seconds ago',
-                    likes: 5,
-                    dislikes: 2,
-                    votes: 3,
-                    voted: null
-                },
-            ]
-        })
+        // setComment({
+        //     username: 'Michael Gough',
+        //     user_image: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg',
+        //     body: 'Very straight-to-point article. Really worth time reading. Thank you! But tools are just the instruments for the UX designers. The knowledge of the design tools are as important as the creation of the design strategy.',
+        //     time: '5 minutes ago',
+        //     likes: 15,
+        //     dislikes: 3,
+        //     votes: 12,
+        //     voted: "up",
+        //     replies: [
+        //         {
+        //             username: 'Jese Leos',
+        //             user_image: 'https://flowbite.com/docs/images/people/profile-picture-5.jpg',
+        //             body: 'Very straight-to-point article. Really worth time reading. Thank you! But tools are just the instruments for the UX designers. The knowledge of the design tools are as important as the creation of the design strategy.',
+        //             time: '2 minutes ago',
+        //             likes: 0,
+        //             dislikes: 2,
+        //             votes: -2,
+        //             voted: "down"
+        //         },
+        //         {
+        //             username: 'Ahmed Samir',
+        //             user_image: 'https://flowbite.com/docs/images/people/profile-picture-2.jpg',
+        //             body: 'Very straight-to-point article. Really worth time reading. Thank you! But tools are just the instruments for the UX designers. The knowledge of the design tools are as important as the creation of the design strategy.',
+        //             time: '20 seconds ago',
+        //             likes: 5,
+        //             dislikes: 2,
+        //             votes: 3,
+        //             voted: null
+        //         },
+        //     ]
+        // })
+        setComment(props.info)
     }, [])
 
 
