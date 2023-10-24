@@ -42,7 +42,9 @@ class CommentController extends Controller
 
         $user = auth()->user();
 
-        $comments = Comment::where('game_id', $game->id)->latest()->get();
+        $comments = Comment::where('game_id', $game->id)
+            ->with(['user','replies', 'reactions'])
+            ->latest()->get();
         $comments->map(function ($comment) use ($user) {
             $comment->voted = null;
             $comment->reactions->map(function ($reaction) use ($comment, $user){
