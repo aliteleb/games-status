@@ -12,7 +12,7 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $slug = $request->input('slug');
-        $body = $request->input('slug');
+        $body = $request->input('body');
 
         $game = Game::select('id')->where('slug', $slug)->firstOrFail();
 
