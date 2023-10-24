@@ -29,17 +29,22 @@ function Game() {
     )
 
     useEffect(() => {
-        const body = document.body,
-            html = document.documentElement;
-        const height = Math.max(
-            body.scrollHeight,
-            body.offsetHeight,
-            html.clientHeight,
-            html.scrollHeight,
-            html.offsetHeight
-        );
-        const footerHeight = document.getElementsByTagName('footer')[0].offsetHeight;
-        document.getElementById('blurred-bg').style.height = height + 'px';
+
+        setTimeout(()=>{
+            const body = document.body,
+                html = document.documentElement;
+            const height = Math.max(
+                body.scrollHeight,
+                body.offsetHeight,
+                html.clientHeight,
+                html.scrollHeight,
+                html.offsetHeight
+            );
+            const footerHeight = document.getElementsByTagName('footer')[0].offsetHeight;
+
+            document.getElementById('blurred-bg').style.height = height + 'px';
+
+        }, 0)
 
 
         const commentsContainer = document.getElementById('comments');
@@ -52,8 +57,6 @@ function Game() {
         ApiClient().get(`/game/${slug}`)
         .then(res => setGame(res.data.data))
         .catch(err => console.log('Failed to get data', err))
-
-
 
     }, []);
 
