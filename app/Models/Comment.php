@@ -14,6 +14,7 @@ class Comment extends Model
     protected $hidden = ['created_at', 'updated_at'];
 
     protected $with = ['user:username'];
+    protected $withCount = ['reactions'];
 
     public function user()
     {
@@ -22,17 +23,19 @@ class Comment extends Model
 
     public function game()
     {
-        return $this->belongsTo(Game::class, 'game_id');
+        return $this->belongsTo(Game::class);
     }
 
     public function reactions()
     {
-        return $this->belongsTo(Reaction::class, 'comment_id');
+        return $this->hasMany(Reaction::class);
     }
-
+    public function replies()
+    {
+        return $this->hasMany(Comment::class, 'reply_to');
+    }
     public function getTimeAttribute()
     {
-
         try {
             if($this->created_at)
                 return $this->created_at->diffForHumans();

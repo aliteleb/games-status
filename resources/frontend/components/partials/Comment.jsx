@@ -5,7 +5,7 @@ import Skeleton from "react-loading-skeleton";
 function Comment(props) {
 
     let [comment, setComment] = React.useState(null);
-    // let [reply, setReply] = React.useState(false)
+    let [reply, setReply] = React.useState(false)
     let [loading, setLoading] = React.useState(false)
 
 
@@ -87,23 +87,23 @@ function Comment(props) {
                     </div>
                 </footer>
                 <div className='flex items-center'>
-                    {comment?.votes &&
+                    {comment?.votes !== null &&
                         <div className='flex flex-col items-center'>
                             <button
-                            className={`${comment.voted === "up" ? "text-green-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}
+                            className={`${comment?.voted === "up" ? "text-green-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}
                             >
                                 <IoIosArrowUp/>
                             </button>
                             <div
-                                className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${comment.votes > 0 ? 'text-green-600' : comment.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{comment.votes}
+                                className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${comment?.votes > 0 ? 'text-green-600' : comment?.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{comment?.votes}
                             </div>
                             <button
-                            className={`${comment.voted === "down" ? "text-red-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}>
+                            className={`${comment?.voted === "down" ? "text-red-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}>
                                 <IoIosArrowDown />
                             </button>
                         </div>
                     }
-                    {!(comment?.votes) &&
+                    {(comment?.votes == null) &&
                         <Skeleton width={'2rem'} height={'6rem'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={10}/>
                     }
                     <div>
@@ -129,7 +129,7 @@ function Comment(props) {
                                 <div className="flex flex-col mt-3">
                                     <label
                                         htmlFor="large-input"
-                                        classname="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                     >
                                         To Above User
                                     </label>
@@ -143,7 +143,7 @@ function Comment(props) {
                                 class={`transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${loading ? 'disabled:bg-[#282c39] dsiabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
                                 disabled={loading}
                                 >
-                                
+
                                 {loading ?
                                 <>
                                     <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

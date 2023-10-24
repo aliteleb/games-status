@@ -14,16 +14,28 @@ class GameController extends Controller
 {
     public function show(Request $request, $slug)
     {
+        $user = auth()->user();
         $game = Game::select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid'])
             ->with(['protections:id,name,slug', 'groups:id,name,slug',
                 'comments' => function($query){
-                    return $query->select(['id', 'body', 'game_id', 'created_at', 'updated_at']);
+                     $query->with(['replies', 'reactions'])
+                        ->select(['id', 'body', 'game_id', 'created_at', 'updated_at']);
+                     return $query;
                  }
             ])
             ->withCount('users as followers_count')
             ->where('slug', $slug)
             ->firstOrFail();
 
+        $game->comments->map(function ($comment) use ($user) {
+            $comment->voted = null;
+            $comment->reactions->map(function ($reaction) use ($comment, $user){
+               if($reaction->user_id == $user->id)
+                   $comment->voted = $reaction->type;
+            });
+            $comment->votes = count($comment->reactions);
+            unset($comment->reactions);
+        });
         $release_date = Carbon::parse($game->release_date);
         $crack_date = Carbon::parse($game->crack_date);
         $daysDifference = $crack_date->diffInDays($release_date);

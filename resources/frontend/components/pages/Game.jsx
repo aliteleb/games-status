@@ -13,7 +13,7 @@ function Game() {
     let [createComment, setCreateComment] = React.useState({
         comment_value: "",
     })
-    // let [comments, setComments] = React.useState([])
+    let [comments, setComments] = React.useState([])
 
     let [game, setGame] = React.useState(
         {
@@ -48,21 +48,13 @@ function Game() {
                 html.scrollHeight,
                 html.offsetHeight
             );
-            const footerHeight = document.getElementsByTagName('footer')[0].offsetHeight;
+            // const footerHeight = document.getElementsByTagName('footer')[0].offsetHeight;
 
             document.getElementById('blurred-bg').style.height = height + 'px';
 
-        }, 0)
+        }, 500)
 
 
-        const commentsContainer = document.getElementById('comments');
-        if (commentsContainer) {
-            const comments = commentsContainer.children;
-            const lastComment = comments[comments.length - 1];
-            lastComment.classList.remove('border-b-2')
-        }
-
-        console.log(`/game/${slug}`);
         ApiClient().get(`/game/${slug}`)
         .then(res => {
             setGame(res.data.data)
@@ -78,7 +70,6 @@ function Game() {
             [e.target.name]: e.target.value
         }))
     }
-
 
     game.status_color = game.status_text ? game.status_text.toLowerCase() : 'gray-600'
     let icon, days
@@ -243,9 +234,9 @@ function Game() {
                         </div>
                         <div id='comments'>
                             {game.comments.map(comment => {
-                               return(
-                                <Comment info={comment}/>
-                               ) 
+                                return(
+                                    <Comment info={comment}/>
+                                )
                             })}
                         </div>
                     </div>
