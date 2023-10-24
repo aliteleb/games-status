@@ -25,6 +25,7 @@ class GameController extends Controller
             ])
             ->withCount('users as followers_count')
             ->where('slug', $slug)
+            ->whereNull('reply_to')
             ->firstOrFail();
 
         $game->comments->map(function ($comment) use ($user) {
