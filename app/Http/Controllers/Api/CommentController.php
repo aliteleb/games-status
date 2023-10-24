@@ -41,7 +41,9 @@ class CommentController extends Controller
         ]);
 
         $user = auth()->user();
-        $comment->map(function ($comment) use ($user) {
+
+        $comments = Comment::where('game_id', $game->id)->latest()->get();
+        $comments->map(function ($comment) use ($user) {
             $comment->voted = null;
             $comment->reactions->map(function ($reaction) use ($comment, $user){
                 if($reaction->user_id == $user->id)
@@ -60,7 +62,6 @@ class CommentController extends Controller
 
         });
 
-        $comments = Comment::where('game_id', $game->id)->latest()->get();
         return response()->api(
             data: $comments,
             message: 'Comment created successfully',
