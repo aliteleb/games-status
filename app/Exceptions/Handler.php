@@ -32,15 +32,16 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         // 404
-        if ($request->wantsJson() && $exception instanceof ModelNotFoundException) {
-            return response()->api(status: 'error', message: 'object not found', status_code: 404);
-        }
+        if (env('APP_ENV', 'local' == 'local')) {
+            if ($request->wantsJson() && $exception instanceof ModelNotFoundException) {
+                return response()->api(status: 'error', message: 'object not found', status_code: 404);
+            }
 
-        // any other exception
-        if ($request->wantsJson() && $exception instanceof \Exception) {
-            return response()->api(status: 'error', message: 'internal server error', status_code: 500);
+            // any other exception
+            if ($request->wantsJson() && $exception instanceof \Exception) {
+                return response()->api(status: 'error', message: 'internal server error', status_code: 500);
+            }
         }
-
         return parent::render($request, $exception);
     }
 }
