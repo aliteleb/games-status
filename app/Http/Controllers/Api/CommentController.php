@@ -33,15 +33,27 @@ class CommentController extends Controller
             );
         }
 
-        $game = Game::select('id')->where('slug', $slug)->firstOrFail();
-        if($reply_to)
-            Comment::find($reply_to);
+        $parent = null;
+        $game = null;
+        $game_id = null;
+        $parent_id = null;
+
+        if($reply_to){
+            $parent = Comment::find($reply_to);
+            $game_id = $parent->game_id;
+            $parent_id = $parent->id;
+        }
+
+        if(!$parent){
+            $game = Game::select('id')->where('slug', $slug)->firstOrFail();
+            $game_id = $game->id;
+        }
 
         Comment::create([
             'user_id' => auth()->user()->id,
-            'game_id' => $game->id,
+            'game_id' => $game_id,
             'body' => $body,
-            'reply_to' => $body,
+            'reply_to' => $parent_id,
         ]);
 
         $user = auth()->user();
@@ -65,7 +77,6 @@ class CommentController extends Controller
 
             unset($comment->reactions);
             unset($comment->user);
-
         });
 
         return response()->api(
