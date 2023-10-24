@@ -6,6 +6,8 @@ function Comment(props) {
 
     let [comment, setComment] = React.useState(null);
     let [reply, setReply] = React.useState(false)
+    let [loading, setLoading] = React.useState(false)
+
 
     useEffect(() => {
         setComment({
@@ -41,6 +43,8 @@ function Comment(props) {
             ]
         })
     }, [])
+
+
 
 
     return (
@@ -110,7 +114,7 @@ function Comment(props) {
                         </p>
                         <div className="mx-6 flex flex-col mt-4 space-x-4">
                             {comment?.body &&
-                                <button onClick={() => setReply(!reply)} type="button" className="flex items-center text-sm text-gray-500 hover:underline y-400 font-medium">
+                                <button onClick={() => setReply(!reply)} type="button" className="flex items-center text-sm text-gray-500 hover:text-gray-400 hover:underline y-400 font-medium">
                                     <svg className="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                               d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
@@ -134,7 +138,21 @@ function Comment(props) {
                                         className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 mt-2 rounded-md"
                                     />
                                 </div>
-                                <button>Post</button>
+                                <button
+                                class={`transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${loading ? 'disabled:bg-[#282c39] dsiabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
+                                disabled={loading}
+                                >
+                                
+                                {loading ?
+                                <>
+                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Posting...
+                                </> : <>Post</>
+                                }
+                                </button>
                             </form>
                             }
 
