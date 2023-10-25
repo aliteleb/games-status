@@ -163,7 +163,7 @@ function Game() {
             </div>
 
             <div>
-                <div className={`flex relative z-20 text-gray-300 border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`} style={{boxShadow: '-3px 3px 10px #000'}}>
+                <div className={`flex relative z-20 text-gray-300 border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`} style={{boxShadow: 'rgb(0, 0, 0) 0px 0px 10px'}}>
                     <img className={`absolute w-full h-full z-[-1] object-cover`} src={game.cover && game.cover}
                          style={{aspectRatio: '1920/620'}}
                          alt=""/>

@@ -96,7 +96,7 @@ function Comment(props) {
                         </svg>
                     </button>
                     {/* Dropdown menu */}
-                    <div className="z-10 w-36 bg-black/20 rounded divide-y shadow absolute mt-[140px]" style={{right: '10px'}}>
+                    <div className="hidden z-10 w-36 bg-black/20 rounded divide-y shadow absolute mt-[140px]" style={{right: '10px'}}>
                         <ul className="py-1 text-sm text-gray-300 y-200">
                             <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Edit</a></li>
                             <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Remove</a></li>
@@ -185,7 +185,7 @@ function Comment(props) {
                                 </svg>
                             </button>
                             {/* Dropdown menu */}
-                            <div className="z-10 w-36 bg-black/20 rounded divide-y shadow absolute mt-[140px]" style={{right: '10px'}}>
+                            <div className="hidden z-10 w-36 bg-black/20 rounded divide-y shadow absolute mt-[140px]" style={{right: '10px'}}>
                                 <ul className="py-1 text-sm text-gray-300 y-200">
                                     <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Edit</a></li>
                                     <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Remove</a></li>
