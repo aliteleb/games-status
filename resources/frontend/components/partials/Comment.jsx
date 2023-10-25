@@ -86,19 +86,14 @@ function Comment(props) {
         let oldComment = {...comment}
         let newVote = vote === "up" ? comment.votes + 1 : comment.votes - 1
 
-        setComment(prevComment => ({
-            ...prevComment,
-            votes: newVote,
-            voted: vote
-        }))
-
         ApiClient().post('/comment/vote', {
             id: id,
             vote: vote,
         })
-        .then(res => 
+        .then(res =>
         {
             console.log(res);
+            props.setComments(res.data.data)
         })
         .catch(err =>
             {

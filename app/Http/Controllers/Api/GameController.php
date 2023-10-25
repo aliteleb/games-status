@@ -34,7 +34,6 @@ class GameController extends Controller
                if($reaction->user_id == $user->id)
                    $comment->voted = $reaction->type;
             });
-            $comment->votes = count($comment->reactions);
 
             unset($comment->reactions);
             unset($comment->user);

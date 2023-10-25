@@ -58,7 +58,7 @@ class Comment extends Model
     public function getVotesAttribute(){
 
         if($this->reactions)
-            return count($this->reactions);
+            return count($this->reactions->where('type', 'up')) - count($this->reactions->where('type', 'down'));
         else
             return 0;
 

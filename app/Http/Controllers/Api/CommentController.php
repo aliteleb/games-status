@@ -69,8 +69,6 @@ class CommentController extends Controller
                 if ($reaction->user_id == $user->id)
                     $comment->voted = $reaction->type;
             });
-            $comment->votes = count($comment->reactions);
-
 
             if ($comment->user)
                 $comment->username = $comment->user->username;
@@ -123,8 +121,28 @@ class CommentController extends Controller
             ]);
         }
 
+        $comments = Comment::where('game_id', $comment->game_id)
+            ->whereNull('reply_to')
+            ->with(['user', 'replies', 'reactions'])
+            ->latest()->get();
+        $comments->map(function ($comment) use ($user) {
+            $comment->voted = null;
+            $comment->reactions->map(function ($reaction) use ($comment, $user) {
+                if ($reaction->user_id == $user->id)
+                    $comment->voted = $reaction->type;
+            });
+
+            if ($comment->user)
+                $comment->username = $comment->user->username;
+            else
+                $comment->username = 'N/A';
+
+            unset($comment->reactions);
+            unset($comment->user);
+        });
 
         return response()->api(
+            data: $comments,
             status: "success",
             message: __("Voted successfully")
         );
