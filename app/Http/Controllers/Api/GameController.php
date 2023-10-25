@@ -103,7 +103,7 @@ class GameController extends Controller
             ->findOrFail($game_id);
 
         return response()->api(
-            ['followers_count' => $game->users->count()],
+            data: ['followers_count' => $game->users->count()],
             message: __("You're not following this game anymore."),
         );
     }
