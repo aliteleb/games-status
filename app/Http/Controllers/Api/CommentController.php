@@ -110,8 +110,13 @@ class CommentController extends Controller
 
         if($reaction)
         {
-            $reaction->type = $vote_type;
-            $reaction->save();
+            if($reaction->type == $vote_type)
+                $reaction->delete();
+            else
+            {
+                $reaction->type = $vote_type;
+                $reaction->save();
+            }
         }
         else{
             Reaction::create([
