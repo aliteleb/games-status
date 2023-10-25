@@ -10,7 +10,7 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'game_id', 'body', 'reply_to'];
-    protected $appends = ['time', 'username', 'votes'];
+    protected $appends = ['time', 'username', 'votes', 'voted'];
     protected $hidden = ['created_at', 'updated_at'];
 
     protected $with = ['user:id,username', 'reactions', 'replies'];
@@ -61,6 +61,16 @@ class Comment extends Model
             return count($this->reactions->where('type', 'up')) - count($this->reactions->where('type', 'down'));
         else
             return 0;
+
+    }
+
+    public function getVotedAttribute(){
+
+        $this->voted = null;
+        $this->reactions->map(function ($reaction) {
+            if ($reaction->user_id == auth()->user()->id)
+                $this->voted = $reaction->type;
+        });
 
     }
 }
