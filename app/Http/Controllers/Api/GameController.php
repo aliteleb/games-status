@@ -98,7 +98,12 @@ class GameController extends Controller
             ->where('user_id', $user->id)
             ->delete();
 
+        $game = Game::select(['id', 'name'])
+            ->withCount('users as followers_count')
+            ->findOrFail($game_id);
+
         return response()->api(
+            ['followers_count' => $game->users->count()],
             message: __("You're not following this game anymore."),
         );
     }
