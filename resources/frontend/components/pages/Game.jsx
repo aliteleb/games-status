@@ -38,7 +38,7 @@ function Game() {
 
     useEffect(() => {
 
-        setTimeout(()=>{
+        setTimeout(() => {
             const body = document.body,
                 html = document.documentElement;
             const height = Math.max(
@@ -54,13 +54,13 @@ function Game() {
         }, 500)
 
 
-        setInterval(()=>{
+        const fetchGame = () => {
             ApiClient().get(`/game/${slug}`)
                 .then(res => {
                     setGame(res.data.data)
                     setComments(res.data.data.comments)
 
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         const body = document.body,
                             html = document.documentElement;
                         const height = Math.max(
@@ -75,8 +75,10 @@ function Game() {
                     }, 50)
                 })
                 .catch(err => console.log('Failed to get data', err))
-        }, 30000);
+        }
 
+        fetchGame();
+        setInterval(fetchGame, 30000);
 
     }, []);
 
@@ -114,33 +116,33 @@ function Game() {
             'slug': slug,
             'body': createComment.comment_value
         })
-        .then(res => {
-            setMainCommentLoading(false)
-            console.log(res.data.data)
-            setComments(res.data.data)
-            setCreateComment({comment_value: ""})
-            toast.success(res.data.message)
+            .then(res => {
+                setMainCommentLoading(false)
+                console.log(res.data.data)
+                setComments(res.data.data)
+                setCreateComment({comment_value: ""})
+                toast.success(res.data.message)
 
-            const body = document.body,
-                html = document.documentElement;
-            const height = Math.max(
-                body.scrollHeight,
-                body.offsetHeight,
-                html.clientHeight,
-                html.scrollHeight,
-                html.offsetHeight
-            );
-            document.getElementById('blurred-bg').style.height = height + 'px';
-        })
-        .catch(err => {
-            setMainCommentLoading(false)
-            let message = err.response.data.message
-            if(Array.isArray(err.response.data.data.body) && err.response.data.data.body.length > 0){
-                message = err.response.data.data.body[0]
-            }
-            toast.error(message)
-            console.log(err)
-        })
+                const body = document.body,
+                    html = document.documentElement;
+                const height = Math.max(
+                    body.scrollHeight,
+                    body.offsetHeight,
+                    html.clientHeight,
+                    html.scrollHeight,
+                    html.offsetHeight
+                );
+                document.getElementById('blurred-bg').style.height = height + 'px';
+            })
+            .catch(err => {
+                setMainCommentLoading(false)
+                let message = err.response.data.message
+                if (Array.isArray(err.response.data.data.body) && err.response.data.data.body.length > 0) {
+                    message = err.response.data.data.body[0]
+                }
+                toast.error(message)
+                console.log(err)
+            })
     }
 
     return (
@@ -163,11 +165,12 @@ function Game() {
             <div>
                 <div className={`flex relative z-20 text-gray-300 border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`} style={{boxShadow: '-3px 3px 10px #000'}}>
                     <img className={`absolute w-full h-full z-[-1] object-cover`} src={game.cover && game.cover}
-                        style={{aspectRatio: '1920/620'}}
-                        alt=""/>
+                         style={{aspectRatio: '1920/620'}}
+                         alt=""/>
 
                     <div className='grid grid-cols-1 sm:grid-cols-[1fr_1fr] md:grid-cols-[250px_2fr_1fr] w-full bg-black/80 justify-items-center'>
-                        <img className={`col-span-2 sm:col-auto w-full object-cover h-[22rem] ${game.poster && 'fade'}`}  src={game.poster? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt="" />
+                        <img className={`col-span-2 sm:col-auto w-full object-cover h-[22rem] ${game.poster && 'fade'}`}
+                             src={game.poster ? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
                         <div className="h-[22rem] w-full px-4 py-2 text-center sm:text-left">
                             <div className="grid grid-rows-[1fr_1fr] w-max mx-auto sm:mx-0 mt-2 sm:mt-0">
                                 <div className='flex justify-between'>
@@ -196,8 +199,10 @@ function Game() {
                                 <div>
                                     <div className='text-[#dddddd99] font-extralight'>DRM PROTECTIONS</div>
                                     <div className='text-xl'>
-                                        {game.protections.map((drm,index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70" to={`/protection/${drm.slug}`}>{drm.name}</Link>)}
-                                        {game.protections.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                                        {game.protections.map((drm, index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70"
+                                                                                    to={`/protection/${drm.slug}`}>{drm.name}</Link>)}
+                                        {game.protections.length === 0 &&
+                                            <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                                     </div>
                                 </div>
                                 <div>
@@ -209,7 +214,8 @@ function Game() {
                                 <div>
                                     <div className='text-[#dddddd99] font-extralight'>SCENE GROUPS</div>
                                     <div className='text-xl'>
-                                        {game.groups.map((group,index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70" to={`/group/${group.slug}`}>{group.name}</Link>)}
+                                        {game.groups.map((group, index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70"
+                                                                                 to={`/group/${group.slug}`}>{group.name}</Link>)}
                                         {game.groups.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                                     </div>
                                 </div>
@@ -238,38 +244,39 @@ function Game() {
                             </h2>
                         </div>
                         <div className="mb-6">
-                                <form onSubmit={handleSubmit}>
-                                    <input type="text"
-                                        autoComplete='one-time-code'
-                                        name='comment_value'
-                                        value={createComment.comment_value}
-                                        id="comment"
-                                        className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 rounded-md "
-                                        placeholder="Write a comment..."
-                                        required=""
-                                        onChange={handleChange}
-                                    />
-                                </form>
+                            <form onSubmit={handleSubmit}>
+                                <input type="text"
+                                       autoComplete='one-time-code'
+                                       name='comment_value'
+                                       value={createComment.comment_value}
+                                       id="comment"
+                                       className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 rounded-md "
+                                       placeholder="Write a comment..."
+                                       required=""
+                                       onChange={handleChange}
+                                />
+                            </form>
                             <button onClick={handleSubmit} type="button"
-                                className={`transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${mainCommentLoading ? 'disabled:bg-black/20  disabled:border-black/10 dsiabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
-                                disabled={mainCommentLoading}
+                                    className={`transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${mainCommentLoading ? 'disabled:bg-black/20  disabled:border-black/10 dsiabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
+                                    disabled={mainCommentLoading}
                             >
-                            {mainCommentLoading ?
-                                <>
-                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                    </svg>
-                                    Sending...
-                                </> : <>Post Comment</>
-                            }
+                                {mainCommentLoading ?
+                                    <>
+                                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor"
+                                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Sending...
+                                    </> : <>Post Comment</>
+                                }
                             </button>
 
                         </div>
                         <div id='comments'>
                             {comments.map(comment => {
-                                return(
-                                    <Comment setComments={setComments} key={comment.id} info={comment} />
+                                return (
+                                    <Comment setComments={setComments} key={comment.id} info={comment}/>
                                 )
                             })}
                         </div>
