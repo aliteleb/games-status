@@ -57,12 +57,12 @@ function Game() {
 
         }, 500)
 
-
         const fetchGame = () => {
             ApiClient().get(`/game/${slug}`)
                 .then(res => {
                     setGame(res.data.data)
                     setComments(res.data.data.comments)
+                    setFollow(res.data.data.is_following)
 
                     setTimeout(() => {
                         const body = document.body,
@@ -168,6 +168,13 @@ function Game() {
           .then((response) => {
             if (response.data.status === "success") {
                 action === "follow" ? toast.success(response.data.message) : toast(response.data.message)
+                setGame(prevGame => (
+                    {
+                    ...prevGame,
+                    followers_count: response.data.data.followers_count
+                    }
+                    ))
+                    console.log(response.data.data.followers_count);
             } else {
               setFollow((prevFollow) => !prevFollow);
               toast.error(response.data.message);
@@ -264,7 +271,7 @@ function Game() {
                                     checked={follow}
                                     onChange={handleFollowChange}
                                     type='checkbox'
-                                    className="mx-4 w-32 h-9 appearance-none border border-red-700 cursor-pointer transition rounded-full after:font-extrabold before:h-full pt-1 pl-2 hover:bg-red-700 relative after:absolute after:top-[20%] after:left-2 checked:after:content-['✓'] checked:bg-red-700 checked:border-red-700 before:block before:text-center checked:before:content-['Following'] before:content-['Follow']"/>
+                                    className={`mx-4 w-32 h-9 appearance-none border border-red-700 cursor-pointer transition rounded-full after:font-extrabold before:h-full pt-1 pl-2 hover:bg-red-700 relative after:absolute after:top-[20%] after:left-2 checked:after:content-['✓'] checked:bg-red-700 checked:border-red-700 before:block before:text-center checked:before:content-['Following'] before:content-['Follow'] ${game.is_following ?? "hidden"}`}/>
                             </div>
 
                         </div>
