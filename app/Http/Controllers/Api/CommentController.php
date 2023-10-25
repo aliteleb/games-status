@@ -106,6 +106,7 @@ class CommentController extends Controller
         $comment = Comment::find($comment_id);
 
         Reaction::updateOrCreate([
+            'user_id' => auth()->user()->id,
             'comment_id' => $comment->id,
             'type' => $vote_type,
         ]);
