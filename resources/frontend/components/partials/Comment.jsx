@@ -28,7 +28,6 @@ function Comment(props) {
         ApiClient().post(`/comments/create`, formData)
             .then((res) => {
                 setLoading(false);
-                toast.success(res.data.message);
                 setReplyInput({body: ""});
                 props.setComments(res.data.data);
                 setReplyForm(!replyForm);

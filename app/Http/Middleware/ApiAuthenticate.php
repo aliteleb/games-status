@@ -16,7 +16,7 @@ class ApiAuthenticate
                 status: "error",
                 message: __("You must login to do this action"),
                 status_code: 401,
-                response_code: 200
+                //response_code: 200
             );
         }
 

@@ -118,21 +118,21 @@ function Game() {
         })
             .then(res => {
                 setMainCommentLoading(false)
-                console.log(res.data.data)
                 setComments(res.data.data)
                 setCreateComment({comment_value: ""})
-                toast.success(res.data.message)
 
-                const body = document.body,
-                    html = document.documentElement;
-                const height = Math.max(
-                    body.scrollHeight,
-                    body.offsetHeight,
-                    html.clientHeight,
-                    html.scrollHeight,
-                    html.offsetHeight
-                );
-                document.getElementById('blurred-bg').style.height = height + 'px';
+                setTimeout(() => {
+                    const body = document.body,
+                        html = document.documentElement;
+                    const height = Math.max(
+                        body.scrollHeight,
+                        body.offsetHeight,
+                        html.clientHeight,
+                        html.scrollHeight,
+                        html.offsetHeight
+                    );
+                    document.getElementById('blurred-bg').style.height = height + 'px';
+                }, 50)
             })
             .catch(err => {
                 setMainCommentLoading(false)
