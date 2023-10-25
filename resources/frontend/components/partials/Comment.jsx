@@ -3,6 +3,7 @@ import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io'
 import Skeleton from "react-loading-skeleton";
 import ApiClient from '../../services/ApiClient'
 import {toast} from 'react-hot-toast';
+import {RiSendPlane2Fill} from 'react-icons/ri'
 
 function Comment(props) {
 
@@ -242,35 +243,24 @@ function Comment(props) {
             }
 
             {replyForm &&
-                <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap w-full -mt-5">
+                <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap -mt-5">
                         <div className="block mb-2 text-sm font-medium text-gray-300 w-full">
                             to <span className='text-gray-400 text-sm underline'>{comment.username}</span>
                         </div>
-                        <input
-                            onChange={handleChange}
-                            name='body'
-                            value={replyInput.body}
-                            type="text"
-                            autoComplete='one-time-code'
-                            id={`reply_input_${comment.id}`}
-                            className="bg-transparent w-2/3 text-md h-10 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 pr-[10rem] mb-4 mt-2 rounded-md"
-                        />
-                        <input type="hidden" name='reply_to' value={comment.id}/>
-                    <button
-                        className={`transition text-gray-300 hover:text-white h-10 w-[8.8rem] self-center md:ml-[-8.8rem] md:border-l md:border-0 border border-gray-400/50 hover:bg-gray-800/60 focus:outline-none font-medium rounded-lg md:rounded-none text-sm px-5 md:py-2.5 text-center mb-2 ${loading ? 'disabled:bg-transparent disabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
-                        disabled={loading}>
+                        <div className='flex items-center w-full'>
+                            <input
+                                onChange={handleChange}
+                                name='body'
+                                value={replyInput.body}
+                                type="text"
+                                autoComplete='one-time-code'
+                                id={`reply_input_${comment.id}`}
+                                className="bg-transparent w-full text-md h-10 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 pr-[10rem] mb-4 mt-2 rounded-md"
+                            />
+                            <input type="hidden" name='reply_to' value={comment.id}/>
+                            <RiSendPlane2Fill className='mb-4 mt-2 relative right-[2rem] text-gray-400 hover:text-gray-300 transition cursor-pointer' />
+                        </div>
 
-                        {loading ?
-                            <>
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor"
-                                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                Sending...
-                            </> : <>Send</>
-                        }
-                    </button>
                 </form>
             }
         </div>
