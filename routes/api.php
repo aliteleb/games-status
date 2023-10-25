@@ -49,5 +49,6 @@ Route::middleware(ApiAuthenticate::class)->group(function () {
     Route::post('/games/{game_id}/unfollow', [GameController::class, 'unfollow'])->name('game.follow');
 
     Route::post('/comments/create', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/comment/vote', [CommentController::class, 'vote'])->name('comment.vote');
 
 });

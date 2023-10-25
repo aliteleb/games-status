@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Game;
+use App\Models\Reaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -38,13 +39,13 @@ class CommentController extends Controller
         $game_id = null;
         $parent_id = null;
 
-        if($reply_to){
+        if ($reply_to) {
             $parent = Comment::find($reply_to);
             $game_id = $parent->game_id;
             $parent_id = $parent->id;
         }
 
-        if(!$parent){
+        if (!$parent) {
             $game = Game::select('id')->where('slug', $slug)->firstOrFail();
             $game_id = $game->id;
         }
@@ -60,18 +61,18 @@ class CommentController extends Controller
 
         $comments = Comment::where('game_id', $game_id)
             ->whereNull('reply_to')
-            ->with(['user','replies', 'reactions'])
+            ->with(['user', 'replies', 'reactions'])
             ->latest()->get();
         $comments->map(function ($comment) use ($user) {
             $comment->voted = null;
-            $comment->reactions->map(function ($reaction) use ($comment, $user){
-                if($reaction->user_id == $user->id)
+            $comment->reactions->map(function ($reaction) use ($comment, $user) {
+                if ($reaction->user_id == $user->id)
                     $comment->voted = $reaction->type;
             });
             $comment->votes = count($comment->reactions);
 
 
-            if($comment->user)
+            if ($comment->user)
                 $comment->username = $comment->user->username;
             else
                 $comment->username = 'N/A';
@@ -87,5 +88,31 @@ class CommentController extends Controller
             message: 'Comment created successfully',
         );
 
+    }
+
+    public function vote(Request $request)
+    {
+        $comment_id = $request->input('id');
+        $vote_type = $request->input('vote');
+
+        if ($vote_type !== 'up' && $vote_type !== 'down') {
+            return response()->api(
+                status: "error",
+                message: __("Whoops! Something went wrong."),
+                status_code: 400,
+            );
+        }
+
+        $comment = Comment::find($comment_id);
+
+        Reaction::updateOrCreate([
+            'comment_id' => $comment->id,
+            'type' => $vote_type,
+        ]);
+
+        return response()->api(
+            status: "success",
+            message: __("Voted successfully")
+        );
     }
 }
