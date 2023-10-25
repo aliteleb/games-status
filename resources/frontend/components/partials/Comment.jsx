@@ -255,7 +255,8 @@ function Comment(props) {
                                 type="text"
                                 autoComplete='one-time-code'
                                 id={`reply_input_${comment.id}`}
-                                className="bg-transparent w-full text-md h-10 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 pr-[10rem] mb-4 mt-2 rounded-md"
+                                placeholder='Write a comment'
+                                className="bg-transparent w-full text-md h-10 transition ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 px-4 pr-[10rem] mb-4 mt-2 rounded-md"
                             />
                             <input type="hidden" name='reply_to' value={comment.id}/>
                             <RiSendPlane2Fill className='mb-4 mt-2 relative right-[2rem] text-gray-400 hover:text-gray-300 transition cursor-pointer' />
