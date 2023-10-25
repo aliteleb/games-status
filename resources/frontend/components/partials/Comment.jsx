@@ -74,6 +74,40 @@ function Comment(props) {
         }))
     }
 
+    let handleVote = (e) => {
+
+        if (loading) {
+            return;
+        }
+
+        let id = e.currentTarget.getAttribute("data-id")
+        let vote = e.currentTarget.getAttribute("data-vote")
+
+        let oldComment = {...comment}
+        let newVote = vote === "up" ? comment.votes + 1 : comment.votes - 1
+
+        setComment(prevComment => ({
+            ...prevComment,
+            votes: newVote,
+            voted: vote
+        }))
+
+        ApiClient().post('/comment/vote', {
+            id: id,
+            vote: vote,
+        })
+        .then(res => 
+        {
+            console.log(res);
+        })
+        .catch(err =>
+            {
+                setComment(oldComment)
+                toast.error(err.response.data.message);
+            })
+    }
+
+
     return (
         <div className='border-b-2 border-gray-500'>
             <article className="p-6 text-base rounded-lg">
@@ -113,6 +147,9 @@ function Comment(props) {
                     {comment?.votes !== null &&
                         <div className='flex flex-col items-center'>
                             <button
+                                data-id={comment?.id}
+                                data-vote="up"
+                                onClick={handleVote}
                                 className={`${comment?.voted === "up" ? "text-green-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}
                             >
                                 <IoIosArrowUp/>
@@ -121,6 +158,9 @@ function Comment(props) {
                                 className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${comment?.votes > 0 ? 'text-green-600' : comment?.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{comment?.votes}
                             </div>
                             <button
+                                data-id={comment?.id}
+                                data-vote="down"
+                                onClick={handleVote}
                                 className={`${comment?.voted === "down" ? "text-red-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}>
                                 <IoIosArrowDown/>
                             </button>
