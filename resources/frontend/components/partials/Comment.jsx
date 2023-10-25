@@ -21,11 +21,15 @@ function Comment(props) {
     let formRef = React.useRef(null)
 
     let handleReplySubmit = (e) => {
+        if(loading){
+            return ""
+        }
         e.preventDefault();
         setLoading(true);
 
         let formData = new FormData(formRef.current);
 
+        setLoading(true)
         ApiClient().post(`/comments/create`, formData)
             .then((res) => {
                 setLoading(false);

@@ -4,6 +4,7 @@ import Comment from '../partials/Comment'
 import ApiClient from '../../services/ApiClient'
 import Skeleton from 'react-loading-skeleton';
 import {toast} from 'react-hot-toast';
+import {RiSendPlane2Fill} from 'react-icons/ri'
 
 function Game() {
 
@@ -14,6 +15,7 @@ function Game() {
         comment_value: "",
     })
     let [comments, setComments] = React.useState([])
+    let [loading, setLoading] = React.useState(false)
 
     let [game, setGame] = React.useState(
         {
@@ -109,17 +111,23 @@ function Game() {
 
 
     let handleSubmit = (e) => {
+        if(loading){
+            return ""
+        }
         e.preventDefault()
         setMainCommentLoading(true)
 
+        setLoading(true)
         ApiClient().post(`/comments/create`, {
             'slug': slug,
             'body': createComment.comment_value
         })
             .then(res => {
+                setLoading(false)
                 setMainCommentLoading(false)
                 setComments(res.data.data)
                 setCreateComment({comment_value: ""})
+
 
                 setTimeout(() => {
                     const body = document.body,
@@ -135,6 +143,7 @@ function Game() {
                 }, 50)
             })
             .catch(err => {
+                setLoading(false)
                 setMainCommentLoading(false)
                 let message = err.response.data.message
                 if (Array.isArray(err.response.data.data.body) && err.response.data.data.body.length > 0) {
@@ -244,7 +253,7 @@ function Game() {
                             </h2>
                         </div>
                         <div className="mb-6">
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit} className='flex items-center'>
                                 <input type="text"
                                        autoComplete='one-time-code'
                                        name='comment_value'
@@ -255,22 +264,8 @@ function Game() {
                                        required=""
                                        onChange={handleChange}
                                 />
+                                <RiSendPlane2Fill onClick={handleSubmit} className=' mb-4 relative right-[2rem] text-gray-400 hover:text-gray-300 transition cursor-pointer'/>
                             </form>
-                            <button onClick={handleSubmit} type="button"
-                                    className={`transition text-gray-300 hover:text-white border border-red-700 hover:bg-red-800 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ${mainCommentLoading ? 'disabled:bg-black/20  disabled:border-black/10 dsiabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
-                                    disabled={mainCommentLoading}
-                            >
-                                {mainCommentLoading ?
-                                    <>
-                                        <svg className="animate-spin -ml-1 mr-3 h-4 w-4 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                            <path className="opacity-75" fill="currentColor"
-                                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
-                                        Sending...
-                                    </> : <>Send</>
-                                }
-                            </button>
 
                         </div>
                         <div id='comments'>
