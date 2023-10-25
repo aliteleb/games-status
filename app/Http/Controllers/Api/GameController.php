@@ -81,7 +81,7 @@ class GameController extends Controller
             ->withCount('users as followers_count')
             ->findOrFail($game_id);
 
-        $game->users()->sync([auth()->user()->id]);
+        $game->users()->syncWithoutDetaching([auth()->user()->id]);
 
         return response()->api(
             data: ['followers_count' => $game->users->count()],
