@@ -89,6 +89,7 @@ const GameCard = (props) => {
                         type='checkbox'
                         checked={follow}
                         onChange={handleFollowChange}
+                        onClick={(e) => e.stopPropagation()}
                         className="before:ring-2 before:ring-gray-700 before:hover:ring-2 before:hover:bg-gray-700/70 before:checked:bg-gray-700 before:hover:checked:bg-gray-700"/>
                 }
             </div>
