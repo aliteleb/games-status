@@ -297,7 +297,7 @@ function Game() {
                                        required=""
                                        onChange={handleChange}
                                 />
-                                <RiSendPlane2Fill onClick={handleSubmit} className=' mb-4 absolute right-[1.5rem] text-gray-400 hover:text-gray-300 transition cursor-pointer' style={{fontSize: "25px"}}/>
+                                <RiSendPlane2Fill onClick={handleSubmit} className=' mb-4 absolute top-[1.2rem] right-[1.5rem] text-gray-400 hover:text-gray-300 transition cursor-pointer' style={{fontSize: "25px"}}/>
                             </form>
 
                         </div>
