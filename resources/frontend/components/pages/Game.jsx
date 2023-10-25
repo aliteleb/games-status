@@ -49,7 +49,6 @@ function Game() {
                 html.offsetHeight
             );
             // const footerHeight = document.getElementsByTagName('footer')[0].offsetHeight;
-
             document.getElementById('blurred-bg').style.height = height + 'px';
 
         }, 500)

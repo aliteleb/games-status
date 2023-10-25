@@ -32,7 +32,7 @@ class Comment extends Model
     }
     public function replies()
     {
-        return $this->hasMany(Comment::class, 'reply_to')->orderBy('id', 'desc');
+        return $this->hasMany(Comment::class, 'reply_to');
     }
     public function getTimeAttribute()
     {

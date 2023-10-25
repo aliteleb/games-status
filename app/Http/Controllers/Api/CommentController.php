@@ -49,7 +49,7 @@ class CommentController extends Controller
             $game_id = $game->id;
         }
 
-        Comment::create([
+        $comment = Comment::create([
             'user_id' => auth()->user()->id,
             'game_id' => $game_id,
             'body' => $body,
@@ -79,6 +79,8 @@ class CommentController extends Controller
             unset($comment->reactions);
             unset($comment->user);
         });
+
+        // if($reply_to) $comments = $comment;
 
         return response()->api(
             data: $comments,
