@@ -53,12 +53,30 @@ function Game() {
 
         }, 500)
 
-        ApiClient().get(`/game/${slug}`)
-        .then(res => {
-            setGame(res.data.data)
-            setComments(res.data.data.comments)
-        })
-        .catch(err => console.log('Failed to get data', err))
+
+        setInterval(()=>{
+            ApiClient().get(`/game/${slug}`)
+                .then(res => {
+                    setGame(res.data.data)
+                    setComments(res.data.data.comments)
+
+                    setTimeout(()=>{
+                        const body = document.body,
+                            html = document.documentElement;
+                        const height = Math.max(
+                            body.scrollHeight,
+                            body.offsetHeight,
+                            html.clientHeight,
+                            html.scrollHeight,
+                            html.offsetHeight
+                        );
+                        document.getElementById('blurred-bg').style.height = height + 'px';
+
+                    }, 50)
+                })
+                .catch(err => console.log('Failed to get data', err))
+        }, 30000);
+
 
     }, []);
 
@@ -102,6 +120,17 @@ function Game() {
             setComments(res.data.data)
             setCreateComment({comment_value: ""})
             toast.success(res.data.message)
+
+            const body = document.body,
+                html = document.documentElement;
+            const height = Math.max(
+                body.scrollHeight,
+                body.offsetHeight,
+                html.clientHeight,
+                html.scrollHeight,
+                html.offsetHeight
+            );
+            document.getElementById('blurred-bg').style.height = height + 'px';
         })
         .catch(err => {
             setMainCommentLoading(false)
