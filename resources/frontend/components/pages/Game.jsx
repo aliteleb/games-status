@@ -286,7 +286,7 @@ function Game() {
                             </h2>
                         </div>
                         <div className="mb-6">
-                            <form onSubmit={handleSubmit} className='flex items-center'>
+                            <form onSubmit={handleSubmit} className='block relative '>
                                 <input type="text"
                                        autoComplete='one-time-code'
                                        name='comment_value'
@@ -297,7 +297,7 @@ function Game() {
                                        required=""
                                        onChange={handleChange}
                                 />
-                                <RiSendPlane2Fill onClick={handleSubmit} className=' mb-4 relative right-[2.5rem] text-gray-400 hover:text-gray-300 transition cursor-pointer' style={{fontSize: "25px"}}/>
+                                <RiSendPlane2Fill onClick={handleSubmit} className=' mb-4 absolute right-[1.5rem] text-gray-400 hover:text-gray-300 transition cursor-pointer' style={{fontSize: "25px"}}/>
                             </form>
 
                         </div>
