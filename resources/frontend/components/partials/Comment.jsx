@@ -237,6 +237,9 @@ function Comment(props) {
                             {reply?.votes !== null &&
                                 <div className='flex flex-col items-center'>
                                     <button
+                                        data-id={reply?.id}
+                                        data-vote="up"
+                                        onClick={handleVote}
                                         className={`${reply?.voted === "up" ? "text-green-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}
                                     >
                                         <IoIosArrowUp/>
@@ -245,7 +248,11 @@ function Comment(props) {
                                         className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${reply?.votes > 0 ? 'text-green-600' : reply?.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{reply?.votes}
                                     </div>
                                     <button
-                                        className={`${reply?.voted === "down" ? "text-red-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}>
+                                        data-id={reply?.id}
+                                        data-vote="down"
+                                        onClick={handleVote}
+                                        className={`${reply?.voted === "down" ? "text-red-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}
+                                        >
                                         <IoIosArrowDown/>
                                     </button>
                                 </div>
