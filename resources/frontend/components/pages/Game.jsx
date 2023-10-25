@@ -38,6 +38,8 @@ function Game() {
         }
     )
 
+    let [follow, setFollow] = React.useState(game.is_following || false)
+
     useEffect(() => {
 
         setTimeout(() => {
@@ -154,6 +156,28 @@ function Game() {
             })
     }
 
+
+    const handleFollowChange = async () => {
+        const newFollowState = !follow;
+        setFollow(newFollowState);
+
+        const action = newFollowState ? 'follow' : 'unfollow';
+
+        ApiClient()
+          .post(`/games/${game.id}/${action}`)
+          .then((response) => {
+            if (response.data.status === "success") {
+                action === "follow" ? toast.success(response.data.message) : toast(response.data.message)
+            } else {
+              setFollow((prevFollow) => !prevFollow);
+              toast.error(response.data.message);
+            }
+          })
+          .catch((error) => {
+            setFollow((prevFollow) => !prevFollow);
+          });
+      };
+
     return (
         <>
             <div id="blurred-bg" className={`w-full h-screen absolute top-0 left-0 overflow-hidden`}>
@@ -237,6 +261,8 @@ function Game() {
                             </div>
                             <div className="flex flex-wrap justify-center py-2 rounded ">
                                 <input
+                                    checked={game.is_following}
+                                    onChange={handleFollowChange}
                                     type='checkbox'
                                     className="mx-4 w-32 h-9 appearance-none border border-red-700 cursor-pointer transition rounded-full after:font-extrabold before:h-full pt-1 pl-2 hover:bg-red-700 relative after:absolute after:top-[20%] after:left-2 checked:after:content-['✓'] checked:bg-red-700 checked:border-red-700 before:block before:text-center checked:before:content-['Following'] before:content-['Follow']"/>
                             </div>
