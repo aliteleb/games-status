@@ -105,11 +105,24 @@ class CommentController extends Controller
 
         $comment = Comment::find($comment_id);
 
-        Reaction::updateOrCreate([
-            'user_id' => auth()->user()->id,
-            'comment_id' => $comment->id,
-            'type' => $vote_type,
-        ]);
+        $user = auth()->user()->id;
+        $reaction = Reaction::where('comment_id', $comment->id)
+            ->where('user_id', $user->id)
+            ->firstOrFail();
+
+        if($reaction)
+        {
+            $reaction->type = $vote_type;
+            $reaction->save();
+        }
+        else{
+            Reaction::create([
+                'user_id' => auth()->user()->id,
+                'comment_id' => $comment->id,
+                'type' => $vote_type,
+            ]);
+        }
+
 
         return response()->api(
             status: "success",
