@@ -257,7 +257,7 @@ function Comment(props) {
                         />
                         <input type="hidden" name='reply_to' value={comment.id}/>
                     <button
-                        className={`transition text-gray-300 hover:text-white h-10 w-[8.8rem] self-center md:ml-[-8.8rem] md:border-l md:border-0 border border-gray-400/50 hover:bg-gray-800/60 focus:outline-none font-medium rounded-lg md:rounded-r-lg text-sm px-5 md:py-2.5 text-center mb-2 ${loading ? 'disabled:bg-transparent disabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
+                        className={`transition text-gray-300 hover:text-white h-10 w-[8.8rem] self-center md:ml-[-8.8rem] md:border-l md:border-0 border border-gray-400/50 hover:bg-gray-800/60 focus:outline-none font-medium rounded-lg md:rounded-none text-sm px-5 md:py-2.5 text-center mb-2 ${loading ? 'disabled:bg-transparent disabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
                         disabled={loading}>
 
                         {loading ?
