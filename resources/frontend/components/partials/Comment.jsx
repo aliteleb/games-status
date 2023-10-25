@@ -243,7 +243,7 @@ function Comment(props) {
             }
 
             {replyForm &&
-                <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap w-full  mt-3">
+                <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap w-full -mt-5">
                         <div className="block mb-2 text-sm font-medium text-gray-300 w-full">
                             to <span className='text-gray-400 text-sm underline'>{comment.username}</span>
                         </div>
@@ -254,11 +254,11 @@ function Comment(props) {
                             type="text"
                             autoComplete='one-time-code'
                             id={`reply_input_${comment.id}`}
-                            className="bg-transparent w-2/3 text-md h-10 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 mt-2 rounded-md"
+                            className="bg-transparent w-2/3 text-md h-10 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 pr-[10rem] mb-4 mt-2 rounded-md"
                         />
                         <input type="hidden" name='reply_to' value={comment.id}/>
                     <button
-                        className={`transition text-gray-300 hover:text-white h-10 w-[8.8rem] self-center ml-[-8.8rem] border-l border-gray-400/50 hover:bg-gray-800/60 focus:outline-none font-medium rounded-r-lg text-sm px-5 py-2.5 text-center mb-2 ${loading ? 'disabled:bg-transparent disabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
+                        className={`transition text-gray-300 hover:text-white h-10 w-[8.8rem] self-center md:ml-[-8.8rem] md:border-l md:border-0 border border-gray-400/50 hover:bg-gray-800/60 focus:outline-none font-medium rounded-lg md:rounded-r-lg text-sm px-5 md:py-2.5 text-center mb-2 ${loading ? 'disabled:bg-transparent disabled:text-[#bababa] disabled:cursor-not-allowed hover:bg-[#282c39]' : ''}`}
                         disabled={loading}>
 
                         {loading ?
