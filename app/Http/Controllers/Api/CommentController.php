@@ -105,7 +105,7 @@ class CommentController extends Controller
 
         $comment = Comment::find($comment_id);
 
-        $user = auth()->user()->id;
+        $user = auth()->user();
         $reaction = Reaction::where('comment_id', $comment->id)
             ->where('user_id', $user->id)
             ->firstOrFail();
