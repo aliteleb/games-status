@@ -64,9 +64,13 @@ class Comment extends Model
 
     }
 
-    public function getVotedAttribute() {
+    public function getVotedAttribute()
+    {
         $vote = null;
-        $user_id = auth()->user()->id;
+        $user = auth()->user();
+        $user_id = null;
+        if($user)
+            $user_id = $user->id;
 
         foreach ($this->reactions as $reaction) {
             if ($reaction->user_id == $user_id) {
