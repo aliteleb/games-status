@@ -188,14 +188,12 @@ function Comment(props) {
 
             </article>
             {comment?.replies?.length > 0 && comment.replies.map((reply, index) => (
-                <Comment info={reply} key={index} setComments={props.setComments} className="pl-16"/>
+                <Comment info={reply} key={index} setComments={props.setComments} className="border-l-[3rem] border-l-black/10"/>
             ))}
 
             {replyForm &&
                 <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap">
-                    <div className="block text-sm font-medium text-gray-300 w-full">
-                        to <span className='text-gray-400 text-sm underline'>{comment.username}</span>
-                    </div>
+                    {/*<div className="block text-sm font-medium text-gray-300 w-full"> to <span className='text-gray-400 text-sm underline'>{comment.username}</span>  </div>*/}
                     <div className='flex items-center w-full'>
                         <input
                             onChange={handleChange}
