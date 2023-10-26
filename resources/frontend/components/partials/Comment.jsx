@@ -91,10 +91,9 @@ function Comment(props) {
     let removeComment = () => {
         ApiClient().delete("/comment/delete/" + comment.id)
         .then(res => {
-            refreshPageSize()
             props.setComments(res.data.data)
-            toast.success(res.response.data.message)
-
+            toast.success(res.data.message)
+            refreshPageSize()
         })
         .catch(err => {
             toast.error(err.response.data.message);

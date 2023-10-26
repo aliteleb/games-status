@@ -8,6 +8,8 @@ import {RiSendPlane2Fill} from 'react-icons/ri'
 
 
 export const refreshPageSize = () => {
+    document.getElementById('blurred-bg').style.height = '100vh';
+
     setTimeout(() => {
         const body = document.body,
             html = document.documentElement;
@@ -20,7 +22,7 @@ export const refreshPageSize = () => {
         );
         document.getElementById('blurred-bg').style.height = height + 'px';
 
-    }, 100)
+    }, 0)
 }
 
 function Game() {
@@ -108,7 +110,6 @@ function Game() {
             return ""
         }
         e.preventDefault()
-        setMainCommentLoading(true)
 
         setLoading(true)
         ApiClient().post(`/comments/create`, {
@@ -117,7 +118,6 @@ function Game() {
         })
             .then(res => {
                 setLoading(false)
-                setMainCommentLoading(false)
                 setComments(res.data.data)
                 setCreateComment({comment_value: ""})
 
@@ -125,7 +125,6 @@ function Game() {
             })
             .catch(err => {
                 setLoading(false)
-                setMainCommentLoading(false)
                 let message = err.response.data.message
                 if (Array.isArray(err.response.data.data.body) && err.response.data.data.body.length > 0) {
                     message = err.response.data.data.body[0]
