@@ -50,5 +50,6 @@ Route::middleware(ApiAuthenticate::class)->group(function () {
 
     Route::post('/comments/create', [CommentController::class, 'store'])->name('comment.store');
     Route::post('/comment/vote', [CommentController::class, 'vote'])->name('comment.vote');
+    Route::delete('/comment/delete/{id}', [CommentController::class, 'delete'])->name('comment.delete');
 
 });

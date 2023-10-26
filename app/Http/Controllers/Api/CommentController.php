@@ -35,7 +35,6 @@ class CommentController extends Controller
         }
 
         $parent = null;
-        $game = null;
         $game_id = null;
         $parent_id = null;
 
@@ -50,39 +49,15 @@ class CommentController extends Controller
             $game_id = $game->id;
         }
 
-        $comment = Comment::create([
+        Comment::create([
             'user_id' => auth()->user()->id,
             'game_id' => $game_id,
             'body' => $body,
             'reply_to' => $parent_id,
         ]);
 
-        $user = auth()->user();
-
-        $comments = Comment::where('game_id', $game_id)
-            ->whereNull('reply_to')
-            ->with(['user', 'replies', 'reactions'])
-            ->latest()->get();
-        $comments->map(function ($comment) use ($user) {
-            $comment->voted = null;
-            $comment->reactions->map(function ($reaction) use ($comment, $user) {
-                if ($reaction->user_id == $user->id)
-                    $comment->voted = $reaction->type;
-            });
-
-            if ($comment->user)
-                $comment->username = $comment->user->username;
-            else
-                $comment->username = 'N/A';
-
-            unset($comment->reactions);
-            unset($comment->user);
-        });
-
-        // if($reply_to) $comments = $comment;
-
         return response()->api(
-            data: $comments,
+            data: $this->latest_comments($game_id),
             message: 'Comment created successfully',
         );
 
@@ -151,5 +126,43 @@ class CommentController extends Controller
             status: "success",
             message: __("Voted successfully")
         );
+    }
+
+    public function delete($id)
+    {
+        $comment = Comment::where(['id', $id, 'user_id', auth()->user()->id])->firstOrFail();
+        $game_id = $comment->game_id;
+        $comment->delete();
+        return response()->api(
+            data: $this->latest_comments($game_id),
+            message: 'Comment created successfully',
+        );
+    }
+
+    private function latest_comments($game_id)
+    {
+        $user = auth()->user();
+
+        $comments = Comment::where('game_id', $game_id)
+            ->whereNull('reply_to')
+            ->with(['user', 'replies', 'reactions'])
+            ->latest()->get();
+        $comments->map(function ($comment) use ($user) {
+            $comment->voted = null;
+            $comment->reactions->map(function ($reaction) use ($comment, $user) {
+                if ($reaction->user_id == $user->id)
+                    $comment->voted = $reaction->type;
+            });
+
+            if ($comment->user)
+                $comment->username = $comment->user->username;
+            else
+                $comment->username = 'N/A';
+
+            unset($comment->reactions);
+            unset($comment->user);
+        });
+
+        return $comments;
     }
 }
