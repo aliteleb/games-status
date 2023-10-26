@@ -130,7 +130,7 @@ class CommentController extends Controller
 
     public function delete($id)
     {
-        $comment = Comment::where(['id', $id, 'user_id', auth()->user()->id])->firstOrFail();
+        $comment = Comment::where(['id' => $id, 'user_id' => auth()->user()->id])->firstOrFail();
         $game_id = $comment->game_id;
         $comment->delete();
         return response()->api(
