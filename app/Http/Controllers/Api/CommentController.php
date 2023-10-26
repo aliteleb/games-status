@@ -135,7 +135,7 @@ class CommentController extends Controller
         $comment->delete();
         return response()->api(
             data: $this->latest_comments($game_id),
-            message: 'Comment deleted successfully',
+            message: 'Comment deleted',
         );
     }
 
