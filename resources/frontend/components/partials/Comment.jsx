@@ -129,9 +129,9 @@ function Comment(props) {
                         <BiDotsHorizontalRounded fontSize="30px"/>
                     </button>
                     {/* Dropdown menu */}
-                    <div ref={showDropMenu} onClick={removeComment} className={`hidden z-10 w-36 bg-black/20 rounded divide-y shadow absolute mt-[70px]`} style={{right: '10px'}}>
-                        <ul className="py-1 text-sm text-gray-300 y-200">
-                            <li><span className="block py-2 px-4 transition hover:bg-black/30">Remove</span></li>
+                    <div ref={showDropMenu} onClick={removeComment} className={`hidden z-10 w-36 bg-black/20 rounded overflow-hidden divide-y shadow absolute mt-[70px]`} style={{right: '10px'}}>
+                        <ul className="text-sm text-gray-300 y-200">
+                            <li><span className="cursor-pointer block py-2 px-4 transition hover:bg-black/30">Remove</span></li>
                         </ul>
                     </div>
                 </footer>
