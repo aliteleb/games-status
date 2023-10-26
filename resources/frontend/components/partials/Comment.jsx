@@ -169,6 +169,7 @@ function Comment(props) {
                             {comment?.body &&
                                 <button onClick={() => {
                                     setReplyForm(!replyForm);
+                                    refreshPageSize();
                                     setTimeout(() => {
                                         document.getElementById('reply_input_' + comment.id).focus();
                                     }, 50);

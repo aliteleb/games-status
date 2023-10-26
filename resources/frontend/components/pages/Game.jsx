@@ -8,7 +8,7 @@ import {RiSendPlane2Fill} from 'react-icons/ri'
 
 
 export const refreshPageSize = () => {
-    document.getElementById('blurred-bg').style.height = '100vh';
+    //document.getElementById('blurred-bg').style.height = '100vh';
 
     setTimeout(() => {
         const body = document.body,
@@ -21,6 +21,9 @@ export const refreshPageSize = () => {
             html.offsetHeight
         );
         document.getElementById('blurred-bg').style.height = height + 'px';
+        const footer = document.getElementById('footer');
+        footer.style.position = 'absolute';
+        footer.style.top = (height - 105) + 'px';
 
     }, 0)
 }
