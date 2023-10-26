@@ -6,11 +6,27 @@ import Skeleton from 'react-loading-skeleton';
 import {toast} from 'react-hot-toast';
 import {RiSendPlane2Fill} from 'react-icons/ri'
 
+
+export const refreshPageSize = () => {
+    setTimeout(() => {
+        const body = document.body,
+            html = document.documentElement;
+        const height = Math.max(
+            body.scrollHeight,
+            body.offsetHeight,
+            html.clientHeight,
+            html.scrollHeight,
+            html.offsetHeight
+        );
+        document.getElementById('blurred-bg').style.height = height + 'px';
+
+    }, 100)
+}
+
 function Game() {
 
     const {slug} = useParams(null)
 
-    let [mainCommentLoading, setMainCommentLoading] = React.useState(false)
     let [createComment, setCreateComment] = React.useState({
         comment_value: "",
     })
@@ -38,24 +54,12 @@ function Game() {
         }
     )
 
+
     let [follow, setFollow] = React.useState(game.is_following || false)
 
     useEffect(() => {
 
-        setTimeout(() => {
-            const body = document.body,
-                html = document.documentElement;
-            const height = Math.max(
-                body.scrollHeight,
-                body.offsetHeight,
-                html.clientHeight,
-                html.scrollHeight,
-                html.offsetHeight
-            );
-            // const footerHeight = document.getElementsByTagName('footer')[0].offsetHeight;
-            document.getElementById('blurred-bg').style.height = height + 'px';
-
-        }, 500)
+        refreshPageSize()
 
         const fetchGame = () => {
             ApiClient().get(`/game/${slug}`)
@@ -63,20 +67,7 @@ function Game() {
                     setGame(res.data.data)
                     setComments(res.data.data.comments)
                     setFollow(res.data.data.is_following)
-
-                    setTimeout(() => {
-                        const body = document.body,
-                            html = document.documentElement;
-                        const height = Math.max(
-                            body.scrollHeight,
-                            body.offsetHeight,
-                            html.clientHeight,
-                            html.scrollHeight,
-                            html.offsetHeight
-                        );
-                        document.getElementById('blurred-bg').style.height = height + 'px';
-
-                    }, 50)
+                    refreshPageSize()
                 })
                 .catch(err => console.log('Failed to get data', err))
         }
@@ -130,19 +121,7 @@ function Game() {
                 setComments(res.data.data)
                 setCreateComment({comment_value: ""})
 
-
-                setTimeout(() => {
-                    const body = document.body,
-                        html = document.documentElement;
-                    const height = Math.max(
-                        body.scrollHeight,
-                        body.offsetHeight,
-                        html.clientHeight,
-                        html.scrollHeight,
-                        html.offsetHeight
-                    );
-                    document.getElementById('blurred-bg').style.height = height + 'px';
-                }, 50)
+                refreshPageSize()
             })
             .catch(err => {
                 setLoading(false)

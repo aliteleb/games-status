@@ -4,6 +4,8 @@ import Skeleton from "react-loading-skeleton";
 import ApiClient from '../../services/ApiClient'
 import {toast} from 'react-hot-toast';
 import {RiSendPlane2Fill} from 'react-icons/ri'
+import {BiDotsHorizontalRounded} from 'react-icons/bi'
+import { refreshPageSize } from '../pages/Game';
 
 function Comment(props) {
 
@@ -36,19 +38,7 @@ function Comment(props) {
                 props.setComments(res.data.data);
                 setReplyForm(!replyForm);
 
-                setTimeout(() => {
-                    const body = document.body,
-                        html = document.documentElement;
-                    const height = Math.max(
-                        body.scrollHeight,
-                        body.offsetHeight,
-                        html.clientHeight,
-                        html.scrollHeight,
-                        html.offsetHeight
-                    );
-                    document.getElementById('blurred-bg').style.height = height + 'px';
-
-                }, 50)
+                refreshPageSize()
             })
             .catch((err) => {
                 setLoading(false);
@@ -73,17 +63,14 @@ function Comment(props) {
         }))
     }
 
-    let handleVote = (e) => {
+    let handleVote = (vote) => {
 
         if (loading) return;
 
-        let id = e.currentTarget.getAttribute("data-id")
-        let vote = e.currentTarget.getAttribute("data-vote")
-
-        let oldComment = {...comment}
+        let oldComment = comment
 
         ApiClient().post('/comment/vote', {
-            id: id,
+            id: comment.id,
             vote: vote,
         })
             .then(res => {
@@ -94,6 +81,28 @@ function Comment(props) {
                 toast.error(err.response.data.message);
             })
     }
+
+    let showDropMenu = React.useRef(null)
+
+    let toggleClass = () => {
+        showDropMenu.current.classList.toggle("hidden");
+    }
+
+    let removeComment = () => {
+        ApiClient().delete("/comment/delete/" + comment.id)
+        .then(res => {
+            refreshPageSize()
+            props.setComments(res.data.data)
+            toast.success(res.response.data.message)
+
+        })
+        .catch(err => {
+            toast.error(err.response.data.message);
+        })
+
+        toggleClass()
+    }
+
 
     return (
         <div className={props.className}>
@@ -116,17 +125,13 @@ function Comment(props) {
                             }
                         </p>
                     </div>
-                    <button className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
-                        <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-                        </svg>
+                    <button onClick={toggleClass} className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
+                        <BiDotsHorizontalRounded fontSize="30px"/>
                     </button>
                     {/* Dropdown menu */}
-                    <div className="hidden z-10 w-36 bg-black/20 rounded divide-y shadow absolute mt-[140px]" style={{right: '10px'}}>
+                    <div ref={showDropMenu} onClick={removeComment} className={`hidden z-10 w-36 bg-black/20 rounded divide-y shadow absolute mt-[70px]`} style={{right: '10px'}}>
                         <ul className="py-1 text-sm text-gray-300 y-200">
-                            <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Edit</a></li>
-                            <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Remove</a></li>
-                            <li><a href="#" className="block py-2 px-4 transition hover:bg-black/30">Report</a></li>
+                            <li><span className="block py-2 px-4 transition hover:bg-black/30">Remove</span></li>
                         </ul>
                     </div>
                 </footer>
@@ -134,9 +139,8 @@ function Comment(props) {
                     {comment?.votes !== null &&
                         <div className='flex flex-col items-center'>
                             <button
-                                data-id={comment?.id}
                                 data-vote="up"
-                                onClick={handleVote}
+                                onClick={() => handleVote("up")}
                                 className={`${comment?.voted === "up" ? "text-green-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}
                             >
                                 <IoIosArrowUp/>
@@ -145,9 +149,8 @@ function Comment(props) {
                                 className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${comment?.votes > 0 ? 'text-green-600' : comment?.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{comment?.votes}
                             </div>
                             <button
-                                data-id={comment?.id}
                                 data-vote="down"
-                                onClick={handleVote}
+                                onClick={() => handleVote("down")}
                                 className={`${comment?.voted === "down" ? "text-red-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}>
                                 <IoIosArrowDown/>
                             </button>
