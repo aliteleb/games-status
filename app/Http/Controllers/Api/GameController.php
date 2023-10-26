@@ -15,6 +15,10 @@ class GameController extends Controller
     public function show(Request $request, $slug)
     {
         $user = auth()->user();
+        $user_id = null;
+        if($user)
+            $user_id = $user->id;
+
         $game = Game::select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid'])
             ->with(['protections:id,name,slug', 'groups:id,name,slug',
                 'comments' => function($query){
@@ -28,10 +32,10 @@ class GameController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-        $game->comments->map(function ($comment) use ($user) {
+        $game->comments->map(function ($comment) use ($user_id) {
             $comment->voted = null;
-            $comment->reactions->map(function ($reaction) use ($comment, $user){
-               if($reaction->user_id == $user->id)
+            $comment->reactions->map(function ($reaction) use ($comment, $user_id){
+               if($reaction->user_id == $user_id)
                    $comment->voted = $reaction->type;
             });
 
