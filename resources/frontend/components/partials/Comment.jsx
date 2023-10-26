@@ -188,12 +188,12 @@ function Comment(props) {
 
             </article>
             {comment?.replies?.length > 0 && comment.replies.map((reply, index) => (
-                <Comment info={reply} key={index} setComments={props.setComments} className="pl-12"/>
+                <Comment info={reply} key={index} setComments={props.setComments} className="pl-16"/>
             ))}
 
             {replyForm &&
-                <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap -mt-5">
-                    <div className="block mb-2 text-sm font-medium text-gray-300 w-full">
+                <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap">
+                    <div className="block text-sm font-medium text-gray-300 w-full">
                         to <span className='text-gray-400 text-sm underline'>{comment.username}</span>
                     </div>
                     <div className='flex items-center w-full'>
@@ -204,7 +204,7 @@ function Comment(props) {
                             type="text"
                             autoComplete='one-time-code'
                             id={`reply_input_${comment.id}`}
-                            placeholder='Write a comment'
+                            placeholder='Your comment ...'
                             className="bg-transparent w-full text-sm md:text-xs h-10 transition ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 px-4 pr-[10rem] mb-4 mt-2 rounded-md"
                         />
                         <input type="hidden" name='reply_to' value={comment.id}/>
