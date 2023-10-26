@@ -21,9 +21,8 @@ function Comment(props) {
     let formRef = React.useRef(null)
 
     let handleReplySubmit = (e) => {
-        if(loading){
-            return ""
-        }
+        if (loading) return "";
+
         e.preventDefault();
         setLoading(true);
 
@@ -37,7 +36,7 @@ function Comment(props) {
                 props.setComments(res.data.data);
                 setReplyForm(!replyForm);
 
-                setTimeout(()=>{
+                setTimeout(() => {
                     const body = document.body,
                         html = document.documentElement;
                     const height = Math.max(
@@ -76,32 +75,25 @@ function Comment(props) {
 
     let handleVote = (e) => {
 
-        if (loading) {
-            return;
-        }
+        if (loading) return;
 
         let id = e.currentTarget.getAttribute("data-id")
         let vote = e.currentTarget.getAttribute("data-vote")
 
         let oldComment = {...comment}
-        let newVote = vote === "up" ? comment.votes + 1 : comment.votes - 1
 
         ApiClient().post('/comment/vote', {
             id: id,
             vote: vote,
         })
-        .then(res =>
-        {
-            console.log(res);
-            props.setComments(res.data.data)
-        })
-        .catch(err =>
-            {
+            .then(res => {
+                props.setComments(res.data.data)
+            })
+            .catch(err => {
                 setComment(oldComment)
                 toast.error(err.response.data.message);
             })
     }
-
 
     return (
         <div className={props.className}>
@@ -175,14 +167,13 @@ function Comment(props) {
                             {comment?.body &&
                                 <button onClick={() => {
                                     setReplyForm(!replyForm);
-                                    setTimeout(()=>{
-                                        document.getElementById('reply_input_'+comment.id).focus();
+                                    setTimeout(() => {
+                                        document.getElementById('reply_input_' + comment.id).focus();
                                     }, 50);
                                 }} type="button"
                                         className="flex items-center text-sm text-gray-500 hover:text-gray-400 hover:underline y-400 font-medium">
                                     <svg className="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
-                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                              d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
                                     </svg>
                                     Reply
                                 </button>
@@ -191,41 +182,39 @@ function Comment(props) {
                             {!(comment?.body) &&
                                 <Skeleton width={'4rem'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
                             }
-
                         </div>
                     </div>
                 </div>
 
             </article>
-            {(comment?.replies?.length > 0) &&
-                comment.replies.map((reply, index) => {
-                    return <Comment info={reply} key={index} className="pl-12"/>
-                })
-            }
+            {comment?.replies?.length > 0 && comment.replies.map((reply, index) => (
+                <Comment info={reply} key={index} setComments={props.setComments} className="pl-12"/>
+            ))}
 
             {replyForm &&
                 <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap -mt-5">
-                        <div className="block mb-2 text-sm font-medium text-gray-300 w-full">
-                            to <span className='text-gray-400 text-sm underline'>{comment.username}</span>
-                        </div>
-                        <div className='flex items-center w-full'>
-                            <input
-                                onChange={handleChange}
-                                name='body'
-                                value={replyInput.body}
-                                type="text"
-                                autoComplete='one-time-code'
-                                id={`reply_input_${comment.id}`}
-                                placeholder='Write a comment'
-                                className="bg-transparent w-full text-sm md:text-xs h-10 transition ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 px-4 pr-[10rem] mb-4 mt-2 rounded-md"
-                            />
-                            <input type="hidden" name='reply_to' value={comment.id}/>
-                            <RiSendPlane2Fill onClick={handleReplySubmit} className='mb-4 mt-2 relative right-[2rem] text-gray-400 hover:text-gray-300 transition cursor-pointer' />
-                        </div>
+                    <div className="block mb-2 text-sm font-medium text-gray-300 w-full">
+                        to <span className='text-gray-400 text-sm underline'>{comment.username}</span>
+                    </div>
+                    <div className='flex items-center w-full'>
+                        <input
+                            onChange={handleChange}
+                            name='body'
+                            value={replyInput.body}
+                            type="text"
+                            autoComplete='one-time-code'
+                            id={`reply_input_${comment.id}`}
+                            placeholder='Write a comment'
+                            className="bg-transparent w-full text-sm md:text-xs h-10 transition ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 px-4 pr-[10rem] mb-4 mt-2 rounded-md"
+                        />
+                        <input type="hidden" name='reply_to' value={comment.id}/>
+                        <RiSendPlane2Fill onClick={handleReplySubmit} className='mb-4 mt-2 relative right-[2rem] text-gray-400 hover:text-gray-300 transition cursor-pointer'/>
+                    </div>
 
                 </form>
             }
         </div>
     )
 }
+
 export default Comment
