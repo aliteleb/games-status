@@ -56,6 +56,10 @@ export default function SignUp({loading, setLoading}) {
 
     };
 
+    let resetLoading = () => {
+        setLoading(false)
+    }
+
 
     return (
         <>
@@ -388,6 +392,7 @@ export default function SignUp({loading, setLoading}) {
                             <div className='text-gray-400 text-md mx-4 mt-6'>You have registered for your account</div>
                             <Link to="/login" className='text-gray-400 hover:text-gray-300 transition mt-12'>
                                 <span
+                                    onClick={resetLoading}
                                     className="text-sm p-[16px] text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 transition">Login to your account</span>
                             </Link>
                         </div>
