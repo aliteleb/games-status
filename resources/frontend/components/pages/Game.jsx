@@ -22,7 +22,7 @@ export const refreshPageSize = () => {
 
 function Game() {
 
-    const {slug} = useParams(null)
+    const {slug} = useParams()
 
     let [createComment, setCreateComment] = React.useState({
         comment_value: "",
@@ -32,7 +32,7 @@ function Game() {
 
     let [game, setGame] = React.useState({})
 
-    let [follow, setFollow] = React.useState(game?.is_following || false)
+    let [follow, setFollow] = React.useState(false)
 
     useEffect(() => {
 
@@ -53,7 +53,6 @@ function Game() {
         setInterval(fetchGame, 30000);
 
     }, []);
-
 
     let handleChange = (e) => {
         setCreateComment(prevComment => ({
