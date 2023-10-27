@@ -372,7 +372,7 @@ export default function SignUp({loading, setLoading}) {
                                     title='Custom'
                                     className='hidden'
                                 />
-                                <AiOutlineCloudUpload className='mx-3 text-4xl text-gray-300/80'/>
+                                <AiOutlineCloudUpload className='mx-3 text-4xl text-gray-300/80 hover:text-gray-300 transition'/>
                             </label>
                         </div>
                         <button onClick={handleSubmit}
