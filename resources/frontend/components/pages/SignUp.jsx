@@ -13,6 +13,7 @@ export default function SignUp({loading, setLoading}) {
         password_confirmation: "",
         email: "",
         country_code: "AF",
+        image: null,
     });
 
     let [response, setResponse] = React.useState()
@@ -65,6 +66,41 @@ export default function SignUp({loading, setLoading}) {
     // Drag & Drop
     const [isDragOver, setIsDragOver] = React.useState(false);
 
+    const handleDrop = (e) => {
+        e.preventDefault();
+        setIsDragOver(false);
+
+        const files = e.dataTransfer.files;
+
+        if (files.length > 0) {
+            const file = files[0];
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    // Set the image data in the formData state
+                    setFormData({ ...formData, image: e.target.result });
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                setFormData({ ...formData, image: e.target.result }); // Set the image in formData
+            };
+
+            reader.readAsDataURL(file);
+        }
+    };
 
     // Drag & Drop
 
@@ -371,8 +407,8 @@ export default function SignUp({loading, setLoading}) {
                         <div className='mt-6 flex flex-col'>
                             <label htmlFor="upload">Profile Picture</label>
                             <label
-                                onDragOver={() => {setIsDragOver(true)}}
-                                onDrop={() => {setIsDragOver(true)}}
+                                onDragOver={(e) => {setIsDragOver(true); e.preventDefault();}}
+                                onDrop={handleDrop}
                                 onDragLeave={() => {setIsDragOver(false)}}
                                 htmlFor="upload-image"
                                 className={`relative group mt-2 h-24 w-24 border-dashed bg-gray-700/20 border transition ${isDragOver ? "border-gray-400" : "border-gray-600"} hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
@@ -383,8 +419,11 @@ export default function SignUp({loading, setLoading}) {
                                     accept='.jpg, .jpeg, .png,'
                                     title='Custom'
                                     className='hidden'
+                                    onChange={handleImageChange}
                                 />
-                                <div className={`absolute w-full h-full transition bg-no-repeat bg-center ${isDragOver ? "scale-110" : "opacity-75"} bg-[url('/assets/images/upload-icon.svg')]`}></div>
+                                <div style={{
+                                    backgroundImage: formData.image ? `url(${formData.image})` : `url('/assets/images/upload-icon.svg')`,
+                                }} className={`absolute w-full h-full transition bg-no-repeat bg-center ${isDragOver ? "scale-110" : "opacity-75"}`}></div>
                             </label>
                         </div>
 
@@ -410,7 +449,6 @@ export default function SignUp({loading, setLoading}) {
                         </div>
                     </div>
                 </form>
-
                 {
                     ((response && response.data.status === "success") &&
                         <div className='flex flex-col my-10 justify-center items-center'>
