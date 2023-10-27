@@ -62,6 +62,22 @@ export default function SignUp({loading, setLoading}) {
     }
 
 
+    // Drag & Drop
+    const handleDragOver = (e) => {
+        e.preventDefault();
+    };
+    
+    const handleDrop = (e) => {
+        e.preventDefault();
+        const files = e.dataTransfer.files;
+    
+        // Handle the dropped files here
+        if (files.length > 0) {
+            console.log('Dropped files:', files);
+        }
+    };
+    // Drag & Drop
+
     return (
         <>
             {response === undefined && <div className="text-center text-xl mx-2 my-6 text-gray-200"> Create new account</div>}
@@ -364,7 +380,12 @@ export default function SignUp({loading, setLoading}) {
                         </div>
                         <div className='mt-6 flex flex-col  '>
                             <label htmlFor="upload">Profile Picture</label>
-                            <label htmlFor="upload-image" className='relative mt-2 h-24 w-24 border-dashed bg-gray-700/20 border border-gray-600 hover:text-gray-300/80 transition text-gray-300/50 cursor-pointer text-2xl rounded flex justify-center items-center group'>
+                            <label
+                            htmlFor="upload-image"
+                            className='relative group mt-2 h-24 w-24 border-dashed bg-gray-700/20 border transition border-gray-600 hover:text-gray-300/80 transition text-gray-300/50 cursor-pointer text-2xl rounded flex justify-center items-center group'
+                            onDragOver={handleDragOver}
+                            onDrop={handleDrop}
+                            >
                                 <input 
                                     id='upload-image'
                                     type='file'
@@ -372,7 +393,7 @@ export default function SignUp({loading, setLoading}) {
                                     title='Custom'
                                     className='hidden'
                                 />
-                                <AiOutlineCloudUpload className='mx-3 text-4xl text-gray-300/80 hover:text-gray-300 transition'/>
+                                <AiOutlineCloudUpload className='mx-3 text-4xl group-hover:text-gray-300 text-gray-300/80'/>
                             </label>
                         </div>
                         <button onClick={handleSubmit}
@@ -413,6 +434,7 @@ export default function SignUp({loading, setLoading}) {
                     )
                 }
             </div>
+            
         </>
     )
 }
