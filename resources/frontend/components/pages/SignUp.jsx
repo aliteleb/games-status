@@ -362,9 +362,9 @@ export default function SignUp({loading, setLoading}) {
                             {inputValidation('country_code')}
 
                         </div>
-                        <div className='mt-6 flex flex-col'>
+                        <div className='mt-6 flex flex-col  '>
                             <label htmlFor="upload">Profile Picture</label>
-                            <label htmlFor="upload-image" className='relative mt-2 h-48 bg-gray-700/20 border border-gray-600 hover:text-gray-300/80 transition text-gray-300/50 cursor-pointer text-2xl rounded flex justify-center items-center group'>
+                            <label htmlFor="upload-image" className='relative mt-2 h-24 w-24 border-dashed bg-gray-700/20 border border-gray-600 hover:text-gray-300/80 transition text-gray-300/50 cursor-pointer text-2xl rounded flex justify-center items-center group'>
                                 <input 
                                     id='upload-image'
                                     type='file'
@@ -373,7 +373,6 @@ export default function SignUp({loading, setLoading}) {
                                     className='hidden'
                                 />
                                 <AiOutlineCloudUpload className='mx-3 text-4xl text-gray-300/80'/>
-                                Drop your files here, or <span className='text-gray-600 group-hover:text-gray-500 mx-3 font-bold'>browse</span>
                             </label>
                         </div>
                         <button onClick={handleSubmit}
