@@ -345,42 +345,6 @@ export default function SignUp({loading, setLoading}) {
         {value: "VG", label: "British Virgin Islands"},
         {value: "VI", label: "US Virgin Islands"}
     ]
-    const customStyles = {
-
-        placeholder: (provided, state) => ({
-            color: state.isDisabled ? "#fff" : "#fff",
-            backgroundColor: "#27282e",
-        }),
-
-        option: (provided, state) => ({
-            ...provided,
-            borderBottom: "1px solid #333",
-            padding: "10px",
-            color: state.isSelected ? "#ddd" : "#d1d5db",
-            backgroundColor: state.isSelected ? "rgba(51,54,63,0.87)" : (state.isFocused ? "rgba(51,54,63,1)" : "#27282eff")
-        }),
-
-        control: () => ({
-            display: "flex",
-            backgroundColor: "#fff",
-            color: "#eee"
-        }),
-
-        indicatorSeparator: () => ({
-            display: "none",
-        }),
-
-        singleValue: (provided, state) => {
-
-            const opacity = state.isDisabled ? 0.5 : 1;
-
-            const transition = "opacity 300ms";
-
-            return {...provided, opacity, transition};
-
-        },
-
-    };
 
     return (
         <>
