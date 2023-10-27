@@ -403,7 +403,7 @@ export default function SignUp({loading, setLoading}) {
                                     setFormData({...formData, country_code: selectedOption.value});
                                 }}
                                 defaultValue={{label: "Afghanistan", value: 'AF'}}
-                                className='react-select-container'
+                                className='react-select-container mt-2'
                                 classNamePrefix="react-select"
                                 // styles={customStyles}
 
