@@ -146,7 +146,7 @@ function Comment(props) {
                                     <span className='text-md text-left'>Report <small className=''>soon!</small></span>
                                 </button>
                             </li>
-                            {comment?.user?.username === user.username &&
+                            {comment?.user?.username === user?.username &&
                                 <li><span className="flex items-center cursor-pointer block py-2 transition hover:bg-black/30"><CiCircleRemove
                                     className='text-lg mx-2'/> Remove</span></li>}
                         </ul>
