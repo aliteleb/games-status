@@ -22,8 +22,8 @@ export const refreshPageSize = () => {
         );
         document.getElementById('blurred-bg').style.height = height + 'px';
         const footer = document.getElementById('footer');
-        footer.style.position = 'absolute';
-        footer.style.top = (height - 105) + 'px';
+        //footer.style.position = 'absolute';
+        //footer.style.top = (height - 105) + 'px';
 
     }, 0)
 }
