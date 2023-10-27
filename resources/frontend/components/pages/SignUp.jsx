@@ -63,19 +63,9 @@ export default function SignUp({loading, setLoading}) {
 
 
     // Drag & Drop
-    const handleDragOver = (e) => {
-        e.preventDefault();
-    };
-    
-    const handleDrop = (e) => {
-        e.preventDefault();
-        const files = e.dataTransfer.files;
-    
-        // Handle the dropped files here
-        if (files.length > 0) {
-            console.log('Dropped files:', files);
-        }
-    };
+    const [isDragOver, setIsDragOver] = React.useState(false);
+
+
     // Drag & Drop
 
     return (
@@ -382,9 +372,10 @@ export default function SignUp({loading, setLoading}) {
                             <label htmlFor="upload">Profile Picture</label>
                             <label
                             htmlFor="upload-image"
-                            className='relative group mt-2 h-24 w-24 border-dashed bg-gray-700/20 border transition border-gray-600 hover:text-gray-300/80 transition text-gray-300/50 cursor-pointer text-2xl rounded flex justify-center items-center group'
-                            onDragOver={handleDragOver}
-                            onDrop={handleDrop}
+                            className={`relative group mt-2 h-24 w-24 border-dashed bg-gray-700/20 border transition ${isDragOver ? "border-gray-400" : "border-gray-600"} transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
+                            onDragOver={() => {setIsDragOver(true)}}
+                            onDrop={() => {setIsDragOver(true)}}
+                            onDragLeave={() => {setIsDragOver(false)}}
                             >
                                 <input 
                                     id='upload-image'
@@ -393,7 +384,8 @@ export default function SignUp({loading, setLoading}) {
                                     title='Custom'
                                     className='hidden'
                                 />
-                                <AiOutlineCloudUpload className='mx-3 text-4xl group-hover:text-gray-300 text-gray-300/80'/>
+                            <AiOutlineCloudUpload className={`mx-3 font-bold transition transform w-12 h-12 ${isDragOver ? "scale-110" : "scale-100"} text-gray-300 ${isDragOver ? "w-14 h-14" : "w-12 h-12"}`}/>
+
                             </label>
                         </div>
                         <button onClick={handleSubmit}
