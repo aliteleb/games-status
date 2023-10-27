@@ -3,6 +3,7 @@ import React from 'react'
 import ApiClient from "../../services/ApiClient.js";
 import {MdDoneOutline} from 'react-icons/md'
 import {toast} from "react-hot-toast";
+import {AiOutlineCloudUpload} from 'react-icons/ai'
 
 export default function SignUp({loading, setLoading}) {
 
@@ -360,6 +361,20 @@ export default function SignUp({loading, setLoading}) {
                             </select>
                             {inputValidation('country_code')}
 
+                        </div>
+                        <div className='mt-6 flex flex-col'>
+                            <label htmlFor="upload">Profile Picture</label>
+                            <label htmlFor="upload-image" className='relative mt-2 h-48 bg-gray-700/20 border border-gray-600 hover:text-gray-300/80 transition text-gray-300/50 cursor-pointer text-2xl rounded flex justify-center items-center group'>
+                                <input 
+                                    id='upload-image'
+                                    type='file'
+                                    accept='.jpg, .jpeg, .png,'
+                                    title='Custom'
+                                    className='hidden'
+                                />
+                                <AiOutlineCloudUpload className='mx-3 text-4xl text-gray-300/80'/>
+                                Drop your files here, or <span className='text-gray-600 group-hover:text-gray-500 mx-3 font-bold'>browse</span>
+                            </label>
                         </div>
                         <button onClick={handleSubmit}
                                 className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
