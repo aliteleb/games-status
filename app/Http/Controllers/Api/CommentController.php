@@ -7,7 +7,6 @@ use App\Models\Comment;
 use App\Models\Game;
 use App\Models\Reaction;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
@@ -23,8 +22,15 @@ class CommentController extends Controller
             'body' => 'required|string|max:500',
         ];
 
-        // Create a validator
-        $validator = Validator::make($request->all(), $rules);
+        // Define custom error messages
+        $customMessages = [
+            'body.required' => 'Please provide a comment.',
+            'body.string' => 'The comment should be a text.',
+            'body.max' => 'The comment should not exceed 500 characters.',
+        ];
+
+        // Create a validator with custom messages
+        $validator = Validator::make($request->all(), $rules, $customMessages);
 
         if ($validator->fails()) {
             return response()->api(
@@ -58,8 +64,8 @@ class CommentController extends Controller
         ]);
 
         return response()->api(
-            data: $this->latest_comments($game_id),
-            message: 'Comment created successfully',
+            data: self::latest_comments($game_id),
+            message: 'Comment posted successfully',
         );
 
     }
@@ -84,17 +90,14 @@ class CommentController extends Controller
             ->where('user_id', $user->id)
             ->first();
 
-        if($reaction)
-        {
-            if($reaction->type == $vote_type)
+        if ($reaction) {
+            if ($reaction->type == $vote_type)
                 $reaction->delete();
-            else
-            {
+            else {
                 $reaction->type = $vote_type;
                 $reaction->save();
             }
-        }
-        else{
+        } else {
             Reaction::create([
                 'user_id' => auth()->user()->id,
                 'comment_id' => $comment->id,
@@ -102,25 +105,7 @@ class CommentController extends Controller
             ]);
         }
 
-        $comments = Comment::where('game_id', $comment->game_id)
-            ->whereNull('reply_to')
-            ->with(['user', 'replies', 'reactions'])
-            ->latest()->get();
-        $comments->map(function ($comment) use ($user) {
-            $comment->voted = null;
-            $comment->reactions->map(function ($reaction) use ($comment, $user) {
-                if ($reaction->user_id == $user->id)
-                    $comment->voted = $reaction->type;
-            });
-
-            if ($comment->user)
-                $comment->username = $comment->user->username;
-            else
-                $comment->username = 'N/A';
-
-            unset($comment->reactions);
-            unset($comment->user);
-        });
+        $comments = self::latest_comments($comment->game_id);
 
         return response()->api(
             data: $comments,
@@ -141,12 +126,12 @@ class CommentController extends Controller
         $comment->delete();
 
         return response()->api(
-            data: $this->latest_comments($game_id),
+            data: self::latest_comments($game_id),
             message: 'Comment deleted',
         );
     }
 
-    private function latest_comments($game_id)
+    public static function latest_comments($game_id)
     {
         $user = auth()->user();
 
