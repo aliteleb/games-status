@@ -415,6 +415,8 @@ export default function SignUp({loading, setLoading}) {
                             >
                                 <input
                                     id='upload-image'
+                                    name='image'
+                                    value={formData.image}
                                     type='file'
                                     accept='.jpg, .jpeg, .png,'
                                     title='Custom'
