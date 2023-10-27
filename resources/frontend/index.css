@@ -29,14 +29,13 @@
     }
 
     .react-select-container .react-select__option:active {
-        @apply bg-[#2f343b];
+        @apply bg-body;
     }
 
-    /*
     .react-select-container .react-select__option--is-focused {
-      @apply bg-neutral-200 dark:bg-neutral-800;
+      @apply bg-body;
     }
-    */
+
     .react-select-container .react-select__indicator-separator {
         @apply bg-neutral-400;
     }

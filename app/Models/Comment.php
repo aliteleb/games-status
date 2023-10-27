@@ -10,7 +10,7 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'game_id', 'body', 'reply_to'];
-    protected $appends = ['time', 'username', 'votes', 'voted'];
+    protected $appends = ['time', 'username', 'user_image', 'votes', 'voted'];
     protected $hidden = ['created_at', 'updated_at'];
 
     protected $with = ['user:id,username', 'reactions', 'replies'];
@@ -84,6 +84,12 @@ class Comment extends Model
             }
         }
         return $vote;
+    }
+
+    public function getUserImageAttribute()
+    {
+        return asset('assets/images/users/50/'.$this->user_id.'.webp');
+
     }
 
 }

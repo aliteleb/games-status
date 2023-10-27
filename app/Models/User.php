@@ -46,7 +46,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    protected $appends = ['following'];
+    protected $appends = ['following', 'avatar', 'small_avatar'];
 
     public function setPasswordAttribute($value)
     {
@@ -63,5 +63,12 @@ class User extends Authenticatable
             return DB::table('game_user')->select(['game_id'])->where('user_id', $this->id)->get()->pluck('game_id');
         return [];
 
+    }
+
+    public function getAvatarAttribute(){
+        return asset('assets/images/users/100/'.$this->id.'.webp');
+    }
+    public function getSmallAvatarAttribute(){
+        return asset('assets/images/users/50/'.$this->id.'.webp');
     }
 }

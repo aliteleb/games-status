@@ -33,7 +33,7 @@ class Handler extends ExceptionHandler
     {
         // Any error
         if ($request->wantsJson() && $exception instanceof \Exception) {
-            return response()->api(status: 'error', message: "Oops! Something went wrong.", status_code: 500);
+            //return response()->api(status: 'error', message: "Oops! Something went wrong.", status_code: 500);
         }
 
         // 404

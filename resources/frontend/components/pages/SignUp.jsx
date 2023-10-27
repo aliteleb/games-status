@@ -13,7 +13,7 @@ export default function SignUp({loading, setLoading}) {
         password_confirmation: "",
         email: "",
         country_code: "AF",
-        image: null,
+        avatar: null,
     });
 
     let [response, setResponse] = React.useState()
@@ -35,15 +35,18 @@ export default function SignUp({loading, setLoading}) {
         e.preventDefault();
         setLoading(true)
 
-        formData.validate_all = true;
-
         try {
             ApiClient().post('/register', {
                 username: formData.username,
                 password: formData.password,
                 password_confirmation: formData.password_confirmation,
                 email: formData.email,
-                country_code: formData.country_code
+                country_code: formData.country_code,
+                avatar: formData.avatar
+            }, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             }).then((res) => {
                 setResponse(res);
                 toast.success(response.data.message);
@@ -79,7 +82,7 @@ export default function SignUp({loading, setLoading}) {
 
                 reader.onload = (e) => {
                     // Set the image data in the formData state
-                    setFormData({...formData, image: e.target.result});
+                    setFormData({...formData, avatar: file});
                 };
 
                 reader.readAsDataURL(file);
@@ -92,18 +95,17 @@ export default function SignUp({loading, setLoading}) {
         const file = e.target.files[0];
 
         if (file && file.type.startsWith('image/')) {
-          const reader = new FileReader();
-      
-          reader.onload = (e) => {
-            setFormData({ ...formData, image: e.target.result }); // Set the image in formData
-          };
-      
-          reader.readAsDataURL(file);
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                setFormData({...formData, avatar: file});
+            };
+
+            reader.readAsDataURL(file);
         }
     };
 
     // Drag & Drop
-
     const options = [
         {value: 'AF', label: 'Afghanistan'},
         {value: 'AL', label: 'Albania'},
@@ -351,7 +353,7 @@ export default function SignUp({loading, setLoading}) {
             {response === undefined && <div className="text-center text-xl mx-2 my-6 text-gray-200"> Create new account</div>}
 
             <div className={`p-6 bg-app-black/50 rounded-md text-gray-300 overflow-hidden`}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} encType="multipart/form-data">
                     <div className={(response && response.data.status === "success") ? "hidden" : ""}>
                         <header className='border-b-2 pb-[10px] font-bold text-xl'>Sign Up</header>
                         <div className='mt-6 flex flex-col relative'>
@@ -405,7 +407,6 @@ export default function SignUp({loading, setLoading}) {
                                 defaultValue={{label: "Afghanistan", value: 'AF'}}
                                 className='react-select-container mt-2'
                                 classNamePrefix="react-select"
-                                // styles={customStyles}
 
                             />
                             {inputValidation('country_code')}
@@ -422,21 +423,22 @@ export default function SignUp({loading, setLoading}) {
                                 onDragLeave={() => {
                                     setIsDragOver(false)
                                 }}
-                                htmlFor="upload-image"
+                                htmlFor="avatar"
                                 className={`relative group mt-2 h-24 w-24 border-dotted bg-gray-700/20 border-2 transition ${isDragOver ? "border-gray-400" : "border-gray-600"} hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
                             >
                                 <input
-                                id="upload-image"
-                                name="image"
-                                type="file"
-                                accept=".jpg, .jpeg, .png" // Define the accepted file types
-                                className="hidden"
-                                onChange={handleImageChange}
+                                    id="avatar"
+                                    name="avatar"
+                                    type="file"
+                                    accept=".jpg, .jpeg, .png" // Define the accepted file types
+                                    className="hidden"
+                                    onChange={handleImageChange}
                                 />
                                 <div style={{
-                                    backgroundImage: formData.image ? `url(${formData.image})` : `url('/assets/images/upload-icon.svg')`,
+                                    backgroundImage: formData.avatar ? `url(${URL.createObjectURL(formData.avatar)})` : `url('/assets/images/upload-icon.svg')`,
                                 }} className={`absolute w-full h-full transition bg-no-repeat bg-center ${isDragOver ? "scale-110" : "opacity-75"}`}></div>
                             </label>
+                            {inputValidation('avatar')}
                         </div>
 
                         <button onClick={handleSubmit}

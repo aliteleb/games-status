@@ -65,8 +65,9 @@ function Navbar() {
                     </div>
 
                     {user &&
-                        <span className="border-[2px] hover:border-gray-300 transition  w-12 flex justify-center items-center h-12 p-2 rounded-full cursor-pointer border-gray-400">{
-                            <h1>img</h1>}</span>}
+                        <img className={'border-2 hover:border-gray-500 transition w-12 flex justify-center items-center h-12 rounded-full cursor-pointer border-gray-600'}
+                             src={`${user.avatar}`} alt={'avatar'}/>
+                    }
                     {!user &&
                         <NavLink to="/login">
                             <UserIcon className="hover:text-gray-400 transition  "/>
