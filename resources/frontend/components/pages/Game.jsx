@@ -8,7 +8,6 @@ import {RiSendPlane2Fill} from 'react-icons/ri'
 
 
 export const refreshPageSize = () => {
-    //document.getElementById('blurred-bg').style.height = '100vh';
 
     setTimeout(() => {
         const body = document.body,
@@ -109,7 +108,7 @@ function Game() {
 
 
     let handleSubmit = (e) => {
-        if(loading){
+        if (loading) {
             return ""
         }
         e.preventDefault()
@@ -145,26 +144,27 @@ function Game() {
         const action = newFollowState ? 'follow' : 'unfollow';
 
         ApiClient()
-          .post(`/games/${game.id}/${action}`)
-          .then((response) => {
-            if (response.data.status === "success") {
-                action === "follow" ? toast.success(response.data.message) : toast(response.data.message)
-                setGame(prevGame => (
-                    {
-                    ...prevGame,
-                    followers_count: response.data.data.followers_count
-                    }
+            .post(`/games/${game.id}/${action}`)
+            .then((response) => {
+                if (response.data.status === "success") {
+                    action === "follow" ? toast.success(response.data.message) : toast(response.data.message)
+                    setGame(prevGame => (
+                        {
+                            ...prevGame,
+                            followers_count: response.data.data.followers_count
+                        }
                     ))
                     console.log(response.data.data.followers_count);
-            } else {
-              setFollow((prevFollow) => !prevFollow);
-              toast.error(response.data.message);
-            }
-          })
-          .catch((error) => {
-            setFollow((prevFollow) => !prevFollow);
-          });
-      };
+                } else {
+                    setFollow((prevFollow) => !prevFollow);
+                    toast.error(response.data.message);
+                }
+            })
+            .catch((error) => {
+                setFollow((prevFollow) => !prevFollow);
+                toast.error(error.response.data.message);
+            });
+    };
 
     return (
         <>
@@ -184,7 +184,8 @@ function Game() {
             </div>
 
             <div>
-                <div className={`flex relative z-20 text-gray-300 border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`} style={{boxShadow: 'rgb(0, 0, 0) 0px 0px 10px'}}>
+                <div className={`flex relative z-20 text-gray-300 border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`}
+                     style={{boxShadow: 'rgb(0, 0, 0) 0px 0px 10px'}}>
                     <img className={`absolute w-full h-full z-[-1] object-cover`} src={game.cover && game.cover}
                          style={{aspectRatio: '1920/620'}}
                          alt=""/>
@@ -278,11 +279,13 @@ function Game() {
                                        required=""
                                        onChange={handleChange}
                                 />
-                                <RiSendPlane2Fill onClick={handleSubmit} className=' mb-4 absolute top-[1.2rem] right-[1rem] text-gray-400 hover:text-gray-300 transition cursor-pointer' style={{fontSize: "25px"}}/>
+                                <RiSendPlane2Fill onClick={handleSubmit}
+                                                  className=' mb-4 absolute top-[1.2rem] right-[1rem] text-gray-400 hover:text-gray-300 transition cursor-pointer'
+                                                  style={{fontSize: "25px"}}/>
                             </form>
 
                         </div>
-                        <div id='comments'>
+                        <div>
                             {comments.map(comment => {
                                 return (
                                     <Comment setComments={setComments} key={comment.id} info={comment} className="border-b border-gray-500"/>

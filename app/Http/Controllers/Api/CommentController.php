@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Game;
 use App\Models\Reaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
@@ -132,7 +133,13 @@ class CommentController extends Controller
     {
         $comment = Comment::where(['id' => $id, 'user_id' => auth()->user()->id])->firstOrFail();
         $game_id = $comment->game_id;
+
+        // Recursively delete replies
+        Comment::whereIn('id', $this->deleteReplies($comment))->delete();
+
+        // Delete the comment
         $comment->delete();
+
         return response()->api(
             data: $this->latest_comments($game_id),
             message: 'Comment deleted',
@@ -164,5 +171,24 @@ class CommentController extends Controller
         });
 
         return $comments;
+    }
+
+    private function deleteReplies($comment)
+    {
+        $replies = $comment->replies;
+
+        $ids = [];
+        foreach ($replies as $reply) {
+
+            $ids[] = $reply->id;
+
+            // Recursively delete nested replies
+            $ids = array_merge($ids, $this->deleteReplies($reply));
+
+            // Delete the reply
+            // $reply->delete();
+        }
+
+        return $ids;
     }
 }

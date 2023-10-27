@@ -31,6 +31,11 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
+        // Any error
+        if ($request->wantsJson() && $exception instanceof \Exception) {
+            return response()->api(status: 'error', message: "Oops! Something went wrong.", status_code: 500);
+        }
+
         // 404
         if (env('APP_ENV', 'local') == 'production') {
             if ($request->wantsJson() && $exception instanceof ModelNotFoundException) {

@@ -34,6 +34,11 @@ class Comment extends Model
     {
         return $this->hasMany(Comment::class, 'reply_to');
     }
+    public function parentComment()
+    {
+        return $this->belongsTo(Comment::class, 'reply_to');
+    }
+
     public function getTimeAttribute()
     {
         try {
