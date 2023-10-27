@@ -368,26 +368,26 @@ export default function SignUp({loading, setLoading}) {
                             {inputValidation('country_code')}
 
                         </div>
-                        <div className='mt-6 flex flex-col  '>
+                        <div className='mt-6 flex flex-col'>
                             <label htmlFor="upload">Profile Picture</label>
                             <label
-                            htmlFor="upload-image"
-                            className={`relative group mt-2 h-24 w-24 border-dashed bg-gray-700/20 border transition ${isDragOver ? "border-gray-400" : "border-gray-600"} transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
-                            onDragOver={() => {setIsDragOver(true)}}
-                            onDrop={() => {setIsDragOver(true)}}
-                            onDragLeave={() => {setIsDragOver(false)}}
+                                onDragOver={() => {setIsDragOver(true)}}
+                                onDrop={() => {setIsDragOver(true)}}
+                                onDragLeave={() => {setIsDragOver(false)}}
+                                htmlFor="upload-image"
+                                className={`relative group mt-2 h-24 w-24 border-dashed bg-gray-700/20 border transition ${isDragOver ? "border-gray-400" : "border-gray-600"} hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
                             >
-                                <input 
+                                <input
                                     id='upload-image'
                                     type='file'
                                     accept='.jpg, .jpeg, .png,'
                                     title='Custom'
                                     className='hidden'
                                 />
-                            <AiOutlineCloudUpload className={`mx-3 font-bold transition transform w-12 h-12 ${isDragOver ? "scale-110" : "scale-100"} text-gray-300 ${isDragOver ? "w-14 h-14" : "w-12 h-12"}`}/>
-
+                                <div className={`absolute w-full h-full transition bg-no-repeat bg-center ${isDragOver ? "scale-110" : "opacity-75"} bg-[url('/assets/images/upload-icon.svg')]`}></div>
                             </label>
                         </div>
+
                         <button onClick={handleSubmit}
                                 className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
                                 disabled={loading}
@@ -426,7 +426,7 @@ export default function SignUp({loading, setLoading}) {
                     )
                 }
             </div>
-            
+
         </>
     )
 }

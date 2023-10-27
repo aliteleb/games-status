@@ -139,13 +139,13 @@ function Comment(props) {
                          style={{right: '10px'}}>
                         <ul className="text-sm text-gray-300 y-200">
                             <li>
-                                <button disabled="disabled" className="flex w-full items-center cursor-pointer block py-2 transition disabled:cursor-default disabled:opacity-50">
+                                <button disabled="disabled" className="flex w-full items-center cursor-pointer py-2 transition disabled:cursor-default disabled:opacity-50">
                                     <GoReport className='text-lg mx-2'/>
                                     <span className='text-md text-left'>Report <small className=''>soon!</small></span>
                                 </button>
                             </li>
                             {comment?.user?.username === user?.username &&
-                                <li><span className="flex items-center cursor-pointer block py-2 transition hover:bg-black/30"><CiCircleRemove
+                                <li><span className="flex items-center cursor-pointer py-2 transition hover:bg-black/30"><CiCircleRemove
                                     className='text-lg mx-2'/> Remove</span></li>}
                         </ul>
                     </div>
