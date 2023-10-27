@@ -411,7 +411,7 @@ export default function SignUp({loading, setLoading}) {
                                 onDrop={handleDrop}
                                 onDragLeave={() => {setIsDragOver(false)}}
                                 htmlFor="upload-image"
-                                className={`relative group mt-2 h-24 w-24 border-dashed bg-gray-700/20 border-2 transition ${isDragOver ? "border-gray-400" : "border-gray-600"} hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
+                                className={`relative group mt-2 h-24 w-24 border-dotted bg-gray-700/20 border-2 transition ${isDragOver ? "border-gray-400" : "border-gray-600"} hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
                             >
                                 <input
                                     id='upload-image'
