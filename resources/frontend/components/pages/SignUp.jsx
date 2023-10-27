@@ -92,13 +92,13 @@ export default function SignUp({loading, setLoading}) {
         const file = e.target.files[0];
 
         if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-
-            reader.onload = (e) => {
-                setFormData({...formData, image: e.target.result}); // Set the image in formData
-            };
-
-            reader.readAsDataURL(file);
+          const reader = new FileReader();
+      
+          reader.onload = (e) => {
+            setFormData({ ...formData, image: e.target.result }); // Set the image in formData
+          };
+      
+          reader.readAsDataURL(file);
         }
     };
 
@@ -426,14 +426,12 @@ export default function SignUp({loading, setLoading}) {
                                 className={`relative group mt-2 h-24 w-24 border-dotted bg-gray-700/20 border-2 transition ${isDragOver ? "border-gray-400" : "border-gray-600"} hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
                             >
                                 <input
-                                    id='upload-image'
-                                    name='image'
-                                    value={formData.image}
-                                    type='file'
-                                    accept='.jpg, .jpeg, .png,'
-                                    title='Custom'
-                                    className='hidden'
-                                    onChange={handleImageChange}
+                                id="upload-image"
+                                name="image"
+                                type="file"
+                                accept=".jpg, .jpeg, .png" // Define the accepted file types
+                                className="hidden"
+                                onChange={handleImageChange}
                                 />
                                 <div style={{
                                     backgroundImage: formData.image ? `url(${formData.image})` : `url('/assets/images/upload-icon.svg')`,
