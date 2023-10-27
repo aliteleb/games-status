@@ -28,6 +28,10 @@
         @apply text-neutral-600 dark:text-neutral-200 bg-body hover:bg-body dark:bg-[#29313799] dark:hover:bg-body;
     }
 
+    .react-select-container .react-select__option:active {
+        @apply bg-[#2f343b];
+    }
+
     /*
     .react-select-container .react-select__option--is-focused {
       @apply bg-neutral-200 dark:bg-neutral-800;
