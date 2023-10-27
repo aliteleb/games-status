@@ -405,13 +405,13 @@ export default function SignUp({loading, setLoading}) {
 
                         </div>
                         <div className='mt-6 flex flex-col'>
-                            <label htmlFor="upload">Profile Picture</label>
+                            <label htmlFor="upload">Profile Picture <span className='text-xs text-gray-500 mx-3'>[jpg, png, gif] - (100x100)</span></label>
                             <label
                                 onDragOver={(e) => {setIsDragOver(true); e.preventDefault();}}
                                 onDrop={handleDrop}
                                 onDragLeave={() => {setIsDragOver(false)}}
                                 htmlFor="upload-image"
-                                className={`relative group mt-2 h-24 w-24 border-dashed bg-gray-700/20 border transition ${isDragOver ? "border-gray-400" : "border-gray-600"} hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
+                                className={`relative group mt-2 h-24 w-24 border-dashed bg-gray-700/20 border-2 transition ${isDragOver ? "border-gray-400" : "border-gray-600"} hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
                             >
                                 <input
                                     id='upload-image'
