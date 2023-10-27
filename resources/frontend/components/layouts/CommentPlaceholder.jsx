@@ -3,7 +3,6 @@ import Skeleton from "react-loading-skeleton";
 import {BiDotsHorizontalRounded} from 'react-icons/bi'
 
 function CommentPlaceholder(props) {
-
     return (
         <div className={props.className}>
             <article className="p-4 text-base rounded-lg">
@@ -16,10 +15,6 @@ function CommentPlaceholder(props) {
                             <Skeleton width={'6rem'} height={'12px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
                         </p>
                     </div>
-                    <button className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded"
-                            type="button">
-                        <BiDotsHorizontalRounded fontSize="30px"/>
-                    </button>
                 </footer>
                 <div className='flex items-center'>
                     <Skeleton width={'2rem'} height={'6rem'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={10}/>

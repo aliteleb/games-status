@@ -12,7 +12,7 @@ import { useAuth } from "../api/AuthContext";
 
 function Comment(props) {
 
-    const {user} = useAuth(); 
+    const {user} = useAuth();
     let [comment, setComment] = React.useState(null);
     let [replyForm, setReplyForm] = React.useState(false)
     let [loading, setLoading] = React.useState(false)
@@ -129,7 +129,7 @@ function Comment(props) {
                             }
                         </p>
                     </div>
-                    <button onClick={toggleClass} className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
+                    <button onClick={toggleClass} onBlur={()=>{ showDropMenu.current.classList.add("hidden") }} className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
                         <BiDotsHorizontalRounded fontSize="30px"/>
                     </button>
                     {/* Dropdown menu */}
@@ -211,6 +211,7 @@ function Comment(props) {
                     <div className='flex items-center w-full'>
                         <input
                             onChange={handleChange}
+                            onBlur={()=>{ if(replyInput.body.length === 0) setTimeout(()=>{setReplyForm(false)}, 100)}}
                             name='body'
                             value={replyInput.body}
                             type="text"
