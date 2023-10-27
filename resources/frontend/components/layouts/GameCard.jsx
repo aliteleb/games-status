@@ -100,13 +100,7 @@ const GameCard = (props) => {
             {game.slug ? <Link className="w-full h-full flex flex-col" to={`/game/${game.slug}`}>{card}</Link> : card}
 
             {props.size === "large" && <div className="flex flex-wrap justify-around h-full">
-                <div className="w-1/3">
-                    <Skeleton width={'100%'} height={'100%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>
-                </div>
-                <div className="w-1/3">
-                    <Skeleton width={'100%'} height={'100%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>
-                </div>
-                <div className="w-1/3">
+                <div className="w-full">
                     <Skeleton width={'100%'} height={'100%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>
                 </div>
             </div>}
