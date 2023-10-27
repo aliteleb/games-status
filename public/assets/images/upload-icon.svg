@@ -1,4 +1,519 @@
-<svg stroke="currentColor" fill="#ffffff" stroke-width="0" viewBox="0 0 1024 1024" height="48" width="48" xmlns="http://www.w3.org/2000/svg">
-    <path d="M518.3 459a8 8 0 0 0-12.6 0l-112 141.7a7.98 7.98 0 0 0 6.3 12.9h73.9V856c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V613.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 459z"></path>
-    <path d="M811.4 366.7C765.6 245.9 648.9 160 512.2 160S258.8 245.8 213 366.6C127.3 389.1 64 467.2 64 560c0 110.5 89.5 200 199.9 200H304c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8h-40.1c-33.7 0-65.4-13.4-89-37.7-23.5-24.2-36-56.8-34.9-90.6.9-26.4 9.9-51.2 26.2-72.1 16.7-21.3 40.1-36.8 66.1-43.7l-37.9-9.9 13.9-36.6c8.6-22.8 20.6-44.1 35.7-63.4a245.6 245.6 0 0 1 52.4-49.9c41.1-28.9 89.5-44.2 140-44.2s98.9 15.3 140 44.2c19.9 14 37.5 30.8 52.4 49.9 15.1 19.3 27.1 40.7 35.7 63.4l13.8 36.5 37.8 10C846.1 454.5 884 503.8 884 560c0 33.1-12.9 64.3-36.3 87.7a123.07 123.07 0 0 1-87.6 36.3H720c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h40.1C870.5 760 960 670.5 960 560c0-92.7-63.1-170.7-148.6-193.3z"></path>
-</svg>
+import {Link} from 'react-router-dom'
+import React from 'react'
+import ApiClient from "../../services/ApiClient.js";
+import {MdDoneOutline} from 'react-icons/md'
+import {toast} from "react-hot-toast";
+import Select from 'react-select';
+
+export default function SignUp({loading, setLoading}) {
+
+    let [formData, setFormData] = React.useState({
+        username: "",
+        password: "",
+        password_confirmation: "",
+        email: "",
+        country_code: "AF",
+        image: null,
+    });
+
+    let [response, setResponse] = React.useState()
+
+    const [formErrors, setFormErrors] = React.useState({});
+
+    const inputValidation = (input) => {
+        return (formErrors[input] !== undefined && <div className='text-orange-400 text-sm mt-1'>{formErrors[input][0]}</div>);
+    }
+
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        setFormData((prevData) => {
+            return {...prevData, [name]: value};
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true)
+
+        formData.validate_all = true;
+
+        try {
+            ApiClient().post('/register', {
+                username: formData.username,
+                password: formData.password,
+                password_confirmation: formData.password_confirmation,
+                email: formData.email,
+                country_code: formData.country_code
+            }).then((res) => {
+                setResponse(res);
+                toast.success(response.data.message);
+                setLoading(false)
+            }).catch(err => {
+                setFormErrors(err.response.data.data);
+                toast.error(err.response.data.message);
+                setLoading(false)
+            })
+        } catch (err) {
+        }
+
+    };
+
+    let resetLoading = () => {
+        setLoading(false)
+    }
+
+
+    // Drag & Drop
+    const [isDragOver, setIsDragOver] = React.useState(false);
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        setIsDragOver(false);
+
+        const files = e.dataTransfer.files;
+
+        if (files.length > 0) {
+            const file = files[0];
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    // Set the image data in the formData state
+                    setFormData({...formData, image: e.target.result});
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                setFormData({...formData, image: e.target.result}); // Set the image in formData
+            };
+
+            reader.readAsDataURL(file);
+        }
+    };
+
+    // Drag & Drop
+
+    const options = [
+        {value: 'AF', label: 'Afghanistan'},
+        {value: 'AL', label: 'Albania'},
+        {value: 'DZ', label: 'Algeria'},
+        {value: 'AS', label: 'American Samoa'},
+        {value: 'AD', label: 'Andorra'},
+        {value: 'AO', label: 'Angola'},
+        {value: 'AI', label: 'Anguilla'},
+        {value: 'AG', label: 'Antigua and Barbuda'},
+        {value: 'AR', label: 'Argentina'},
+        {value: 'AM', label: 'Armenia'},
+        {value: 'AW', label: 'Aruba'},
+        {value: 'AU', label: 'Australia'},
+        {value: 'AT', label: 'Austria'},
+        {value: 'AZ', label: 'Azerbaijan'},
+        {value: 'BS', label: 'Bahamas'},
+        {value: 'BH', label: 'Bahrain'},
+        {value: 'BD', label: 'Bangladesh'},
+        {value: 'BB', label: 'Barbados'},
+        {value: 'BY', label: 'Belarus'},
+        {value: 'BE', label: 'Belgium'},
+        {value: 'BZ', label: 'Belize'},
+        {value: 'BJ', label: 'Benin'},
+        {value: 'BM', label: 'Bermuda'},
+        {value: 'BT', label: 'Bhutan'},
+        {value: 'BA', label: 'Bosnia and Herzegovina'},
+        {value: 'BW', label: 'Botswana'},
+        {value: 'BR', label: 'Brazil'},
+        {value: 'IO', label: 'British Indian Ocean Territory'},
+        {value: 'BG', label: 'Bulgaria'},
+        {value: 'BF', label: 'Burkina Faso'},
+        {value: 'BI', label: 'Burundi'},
+        {value: 'KH', label: 'Cambodia'},
+        {value: 'CM', label: 'Cameroon'},
+        {value: 'CA', label: 'Canada'},
+        {value: 'CV', label: 'Cape Verde'},
+        {value: 'KY', label: 'Cayman Islands'},
+        {value: 'CF', label: 'Central African Republic'},
+        {value: 'TD', label: 'Chad'},
+        {value: 'CL', label: 'Chile'},
+        {value: 'CN', label: 'China'},
+        {value: 'CX', label: 'Christmas Island'},
+        {value: 'CO', label: 'Colombia'},
+        {value: 'KM', label: 'Comoros'},
+        {value: 'CG', label: 'Congo'},
+        {value: 'CK', label: 'Cook Islands'},
+        {value: 'CR', label: 'Costa Rica'},
+        {value: 'HR', label: 'Croatia'},
+        {value: 'CU', label: 'Cuba'},
+        {value: 'CY', label: 'Cyprus'},
+        {value: 'CZ', label: 'Czech Republic'},
+        {value: 'DK', label: 'Denmark'},
+        {value: 'DJ', label: 'Djibouti'},
+        {value: 'DM', label: 'Dominica'},
+        {value: 'DO', label: 'Dominican Republic'},
+        {value: 'EC', label: 'Ecuador'},
+        {value: 'EG', label: 'Egypt'},
+        {value: 'SV', label: 'El Salvador'},
+        {value: 'GQ', label: 'Equatorial Guinea'},
+        {value: 'ER', label: 'Eritrea'},
+        {value: 'EE', label: 'Estonia'},
+        {value: 'ET', label: 'Ethiopia'},
+        {value: 'FO', label: 'Faroe Islands'},
+        {value: 'FJ', label: 'Fiji'},
+        {value: 'FI', label: 'Finland'},
+        {value: 'FR', label: 'France'},
+        {value: 'GF', label: 'French Guiana'},
+        {value: 'PF', label: 'French Polynesia'},
+        {value: 'GA', label: 'Gabon'},
+        {value: 'GM', label: 'Gambia'},
+        {value: 'GE', label: 'Georgia'},
+        {value: 'DE', label: 'Germany'},
+        {value: 'GH', label: 'Ghana'},
+        {value: 'GI', label: 'Gibraltar'},
+        {value: 'GR', label: 'Greece'},
+        {value: 'GL', label: 'Greenland'},
+        {value: 'GD', label: 'Grenada'},
+        {value: 'GP', label: 'Guadeloupe'},
+        {value: 'GU', label: 'Guam'},
+        {value: 'GT', label: 'Guatemala'},
+        {value: 'GN', label: 'Guinea'},
+        {value: 'GW', label: 'Guinea-Bissau'},
+        {value: 'GY', label: 'Guyana'},
+        {value: 'HT', label: 'Haiti'},
+        {value: 'HN', label: 'Honduras'},
+        {value: 'HU', label: 'Hungary'},
+        {value: 'IS', label: 'Iceland'},
+        {value: 'IN', label: 'India'},
+        {value: 'ID', label: 'Indonesia'},
+        {value: 'IQ', label: 'Iraq'},
+        {value: 'IE', label: 'Ireland'},
+        {value: 'IT', label: 'Italy'},
+        {value: 'JM', label: 'Jamaica'},
+        {value: 'JP', label: 'Japan'},
+        {value: 'JO', label: 'Jordan'},
+        {value: 'KZ', label: 'Kazakhstan'},
+        {value: 'KE', label: 'Kenya'},
+        {value: 'KI', label: 'Kiribati'},
+        {value: 'KW', label: 'Kuwait'},
+        {value: 'KG', label: 'Kyrgyzstan'},
+        {value: 'LV', label: 'Latvia'},
+        {value: 'LB', label: 'Lebanon'},
+        {value: 'LS', label: 'Lesotho'},
+        {value: 'LR', label: 'Liberia'},
+        {value: 'LI', label: 'Liechtenstein'},
+        {value: 'LT', label: 'Lithuania'},
+        {value: 'LU', label: 'Luxembourg'},
+        {value: 'MG', label: 'Madagascar'},
+        {value: 'MW', label: 'Malawi'},
+        {value: 'MY', label: 'Malaysia'},
+        {value: 'MV', label: 'Maldives'},
+        {value: 'ML', label: 'Mali'},
+        {value: 'MT', label: 'Malta'},
+        {value: 'MH', label: 'Marshall Islands'},
+        {value: 'MQ', label: 'Martinique'},
+        {value: 'MR', label: 'Mauritania'},
+        {value: 'MU', label: 'Mauritius'},
+        {value: 'YT', label: 'Mayotte'},
+        {value: 'MX', label: 'Mexico'},
+        {value: 'MC', label: 'Monaco'},
+        {value: 'MN', label: 'Mongolia'},
+        {value: 'ME', label: 'Montenegro'},
+        {value: 'MS', label: 'Montserrat'},
+        {value: 'MA', label: 'Morocco'},
+        {value: 'MM', label: 'Myanmar'},
+        {value: 'NA', label: 'Namibia'},
+        {value: 'NR', label: 'Nauru'},
+        {value: 'NP', label: 'Nepal'},
+        {value: 'NL', label: 'Netherlands'},
+        {value: 'AN', label: 'Netherlands Antilles'},
+        {value: 'NC', label: 'New Caledonia'},
+        {value: 'NZ', label: 'New Zealand'},
+        {value: 'NI', label: 'Nicaragua'},
+        {value: 'NE', label: 'Niger'},
+        {value: 'NG', label: 'Nigeria'},
+        {value: 'NU', label: 'Niue'},
+        {value: 'NF', label: 'Norfolk Island'},
+        {value: 'MP', label: 'Northern Mariana Islands'},
+        {value: 'NO', label: 'Norway'},
+        {value: 'OM', label: 'Oman'},
+        {value: 'PK', label: 'Pakistan'},
+        {value: 'PW', label: 'Palau'},
+        {value: 'PA', label: 'Panama'},
+        {value: 'PG', label: 'Papua New Guinea'},
+        {value: 'PY', label: 'Paraguay'},
+        {value: 'PE', label: 'Peru'},
+        {value: 'PH', label: 'Philippines'},
+        {value: 'PL', label: 'Poland'},
+        {value: 'PT', label: 'Portugal'},
+        {value: 'PR', label: 'Puerto Rico'},
+        {value: 'QA', label: 'Qatar'},
+        {value: 'RO', label: 'Romania'},
+        {value: 'RW', label: 'Rwanda'},
+        {value: 'WS', label: 'Samoa'},
+        {value: 'SM', label: 'San Marino'},
+        {value: 'SA', label: 'Saudi Arabia'},
+        {value: 'SN', label: 'Senegal'},
+        {value: 'RS', label: 'Serbia'},
+        {value: 'SC', label: 'Seychelles'},
+        {value: 'SL', label: 'Sierra Leone'},
+        {value: 'SG', label: 'Singapore'},
+        {value: 'SK', label: 'Slovakia'},
+        {value: 'SI', label: 'Slovenia'},
+        {value: 'SB', label: 'Solomon Islands'},
+        {value: 'ZA', label: 'South Africa'},
+        {value: 'GS', label: 'South Georgia and the South Sandwich Islands'},
+        {value: 'ES', label: 'Spain'},
+        {value: 'LK', label: 'Sri Lanka'},
+        {value: 'SD', label: 'Sudan'},
+        {value: 'SR', label: 'Suriname'},
+        {value: 'SZ', label: 'Swaziland'},
+        {value: 'SE', label: 'Sweden'},
+        {value: 'CH', label: 'Switzerland'},
+        {value: 'TJ', label: 'Tajikistan'},
+        {value: 'TH', label: 'Thailand'},
+        {value: 'TG', label: 'Togo'},
+        {value: 'TK', label: 'Tokelau'},
+        {value: 'TO', label: 'Tonga'},
+        {value: 'TT', label: 'Trinidad and Tobago'},
+        {value: 'TN', label: 'Tunisia'},
+        {value: 'TR', label: 'Turkey'},
+        {value: 'TM', label: 'Turkmenistan'},
+        {value: 'TC', label: 'Turks and Caicos Islands'},
+        {value: 'TV', label: 'Tuvalu'},
+        {value: 'UG', label: 'Uganda'},
+        {value: 'UA', label: 'Ukraine'},
+        {value: 'AE', label: 'United Arab Emirates'},
+        {value: 'GB', label: 'United Kingdom'},
+        {value: 'US', label: 'United States'},
+        {value: 'UY', label: 'Uruguay'},
+        {value: 'UZ', label: 'Uzbekistan'},
+        {value: 'VU', label: 'Vanuatu'},
+        {value: 'WF', label: 'Wallis and Futuna'},
+        {value: 'YE', label: 'Yemen'},
+        {value: 'ZM', label: 'Zambia'},
+        {value: 'ZW', label: 'Zimbabwe'},
+        {value: 'AX', label: 'Åland Islands'},
+        {value: 'AQ', label: 'Antarctica'},
+        {value: 'BO', label: 'Bolivia'},
+        {value: 'BN', label: 'Brunei Darussalam'},
+        {value: 'CC', label: 'Cocos (Keeling) Islands'},
+        {value: 'CD', label: 'Congo'},
+        {value: 'FK', label: 'Falkland Islands (Malvinas)'},
+        {value: 'GG', label: 'Guernsey'},
+        {value: 'VA', label: 'Holy See (Vatican City State)'},
+        {value: 'HK', label: 'Hong Kong'},
+        {value: 'IR', label: 'Iran'},
+        {value: "IM", label: "Isle of Man"},
+        {value: "JE", label: "Jersey"},
+        {value: "KP", label: "North Korea"},
+        {value: "KR", label: "South Korea"},
+        {value: "LA", label: "Lao People's Democratic Republic"},
+        {value: "LY", label: "Libyan Arab Jamahiriya"},
+        {value: "MO", label: "Macao"},
+        {value: "MK", label: "Macedonia"},
+        {value: "FM", label: "Micronesia"},
+        {value: "MD", label: "Moldova"},
+        {value: "MZ", label: "Mozambique"},
+        {value: "PS", label: "Palestinian Territory"},
+        {value: "PN", label: "Pitcairn"},
+        {value: "RE", label: "Réunion"},
+        {value: "RU", label: "Russia"},
+        {value: "BL", label: "Saint Barthélemy"},
+        {value: "SH", label: "Saint Helena"},
+        {value: "KN", label: "Saint Kitts and Nevis"},
+        {value: "LC", label: "Saint Lucia"},
+        {value: "MF", label: "Saint Martin"},
+        {value: "PM", label: "Saint Pierre and Miquelon"},
+        {value: "VC", label: "Saint Vincent and the Grenadines"},
+        {value: "ST", label: "Sao Tome and Principe"},
+        {value: "SO", label: "Somalia"},
+        {value: "SJ", label: "Svalbard and Jan Mayen"},
+        {value: "SY", label: "Syrian Arab Republic"},
+        {value: "TW", label: "Taiwan"},
+        {value: "TZ", label: "Tanzania"},
+        {value: "TL", label: "Timor-Leste"},
+        {value: "VE", label: "Venezuela"},
+        {value: "VN", label: "Viet Nam"},
+        {value: "VG", label: "British Virgin Islands"},
+        {value: "VI", label: "US Virgin Islands"}
+    ]
+    const customStyles = {
+
+        placeholder: (provided, state) => ({
+            color: state.isDisabled ? "#fff" : "#fff",
+            backgroundColor: "#27282e",
+        }),
+
+        option: (provided, state) => ({
+            ...provided,
+            borderBottom: "1px solid #333",
+            padding: "10px",
+            color: state.isSelected ? "#ddd" : "#d1d5db",
+            backgroundColor: state.isSelected ? "rgba(51,54,63,0.87)" : (state.isFocused ? "rgba(51,54,63,1)" : "#27282eff")
+        }),
+
+        control: () => ({
+            display: "flex",
+            backgroundColor: "#fff",
+            color: "#eee"
+        }),
+
+        indicatorSeparator: () => ({
+            display: "none",
+        }),
+
+        singleValue: (provided, state) => {
+
+            const opacity = state.isDisabled ? 0.5 : 1;
+
+            const transition = "opacity 300ms";
+
+            return {...provided, opacity, transition};
+
+        },
+
+    };
+
+    return (
+        <>
+            {response === undefined && <div className="text-center text-xl mx-2 my-6 text-gray-200"> Create new account</div>}
+
+            <div className={`p-6 bg-app-black/50 rounded-md text-gray-300 overflow-hidden`}>
+                <form onSubmit={handleSubmit}>
+                    <div className={(response && response.data.status === "success") ? "hidden" : ""}>
+                        <header className='border-b-2 pb-[10px] font-bold text-xl'>Sign Up</header>
+                        <div className='mt-6 flex flex-col relative'>
+                            <label htmlFor="username">Username</label>
+                            <input
+                                onChange={handleInputChange}
+                                name='username'
+                                value={formData.username}
+                                type="text"
+                                className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'
+                                autoComplete="one-time-code"
+                                required="required"/>
+                            {inputValidation('username')}
+                        </div>
+                        <div className='mt-6 flex flex-col relative'>
+                            <label htmlFor="password">Password</label>
+                            <input autoComplete='one-time-code' onChange={handleInputChange}
+                                   name='password'
+                                   value={formData.password}
+                                   type="password"
+                                   className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+                            {inputValidation('password')}
+                        </div>
+                        <div className='mt-6 flex flex-col relative'>
+                            <label htmlFor="password">Confirm Password</label>
+                            <input autoComplete='one-time-code' onChange={handleInputChange}
+                                   name='password_confirmation'
+                                   value={formData.password_confirmation}
+                                   type="password"
+                                   className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+                            {inputValidation('password_confirmation')}
+                        </div>
+                        <div className='mt-6 flex flex-col relative'>
+                            <label htmlFor="email">Email Address (No Spam!)</label>
+                            <input autoComplete='one-time-code' onChange={handleInputChange}
+                                   name='email'
+                                   value={formData.email}
+                                   type="email"
+                                   className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+
+                            {inputValidation('email')}
+                        </div>
+                        <div className='mt-6 flex flex-col relative'>
+                            <label htmlFor="country">Country</label>
+                            <Select
+                                options={options}
+                                name='country_code'
+                                onChange={(selectedOption) => {
+                                    setFormData({...formData, country_code: selectedOption.value});
+                                }}
+                                defaultValue={{label: "Afghanistan", value: 'AF'}}
+                                className=' rounded w-full mt-2 h-9 focus:outline-red text-sm'
+                                styles={customStyles}
+
+                            />
+                            {inputValidation('country_code')}
+
+                        </div>
+                        <div className='mt-6 flex flex-col'>
+                            <label htmlFor="upload">Profile Picture <span className='text-xs text-gray-500 mx-3'>[jpg, png, gif] - (100x100)</span></label>
+                            <label
+                                onDragOver={(e) => {
+                                    setIsDragOver(true);
+                                    e.preventDefault();
+                                }}
+                                onDrop={handleDrop}
+                                onDragLeave={() => {
+                                    setIsDragOver(false)
+                                }}
+                                htmlFor="upload-image"
+                                className={`relative group mt-2 h-24 w-24 border-dotted bg-gray-700/20 border-2 transition ${isDragOver ? "border-gray-400" : "border-gray-600"} hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
+                            >
+                                <input
+                                    id='upload-image'
+                                    name='image'
+                                    value={formData.image}
+                                    type='file'
+                                    accept='.jpg, .jpeg, .png,'
+                                    title='Custom'
+                                    className='hidden'
+                                    onChange={handleImageChange}
+                                />
+                                <div style={{
+                                    backgroundImage: formData.image ? `url(${formData.image})` : `url('/assets/images/upload-icon.svg')`,
+                                }} className={`absolute w-full h-full transition bg-no-repeat bg-center ${isDragOver ? "scale-110" : "opacity-75"}`}></div>
+                            </label>
+                        </div>
+
+                        <button onClick={handleSubmit}
+                                className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
+                                disabled={loading}
+                        >
+
+                            {loading ?
+                                <>
+                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor"
+                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Signing Up...
+                                </> : <>Sign Up</>
+                            }
+
+                        </button>
+                        <div className='mt-4 text-sm text-gray-400'>Already have an account?
+                            <Link to="/login" className='mx-2 text-gray-200 hover:text-gray-300 transition'>Login</Link>
+                        </div>
+                    </div>
+                </form>
+                {
+                    ((response && response.data.status === "success") &&
+                        <div className='flex flex-col my-10 justify-center items-center'>
+                            <MdDoneOutline className='bg-gray-500 rounded-full w-20 h-20 p-3'/>
+                            <h2 className='text-gray-400 text-2xl mt-12'>Success!</h2>
+                            <div className='text-gray-400 text-md mx-4 mt-6'>You have registered for your account</div>
+                            <Link to="/login" className='text-gray-400 hover:text-gray-300 transition mt-12'>
+                                <span
+                                    onClick={resetLoading}
+                                    className="text-sm p-[16px] text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 transition">Login to your account</span>
+                            </Link>
+                        </div>
+                    )
+                }
+            </div>
+
+        </>
+    )
+}

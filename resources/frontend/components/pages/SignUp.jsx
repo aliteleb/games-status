@@ -79,7 +79,7 @@ export default function SignUp({loading, setLoading}) {
 
                 reader.onload = (e) => {
                     // Set the image data in the formData state
-                    setFormData({ ...formData, image: e.target.result });
+                    setFormData({...formData, image: e.target.result});
                 };
 
                 reader.readAsDataURL(file);
@@ -95,7 +95,7 @@ export default function SignUp({loading, setLoading}) {
             const reader = new FileReader();
 
             reader.onload = (e) => {
-                setFormData({ ...formData, image: e.target.result }); // Set the image in formData
+                setFormData({...formData, image: e.target.result}); // Set the image in formData
             };
 
             reader.readAsDataURL(file);
@@ -105,246 +105,282 @@ export default function SignUp({loading, setLoading}) {
     // Drag & Drop
 
     const options = [
-        { value: 'AF', label: 'Afghanistan' },
-        { value: 'AL', label: 'Albania' },
-        { value: 'DZ', label: 'Algeria' },
-        { value: 'AS', label: 'American Samoa' },
-        { value: 'AD', label: 'Andorra' },
-        { value: 'AO', label: 'Angola' },
-        { value: 'AI', label: 'Anguilla' },
-        { value: 'AG', label: 'Antigua and Barbuda' },
-        { value: 'AR', label: 'Argentina' },
-        { value: 'AM', label: 'Armenia' },
-        { value: 'AW', label: 'Aruba' },
-        { value: 'AU', label: 'Australia' },
-        { value: 'AT', label: 'Austria' },
-        { value: 'AZ', label: 'Azerbaijan' },
-        { value: 'BS', label: 'Bahamas' },
-        { value: 'BH', label: 'Bahrain' },
-        { value: 'BD', label: 'Bangladesh' },
-        { value: 'BB', label: 'Barbados' },
-        { value: 'BY', label: 'Belarus' },
-        { value: 'BE', label: 'Belgium' },
-        { value: 'BZ', label: 'Belize' },
-        { value: 'BJ', label: 'Benin' },
-        { value: 'BM', label: 'Bermuda' },
-        { value: 'BT', label: 'Bhutan' },
-        { value: 'BA', label: 'Bosnia and Herzegovina' },
-        { value: 'BW', label: 'Botswana' },
-        { value: 'BR', label: 'Brazil' },
-        { value: 'IO', label: 'British Indian Ocean Territory' },
-        { value: 'BG', label: 'Bulgaria' },
-        { value: 'BF', label: 'Burkina Faso' },
-        { value: 'BI', label: 'Burundi' },
-        { value: 'KH', label: 'Cambodia' },
-        { value: 'CM', label: 'Cameroon' },
-        { value: 'CA', label: 'Canada' },
-        { value: 'CV', label: 'Cape Verde' },
-        { value: 'KY', label: 'Cayman Islands' },
-        { value: 'CF', label: 'Central African Republic' },
-        { value: 'TD', label: 'Chad' },
-        { value: 'CL', label: 'Chile' },
-        { value: 'CN', label: 'China' },
-        { value: 'CX', label: 'Christmas Island' },
-        { value: 'CO', label: 'Colombia' },
-        { value: 'KM', label: 'Comoros' },
-        { value: 'CG', label: 'Congo' },
-        { value: 'CK', label: 'Cook Islands' },
-        { value: 'CR', label: 'Costa Rica' },
-        { value: 'HR', label: 'Croatia' },
-        { value: 'CU', label: 'Cuba' },
-        { value: 'CY', label: 'Cyprus' },
-        { value: 'CZ', label: 'Czech Republic' },
-        { value: 'DK', label: 'Denmark' },
-        { value: 'DJ', label: 'Djibouti' },
-        { value: 'DM', label: 'Dominica' },
-        { value: 'DO', label: 'Dominican Republic' },
-        { value: 'EC', label: 'Ecuador' },
-        { value: 'EG', label: 'Egypt' },
-        { value: 'SV', label: 'El Salvador' },
-        { value: 'GQ', label: 'Equatorial Guinea' },
-        { value: 'ER', label: 'Eritrea' },
-        { value: 'EE', label: 'Estonia' },
-        { value: 'ET', label: 'Ethiopia' },
-        { value: 'FO', label: 'Faroe Islands' },
-        { value: 'FJ', label: 'Fiji' },
-        { value: 'FI', label: 'Finland' },
-        { value: 'FR', label: 'France' },
-        { value: 'GF', label: 'French Guiana' },
-        { value: 'PF', label: 'French Polynesia' },
-        { value: 'GA', label: 'Gabon' },
-        { value: 'GM', label: 'Gambia' },
-        { value: 'GE', label: 'Georgia' },
-        { value: 'DE', label: 'Germany' },
-        { value: 'GH', label: 'Ghana' },
-        { value: 'GI', label: 'Gibraltar' },
-        { value: 'GR', label: 'Greece' },
-        { value: 'GL', label: 'Greenland' },
-        { value: 'GD', label: 'Grenada' },
-        { value: 'GP', label: 'Guadeloupe' },
-        { value: 'GU', label: 'Guam' },
-        { value: 'GT', label: 'Guatemala' },
-        { value: 'GN', label: 'Guinea' },
-        { value: 'GW', label: 'Guinea-Bissau' },
-        { value: 'GY', label: 'Guyana' },
-        { value: 'HT', label: 'Haiti' },
-        { value: 'HN', label: 'Honduras' },
-        { value: 'HU', label: 'Hungary' },
-        { value: 'IS', label: 'Iceland' },
-        { value: 'IN', label: 'India' },
-        { value: 'ID', label: 'Indonesia' },
-        { value: 'IQ', label: 'Iraq' },
-        { value: 'IE', label: 'Ireland' },
-        { value: 'IT', label: 'Italy' },
-        { value: 'JM', label: 'Jamaica' },
-        { value: 'JP', label: 'Japan' },
-        { value: 'JO', label: 'Jordan' },
-        { value: 'KZ', label: 'Kazakhstan' },
-        { value: 'KE', label: 'Kenya' },
-        { value: 'KI', label: 'Kiribati' },
-        { value: 'KW', label: 'Kuwait' },
-        { value: 'KG', label: 'Kyrgyzstan' },
-        { value: 'LV', label: 'Latvia' },
-        { value: 'LB', label: 'Lebanon' },
-        { value: 'LS', label: 'Lesotho' },
-        { value: 'LR', label: 'Liberia' },
-        { value: 'LI', label: 'Liechtenstein' },
-        { value: 'LT', label: 'Lithuania' },
-        { value: 'LU', label: 'Luxembourg' },
-        { value: 'MG', label: 'Madagascar' },
-        { value: 'MW', label: 'Malawi' },
-        { value: 'MY', label: 'Malaysia' },
-        { value: 'MV', label: 'Maldives' },
-        { value: 'ML', label: 'Mali' },
-        { value: 'MT', label: 'Malta' },
-        { value: 'MH', label: 'Marshall Islands' },
-        { value: 'MQ', label: 'Martinique' },
-        { value: 'MR', label: 'Mauritania' },
-        { value: 'MU', label: 'Mauritius' },
-        { value: 'YT', label: 'Mayotte' },
-        { value: 'MX', label: 'Mexico' },
-        { value: 'MC', label: 'Monaco' },
-        { value: 'MN', label: 'Mongolia' },
-        { value: 'ME', label: 'Montenegro' },
-        { value: 'MS', label: 'Montserrat' },
-        { value: 'MA', label: 'Morocco' },
-        { value: 'MM', label: 'Myanmar' },
-        { value: 'NA', label: 'Namibia' },
-        { value: 'NR', label: 'Nauru' },
-        { value: 'NP', label: 'Nepal' },
-        { value: 'NL', label: 'Netherlands' },
-        { value: 'AN', label: 'Netherlands Antilles' },
-        { value: 'NC', label: 'New Caledonia' },
-        { value: 'NZ', label: 'New Zealand' },
-        { value: 'NI', label: 'Nicaragua' },
-        { value: 'NE', label: 'Niger' },
-        { value: 'NG', label: 'Nigeria' },
-        { value: 'NU', label: 'Niue' },
-        { value: 'NF', label: 'Norfolk Island' },
-        { value: 'MP', label: 'Northern Mariana Islands' },
-        { value: 'NO', label: 'Norway' },
-        { value: 'OM', label: 'Oman' },
-        { value: 'PK', label: 'Pakistan' },
-        { value: 'PW', label: 'Palau' },
-        { value: 'PA', label: 'Panama' },
-        { value: 'PG', label: 'Papua New Guinea' },
-        { value: 'PY', label: 'Paraguay' },
-        { value: 'PE', label: 'Peru' },
-        { value: 'PH', label: 'Philippines' },
-        { value: 'PL', label: 'Poland' },
-        { value: 'PT', label: 'Portugal' },
-        { value: 'PR', label: 'Puerto Rico' },
-        { value: 'QA', label: 'Qatar' },
-        { value: 'RO', label: 'Romania' },
-        { value: 'RW', label: 'Rwanda' },
-        { value: 'WS', label: 'Samoa' },
-        { value: 'SM', label: 'San Marino' },
-        { value: 'SA', label: 'Saudi Arabia' },
-        { value: 'SN', label: 'Senegal' },
-        { value: 'RS', label: 'Serbia' },
-        { value: 'SC', label: 'Seychelles' },
-        { value: 'SL', label: 'Sierra Leone' },
-        { value: 'SG', label: 'Singapore' },
-        { value: 'SK', label: 'Slovakia' },
-        { value: 'SI', label: 'Slovenia' },
-        { value: 'SB', label: 'Solomon Islands' },
-        { value: 'ZA', label: 'South Africa' },
-        { value: 'GS', label: 'South Georgia and the South Sandwich Islands' },
-        { value: 'ES', label: 'Spain' },
-        { value: 'LK', label: 'Sri Lanka' },
-        { value: 'SD', label: 'Sudan' },
-        { value: 'SR', label: 'Suriname' },
-        { value: 'SZ', label: 'Swaziland' },
-        { value: 'SE', label: 'Sweden' },
-        { value: 'CH', label: 'Switzerland' },
-        { value: 'TJ', label: 'Tajikistan' },
-        { value: 'TH', label: 'Thailand' },
-        { value: 'TG', label: 'Togo' },
-        { value: 'TK', label: 'Tokelau' },
-        { value: 'TO', label: 'Tonga' },
-        { value: 'TT', label: 'Trinidad and Tobago' },
-        { value: 'TN', label: 'Tunisia' },
-        { value: 'TR', label: 'Turkey' },
-        { value: 'TM', label: 'Turkmenistan' },
-        { value: 'TC', label: 'Turks and Caicos Islands' },
-        { value: 'TV', label: 'Tuvalu' },
-        { value: 'UG', label: 'Uganda' },
-        { value: 'UA', label: 'Ukraine' },
-        { value: 'AE', label: 'United Arab Emirates' },
-        { value: 'GB', label: 'United Kingdom' },
-        { value: 'US', label: 'United States' },
-        { value: 'UY', label: 'Uruguay' },
-        { value: 'UZ', label: 'Uzbekistan' },
-        { value: 'VU', label: 'Vanuatu' },
-        { value: 'WF', label: 'Wallis and Futuna' },
-        { value: 'YE', label: 'Yemen' },
-        { value: 'ZM', label: 'Zambia' },
-        { value: 'ZW', label: 'Zimbabwe' },
-        { value: 'AX', label: 'Åland Islands' },
-        { value: 'AQ', label: 'Antarctica' },
-        { value: 'BO', label: 'Bolivia' },
-        { value: 'BN', label: 'Brunei Darussalam' },
-        { value: 'CC', label: 'Cocos (Keeling) Islands' },
-        { value: 'CD', label: 'Congo' },
-        { value: 'FK', label: 'Falkland Islands (Malvinas)' },
-        { value: 'GG', label: 'Guernsey' },
-        { value: 'VA', label: 'Holy See (Vatican City State)' },
-        { value: 'HK', label: 'Hong Kong' },
-        { value: 'IR', label: 'Iran' },
-        { value: "IM", label: "Isle of Man" },
-        { value: "JE", label: "Jersey" },
-        { value: "KP", label: "North Korea" },
-        { value: "KR", label: "South Korea" },
-        { value: "LA", label: "Lao People's Democratic Republic" },
-        { value: "LY", label: "Libyan Arab Jamahiriya" },
-        { value: "MO", label: "Macao" },
-        { value: "MK", label: "Macedonia" },
-        { value: "FM", label: "Micronesia" },
-        { value: "MD", label: "Moldova" },
-        { value: "MZ", label: "Mozambique" },
-        { value: "PS", label: "Palestinian Territory" },
-        { value: "PN", label: "Pitcairn" },
-        { value: "RE", label: "Réunion" },
-        { value: "RU", label: "Russia" },
-        { value: "BL", label: "Saint Barthélemy" },
-        { value: "SH", label: "Saint Helena" },
-        { value: "KN", label: "Saint Kitts and Nevis" },
-        { value: "LC", label: "Saint Lucia" },
-        { value: "MF", label: "Saint Martin" },
-        { value: "PM", label: "Saint Pierre and Miquelon" },
-        { value: "VC", label: "Saint Vincent and the Grenadines" },
-        { value: "ST", label: "Sao Tome and Principe" },
-        { value: "SO", label: "Somalia" },
-        { value: "SJ", label: "Svalbard and Jan Mayen" },
-        { value: "SY", label: "Syrian Arab Republic" },
-        { value: "TW", label: "Taiwan" },
-        { value: "TZ", label: "Tanzania" },
-        { value: "TL", label: "Timor-Leste" },
-        { value: "VE", label: "Venezuela" },
-        { value: "VN", label: "Viet Nam" },
-        { value: "VG", label: "British Virgin Islands" },
-        { value: "VI", label: "US Virgin Islands" }
+        {value: 'AF', label: 'Afghanistan'},
+        {value: 'AL', label: 'Albania'},
+        {value: 'DZ', label: 'Algeria'},
+        {value: 'AS', label: 'American Samoa'},
+        {value: 'AD', label: 'Andorra'},
+        {value: 'AO', label: 'Angola'},
+        {value: 'AI', label: 'Anguilla'},
+        {value: 'AG', label: 'Antigua and Barbuda'},
+        {value: 'AR', label: 'Argentina'},
+        {value: 'AM', label: 'Armenia'},
+        {value: 'AW', label: 'Aruba'},
+        {value: 'AU', label: 'Australia'},
+        {value: 'AT', label: 'Austria'},
+        {value: 'AZ', label: 'Azerbaijan'},
+        {value: 'BS', label: 'Bahamas'},
+        {value: 'BH', label: 'Bahrain'},
+        {value: 'BD', label: 'Bangladesh'},
+        {value: 'BB', label: 'Barbados'},
+        {value: 'BY', label: 'Belarus'},
+        {value: 'BE', label: 'Belgium'},
+        {value: 'BZ', label: 'Belize'},
+        {value: 'BJ', label: 'Benin'},
+        {value: 'BM', label: 'Bermuda'},
+        {value: 'BT', label: 'Bhutan'},
+        {value: 'BA', label: 'Bosnia and Herzegovina'},
+        {value: 'BW', label: 'Botswana'},
+        {value: 'BR', label: 'Brazil'},
+        {value: 'IO', label: 'British Indian Ocean Territory'},
+        {value: 'BG', label: 'Bulgaria'},
+        {value: 'BF', label: 'Burkina Faso'},
+        {value: 'BI', label: 'Burundi'},
+        {value: 'KH', label: 'Cambodia'},
+        {value: 'CM', label: 'Cameroon'},
+        {value: 'CA', label: 'Canada'},
+        {value: 'CV', label: 'Cape Verde'},
+        {value: 'KY', label: 'Cayman Islands'},
+        {value: 'CF', label: 'Central African Republic'},
+        {value: 'TD', label: 'Chad'},
+        {value: 'CL', label: 'Chile'},
+        {value: 'CN', label: 'China'},
+        {value: 'CX', label: 'Christmas Island'},
+        {value: 'CO', label: 'Colombia'},
+        {value: 'KM', label: 'Comoros'},
+        {value: 'CG', label: 'Congo'},
+        {value: 'CK', label: 'Cook Islands'},
+        {value: 'CR', label: 'Costa Rica'},
+        {value: 'HR', label: 'Croatia'},
+        {value: 'CU', label: 'Cuba'},
+        {value: 'CY', label: 'Cyprus'},
+        {value: 'CZ', label: 'Czech Republic'},
+        {value: 'DK', label: 'Denmark'},
+        {value: 'DJ', label: 'Djibouti'},
+        {value: 'DM', label: 'Dominica'},
+        {value: 'DO', label: 'Dominican Republic'},
+        {value: 'EC', label: 'Ecuador'},
+        {value: 'EG', label: 'Egypt'},
+        {value: 'SV', label: 'El Salvador'},
+        {value: 'GQ', label: 'Equatorial Guinea'},
+        {value: 'ER', label: 'Eritrea'},
+        {value: 'EE', label: 'Estonia'},
+        {value: 'ET', label: 'Ethiopia'},
+        {value: 'FO', label: 'Faroe Islands'},
+        {value: 'FJ', label: 'Fiji'},
+        {value: 'FI', label: 'Finland'},
+        {value: 'FR', label: 'France'},
+        {value: 'GF', label: 'French Guiana'},
+        {value: 'PF', label: 'French Polynesia'},
+        {value: 'GA', label: 'Gabon'},
+        {value: 'GM', label: 'Gambia'},
+        {value: 'GE', label: 'Georgia'},
+        {value: 'DE', label: 'Germany'},
+        {value: 'GH', label: 'Ghana'},
+        {value: 'GI', label: 'Gibraltar'},
+        {value: 'GR', label: 'Greece'},
+        {value: 'GL', label: 'Greenland'},
+        {value: 'GD', label: 'Grenada'},
+        {value: 'GP', label: 'Guadeloupe'},
+        {value: 'GU', label: 'Guam'},
+        {value: 'GT', label: 'Guatemala'},
+        {value: 'GN', label: 'Guinea'},
+        {value: 'GW', label: 'Guinea-Bissau'},
+        {value: 'GY', label: 'Guyana'},
+        {value: 'HT', label: 'Haiti'},
+        {value: 'HN', label: 'Honduras'},
+        {value: 'HU', label: 'Hungary'},
+        {value: 'IS', label: 'Iceland'},
+        {value: 'IN', label: 'India'},
+        {value: 'ID', label: 'Indonesia'},
+        {value: 'IQ', label: 'Iraq'},
+        {value: 'IE', label: 'Ireland'},
+        {value: 'IT', label: 'Italy'},
+        {value: 'JM', label: 'Jamaica'},
+        {value: 'JP', label: 'Japan'},
+        {value: 'JO', label: 'Jordan'},
+        {value: 'KZ', label: 'Kazakhstan'},
+        {value: 'KE', label: 'Kenya'},
+        {value: 'KI', label: 'Kiribati'},
+        {value: 'KW', label: 'Kuwait'},
+        {value: 'KG', label: 'Kyrgyzstan'},
+        {value: 'LV', label: 'Latvia'},
+        {value: 'LB', label: 'Lebanon'},
+        {value: 'LS', label: 'Lesotho'},
+        {value: 'LR', label: 'Liberia'},
+        {value: 'LI', label: 'Liechtenstein'},
+        {value: 'LT', label: 'Lithuania'},
+        {value: 'LU', label: 'Luxembourg'},
+        {value: 'MG', label: 'Madagascar'},
+        {value: 'MW', label: 'Malawi'},
+        {value: 'MY', label: 'Malaysia'},
+        {value: 'MV', label: 'Maldives'},
+        {value: 'ML', label: 'Mali'},
+        {value: 'MT', label: 'Malta'},
+        {value: 'MH', label: 'Marshall Islands'},
+        {value: 'MQ', label: 'Martinique'},
+        {value: 'MR', label: 'Mauritania'},
+        {value: 'MU', label: 'Mauritius'},
+        {value: 'YT', label: 'Mayotte'},
+        {value: 'MX', label: 'Mexico'},
+        {value: 'MC', label: 'Monaco'},
+        {value: 'MN', label: 'Mongolia'},
+        {value: 'ME', label: 'Montenegro'},
+        {value: 'MS', label: 'Montserrat'},
+        {value: 'MA', label: 'Morocco'},
+        {value: 'MM', label: 'Myanmar'},
+        {value: 'NA', label: 'Namibia'},
+        {value: 'NR', label: 'Nauru'},
+        {value: 'NP', label: 'Nepal'},
+        {value: 'NL', label: 'Netherlands'},
+        {value: 'AN', label: 'Netherlands Antilles'},
+        {value: 'NC', label: 'New Caledonia'},
+        {value: 'NZ', label: 'New Zealand'},
+        {value: 'NI', label: 'Nicaragua'},
+        {value: 'NE', label: 'Niger'},
+        {value: 'NG', label: 'Nigeria'},
+        {value: 'NU', label: 'Niue'},
+        {value: 'NF', label: 'Norfolk Island'},
+        {value: 'MP', label: 'Northern Mariana Islands'},
+        {value: 'NO', label: 'Norway'},
+        {value: 'OM', label: 'Oman'},
+        {value: 'PK', label: 'Pakistan'},
+        {value: 'PW', label: 'Palau'},
+        {value: 'PA', label: 'Panama'},
+        {value: 'PG', label: 'Papua New Guinea'},
+        {value: 'PY', label: 'Paraguay'},
+        {value: 'PE', label: 'Peru'},
+        {value: 'PH', label: 'Philippines'},
+        {value: 'PL', label: 'Poland'},
+        {value: 'PT', label: 'Portugal'},
+        {value: 'PR', label: 'Puerto Rico'},
+        {value: 'QA', label: 'Qatar'},
+        {value: 'RO', label: 'Romania'},
+        {value: 'RW', label: 'Rwanda'},
+        {value: 'WS', label: 'Samoa'},
+        {value: 'SM', label: 'San Marino'},
+        {value: 'SA', label: 'Saudi Arabia'},
+        {value: 'SN', label: 'Senegal'},
+        {value: 'RS', label: 'Serbia'},
+        {value: 'SC', label: 'Seychelles'},
+        {value: 'SL', label: 'Sierra Leone'},
+        {value: 'SG', label: 'Singapore'},
+        {value: 'SK', label: 'Slovakia'},
+        {value: 'SI', label: 'Slovenia'},
+        {value: 'SB', label: 'Solomon Islands'},
+        {value: 'ZA', label: 'South Africa'},
+        {value: 'GS', label: 'South Georgia and the South Sandwich Islands'},
+        {value: 'ES', label: 'Spain'},
+        {value: 'LK', label: 'Sri Lanka'},
+        {value: 'SD', label: 'Sudan'},
+        {value: 'SR', label: 'Suriname'},
+        {value: 'SZ', label: 'Swaziland'},
+        {value: 'SE', label: 'Sweden'},
+        {value: 'CH', label: 'Switzerland'},
+        {value: 'TJ', label: 'Tajikistan'},
+        {value: 'TH', label: 'Thailand'},
+        {value: 'TG', label: 'Togo'},
+        {value: 'TK', label: 'Tokelau'},
+        {value: 'TO', label: 'Tonga'},
+        {value: 'TT', label: 'Trinidad and Tobago'},
+        {value: 'TN', label: 'Tunisia'},
+        {value: 'TR', label: 'Turkey'},
+        {value: 'TM', label: 'Turkmenistan'},
+        {value: 'TC', label: 'Turks and Caicos Islands'},
+        {value: 'TV', label: 'Tuvalu'},
+        {value: 'UG', label: 'Uganda'},
+        {value: 'UA', label: 'Ukraine'},
+        {value: 'AE', label: 'United Arab Emirates'},
+        {value: 'GB', label: 'United Kingdom'},
+        {value: 'US', label: 'United States'},
+        {value: 'UY', label: 'Uruguay'},
+        {value: 'UZ', label: 'Uzbekistan'},
+        {value: 'VU', label: 'Vanuatu'},
+        {value: 'WF', label: 'Wallis and Futuna'},
+        {value: 'YE', label: 'Yemen'},
+        {value: 'ZM', label: 'Zambia'},
+        {value: 'ZW', label: 'Zimbabwe'},
+        {value: 'AX', label: 'Åland Islands'},
+        {value: 'AQ', label: 'Antarctica'},
+        {value: 'BO', label: 'Bolivia'},
+        {value: 'BN', label: 'Brunei Darussalam'},
+        {value: 'CC', label: 'Cocos (Keeling) Islands'},
+        {value: 'CD', label: 'Congo'},
+        {value: 'FK', label: 'Falkland Islands (Malvinas)'},
+        {value: 'GG', label: 'Guernsey'},
+        {value: 'VA', label: 'Holy See (Vatican City State)'},
+        {value: 'HK', label: 'Hong Kong'},
+        {value: 'IR', label: 'Iran'},
+        {value: "IM", label: "Isle of Man"},
+        {value: "JE", label: "Jersey"},
+        {value: "KP", label: "North Korea"},
+        {value: "KR", label: "South Korea"},
+        {value: "LA", label: "Lao People's Democratic Republic"},
+        {value: "LY", label: "Libyan Arab Jamahiriya"},
+        {value: "MO", label: "Macao"},
+        {value: "MK", label: "Macedonia"},
+        {value: "FM", label: "Micronesia"},
+        {value: "MD", label: "Moldova"},
+        {value: "MZ", label: "Mozambique"},
+        {value: "PS", label: "Palestinian Territory"},
+        {value: "PN", label: "Pitcairn"},
+        {value: "RE", label: "Réunion"},
+        {value: "RU", label: "Russia"},
+        {value: "BL", label: "Saint Barthélemy"},
+        {value: "SH", label: "Saint Helena"},
+        {value: "KN", label: "Saint Kitts and Nevis"},
+        {value: "LC", label: "Saint Lucia"},
+        {value: "MF", label: "Saint Martin"},
+        {value: "PM", label: "Saint Pierre and Miquelon"},
+        {value: "VC", label: "Saint Vincent and the Grenadines"},
+        {value: "ST", label: "Sao Tome and Principe"},
+        {value: "SO", label: "Somalia"},
+        {value: "SJ", label: "Svalbard and Jan Mayen"},
+        {value: "SY", label: "Syrian Arab Republic"},
+        {value: "TW", label: "Taiwan"},
+        {value: "TZ", label: "Tanzania"},
+        {value: "TL", label: "Timor-Leste"},
+        {value: "VE", label: "Venezuela"},
+        {value: "VN", label: "Viet Nam"},
+        {value: "VG", label: "British Virgin Islands"},
+        {value: "VI", label: "US Virgin Islands"}
     ]
+    const customStyles = {
+
+        placeholder: (provided, state) => ({
+            color: state.isDisabled ? "#fff" : "#fff",
+            backgroundColor: "#27282e",
+        }),
+
+        option: (provided, state) => ({
+            ...provided,
+            borderBottom: "1px solid #333",
+            padding: "10px",
+            color: state.isSelected ? "#ddd" : "#d1d5db",
+            backgroundColor: state.isSelected ? "rgba(51,54,63,0.87)" : (state.isFocused ? "rgba(51,54,63,1)" : "#27282eff")
+        }),
+
+        control: () => ({
+            display: "flex",
+            backgroundColor: "#fff",
+            color: "#eee"
+        }),
+
+        indicatorSeparator: () => ({
+            display: "none",
+        }),
+
+        singleValue: (provided, state) => {
+
+            const opacity = state.isDisabled ? 0.5 : 1;
+
+            const transition = "opacity 300ms";
+
+            return {...provided, opacity, transition};
+
+        },
+
+    };
 
     return (
         <>
@@ -369,41 +405,44 @@ export default function SignUp({loading, setLoading}) {
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="password">Password</label>
                             <input autoComplete='one-time-code' onChange={handleInputChange}
-                                name='password'
-                                value={formData.password}
-                                type="password"
-                                className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+                                   name='password'
+                                   value={formData.password}
+                                   type="password"
+                                   className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
                             {inputValidation('password')}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="password">Confirm Password</label>
                             <input autoComplete='one-time-code' onChange={handleInputChange}
-                                name='password_confirmation'
-                                value={formData.password_confirmation}
-                                type="password"
-                                className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+                                   name='password_confirmation'
+                                   value={formData.password_confirmation}
+                                   type="password"
+                                   className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
                             {inputValidation('password_confirmation')}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="email">Email Address (No Spam!)</label>
                             <input autoComplete='one-time-code' onChange={handleInputChange}
-                                name='email'
-                                value={formData.email}
-                                type="email"
-                                className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+                                   name='email'
+                                   value={formData.email}
+                                   type="email"
+                                   className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
 
                             {inputValidation('email')}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="country">Country</label>
                             <Select
-                            options={options}
-                            name='country_code'
-                            onChange={(selectedOption) => {
-                                setFormData({ ...formData, country_code: selectedOption.value });
-                            }}
-                            value={formData.country_code}
-                            className=' rounded w-full mt-2 h-9 focus:outline-red text-sm'
+                                options={options}
+                                name='country_code'
+                                onChange={(selectedOption) => {
+                                    setFormData({...formData, country_code: selectedOption.value});
+                                }}
+                                defaultValue={{label: "Afghanistan", value: 'AF'}}
+                                className='react-select-container'
+                                classNamePrefix="react-select"
+                                // styles={customStyles}
+
                             />
                             {inputValidation('country_code')}
 
@@ -411,9 +450,14 @@ export default function SignUp({loading, setLoading}) {
                         <div className='mt-6 flex flex-col'>
                             <label htmlFor="upload">Profile Picture <span className='text-xs text-gray-500 mx-3'>[jpg, png, gif] - (100x100)</span></label>
                             <label
-                                onDragOver={(e) => {setIsDragOver(true); e.preventDefault();}}
+                                onDragOver={(e) => {
+                                    setIsDragOver(true);
+                                    e.preventDefault();
+                                }}
                                 onDrop={handleDrop}
-                                onDragLeave={() => {setIsDragOver(false)}}
+                                onDragLeave={() => {
+                                    setIsDragOver(false)
+                                }}
                                 htmlFor="upload-image"
                                 className={`relative group mt-2 h-24 w-24 border-dotted bg-gray-700/20 border-2 transition ${isDragOver ? "border-gray-400" : "border-gray-600"} hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group`}
                             >
@@ -443,7 +487,7 @@ export default function SignUp({loading, setLoading}) {
                                     <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                         <path className="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
                                     Signing Up...
                                 </> : <>Sign Up</>
