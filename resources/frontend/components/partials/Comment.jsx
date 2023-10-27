@@ -7,6 +7,7 @@ import {RiSendPlane2Fill} from 'react-icons/ri'
 import {BiDotsHorizontalRounded} from 'react-icons/bi'
 import { refreshPageSize } from '../pages/Game';
 import {GoReport} from 'react-icons/go'
+import {CiCircleRemove} from 'react-icons/ci'
 import { useAuth } from "../api/AuthContext";
 
 function Comment(props) {
@@ -134,7 +135,7 @@ function Comment(props) {
                     {/* Dropdown menu */}
                     <div ref={showDropMenu} onClick={removeComment} className={`hidden w-44 z-10 bg-black/20 rounded overflow-hidden divide-y shadow absolute mt-[90px]`} style={{right: '10px'}}>
                         <ul className="text-sm text-gray-300 y-200">
-                            {comment?.user?.username === user.username && <li><span className="cursor-pointer block py-2 px-4 transition hover:bg-black/30">Remove</span></li>}
+                            {comment?.user?.username === user.username && <li><span className="flex items-center cursor-pointer block py-2 px-4 transition hover:bg-black/30"><CiCircleRemove className='mr-1 text-lg'/> Remove</span></li>}
                             <li ><button disabled="disabled" className="flex items-center cursor-pointer block py-2 px-4 transition"><GoReport className='mr-1 text-lg'/> Report (soon)</button></li>
                         </ul>
                     </div>
