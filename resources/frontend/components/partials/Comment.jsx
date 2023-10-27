@@ -106,8 +106,6 @@ function Comment(props) {
         toggleClass()
     }
 
-    console.log(user);
-
     return (
         <div className={props.className}>
             <article className="p-4 text-base rounded-lg">

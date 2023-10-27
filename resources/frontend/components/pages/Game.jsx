@@ -11,21 +11,13 @@ import CommentPlaceholder from "../layouts/CommentPlaceholder.jsx";
 export const refreshPageSize = () => {
 
     setTimeout(() => {
-        const body = document.body,
-            html = document.documentElement;
+        const root = document.getElementById("root");
         const height = Math.max(
-            body.scrollHeight,
-            body.offsetHeight,
-            html.clientHeight,
-            html.scrollHeight,
-            html.offsetHeight
+            root.scrollHeight,
+            root.offsetHeight,
         );
         document.getElementById('blurred-bg').style.height = height + 'px';
-        const footer = document.getElementById('footer');
-        //footer.style.position = 'absolute';
-        //footer.style.top = (height - 105) + 'px';
-
-    }, 0)
+    }, 50)
 }
 
 function Game() {
@@ -38,29 +30,9 @@ function Game() {
     let [comments, setComments] = React.useState([])
     let [loading, setLoading] = React.useState(false)
 
-    let [game, setGame] = React.useState(
-        {
-            status_text: null,
-            days_diff: null,
-            image: null,
-            is_following: null,
-            status_long: null,
-            status_color: null,
-            poster: null,
-            cover: null,
-            name: null,
-            release_date: null,
-            protections: [],
-            crack_date: null,
-            scene_group: null,
-            groups: [],
-            followers_count: null,
-            comments: [],
-        }
-    )
+    let [game, setGame] = React.useState({})
 
-
-    let [follow, setFollow] = React.useState(game.is_following || false)
+    let [follow, setFollow] = React.useState(game?.is_following || false)
 
     useEffect(() => {
 
@@ -90,8 +62,7 @@ function Game() {
         }))
     }
 
-    game.status_color = game.status_text ? game.status_text.toLowerCase() : 'gray-600'
-    let icon, days
+    game.status_color = game?.status_text ? game?.status_text.toLowerCase() : 'gray-600'
     const statusText = game.status_text || ''
 
     switch (statusText) {
@@ -104,9 +75,6 @@ function Game() {
         default:
             break;
     }
-
-    days = `D${statusText === "CRACKED" || statusText === "UNCRACKED" ? "+" : "-"}${game.days_diff}`;
-
 
     let handleSubmit = (e) => {
         if (loading) {
@@ -137,7 +105,6 @@ function Game() {
             })
     }
 
-
     const handleFollowChange = async () => {
         const newFollowState = !follow;
         setFollow(newFollowState);
@@ -155,7 +122,6 @@ function Game() {
                             followers_count: response.data.data.followers_count
                         }
                     ))
-                    console.log(response.data.data.followers_count);
                 } else {
                     setFollow((prevFollow) => !prevFollow);
                     toast.error(response.data.message);
@@ -222,9 +188,9 @@ function Game() {
                                 <div>
                                     <div className='text-[#dddddd99] font-extralight'>DRM PROTECTIONS</div>
                                     <div className='text-xl'>
-                                        {game.protections.map((drm, index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70"
+                                        {game.protections?.map((drm, index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70"
                                                                                     to={`/protection/${drm.slug}`}>{drm.name}</Link>)}
-                                        {game.protections.length === 0 &&
+                                        {game.protections?.length === 0 &&
                                             <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                                     </div>
                                 </div>
@@ -237,9 +203,9 @@ function Game() {
                                 <div>
                                     <div className='text-[#dddddd99] font-extralight'>SCENE GROUPS</div>
                                     <div className='text-xl'>
-                                        {game.groups.map((group, index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70"
+                                        {game.groups?.map((group, index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70"
                                                                                  to={`/group/${group.slug}`}>{group.name}</Link>)}
-                                        {game.groups.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                                        {game.groups?.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                                     </div>
                                 </div>
                             </div>
@@ -293,7 +259,7 @@ function Game() {
                                 )
                             })}
 
-                            {game.name === null &&
+                            {!game.name  &&
                                 <>
                                     <CommentPlaceholder/>
                                     <CommentPlaceholder/>
