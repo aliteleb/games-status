@@ -5,10 +5,10 @@ import ApiClient from '../../services/ApiClient'
 import {toast} from 'react-hot-toast';
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import {BiDotsHorizontalRounded} from 'react-icons/bi'
-import { refreshPageSize } from '../pages/Game';
+import {refreshPageSize} from '../pages/Game';
 import {GoReport} from 'react-icons/go'
 import {CiCircleRemove} from 'react-icons/ci'
-import { useAuth } from "../api/AuthContext";
+import {useAuth} from "../api/AuthContext";
 
 function Comment(props) {
 
@@ -94,14 +94,14 @@ function Comment(props) {
 
     let removeComment = () => {
         ApiClient().delete("/comment/delete/" + comment.id)
-        .then(res => {
-            props.setComments(res.data.data)
-            toast.success(res.data.message)
-            refreshPageSize()
-        })
-        .catch(err => {
-            toast.error(err.response.data.message);
-        })
+            .then(res => {
+                props.setComments(res.data.data)
+                toast.success(res.data.message)
+                refreshPageSize()
+            })
+            .catch(err => {
+                toast.error(err.response.data.message);
+            })
 
         toggleClass()
     }
@@ -129,19 +129,26 @@ function Comment(props) {
                             }
                         </p>
                     </div>
-                    <button onClick={toggleClass} onBlur={()=>{ showDropMenu.current.classList.add("hidden") }} className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
+                    <button onClick={toggleClass} onBlur={() => {
+                        setTimeout(() => {
+                            showDropMenu.current.classList.add("hidden")
+                        }, 100)
+                    }} className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
                         <BiDotsHorizontalRounded fontSize="30px"/>
                     </button>
                     {/* Dropdown menu */}
-                    <div ref={showDropMenu} onClick={removeComment} className={`hidden w-44 z-10 bg-black/20 rounded overflow-hidden divide-y shadow absolute mt-[90px]`} style={{right: '10px'}}>
+                    <div ref={showDropMenu} onClick={removeComment} className={`hidden w-44 z-10 bg-black/20 rounded overflow-hidden divide-y shadow absolute mt-[90px] fade`}
+                         style={{right: '10px'}}>
                         <ul className="text-sm text-gray-300 y-200">
-                            <li >
+                            <li>
                                 <button disabled="disabled" className="flex w-full items-center cursor-pointer block py-2 transition disabled:cursor-default disabled:opacity-50">
                                     <GoReport className='text-lg mx-2'/>
                                     <span className='text-md text-left'>Report <small className=''>soon!</small></span>
                                 </button>
                             </li>
-                            {comment?.user?.username === user.username && <li><span className="flex items-center cursor-pointer block py-2 transition hover:bg-black/30"><CiCircleRemove className='text-lg mx-2'/> Remove</span></li>}
+                            {comment?.user?.username === user.username &&
+                                <li><span className="flex items-center cursor-pointer block py-2 transition hover:bg-black/30"><CiCircleRemove
+                                    className='text-lg mx-2'/> Remove</span></li>}
                         </ul>
                     </div>
                 </footer>
@@ -187,7 +194,8 @@ function Comment(props) {
                                 }} type="button"
                                         className="flex items-center text-sm text-gray-500 hover:text-gray-400 hover:underline y-400 font-medium">
                                     <svg className="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
-                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                              d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
                                     </svg>
                                     Reply
                                 </button>
@@ -211,7 +219,11 @@ function Comment(props) {
                     <div className='flex items-center w-full'>
                         <input
                             onChange={handleChange}
-                            onBlur={()=>{ if(replyInput.body.length === 0) setTimeout(()=>{setReplyForm(false)}, 100)}}
+                            onBlur={() => {
+                                if (replyInput.body.length === 0) setTimeout(() => {
+                                    setReplyForm(false)
+                                }, 100)
+                            }}
                             name='body'
                             value={replyInput.body}
                             type="text"
