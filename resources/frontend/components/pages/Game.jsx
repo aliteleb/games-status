@@ -5,6 +5,7 @@ import ApiClient from '../../services/ApiClient'
 import Skeleton from 'react-loading-skeleton';
 import {toast} from 'react-hot-toast';
 import {RiSendPlane2Fill} from 'react-icons/ri'
+import CommentPlaceholder from "../layouts/CommentPlaceholder.jsx";
 
 
 export const refreshPageSize = () => {
@@ -291,6 +292,13 @@ function Game() {
                                     <Comment setComments={setComments} key={comment.id} info={comment} className="border-b border-gray-500"/>
                                 )
                             })}
+
+                            {game.name === null &&
+                                <>
+                                    <CommentPlaceholder/>
+                                    <CommentPlaceholder/>
+                                </>
+                            }
                         </div>
                     </div>
                 </section>
