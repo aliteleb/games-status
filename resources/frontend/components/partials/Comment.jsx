@@ -206,7 +206,7 @@ function Comment(props) {
             ))}
 
             {replyForm &&
-                <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap">
+                <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap fade">
                     {/*<div className="block text-sm font-medium text-gray-300 w-full"> to <span className='text-gray-400 text-sm underline'>{comment.username}</span>  </div>*/}
                     <div className='flex items-center w-full'>
                         <input
