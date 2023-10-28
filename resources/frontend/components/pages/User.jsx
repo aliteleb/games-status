@@ -96,8 +96,9 @@ function User() {
             <div className='flex flex-col justify-between  my-6'>
                 <div className="border-b border-gray-500/50 pb-2 text-xl">{response && `Games (${response.games_count})`}</div>
                 <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
-                    {games.length > 0 || placeholders}
+                    {!games && placeholders}
                     {showGames}
+                    {games.length === 0 && <div className='col-span-3 text-center text-xl'>This user not following any games yet.</div>}
                 </div>
                 <div className="p-4">
                     <svg

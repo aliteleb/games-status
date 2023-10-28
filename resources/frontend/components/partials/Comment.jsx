@@ -111,7 +111,7 @@ function Comment(props) {
             <article className="p-4 text-base rounded-lg">
                 <footer className="flex justify-between items-center mb-2">
                     <div className="flex items-center">
-                        <Link to={`/user/${comment.username}`} className="inline-flex items-center mr-3 text-sm cursor-pointer text-gray-200 font-semibold">
+                        <Link to={`/user/${comment?.username}`} className="inline-flex items-center mr-3 text-sm cursor-pointer text-gray-200 font-semibold">
                             <img className="mr-2 w-6 h-6 rounded-full"
                                  src={comment?.user_image ? comment?.user_image : "https://t4.ftcdn.net/jpg/04/43/35/29/240_F_443352949_1eX3IagFInYtf3d3tkXDSQkymM2HfSXq.jpg"}
                                  alt={comment?.username}/>
