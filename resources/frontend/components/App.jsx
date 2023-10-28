@@ -25,7 +25,7 @@ import Group from './pages/Group';
 import Game from './pages/Game';
 import User from './pages/User';
 import Logout from './pages/Logout';
-import BlurredBackground from "./core/BlurredBackground.jsx";
+import ScrollToTop from './layouts/ScrollToTop';
 
 export default function App() {
 
@@ -57,6 +57,7 @@ export default function App() {
 
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Navbar/>
                 <div className="container py-28 m-[auto] text-gray-200 px-2 md:px-0">
                     <Routes>
