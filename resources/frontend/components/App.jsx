@@ -23,6 +23,7 @@ import SearchGames from './pages/SearchGames';
 import Protection from './pages/Protection';
 import Group from './pages/Group';
 import Game from './pages/Game';
+import Profile from './pages/Profile';
 
 export default function App() {
 
@@ -76,6 +77,7 @@ export default function App() {
                         <Route path='/protection/:slug' element={<Protection/>}/>
                         <Route path='/group/:slug' element={<Group/>}/>
                         <Route path='/game/:slug' element={<Game/>}/>
+                        <Route path='/profile' element={<Profile/>}/>
 
                         <Route path='*' element={<PageNotFound/>}/>
                     </Routes>

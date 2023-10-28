@@ -16,7 +16,7 @@
 
     <script>
         // Pass authentication status and user information to React
-        window.authData = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => new \App\Http\Resources\UserResource(auth()->user())]) !!};
+        window.authData = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => $user]) !!};
     </script>
 
     @viteReactRefresh

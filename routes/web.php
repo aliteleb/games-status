@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Resources\UserResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,11 @@ Route::get('{any}', function () {
     {
         session()->forget('token');
         session()->regenerateToken();
-        return view('welcome');
+
+        $user = auth()->user();
+        if($user)
+        $user = new UserResource($user);
+        return view('welcome', compact(['user']));
     }
     else
         abort(500);
