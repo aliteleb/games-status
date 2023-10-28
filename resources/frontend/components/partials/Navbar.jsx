@@ -13,10 +13,33 @@ import {Toaster} from "react-hot-toast";
 
 function Navbar() {
     const {user} = useAuth();
+    const [showProfilePopup, setShowProfilePopup] = React.useState(false);
+
+    React.useEffect(() => {
+        // Function to handle clicks on the document
+        const handleClickOutside = (event) => {
+            // Check if the click target is not within the user-dropdown and not the avatar button
+            if (
+                showProfilePopup &&
+                !document.getElementById("user-dropdown").contains(event.target) &&
+                !document.getElementsByClassName("avatar-popup")[0].contains(event.target)
+            ) {
+                setShowProfilePopup(false);
+            }
+        };
+
+        // Add the event listener when the component mounts
+        document.addEventListener("click", handleClickOutside);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, [showProfilePopup]);
 
     return (
         <>
-            <nav className="fixed w-full z-50 grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 text-white bg-app-black/70 items-center backdrop-blur-xl">
+            <nav className="fixed w-full z-50 grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 text-white bg-app-black/70 items-center backdrop-blur-xl ">
                 <div className="flex items-center" id="left-nav">
                     <MenuIcon onClick={() => {
                         document.getElementById('sidebar').style.left = '0';
@@ -31,7 +54,6 @@ function Navbar() {
                 <div className="grid grid-cols-[auto_1fr_auto] sm:grid-cols-[1fr_auto_1fr] items-center justify-center h-[4rem]">
                     <div className="hidden sm:block text-end">
                         <NavLink onClick={collapseSidebar} to="/search-game" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">GAMES</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/nfos" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">NFOS</NavLink>
                         <NavLink onClick={collapseSidebar} to="/groups" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">GROUPS</NavLink>
                         <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer hover:text-gray-400 transition">PROTECTIONS</NavLink>
                     </div>
@@ -47,12 +69,9 @@ function Navbar() {
                         </NavLink>
                     </div>
                     <div className="hidden sm:block">
-                        <NavLink onClick={collapseSidebar} to="/markets" className="mx-2 cursor-pointer hover:text-gray-400 transition  ">MARKETS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/free-keys" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition  ">FREE
-                            KEYS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/get-karma" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition  ">GET
-                            KARMA</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/forum" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400">FORUM</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/free-games" className="mx-2 cursor-pointer hover:text-gray-400 transition">FREE GAMES</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/points" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">POINTS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/market" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400">MARKET</NavLink>
                     </div>
                 </div>
 
@@ -65,16 +84,38 @@ function Navbar() {
                     </div>
 
                     {user &&
-                        <img className={'border-2 hover:border-gray-500 transition w-12 flex justify-center items-center h-12 rounded-full cursor-pointer border-gray-600'}
-                             src={`${user.avatar}`} alt={'avatar'}/>
+                        <img onClick={()=>{
+                            setShowProfilePopup(!showProfilePopup)
+                        }} id="user-dropdown" className={`border-2 hover:border-gray-500 transition w-12 h-12 rounded-full cursor-pointer ${showProfilePopup ? 'border-gray-500' : 'border-gray-600'}`}
+                             src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
                     }
                     {!user &&
                         <NavLink to="/login">
-                            <UserIcon className="hover:text-gray-400 transition  "/>
+                            <UserIcon className="hover:text-gray-400 transition mx-2"/>
                         </NavLink>
                     }
                 </div>
             </nav>
+            <div className={`${!showProfilePopup ? 'hidden' : ''} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/50 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`} id="user-dropdown">
+                <div className="px-4 py-3">
+                    <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
+                    <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                </div>
+                <nav>
+                    <ul className="py-2" aria-labelledby="user-menu-button">
+                        <li>
+                            <NavLink to="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/protections" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</NavLink>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
             <Sidebar/>
             <NotificationsBar/>
             <Toaster containerStyle={{top: 100}} toastOptions={{

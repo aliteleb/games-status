@@ -43,7 +43,7 @@ function Sidebar() {
                     <UserIcon className={'text-red-800'}/>
                     <div>
                         {user &&
-                            <NavLink to="/profile" className="hover:text-gray-400 transition">Profile</NavLink>
+                            <NavLink to="/profile" className="hover:text-gray-400 transition">PROFILE</NavLink>
                         }
 
                         {!user &&

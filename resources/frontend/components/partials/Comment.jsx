@@ -23,6 +23,7 @@ function Comment(props) {
     useEffect(() => {
         setComment(props.info)
     })
+    refreshPageSize()
 
     let formRef = React.useRef(null)
 
@@ -41,8 +42,6 @@ function Comment(props) {
                 setReplyInput({body: ""});
                 props.setComments(res.data.data);
                 setReplyForm(!replyForm);
-
-                refreshPageSize()
             })
             .catch((err) => {
                 setLoading(false);
@@ -55,7 +54,6 @@ function Comment(props) {
                     }
                 }
                 toast.error(message);
-                console.log(err);
             });
     }
 
@@ -213,7 +211,6 @@ function Comment(props) {
 
             {replyForm &&
                 <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap fade">
-                    {/*<div className="block text-sm font-medium text-gray-300 w-full"> to <span className='text-gray-400 text-sm underline'>{comment.username}</span>  </div>*/}
                     <div className='flex items-center w-full'>
                         <input
                             onChange={handleChange}

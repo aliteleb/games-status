@@ -33,20 +33,17 @@ select:-webkit-autofill:focus {
     transition: background-color 5000s ease-in-out 0s;
 }
 
-a.active {
-    color: #da1105;
+nav a {
+    font-weight: bold;
+    /*text-shadow: 0.5px 0.5px 0px #ff3333, -0.5px -0.5px 0px #ff3333;*/
 }
 
-a.active:hover {
-    color: #da1105;
-}
-a.active span {
-    color: #da1105;
+nav a.active {
+    color: #ff0000;
+    /*text-shadow: 0.5px 0.5px 0px #ff3333, -0.5px -0.5px 0px #ff3333;*/
 }
 
-a.active span:hover {
-    color: #da1105;
-}
+
 
 input.custom-input:-webkit-autofill {
     background-color: transparent;

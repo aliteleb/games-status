@@ -10,14 +10,14 @@ import CommentPlaceholder from "../layouts/CommentPlaceholder.jsx";
 
 export const refreshPageSize = () => {
 
-    setTimeout(() => {
         const root = document.getElementById("root");
         const height = Math.max(
             root.scrollHeight,
             root.offsetHeight,
         );
-        document.getElementById('blurred-bg').style.height = height + 'px';
-    }, 50)
+        let blurredBg = document.getElementById('blurred-bg');
+        if(blurredBg)
+            blurredBg.style.height = height + 'px';
 }
 
 function Game() {
@@ -36,15 +36,12 @@ function Game() {
 
     useEffect(() => {
 
-        refreshPageSize()
-
         const fetchGame = () => {
             ApiClient().get(`/game/${slug}`)
                 .then(res => {
                     setGame(res.data.data)
                     setComments(res.data.data.comments)
                     setFollow(res.data.data.is_following)
-                    refreshPageSize()
                 })
                 .catch(err => console.log('Failed to get data', err))
         }
@@ -53,6 +50,7 @@ function Game() {
         setInterval(fetchGame, 30000);
 
     }, []);
+    refreshPageSize()
 
     let handleChange = (e) => {
         setCreateComment(prevComment => ({
