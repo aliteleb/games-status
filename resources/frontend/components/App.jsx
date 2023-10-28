@@ -24,6 +24,7 @@ import Protection from './pages/Protection';
 import Group from './pages/Group';
 import Game from './pages/Game';
 import Profile from './pages/Profile';
+import Logout from './pages/Logout';
 
 export default function App() {
 
@@ -78,6 +79,7 @@ export default function App() {
                         <Route path='/group/:slug' element={<Group/>}/>
                         <Route path='/game/:slug' element={<Game/>}/>
                         <Route path='/profile' element={<Profile/>}/>
+                        <Route path='/logout' element={<Logout/>}/>
 
                         <Route path='*' element={<PageNotFound/>}/>
                     </Routes>

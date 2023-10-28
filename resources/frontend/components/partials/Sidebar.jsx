@@ -9,9 +9,8 @@ import GroupsIcon from '../icons/GroupsIcon'
 import MarketsIcon from '../icons/MarketsIcon'
 import {BsShieldExclamation} from 'react-icons/bs'
 import {SiGotomeeting} from 'react-icons/si'
-import {useAuth} from "../api/AuthContext"
 import {FiLogOut} from 'react-icons/fi'
-import ApiClient from '../../services/ApiClient'
+import { useAuth } from '../api/AuthContext'
 
 
 export function collapseSidebar() {
@@ -21,17 +20,7 @@ export function collapseSidebar() {
 
 function Sidebar() {
 
-    const {user, logoutFn} = useAuth();
-
-    let logout = async () => {
-
-        let response = await ApiClient().get('/logout')
-
-        if (response.data) {
-            logoutFn()
-            collapseSidebar()
-        }
-    }
+    const {user} = useAuth();
 
     return (
         <div id={'sidebar'} className='z-[51] flex flex-col w-64 xl:w-72 h-screen pt-6 fixed top-0 -left-72 transition-all '>
@@ -91,12 +80,11 @@ function Sidebar() {
                     <span className='hover:text-gray-400 transition'>FORUM</span>
                 </NavLink>
 
-                {user &&
-                    <NavLink onClick={logout} className='flex items-center gap-x-4 mt-auto mb-2' to="/login">
-                        <FiLogOut className='w-[30px] h-10 text-red-800'/>
-                        <span className='hover:text-gray-400 transition'>LOGOUT</span>
-                    </NavLink>
-                }
+                
+                <NavLink className='flex items-center gap-x-4 mt-auto mb-2' to="/logout">
+                    <FiLogOut className='w-[30px] h-10 text-red-800'/>
+                    <span className='hover:text-gray-400 transition'>LOGOUT</span>
+                </NavLink>
             </nav>
         </div>
     )
