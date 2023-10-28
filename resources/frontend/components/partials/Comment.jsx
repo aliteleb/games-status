@@ -141,7 +141,7 @@ function Comment(props) {
                             <li>
                                 <button disabled="disabled" className="flex w-full items-center cursor-pointer py-2 transition disabled:cursor-default disabled:opacity-50">
                                     <GoReport className='text-lg mx-2'/>
-                                    <span className='text-md text-left'>Report <small className=''>soon!</small></span>
+                                    <span className='text-md text-left'>Report</span>
                                 </button>
                             </li>
                             {comment?.user?.username === user?.username &&

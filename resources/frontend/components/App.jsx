@@ -30,6 +30,28 @@ export default function App() {
 
     let [loading, setLoading] = React.useState(false)
 
+    React.useEffect(() => {
+
+        const handleTabKeyPress = (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+            }
+        };
+        const handleContextMenu = (e) => {
+            e.preventDefault();
+        };
+
+        // Attach the event listeners
+        window.addEventListener('keydown', handleTabKeyPress);
+        window.addEventListener('contextmenu', handleContextMenu);
+
+        // Remove the event listeners
+        return () => {
+            window.removeEventListener('keydown', handleTabKeyPress);
+            window.removeEventListener('contextmenu', handleContextMenu);
+        };
+    }, []);
+
     return (
         <BrowserRouter>
             <Navbar/>
