@@ -58,17 +58,22 @@ class User extends Authenticatable
         return $this->belongsToMany(Game::class);
     }
 
-    public function getFollowingAttribute(){
-        if(auth()->check() && auth()->user()->id == $this->id)
+    public function getFollowingAttribute()
+    {
+        if (auth()->check() && auth()->user()->id == $this->id)
             return DB::table('game_user')->select(['game_id'])->where('user_id', $this->id)->get()->pluck('game_id');
         return [];
 
     }
 
-    public function getAvatarAttribute(){
-        return asset('assets/images/users/100/'.$this->id.'.webp');
+    public function getAvatarAttribute()
+    {
+        return asset('assets/images/users/100/' . $this->id . '.webp');
     }
-    public function getSmallAvatarAttribute(){
-        return asset('assets/images/users/50/'.$this->id.'.webp');
+
+    public function getSmallAvatarAttribute()
+    {
+        return asset('assets/images/users/50/' . $this->id . '.webp');
     }
+
 }

@@ -35,4 +35,17 @@ class Game extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    // Api stuff
+    public static function Api($game)
+    {
+
+    }
+
+    public static function ApiCollection($games)
+    {
+        $games->map(function ($game) {
+
+        });
+    }
 }
