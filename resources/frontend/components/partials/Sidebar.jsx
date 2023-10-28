@@ -81,10 +81,12 @@ function Sidebar() {
                 </NavLink>
 
                 
-                <NavLink className='flex items-center gap-x-4 mt-auto mb-2' to="/logout">
-                    <FiLogOut className='w-[30px] h-10 text-red-800'/>
-                    <span className='hover:text-gray-400 transition'>LOGOUT</span>
-                </NavLink>
+                {user && 
+                    <NavLink className='flex items-center gap-x-4 mt-auto mb-2' to="/logout">
+                        <FiLogOut className='w-[30px] h-10 text-red-800'/>
+                        <span className='hover:text-gray-400 transition'>LOGOUT</span>
+                    </NavLink>
+                }
             </nav>
         </div>
     )
