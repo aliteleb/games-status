@@ -12,7 +12,7 @@ const ProtectionsCard = (props) => {
     let is_animated = props.animate === true ? 'fade ' : '';
 
     return (
-        <div  className={`relative group bg-[#16191e] rounded maxHeight ${protection?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>
+        <div className={`relative group bg-[#16191e]/80 rounded maxHeight ${protection?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>
             <div className={`flex flex-col`} >
                 {protection &&
                 <Link to={`/protection/${protection?.slug}`}>

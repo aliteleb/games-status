@@ -25,6 +25,7 @@ import Group from './pages/Group';
 import Game from './pages/Game';
 import Profile from './pages/Profile';
 import Logout from './pages/Logout';
+import BlurredBackground from "./core/BlurredBackground.jsx";
 
 export default function App() {
 

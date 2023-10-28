@@ -11,6 +11,7 @@ import {BsShieldExclamation} from 'react-icons/bs'
 import {SiGotomeeting} from 'react-icons/si'
 import {FiLogOut} from 'react-icons/fi'
 import { useAuth } from '../api/AuthContext'
+import {refreshPageSize} from "../core/BlurredBackground.jsx";
 
 
 export function collapseSidebar() {
@@ -80,8 +81,7 @@ function Sidebar() {
                     <span className='hover:text-gray-400 transition'>FORUM</span>
                 </NavLink>
 
-                
-                {user && 
+                {user &&
                     <NavLink className='flex items-center gap-x-4 mt-auto mb-2' to="/logout">
                         <FiLogOut className='w-[30px] h-10 text-red-800'/>
                         <span className='hover:text-gray-400 transition'>LOGOUT</span>

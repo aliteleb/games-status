@@ -35,7 +35,7 @@ class UserController extends Controller
             $next_page = null;
 
         if($next_page)
-            $next_page_url = route('api.user', $username).'?page='.$next_page;
+            $next_page_url = route('api.user').'/'.$username.'?page='.$next_page;
 
         $user->last_page = $total_pages;
         $user->next_page_url = $next_page_url;
