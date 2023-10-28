@@ -14,24 +14,23 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:users|string|min:3|max:16',
+            'email' => 'required|string|email|unique:users|min:5|max:32',
+            'password' => 'required|string|min:8|max:32|confirmed',
+            'password_confirmation' => 'required|string|min:8|max:32|same:password',
+            'country_code' => 'required|string|min:2|max:2',
+            'avatar' => 'required|image|mimes:jpeg,png,gif,webp,svg|max:1000'
+        ]);
 
-                $validator = Validator::make($request->all(), [
-                    'username' => 'required|unique:users|string|min:3|max:16',
-                    'email' => 'required|string|email|unique:users|min:5|max:32',
-                    'password' => 'required|string|min:8|max:32|confirmed',
-                    'password_confirmation' => 'required|string|min:8|max:32|same:password',
-                    'country_code' => 'required|string|min:2|max:2',
-                    'avatar' => 'required|image|mimes:jpeg,png,gif,webp,svg|max:1000'
-                ]);
-
-                if ($validator->fails()) {
-                    return response()->api(
-                        status: "error",
-                        data: $validator->errors(),
-                        message: __("Whoops! Something went wrong."),
-                        status_code: 422
-                    );
-                }
+        if ($validator->fails()) {
+            return response()->api(
+                status: "error",
+                data: $validator->errors(),
+                message: __("Whoops! Something went wrong."),
+                status_code: 422
+            );
+        }
         $data = $validator->validate();
         try {
             $user = User::create($data);
@@ -94,8 +93,10 @@ class AuthController extends Controller
             message: __("Current user")
         );
     }
+
     public function logout(Request $request)
     {
+        sleep(1);
         auth()->logout();
         return response()->api([
             'message' => __('Logout successful.'),
