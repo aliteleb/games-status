@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom';
 import GameCard from '../layouts/GameCard';
 import ApiClient from '../../services/ApiClient'
 import Skeleton from "react-loading-skeleton";
+import BlurredBackground, {refreshPageSize} from "../core/BlurredBackground.jsx";
 
 const Protection = () => {
 
@@ -22,6 +23,7 @@ const Protection = () => {
                     setNextPage(res.data.data.next_page_url);
                     setResponse(res.data)
                     setIsLoading(false);
+                    setTimeout(refreshPageSize, 50)
                 })
                 .catch((err) => {
                     setIsLoading(false);
@@ -62,8 +64,10 @@ const Protection = () => {
         placeholders.push(<GameCard className="w-[400px]" key={i}/>);
     }
 
+    refreshPageSize()
     return (
         <>
+            <BlurredBackground/>
             <div className="border-b border-gray-500/50 pb-2 text-xl">
                 <span className='text-2xl font-bold'>{response?.data.name}</span>
                 <span className='text-md'>{response ? ' Games' : ''}</span>
