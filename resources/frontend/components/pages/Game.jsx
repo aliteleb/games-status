@@ -6,19 +6,7 @@ import Skeleton from 'react-loading-skeleton';
 import {toast} from 'react-hot-toast';
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import CommentPlaceholder from "../layouts/CommentPlaceholder.jsx";
-
-
-export const refreshPageSize = () => {
-
-        const root = document.getElementById("root");
-        const height = Math.max(
-            root.scrollHeight,
-            root.offsetHeight,
-        );
-        let blurredBg = document.getElementById('blurred-bg');
-        if(blurredBg)
-            blurredBg.style.height = height + 'px';
-}
+import BlurredBackground, {refreshPageSize} from "../core/BlurredBackground.jsx";
 
 function Game() {
 
@@ -132,20 +120,7 @@ function Game() {
 
     return (
         <>
-            <div id="blurred-bg" className={`w-full h-screen absolute top-0 left-0 overflow-hidden`}>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
-                <img className={`opacity-30 top-0 w-full h-screen ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
-                <img className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${game.cover && 'fade30'}`} src={game.cover && game.cover} alt="bg"/>
-
-                <div className="absolute top-[4rem] w-full h-[200%] -translate-x-1/2 left-1/2 backdrop-blur-xl z-0"/>
-            </div>
+            <BlurredBackground image={game.cover}/>
 
             <div>
                 <div className={`flex relative z-20 text-gray-300 border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`}

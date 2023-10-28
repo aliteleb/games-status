@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ApiClient from '../../services/ApiClient';
 import ProtectionCard from '../layouts/ProtectionCard.jsx';
+import BlurredBackground, {refreshPageSize} from "../core/BlurredBackground.jsx";
 
 
 export default function Protections() {
@@ -16,6 +17,7 @@ export default function Protections() {
                     setProtections((prevProtections) => [...prevProtections, ...res.data.data.data]);
                     setNextPage(res.data.data.next_page_url);
                     setIsLoading(false);
+                    setTimeout(refreshPageSize, 50)
                 })
                 .catch((err) => {
                     setIsLoading(false);
@@ -56,8 +58,10 @@ export default function Protections() {
         placeholders.push(<ProtectionCard key={i}/>);
     }
 
+    refreshPageSize()
     return (
         <>
+            <BlurredBackground/>
             <div className="border-b border-gray-500/50 pb-2 text-xl">Protections</div>
             <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
                 {protections.length > 0 || placeholders}

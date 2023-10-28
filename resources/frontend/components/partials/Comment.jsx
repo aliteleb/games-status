@@ -5,10 +5,10 @@ import ApiClient from '../../services/ApiClient'
 import {toast} from 'react-hot-toast';
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import {BiDotsHorizontalRounded} from 'react-icons/bi'
-import {refreshPageSize} from '../pages/Game';
 import {GoReport} from 'react-icons/go'
 import {CiCircleRemove} from 'react-icons/ci'
 import {useAuth} from "../api/AuthContext";
+import {refreshPageSize} from "../core/BlurredBackground.jsx";
 
 function Comment(props) {
 

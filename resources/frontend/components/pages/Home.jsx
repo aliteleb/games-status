@@ -1,6 +1,7 @@
 import GameCard from "../layouts/GameCard.jsx";
 import React from "react";
 import ApiClient from "../../services/ApiClient.js";
+import BlurredBackground, {refreshPageSize} from "../core/BlurredBackground.jsx";
 
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
         ));
     }
 
+    refreshPageSize()
     return (
         <>
             <div className={'flex flex-wrap justify-between'}>
