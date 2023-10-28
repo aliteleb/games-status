@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         $user = User::select(['id', 'username'])
             ->with('games', function ($query){
-                return $query->paginate();
+                return $query->paginate(12);
             })
             ->withCount('games')
             ->where('username', $username)
