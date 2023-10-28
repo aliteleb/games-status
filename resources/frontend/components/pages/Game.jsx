@@ -238,7 +238,7 @@ function Game() {
                                        name='comment_value'
                                        value={createComment.comment_value}
                                        id="comment"
-                                       className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 px-4 mb-4 rounded-md "
+                                       className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 pl-4 pr-12 mb-4 rounded-md "
                                        placeholder="Your comment ..."
                                        required=""
                                        onChange={handleChange}
