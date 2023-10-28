@@ -86,7 +86,7 @@ function Navbar() {
                     {user &&
                         <img onClick={()=>{
                             setShowProfilePopup(!showProfilePopup)
-                        }} id="user-dropdown" className={`border-2 hover:border-gray-500 transition w-12 h-12 rounded-full cursor-pointer ${showProfilePopup ? 'border-gray-500' : 'border-gray-600'}`}
+                        }} id="user-dropdown" className={`border-2 hover:border-gray-500 transition w-10 h-10 rounded-full cursor-pointer ${showProfilePopup ? 'border-gray-500' : 'border-gray-600'}`}
                              src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
                     }
                     {!user &&
@@ -96,25 +96,24 @@ function Navbar() {
                     }
                 </div>
             </nav>
-            <div className={`${!showProfilePopup ? 'hidden' : ''} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/50 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`} id="user-dropdown">
+            <div className={`${!showProfilePopup ? 'hidden' : ''} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`} id="user-dropdown">
                 <div className="px-4 py-3">
-                    <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                    <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                    <span className="block text-sm text-gray-900 dark:text-white">{user?.username}</span>
+                    <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{user?.email}</span>
                 </div>
                 <nav>
                     <ul className="py-2" aria-labelledby="user-menu-button">
                         <li>
-                            <NavLink to="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</NavLink>
+                            <NavLink to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/protections" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</NavLink>
+                            <NavLink to="/settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</NavLink>
+                            <NavLink to="/logout" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</NavLink>
                         </li>
                     </ul>
                 </nav>
-
             </div>
             <Sidebar/>
             <NotificationsBar/>
