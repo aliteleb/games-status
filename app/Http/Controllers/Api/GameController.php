@@ -5,17 +5,29 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
 use App\Models\Game;
+use App\Models\Genre;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $query = Game::with(['groups:name', 'protections:name'])
             ->select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid'])
             ->where('need_crack', true);
+
+        if($request->input('release_status')){
+            $today = Carbon::now()->format('Y-m-d');
+            $released = $request->input('release_status');
+            if($released == 1){
+                $query->where('release_date', '>=', $today);
+            }elseif($released == 2){
+                $query->where('release_date', '<', $today);
+            }
+        }
 
         $games = $query->paginate(12);
 
@@ -56,8 +68,14 @@ class GameController extends Controller
             unset($game->name);
         });
 
+        $genres = Genre::select('name')->get()->pluck('name');
+        $statuses = Status::select('name')->get()->pluck('name');
         return response()->api(
-            data: $games,
+            data: [
+                'games' => $games,
+                'genres' => $genres,
+                'statuses' => $statuses,
+            ],
             message: __('Games')
         );
     }
