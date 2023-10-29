@@ -9,15 +9,15 @@ function SearchGames() {
     const [formData, setFormData] = React.useState({
         search_text: "",
         crack_status: null,
-        release_status: null, 
+        release_status: null,
         selected_genres: [],
 
     })
     const [games, setGames] = React.useState([]);
-    const [response, setResponse] = React.useState()
     const [isLoading, setIsLoading] = React.useState(false);
     const [nextPage, setNextPage] = React.useState(null);
     const [crackStatus, setCrackStatus] = React.useState([])
+    const [genres, setGenres] = React.useState([])
 
 
     const releaseStatus = [
@@ -26,11 +26,6 @@ function SearchGames() {
         {value: "2", label: "UNRELEASED"},
     ]
 
-    const genres = [
-        {value: "ACTION", label: "ACTION"},
-        {value: "FANCY", label: "FANCY"},
-        {value: "ADVENTURE", label: "ADVENTURE"},
-    ]
 
     // Define your styles as a string
     const styles = `
@@ -47,9 +42,13 @@ function SearchGames() {
                 .then((res) => {
                     setGames((prevGames) => [...prevGames, ...res.data.data.games.data]);
                     setNextPage(res.data.data.games.next_page_url);
-                    setResponse(res.data.data)
 
-                    let options = res.data.data.statuses.map((status, index) => console.log(status))
+                    let statuses = res.data.data.statuses;
+                    let genres = res.data.data.genres;
+                    const statusesArray = Object.keys(statuses).map(key => ({value: key, label: statuses[key]}));
+                    const genresArray = Object.keys(genres).map(key => ({value: key, label: genres[key]}));
+                    setCrackStatus(statusesArray);
+                    setGenres(genresArray);
 
                     setIsLoading(false);
                     setTimeout(refreshPageSize, 50)
@@ -61,7 +60,6 @@ function SearchGames() {
         }
     };
 
-    console.log(response);
 
 // Start Search Proccess
 
@@ -81,7 +79,7 @@ function SearchGames() {
             [name]: selectedValues,
         }));
     };
-    
+
     const handleSingleSelectChange = (name, selectedOption) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -91,14 +89,14 @@ function SearchGames() {
 
 
     useEffect(() => {
-        
-        ApiClient().post('/games', 
-        {
-            "search": formData.search_text,
-            "crack_status": formData.crack_status,
-            "release_status": formData.release_status,
-            "genres": formData.selected_genres
-        })
+
+        ApiClient().post('/games',
+            {
+                "search": formData.search_text,
+                "crack_status": formData.crack_status,
+                "release_status": formData.release_status,
+                "genres": formData.selected_genres
+            })
 
     }, [formData.crack_status, formData.release_status, formData.search_text, formData.selected_genres])
 

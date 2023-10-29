@@ -16,17 +16,31 @@ class GameController extends Controller
     public function index(Request $request)
     {
         $query = Game::with(['groups:name', 'protections:name'])
-            ->select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid'])
+            ->select(['id', 'name', 'slug', 'release_date', 'crack_date', 'steam_appid'])
             ->where('need_crack', true);
 
-        if($request->input('release_status')){
-            $today = Carbon::now()->format('Y-m-d');
-            $released = $request->input('release_status');
-            if($released == 1){
-                $query->where('release_date', '>=', $today);
-            }elseif($released == 2){
-                $query->where('release_date', '<', $today);
-            }
+        if ($request->input('crack_status') == 1) {
+            $query->where('need_crack', true);
+        }
+
+        if ($request->input('release_status') == 1) {
+            $today = now()->format('Y-m-d');
+            $query->where('release_date', '>=', $today);
+        } elseif ($request->input('release_status') == 2) {
+            $today = now()->format('Y-m-d');
+            $query->where('release_date', '<', $today);
+        }
+
+        if ($request->input('genres')) {
+            $genres = $request->input('genres');
+            $query->whereHas('genres', function ($q) use ($genres) {
+                $q->whereIn('name', $genres);
+            });
+        }
+
+        if ($request->input('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'like', '%' . $search . '%');
         }
 
         $games = $query->paginate(12);
