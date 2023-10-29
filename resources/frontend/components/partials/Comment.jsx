@@ -208,7 +208,7 @@ function Comment(props) {
 
             </article>
             {comment?.replies?.length > 0 && comment.replies.map((reply, index) => (
-                <Comment info={reply} key={index} setComments={props.setComments} className="border-l-[3rem] border-l-black/10 animate-slide-right"/>
+                <Comment info={reply} key={index} setComments={props.setComments} className="border-l-[3rem] border-l-black/10 animate-slide-down-slow"/>
             ))}
 
             {replyForm &&
