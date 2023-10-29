@@ -13,19 +13,19 @@
     .react-select-container { }
     */
     .react-select-container .react-select__control {
-        @apply bg-white dark:bg-body border-2 border-body dark:border-none hover:border-gray-400 dark:hover:border-body;
+        @apply bg-white bg-body border-2 border-body border-none hover:border-gray-400 hover:border-body;
     }
 
     .react-select-container .react-select__control--is-focused {
-        @apply border-none hover:border-body dark:border-body dark:hover:border-body shadow-none;
+        @apply border-none hover:border-body border-body hover:border-body shadow-none;
     }
 
     .react-select-container .react-select__menu {
-        @apply bg-body dark:bg-body border-2 border-body dark:border-body;
+        @apply bg-body bg-body border-2 border-body border-body;
     }
 
     .react-select-container .react-select__option {
-        @apply text-neutral-600 dark:text-neutral-200 bg-body hover:bg-body dark:bg-[#29313799] dark:hover:bg-body;
+        @apply text-neutral-600 text-neutral-200 bg-body hover:bg-body bg-[#29313799] hover:bg-body;
     }
 
     .react-select-container .react-select__option:active {
@@ -43,7 +43,21 @@
     .react-select-container .react-select__input-container,
     .react-select-container .react-select__placeholder,
     .react-select-container .react-select__single-value {
-        @apply text-neutral-600 dark:text-neutral-200;
+        @apply text-neutral-600 text-neutral-200;
+    }
+
+    .react-select-container .react-select__multi-value{
+        @apply bg-gray-600 
+    }
+
+    .react-select-container .react-select__multi-value__label{
+        @apply text-gray-200
+    }
+    .react-select-container .react-select__multi-value__remove{
+        @apply hover:bg-gray-600 text-gray-200
+    }
+    .react-select-container .react-select__multi-value__remove{
+        @apply hover:text-gray-400
     }
 }
 
