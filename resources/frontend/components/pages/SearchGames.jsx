@@ -37,7 +37,7 @@ function SearchGames() {
     .react-select-container .react-select__input-container,
     .react-select-container .react-select__placeholder,
     .react-select-container .react-select__single-value {
-        padding: 14px 0;
+        padding: 8px 0;
     }`;
 
     let handleSearchChange = (e) => {
@@ -195,7 +195,7 @@ function SearchGames() {
                         value={searchGame.search_text}
                         onChange={handleSearchChange}
                     />
-                    <div className='flex flex-col w-full items-center md:flex md:flex-row mt-4 justify-between gap-x-24'>
+                    <div className='flex flex-col w-full items-center md:flex md:flex-row mt-2 justify-between md:gap-x-12 xl:gap-x-24'>
                         <Select
                             options={crackStatus}
                             placeholder="Select Status..."
