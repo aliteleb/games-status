@@ -106,25 +106,37 @@ function SearchGames() {
         }
 
         return (
-            <div className={`grid grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-${game.status_color}`}>
-                <img className={`h-full ${game.image && 'animate-fade-in'}`}
+            <div className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-${game.status_color}`}>
+                <img className={`h-full object-cover ${game.image && 'animate-fade-in'}`}
                      src={game.image ? game.image : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
-                <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] justify-between text-center items-center">
-                    <div>{game.title}</div>
-                    <div>{game.release_date ? game.release_date : "N/A"}</div>
-                    <div>{game.crack_date ? game.crack_date : "N/A"}</div>
-                    <div>
+                <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr]  text-center items-center">
+                    <div className="my-3 lg:my-0 text-lg">
+                        <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">GAME</div>
+                        {game.title}
+                    </div>
+                    <div className="my-3 lg:my-0 text-lg">
+                        <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">RELEASE DATE</div>
+                        {game.release_date ? game.release_date : "N/A"}
+                    </div>
+                    <div className="my-3 lg:my-0 text-lg">
+                        <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">CRACK DATE</div>
+                        {game.crack_date ? game.crack_date : "N/A"}
+                    </div>
+                    <div className="my-3 lg:my-0 text-lg">
+                        <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">PROTECTIONS</div>
                         {game.protections?.map(protection => (
                             <span className="mx-1" key={protection}>{protection}</span>
                         ))}
                         {game.protections.length === 0 || game.protections[0] === "" ? <span className="opacity-50">TBD</span> : ""}
                     </div>
-                    <div>
-                        {game.groups?.map(group => (
-                            <span className="mx-1" key={group}>{group}</span>
+                    <div className="my-3 lg:my-0 text-lg">
+                        <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">SCENE GROUPS</div>
+                        {game.groups?.map(groups => (
+                            <span className="mx-1" key={groups}>{groups}</span>
                         ))}
                         {game.groups.length === 0 || game.groups[0] === "" ? <span className="opacity-50">TBD</span> : ""}
                     </div>
+
                 </div>
             </div>
         )
@@ -180,7 +192,7 @@ function SearchGames() {
             </div>
 
             <div className={`flex flex-col text-gray-300 shadow-lg overflow-hidden border-2 border-app-black/50`}>
-                <div className="grid grid-cols-[150px_1fr] text-center bg-app-black/50 py-3 border-y-2 border-gray-700">
+                <div className="hidden lg:grid grid-cols-[150px_1fr] text-center bg-app-black/50 py-3 border-y-2 border-gray-700">
                     <span>Cover</span>
                     <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center">
                         <div>GAME</div>
