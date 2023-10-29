@@ -1,29 +1,33 @@
 import React, {useEffect} from 'react'
 import Select from 'react-select';
 import ApiClient from '../../services/ApiClient'
-import GameCard from '../layouts/GameCard';
 import {refreshPageSize} from "../core/BlurredBackground.jsx";
 import Skeleton from "react-loading-skeleton";
 
 function SearchGames() {
 
+    const [formData, setFormData] = React.useState({
+        search_text: "",
+        crack_status: null,
+        release_status: null, 
+        selected_genres: [],
+
+    })
     const [games, setGames] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(false);
     const [nextPage, setNextPage] = React.useState(null);
-    const [searchGame, setSearchGame] = React.useState({
-        search_text: ""
-    })
+
 
     const crackStatus = [
-        {value: "ALL", label: "ALL"},
-        {value: "CRACKED", label: "CRACKED"},
-        {value: "UNCRACKED", label: "UNCRACKED"},
+        {value: "0", label: "ALL"},
+        {value: "1", label: "CRACKED"},
+        {value: "2", label: "UNCRACKED"},
     ]
 
     const releaseStatus = [
-        {value: "ALL", label: "ALL"},
-        {value: "RELEASED", label: "RELEASED"},
-        {value: "UNRELEASED", label: "UNRELEASED"},
+        {value: "0", label: "ALL"},
+        {value: "1", label: "RELEASED"},
+        {value: "2", label: "UNRELEASED"},
     ]
 
     const genres = [
@@ -40,19 +44,10 @@ function SearchGames() {
         padding: 8px 0;
     }`;
 
-    let handleSearchChange = (e) => {
-        setSearchGame(prevSearchGame => (
-            {
-                ...prevSearchGame,
-                [e.target.name]: e.target.value
-            }
-        ))
-    }
-
     const loadGames = (pageUrl) => {
         if (pageUrl) {
             setIsLoading(true);
-            ApiClient().get(pageUrl)
+            ApiClient().post(pageUrl)
                 .then((res) => {
                     setGames((prevGames) => [...prevGames, ...res.data.data.data]);
                     setNextPage(res.data.data.next_page_url);
@@ -65,6 +60,49 @@ function SearchGames() {
                 });
         }
     };
+
+
+// Start Search Proccess
+
+    let handleSearchChange = (e) => {
+        setFormData(prevSearchGame => (
+            {
+                ...prevSearchGame,
+                [e.target.name]: e.target.value
+            }
+        ))
+    }
+
+    const handleSelectChange = (name, selectedOptions) => {
+        const selectedValues = selectedOptions ? selectedOptions.map(option => option.value) : [];
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: selectedValues,
+        }));
+    };
+    
+    const handleSingleSelectChange = (name, selectedOption) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: selectedOption.value, // Store the value directly, not an array
+        }));
+    };
+
+
+    useEffect(() => {
+        
+        ApiClient().post('/games', 
+        {
+            "search_game": formData.search_text,
+            "crack_status": formData.crack_status,
+            "release_status": formData.release_status,
+            "genres": formData.selected_genres
+        })
+
+    }, [formData.crack_status, formData.release_status, formData.search_text, formData.selected_genres])
+
+// End Search Proccess
+
 
     React.useEffect(() => {
         loadGames(`/games`);
@@ -192,7 +230,7 @@ function SearchGames() {
                         placeholder='Search...'
                         className='w-full h-12 text-lg uppercase rounded-sm px-3 bg-body focus:outline-none'
                         name='search_text'
-                        value={searchGame.search_text}
+                        value={formData.search_text}
                         onChange={handleSearchChange}
                     />
                     <div className='flex flex-col w-full items-center md:flex md:flex-row mt-2 justify-between md:gap-x-12 xl:gap-x-24'>
@@ -201,12 +239,16 @@ function SearchGames() {
                             placeholder="Select Status..."
                             className='react-select-container mt-2 w-2/3 md:w-1/3 uppercase'
                             classNamePrefix="react-select"
+                            value={crackStatus.find(option => option.value === formData.crack_status)}
+                            onChange={(selectedOption) => handleSingleSelectChange('crack_status', selectedOption)}
                         />
                         <Select
                             options={releaseStatus}
                             placeholder="Release Status..."
                             className='react-select-container mt-2 w-2/3 md:w-1/3 uppercase'
                             classNamePrefix="react-select"
+                            value={releaseStatus.find(option => option.value === formData.crack_status)}
+                            onChange={(selectedOption) => handleSingleSelectChange('release_status', selectedOption)}
                         />
                         <Select
                             options={genres}
@@ -214,6 +256,8 @@ function SearchGames() {
                             className='react-select-container mt-2 w-2/3 md:w-1/3 uppercase'
                             classNamePrefix="react-select"
                             isMulti
+                            value={formData.selected_genres.map(genre => genres.find(option => option.value === genre))}
+                            onChange={(selectedOptions) => handleSelectChange('selected_genres', selectedOptions)}
                         />
                     </div>
                 </header>
