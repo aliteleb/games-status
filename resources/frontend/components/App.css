@@ -105,6 +105,17 @@ input.custom-input:-webkit-autofill:hover {
         transform: translateY(0);
     }
 }
+.animate-slide-down-slow{
+    transform: translateY(-10%);
+    opacity: 0;
+    animation: slideDown .3s forwards ease;
+}
+@keyframes slideDownSlow {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .animate-slide-right{
     transform: translateX(-100%);
     opacity: 0;
