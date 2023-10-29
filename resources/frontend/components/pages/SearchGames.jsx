@@ -98,6 +98,13 @@ function SearchGames() {
                 "genres": formData.selected_genres
             })
 
+        ApiClient().get('/games')
+        .then(res => {
+            setGames(...res.data.data.games.data);
+            console.log(res.data.data.games.data);
+        })
+        .catch()
+
     }, [formData.crack_status, formData.release_status, formData.search_text, formData.selected_genres])
 
 // End Search Proccess
