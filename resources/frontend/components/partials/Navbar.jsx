@@ -84,9 +84,10 @@ function Navbar() {
                     </div>
 
                     {user &&
-                        <img onClick={()=>{
+                        <img onClick={() => {
                             setShowProfilePopup(!showProfilePopup)
-                        }} id="user-dropdown" className={`border-2 hover:border-gray-500 transition w-10 h-10 rounded-full cursor-pointer ${showProfilePopup ? 'border-gray-500' : 'border-gray-600'}`}
+                        }} id="user-dropdown"
+                             className={`border-2 hover:border-gray-500 transition w-10 h-10 rounded-full cursor-pointer ${showProfilePopup ? 'border-gray-500' : 'border-gray-600'}`}
                              src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
                     }
                     {!user &&
@@ -96,26 +97,26 @@ function Navbar() {
                     }
                 </div>
             </nav>
-            <div className={`${!showProfilePopup ? 'hidden' : 'animate-slide-down'} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`} id="user-dropdown">
+            <div
+                className={`${!showProfilePopup ? 'hidden' : 'animate-slide-down'} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
+                id="user-dropdown">
                 <div className="px-4 py-3">
                     <Link onClick={() => setShowProfilePopup(false)} to={`/user/${user?.username}`}>
                         <span className="block text-sm text-gray-900 dark:text-white">{user?.username}</span>
                         <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{user?.email}</span>
                     </Link>
                 </div>
-                <nav>
-                    <ul className="py-2" aria-labelledby="user-menu-button">
-                        <li>
-                            <NavLink onClick={() => setShowProfilePopup(false)} to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</NavLink>
-                        </li>
-                        <li>
-                            <NavLink onClick={() => setShowProfilePopup(false)} to="/settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</NavLink>
-                        </li>
-                        <li>
-                            <NavLink onClick={() => setShowProfilePopup(false)} to="/logout" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</NavLink>
-                        </li>
-                    </ul>
-                </nav>
+                <ul className="py-2" aria-labelledby="user-menu-button">
+                    <li>
+                        <NavLink onClick={() => setShowProfilePopup(false)} to="/profile"
+                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile Settings</NavLink>
+                    </li>
+                    <li>
+                        <NavLink onClick={() => setShowProfilePopup(false)} to="/logout"
+                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                            out</NavLink>
+                    </li>
+                </ul>
             </div>
             <Sidebar/>
             <NotificationsBar/>
