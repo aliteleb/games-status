@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import Select from 'react-select';
 import ApiClient from '../../services/ApiClient'
 import GameCard from '../layouts/GameCard';
-import Skeleton from 'react-loading-skeleton';
-import BlurredBackground, {refreshPageSize} from "../core/BlurredBackground.jsx";
-import { Link } from 'react-router-dom';
+import {refreshPageSize} from "../core/BlurredBackground.jsx";
 
 function SearchGames() {
 
@@ -38,7 +36,7 @@ function SearchGames() {
     .react-select-container .react-select__input-container,
     .react-select-container .react-select__placeholder,
     .react-select-container .react-select__single-value {
-        padding: 14px 0; 
+        padding: 14px 0;
     }`;
 
     let handleSearchChange = (e) => {
@@ -92,68 +90,47 @@ function SearchGames() {
     }, [nextPage, isLoading]);
 
 
-    const showGames = games?.map((game, index) => (
-        <div className={`flex relative z-20 h-[16rem] text-gray-300 border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`}
-                style={{boxShadow: 'rgb(0, 0, 0) 0px 0px 10px'}}>
-            <div className='grid grid-cols-1 sm:grid-cols-[1fr_1fr] md:grid-cols-[350px_2fr_1fr] w-full bg-black/80 justify-items-center'>
-                <img className={`col-span-2 sm:col-auto w-[350px] h-full ${game.image && 'animate-fade-in'}`}
-                        src={game.image ? game.image : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
-                <div className="h-[22rem] w-full px-4 py-2 text-center sm:text-left">
-                    <div className="grid grid-rows-[1fr_1fr] w-max mx-auto sm:mx-0 mt-2 sm:mt-0">
-                        <div className='flex justify-between'>
-                            <div className='text-white/40 font-extralight'>{game.status_text && 'STATUS'}</div>
-                            <div className={`text-lg text-${game.status_color}`}>
-                                {game.status_long || <Skeleton height={'20px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
-                            </div>
-                        </div>
-                        <div className={`text-${game.status_color} w-full text-[3rem] rounded font-bold -mt-[2rem]`}>
-                            {game.status_text || <Skeleton width={'20rem'} height={'30px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={'30px'}/>}
-                        </div>
+    const showGames = games?.map((game, index) => {
+        game.status_color = game?.status_text ? game?.status_text.toLowerCase() : 'gray-600'
+        const statusText = game.status_text || ''
+
+        switch (statusText) {
+            case "CRACKED":
+                game.status_long = `AFTER ${game.days_diff} DAYS`
+                break
+            case "UNCRACKED":
+                game.status_long = `${game.days_diff} DAYS AND COUNTING`
+                break
+            default:
+                break;
+        }
+
+        return (
+            <div className={`grid grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-${game.status_color}`}>
+                <img className={`h-full ${game.image && 'animate-fade-in'}`}
+                     src={game.image ? game.image : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
+                <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] justify-between text-center items-center">
+                    <div>{game.title}</div>
+                    <div>{game.release_date ? game.release_date : "N/A"}</div>
+                    <div>{game.crack_date ? game.crack_date : "N/A"}</div>
+                    <div>
+                        {game.protections?.map(protection => (
+                            <span className="mx-1" key={protection}>{protection}</span>
+                        ))}
+                        {game.protections.length === 0 || game.protections[0] === "" ? <span className="opacity-50">TBD</span> : ""}
                     </div>
-                    <div className='w-full my-5'>
-                        <div className='text-[#dddddd99] font-extralight'>GAME</div>
-                        <div className='text-xl'>
-                            {game.name || <Skeleton width={'90%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
-                        </div>
+                    <div>
+                        {game.groups?.map(group => (
+                            <span className="mx-1" key={group}>{group}</span>
+                        ))}
+                        {game.groups.length === 0 || game.groups[0] === "" ? <span className="opacity-50">TBD</span> : ""}
                     </div>
-                    <div className='grid grid-cols-2 gap-y-4 justify-between'>
-                        <div>
-                            <div className='text-[#dddddd99] font-extralight'>RELEASE DATE</div>
-                            <div className='text-xl'>
-                                {game.release_date || <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
-                            </div>
-                        </div>
-                        <div>
-                            <div className='text-[#dddddd99] font-extralight'>DRM PROTECTIONS</div>
-                            <div className='text-xl'>
-                                {game.protections?.map((drm, index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70"
-                                                                            to={`/protection/${drm.slug}`}>{drm.name}</Link>)}
-                                {game.protections?.length === 0 &&
-                                    <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
-                            </div>
-                        </div>
-                        <div>
-                            <div className='text-[#dddddd99] font-extralight'>CRACK DATE</div>
-                            <div className='text-xl'>
-                                {game.crack_date || <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
-                            </div>
-                        </div>
-                        <div>
-                            <div className='text-[#dddddd99] font-extralight'>SCENE GROUPS</div>
-                            <div className='text-xl'>
-                                {game.groups?.map((group, index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70"
-                                                                            to={`/group/${group.slug}`}>{group.name}</Link>)}
-                                {game.groups?.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='text-center border-t md:border-0 border-gray-300 w-[80%] pt-3 md:col-span-1 col-span-2 m-auto'>
-                                
                 </div>
             </div>
-        </div>
-    ));
+        )
+
+    });
+
 
     const placeholders = [];
     for (let i = 0; i < 6; i++) {
@@ -165,33 +142,33 @@ function SearchGames() {
     return (
 
         <>
-            <div className='bg-app-black/50 rounded'>
+            <div className='bg-app-black/50'>
 
-                <style dangerouslySetInnerHTML={{ __html: styles }} />
+                <style dangerouslySetInnerHTML={{__html: styles}}/>
 
                 <header className='p-5'>
                     <input
-                    type="text"
-                    placeholder='Search...'
-                    className='w-full h-16 text-xl uppercase rounded-sm px-3 bg-body focus:outline-none'
-                    name='search_text'
-                    value={searchGame.search_text}
-                    onChange={handleSearchChange}
+                        type="text"
+                        placeholder='Search...'
+                        className='w-full h-16 text-xl uppercase rounded-sm px-3 bg-body focus:outline-none'
+                        name='search_text'
+                        value={searchGame.search_text}
+                        onChange={handleSearchChange}
                     />
                     <div className='flex mt-4 justify-between gap-x-24'>
-                        <Select 
+                        <Select
                             options={crackStatus}
                             placeholder="Select Status..."
                             className='react-select-container mt-2 w-1/3 uppercase'
                             classNamePrefix="react-select"
                         />
-                        <Select 
+                        <Select
                             options={releaseStatus}
                             placeholder="Release Status..."
                             className='react-select-container mt-2 w-1/3 uppercase'
                             classNamePrefix="react-select"
                         />
-                        <Select 
+                        <Select
                             options={genres}
                             placeholder="Select Genres..."
                             className='react-select-container mt-2 w-1/3 uppercase'
@@ -202,70 +179,25 @@ function SearchGames() {
                 </header>
             </div>
 
-            <div className={`flex flex-col relative z-20 text-gray-300 border-t-[5px] border-${games?.status_color} shadow-lg overflow-hidden`}
-                     style={{boxShadow: 'rgb(0, 0, 0) 0px 0px 10px'}}>
-                    <img className={`absolute w-32 h-32 z-[-1] object-cover`} src={games?.cover && games?.cover}
-                         style={{aspectRatio: '1920/620'}}
-                         alt=""/>
-
-                         {!games &&  placeholders}
-                         {showGames}
-
-                    <div className='flex w-full bg-black/80'>
-                        <img className={`w-60 object-cover h-[10rem] ${games?.poster && 'animate-fade-in'}`}
-                             src={games?.poster ? games?.poster : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
-                        <div className="h-[22rem] w-full px-4 py-2 text-center sm:text-left">
-                            <div className="grid grid-rows-[1fr_1fr] w-max mx-auto sm:mx-0 mt-2 sm:mt-0">
-                                <div className='flex justify-between'>
-                                    <div className='text-white/40 font-extralight'>{games?.status_text && 'STATUS'}</div>
-                                    <div className={`text-lg text-${games?.status_color}`}>
-                                        {games?.status_long || <Skeleton height={'20px'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>}
-                                    </div>
-                                </div>
-                                <div className={`text-${games?.status_color} w-full text-[3rem] rounded font-bold -mt-[2rem]`}>
-                                    {games?.status_text || <Skeleton width={'20rem'} height={'30px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={'30px'}/>}
-                                </div>
-                            </div>
-                            <div className='w-full my-5'>
-                                <div className='text-[#dddddd99] font-extralight'>GAME</div>
-                                <div className='text-xl'>
-                                    {games?.name || <Skeleton width={'90%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
-                                </div>
-                            </div>
-                            <div className='grid grid-cols-2 gap-y-4 justify-between'>
-                                <div>
-                                    <div className='text-[#dddddd99] font-extralight'>RELEASE DATE</div>
-                                    <div className='text-xl'>
-                                        {games?.release_date || <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className='text-[#dddddd99] font-extralight'>DRM PROTECTIONS</div>
-                                    <div className='text-xl'>
-                                        {games?.protections?.map((drm, index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70"
-                                                                                    to={`/protection/${drm.slug}`}>{drm.name}</Link>)}
-                                        {games?.protections?.length === 0 &&
-                                            <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className='text-[#dddddd99] font-extralight'>CRACK DATE</div>
-                                    <div className='text-xl'>
-                                        {games?.crack_date || <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className='text-[#dddddd99] font-extralight'>SCENE GROUPS</div>
-                                    <div className='text-xl'>
-                                        {games?.groups?.map((group, index) => <Link key={index} className="inline-block mx-1 transition hover:opacity-70"
-                                                                                 to={`/group/${group.slug}`}>{group.name}</Link>)}
-                                        {games?.groups?.length === 0 && <Skeleton width={'80%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div className={`flex flex-col text-gray-300 shadow-lg overflow-hidden border-2 border-app-black/50`}>
+                <div className="grid grid-cols-[150px_1fr] text-center bg-app-black/50 py-3 border-y-2 border-gray-700">
+                    <span>Cover</span>
+                    <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center">
+                        <div>GAME</div>
+                        <div>Release Date</div>
+                        <div>Crack Date</div>
+                        <div>PROTECTIONS</div>
+                        <div>SCENE GROUPS</div>
                     </div>
                 </div>
+                {!games && placeholders}
+
+                {games &&
+                    <div className="">
+                        {showGames}
+                    </div>
+                }
+            </div>
 
         </>
 

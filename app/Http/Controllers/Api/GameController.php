@@ -17,7 +17,7 @@ class GameController extends Controller
             ->select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid'])
             ->where('need_crack', true);
 
-        $games = $query->paginate();
+        $games = $query->paginate(12);
 
         $games->map(function ($game) {
             $release_date = Carbon::parse($game->release_date);
