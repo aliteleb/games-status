@@ -3,6 +3,7 @@ import Select from 'react-select';
 import ApiClient from '../../services/ApiClient'
 import {refreshPageSize} from "../core/BlurredBackground.jsx";
 import Skeleton from "react-loading-skeleton";
+import toast from "react-hot-toast";
 
 function SearchGames() {
 
@@ -96,14 +97,11 @@ function SearchGames() {
                 "crack_status": formData.crack_status,
                 "release_status": formData.release_status,
                 "genres": formData.selected_genres
-            })
-
-        ApiClient().get('/games')
-        .then(res => {
-            setGames(...res.data.data.games.data);
-            console.log(res.data.data.games.data);
+            }).then(res => {
+            setGames(res.data.data.games.data)
+        }).catch(err => {
+            toast.error(err.response.message)
         })
-        .catch()
 
     }, [formData.crack_status, formData.release_status, formData.search_text, formData.selected_genres])
 
