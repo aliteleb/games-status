@@ -9,7 +9,7 @@ const GroupCard = (props) => {
     if (props.info !== undefined)
         group = props.info;
 
-    let is_animated = props.animate === true ? 'fade ' : '';
+    let is_animated = props.animate === true ? 'animate-fade-in ' : '';
 
     return (
         <div className={`relative group bg-[#16191e] rounded maxHeight ${group?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>

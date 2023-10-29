@@ -130,7 +130,7 @@ function Game() {
                          alt=""/>
 
                     <div className='grid grid-cols-1 sm:grid-cols-[1fr_1fr] md:grid-cols-[250px_2fr_1fr] w-full bg-black/80 justify-items-center'>
-                        <img className={`col-span-2 sm:col-auto w-full object-cover h-[22rem] ${game.poster && 'fade'}`}
+                        <img className={`col-span-2 sm:col-auto w-full object-cover h-[22rem] ${game.poster && 'animate-fade-in'}`}
                              src={game.poster ? game.poster : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
                         <div className="h-[22rem] w-full px-4 py-2 text-center sm:text-left">
                             <div className="grid grid-rows-[1fr_1fr] w-max mx-auto sm:mx-0 mt-2 sm:mt-0">
@@ -227,7 +227,7 @@ function Game() {
                         <div>
                             {comments.map(comment => {
                                 return (
-                                    <Comment setComments={setComments} key={comment.id} info={comment} className="border-b border-gray-500 fade"/>
+                                    <Comment setComments={setComments} key={comment.id} info={comment} className="border-b border-gray-500 animate-slide-down"/>
                                 )
                             })}
 

@@ -96,7 +96,7 @@ function Navbar() {
                     }
                 </div>
             </nav>
-            <div className={`${!showProfilePopup ? 'hidden' : ''} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`} id="user-dropdown">
+            <div className={`${!showProfilePopup ? 'hidden' : 'animate-slide-down'} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`} id="user-dropdown">
                 <div className="px-4 py-3">
                     <Link onClick={() => setShowProfilePopup(false)} to={`/user/${user?.username}`}>
                         <span className="block text-sm text-gray-900 dark:text-white">{user?.username}</span>

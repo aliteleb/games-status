@@ -9,7 +9,7 @@ const ProtectionsCard = (props) => {
     if (props.info !== undefined)
         protection = props.info;
 
-    let is_animated = props.animate === true ? 'fade ' : '';
+    let is_animated = props.animate === true ? 'animate-animate-fade-in-in ' : '';
 
     return (
         <div className={`relative group bg-[#16191e]/80 rounded maxHeight ${protection?'shadow hover:shadow-lg hover:bg-black/60':''} overflow-hidden transition ${props.className || ''}`}>

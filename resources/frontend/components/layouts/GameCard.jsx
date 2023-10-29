@@ -43,7 +43,7 @@ const GameCard = (props) => {
 
     days = `D${statusText === "CRACKED" || statusText === "UNCRACKED" ? "+" : "-"}${game.days_diff}`;
 
-    let customStyles = props.animate === true ? 'fade ' : '';
+    let customStyles = props.animate === true ? 'animate-fade-in ' : '';
 
     const handleFollowChange = async () => {
         const newFollowState = !follow;

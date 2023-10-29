@@ -135,7 +135,7 @@ function Comment(props) {
                         <BiDotsHorizontalRounded fontSize="30px"/>
                     </button>
                     {/* Dropdown menu */}
-                    <div ref={showDropMenu} onClick={removeComment} className={`hidden w-44 z-10 bg-black/20 rounded overflow-hidden divide-y shadow absolute mt-[90px] fade`}
+                    <div ref={showDropMenu} onClick={removeComment} className={`hidden w-44 z-10 bg-black/20 rounded overflow-hidden divide-y shadow absolute mt-[90px] animate-slide-down`}
                          style={{right: '10px'}}>
                         <ul className="text-sm text-gray-300 y-200">
                             <li>
@@ -208,11 +208,11 @@ function Comment(props) {
 
             </article>
             {comment?.replies?.length > 0 && comment.replies.map((reply, index) => (
-                <Comment info={reply} key={index} setComments={props.setComments} className="border-l-[3rem] border-l-black/10 fade"/>
+                <Comment info={reply} key={index} setComments={props.setComments} className="border-l-[3rem] border-l-black/10 animate-slide-down"/>
             ))}
 
             {replyForm &&
-                <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap fade">
+                <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap animate-slide-down">
                     <div className='flex items-center w-full'>
                         <input
                             onChange={handleChange}
