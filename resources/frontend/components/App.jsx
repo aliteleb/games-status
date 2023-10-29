@@ -76,7 +76,7 @@ export default function App() {
                         <Route path='/contact' element={<Contact/>}/>
                         <Route path='/terms-conditions' element={<Terms/>}/>
                         <Route path='/frequency-questions' element={<FrequencyQuestions/>}/>
-                        <Route path='/search-game' element={<SearchGames/>}/>
+                        <Route path='/games' element={<SearchGames/>}/>
                         <Route path='/protection/:slug' element={<Protection/>}/>
                         <Route path='/group/:slug' element={<Group/>}/>
                         <Route path='/game/:slug' element={<Game/>}/>

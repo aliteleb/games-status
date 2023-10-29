@@ -45,7 +45,7 @@ function Navbar() {
                         document.getElementById('sidebar').style.left = '0';
                         document.getElementById('left-nav').style.opacity = '0';
                     }} className={'cursor-pointer hover:text-gray-400 transition'}/>
-                    <Link to="/search-game">
+                    <Link to="/games">
                         <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition'}/>
                     </Link>
                     <UsersIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition'}/>
@@ -53,7 +53,7 @@ function Navbar() {
 
                 <div className="grid grid-cols-[auto_1fr_auto] sm:grid-cols-[1fr_auto_1fr] items-center justify-center h-[4rem]">
                     <div className="hidden sm:block text-end">
-                        <NavLink onClick={collapseSidebar} to="/search-game" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">GAMES</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/games" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">GAMES</NavLink>
                         <NavLink onClick={collapseSidebar} to="/groups" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">GROUPS</NavLink>
                         <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer hover:text-gray-400 transition">PROTECTIONS</NavLink>
                     </div>

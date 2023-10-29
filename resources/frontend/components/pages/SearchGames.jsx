@@ -1,83 +1,108 @@
 import React from 'react'
+import Select from 'react-select';
 
 function SearchGames() {
-  return (
-    <div className='bg-app-black/50 rounded overflow-x-scroll'>
 
-        <header>
-            <input type="text" placeholder='Search Game Title...' className='w-full h-10 rounded-sm px-3 bg-gray-600 focus:outline-none'/>
-            <div className='flex mt-4'>
-                <select name="" id="" className='w-72 h-10 rounded-sm px-3 bg-gray-600 focus:outline-none'>
-                    <option value="All Crack Status">All Crack Status</option>
-                    <option value="Cracked">Cracked</option>
-                    <option value="Not Cracked">Not Cracked</option>
-                </select>
-                <select name="" id="" className='ml-4 w-72 h-10 rounded-sm px-3 bg-gray-600 focus:outline-none'>
-                    <option value="All Release Date">All Release Date</option>
-                    <option value="Released">Released</option>
-                    <option value="Released">Unreleased</option>
-                </select>
-                <select name="" id="" className='ml-4 w-72 h-10 rounded-sm px-3 bg-gray-600 focus:outline-none'>
-                    <option value="AAA & Indie">AAA & Indie</option>
-                    <option value="AAA only">AAA only</option>
-                    <option value="Indie only">Indie only</option>
-                </select>
+    const [searchGame, setSearchGame] = React.useState({
+        search_text: ""
+    })
+
+    const crackStatus = [
+        {value: "ALL", label: "ALL"},
+        {value: "CRACKED", label: "CRACKED"},
+        {value: "UNCRACKED", label: "UNCRACKED"},
+    ]
+
+    const releaseStatus = [
+        {value: "ALL", label: "ALL"},
+        {value: "RELEASED", label: "RELEASED"},
+        {value: "UNRELEASED", label: "UNRELEASED"},
+    ]
+
+    const genres = [
+        {value: "ACTION", label: "ACTION"},
+        {value: "FANCY", label: "FANCY"},
+        {value: "ADVENTURE", label: "ADVENTURE"},
+    ]
+
+    // Define your styles as a string
+    const styles = `
+    .react-select-container .react-select__input-container,
+    .react-select-container .react-select__placeholder,
+    .react-select-container .react-select__single-value {
+        padding: 14px 0; 
+    }`;
+
+    let handleSearchChange = (e) => {
+        setSearchGame(prevSearchGame => (
+            {
+                ...prevSearchGame,
+                [e.target.name]: e.target.value
+            }
+        ))
+    }
+
+    console.log(searchGame.search_text);
+
+    return (
+
+        <>
+            <div className='bg-app-black/50 rounded'>
+
+                <style dangerouslySetInnerHTML={{ __html: styles }} />
+
+                <header className='p-5'>
+                    <input
+                    type="text"
+                    placeholder='Search...'
+                    className='w-full h-16 text-xl uppercase rounded-sm px-3 bg-body focus:outline-none'
+                    name='search_text'
+                    value={searchGame.search_text}
+                    onChange={handleSearchChange}
+                    />
+                    <div className='flex mt-4 justify-between gap-x-24'>
+                        <Select 
+                            options={crackStatus}
+                            placeholder="Select Status..."
+                            className='react-select-container mt-2 w-1/3 uppercase'
+                            classNamePrefix="react-select"
+                        />
+                        <Select 
+                            options={releaseStatus}
+                            placeholder="Release Status..."
+                            className='react-select-container mt-2 w-1/3 uppercase'
+                            classNamePrefix="react-select"
+                        />
+                        <Select 
+                            options={genres}
+                            placeholder="Select Genres..."
+                            className='react-select-container mt-2 w-1/3 uppercase'
+                            classNamePrefix="react-select"
+                            isMulti
+                        />
+                    </div>
+                </header>
             </div>
-        </header>
 
-        <table className='mt-8 w-full'>
-            <thead>
-                <tr>
-                    <th className='border-b py-4 cursor-pointer'>Game Title</th>
-                    <th className='border-b py-4 cursor-pointer'>Release Date</th>
-                    <th className='border-b py-4 cursor-pointer'>Crack Date</th>
-                    <th className='border-b py-4 cursor-pointer'>DRM</th>
-                    <th className='border-b py-4 cursor-pointer'>Scene Group</th>
-                    <th className='border-b py-4 cursor-pointer'>Genre</th>
-                    <th className='border-b py-4 cursor-pointer'>Platform</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td className='border-b p-4 '>Cyberpunk 2077</td>
-                    <td className='border-b p-4 '>10/12/2020</td>
-                    <td className='border-b p-4 '>10/12/2020</td>
-                    <td className='border-b p-4 '>Steam DRM</td>
-                    <td className='border-b p-4 '>CD Project Red</td>
-                    <td className='border-b p-4 '>Action & Adventure</td>
-                    <td className='border-b p-4 '>PC & PS5</td>
-                </tr>
-                <tr>
-                    <td className='border-b p-4 '>Cyberpunk 2077</td>
-                    <td className='border-b p-4 '>10/12/2020</td>
-                    <td className='border-b p-4 '>10/12/2020</td>
-                    <td className='border-b p-4 '>Steam DRM</td>
-                    <td className='border-b p-4 '>CD Project Red</td>
-                    <td className='border-b p-4 '>Action & Adventure</td>
-                    <td className='border-b p-4 '>PC & PS5</td>
-                </tr>
-                <tr>
-                    <td className='border-b p-4 '>Cyberpunk 2077</td>
-                    <td className='border-b p-4 '>10/12/2020</td>
-                    <td className='border-b p-4 '>10/12/2020</td>
-                    <td className='border-b p-4 '>Steam DRM</td>
-                    <td className='border-b p-4 '>CD Project Red</td>
-                    <td className='border-b p-4 '>Action & Adventure</td>
-                    <td className='border-b p-4 '>PC & PS5</td>
-                </tr>
-                <tr>
-                    <td className='p-4 '>Cyberpunk 2077</td>
-                    <td className='p-4 '>10/12/2020</td>
-                    <td className='p-4 '>10/12/2020</td>
-                    <td className='p-4 '>Steam DRM</td>
-                    <td className='p-4 '>CD Project Red</td>
-                    <td className='p-4 '>Action & Adventure</td>
-                    <td className='p-4 '>PC & PS5</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-  )
+            <div className='mt-6 flex w-full h-52 bg-app-black/50'>
+                <div className='w-1/3 overflow-hidden'>
+                    <img src="https://ocdn.eu/sport-images-transforms/1/aBGk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy81MDIwMDQ4NTRhMGUwNjcyYWY4YWYyNTUwYTQ3YjIzZi5wbmeTlQMAAM0FAM0C0JUCzQSwAMLDkwmmMDJiODM4Bt4AAqEwAaExAQ/cyberpunk-2077.png" alt="" />
+                </div>
+                <div className='w-2/3 p-6 mx-6 flex gap-x-8'>
+                    <div className='flex flex-col'>
+                        <div>Game Title</div>
+                        <div className='mt-12'>Game Status</div>
+                    </div>
+                    <div>Release Data</div>
+                    <div>Crack Date</div>
+                    <div>DRM Protection</div>
+                    <div>Scene Group</div>
+                </div>
+            </div>
+
+        </>
+
+    )
 }
 
 export default SearchGames

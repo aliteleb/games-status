@@ -407,7 +407,6 @@ export default function SignUp({loading, setLoading}) {
                                 defaultValue={{label: "Afghanistan", value: 'AF'}}
                                 className='react-select-container mt-2'
                                 classNamePrefix="react-select"
-                                isMulti
 
                             />
                             {inputValidation('country_code')}
