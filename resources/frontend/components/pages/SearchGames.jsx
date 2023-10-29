@@ -108,7 +108,7 @@ function SearchGames() {
 
         return (
             <div className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-${game.status_color}`}>
-                <img className={`h-14 w-32 object-cover ${game.image && 'animate-fade-in'}`}
+                <img className={`h-full w-32 object-cover ${game.image && 'animate-fade-in'}`}
                      src={game.image ? game.image : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
                 <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center items-center">
                     <div className="my-3 lg:my-0 text-lg lg:text-left lg:pl-4">
@@ -251,7 +251,7 @@ function SearchGames() {
                             </svg>
                         </div>
                     </div>
-                    
+
                 }
             </div>
 
