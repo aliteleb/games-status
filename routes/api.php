@@ -34,7 +34,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 # Basic routes
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
-Route::get('/games', [GameController::class, 'index'])->name('games');
+Route::post('/games', [GameController::class, 'index'])->name('games');
 Route::get('/game/{slug}', [GameController::class, 'show'])->name('game');
 
 Route::get('/protections', [ProtectionController::class, 'index'])->name('protections');
