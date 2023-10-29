@@ -64,7 +64,7 @@ function SearchGames() {
 
 // Start Search Proccess
 
-    let handleSearchChange = (e) => {
+    const handleSearchChange = (e) => {
         setFormData(prevSearchGame => (
             {
                 ...prevSearchGame,
@@ -247,7 +247,7 @@ function SearchGames() {
                             placeholder="Release Status..."
                             className='react-select-container mt-2 w-2/3 md:w-1/3 uppercase'
                             classNamePrefix="react-select"
-                            value={releaseStatus.find(option => option.value === formData.crack_status)}
+                            value={releaseStatus.find(option => option.value === formData.release_status)}
                             onChange={(selectedOption) => handleSingleSelectChange('release_status', selectedOption)}
                         />
                         <Select
