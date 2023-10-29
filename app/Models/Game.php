@@ -44,6 +44,7 @@ class Game extends Model
 
     public static function ApiCollection($games)
     {
+
         $games->map(function ($game) {
 
         });
