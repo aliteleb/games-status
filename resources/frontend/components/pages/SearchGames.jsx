@@ -14,15 +14,11 @@ function SearchGames() {
 
     })
     const [games, setGames] = React.useState([]);
+    const [response, setResponse] = React.useState()
     const [isLoading, setIsLoading] = React.useState(false);
     const [nextPage, setNextPage] = React.useState(null);
+    const [crackStatus, setCrackStatus] = React.useState([])
 
-
-    const crackStatus = [
-        {value: "0", label: "ALL"},
-        {value: "1", label: "CRACKED"},
-        {value: "2", label: "UNCRACKED"},
-    ]
 
     const releaseStatus = [
         {value: "0", label: "ALL"},
@@ -49,8 +45,12 @@ function SearchGames() {
             setIsLoading(true);
             ApiClient().post(pageUrl)
                 .then((res) => {
-                    setGames((prevGames) => [...prevGames, ...res.data.data.data]);
-                    setNextPage(res.data.data.next_page_url);
+                    setGames((prevGames) => [...prevGames, ...res.data.data.games.data]);
+                    setNextPage(res.data.data.games.next_page_url);
+                    setResponse(res.data.data)
+
+                    let options = res.data.data.statuses.map((status, index) => console.log(status))
+
                     setIsLoading(false);
                     setTimeout(refreshPageSize, 50)
                 })
@@ -61,6 +61,7 @@ function SearchGames() {
         }
     };
 
+    console.log(response);
 
 // Start Search Proccess
 
