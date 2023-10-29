@@ -69,7 +69,7 @@ class GameController extends Controller
         });
 
         $genres = Genre::select('id', 'name')->get()->pluck('name', 'id');
-        $statuses = Status::select('name')->get()->pluck('name');
+        $statuses = Status::select('id', 'name')->get()->pluck('name', 'id');
         return response()->api(
             data: [
                 'games' => $games,
