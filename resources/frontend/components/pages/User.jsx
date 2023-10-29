@@ -67,18 +67,17 @@ function User() {
     return (
         <>
             <BlurredBackground/>
-            <div className='flex justify-between w-full bg-black/50 h-[22rem] rounded-md'>
+            <div className='flex justify-between w-full bg-black/50 h-[22rem] rounded-md relative'>
+                <div className="w-full h-full absolute bg-gray-800/60 z-[-1]"/>
                 <div className='flex flex-col justify-center items-center w-full'>
-                    {
-                        response &&
+                    { response &&
                         <img
                             className={`col-span-2 border-2 border-gray-600 rounded-full sm:col-auto w-[100px] h-[100px] object-cover`}
                             src={response ? response.avatar : ''}
                             alt=''
                         />
                     }
-                    {
-                        !response &&
+                    { !response &&
                         <Skeleton width={100} height={100} baseColor={'#27282e99'} circle={true} highlightColor={'#424349'}/>
                     }
 
