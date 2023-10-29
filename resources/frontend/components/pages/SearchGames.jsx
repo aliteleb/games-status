@@ -190,28 +190,28 @@ function SearchGames() {
                     <input
                         type="text"
                         placeholder='Search...'
-                        className='w-full h-16 text-xl uppercase rounded-sm px-3 bg-body focus:outline-none'
+                        className='w-full h-12 text-lg uppercase rounded-sm px-3 bg-body focus:outline-none'
                         name='search_text'
                         value={searchGame.search_text}
                         onChange={handleSearchChange}
                     />
-                    <div className='flex mt-4 justify-between gap-x-24'>
+                    <div className='flex flex-col w-full items-center md:flex md:flex-row mt-4 justify-between gap-x-24'>
                         <Select
                             options={crackStatus}
                             placeholder="Select Status..."
-                            className='react-select-container mt-2 w-1/3 uppercase'
+                            className='react-select-container mt-2 w-2/3 md:w-1/3 uppercase'
                             classNamePrefix="react-select"
                         />
                         <Select
                             options={releaseStatus}
                             placeholder="Release Status..."
-                            className='react-select-container mt-2 w-1/3 uppercase'
+                            className='react-select-container mt-2 w-2/3 md:w-1/3 uppercase'
                             classNamePrefix="react-select"
                         />
                         <Select
                             options={genres}
                             placeholder="Select Genres..."
-                            className='react-select-container mt-2 w-1/3 uppercase'
+                            className='react-select-container mt-2 w-2/3 md:w-1/3 uppercase'
                             classNamePrefix="react-select"
                             isMulti
                         />
@@ -235,7 +235,23 @@ function SearchGames() {
                 {games &&
                     <div className="">
                         {showGames}
+                        <div className="p-4">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="50"
+                                height="50"
+                                viewBox="0 0 24 24"
+                                className={`spinner_P7sC mx-auto ${isLoading ? '' : 'opacity-0'}`}
+                                fill="#ddd"
+                            >
+                                <path
+                                    d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"
+                                    className="spinner_P7sC"
+                                />
+                            </svg>
+                        </div>
                     </div>
+                    
                 }
             </div>
 
