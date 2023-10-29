@@ -93,7 +93,7 @@ function SearchGames() {
         
         ApiClient().post('/games', 
         {
-            "search_game": formData.search_text,
+            "search": formData.search_text,
             "crack_status": formData.crack_status,
             "release_status": formData.release_status,
             "genres": formData.selected_genres
