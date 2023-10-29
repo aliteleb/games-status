@@ -3,6 +3,7 @@ import Select from 'react-select';
 import ApiClient from '../../services/ApiClient'
 import GameCard from '../layouts/GameCard';
 import {refreshPageSize} from "../core/BlurredBackground.jsx";
+import Skeleton from "react-loading-skeleton";
 
 function SearchGames() {
 
@@ -107,20 +108,20 @@ function SearchGames() {
 
         return (
             <div className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-${game.status_color}`}>
-                <img className={`h-full object-cover ${game.image && 'animate-fade-in'}`}
+                <img className={`h-14 w-32 object-cover ${game.image && 'animate-fade-in'}`}
                      src={game.image ? game.image : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
-                <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr]  text-center items-center">
-                    <div className="my-3 lg:my-0 text-lg">
+                <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center items-center">
+                    <div className="my-3 lg:my-0 text-lg lg:text-left lg:pl-4">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">GAME</div>
                         {game.title}
                     </div>
                     <div className="my-3 lg:my-0 text-lg">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">RELEASE DATE</div>
-                        {game.release_date ? game.release_date : "N/A"}
+                        {game.release_date ? game.release_date : <span className="opacity-50">N/A</span>}
                     </div>
                     <div className="my-3 lg:my-0 text-lg">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">CRACK DATE</div>
-                        {game.crack_date ? game.crack_date : "N/A"}
+                        {game.crack_date ? game.crack_date : <span className="opacity-50">N/A</span>}
                     </div>
                     <div className="my-3 lg:my-0 text-lg">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">PROTECTIONS</div>
@@ -129,12 +130,12 @@ function SearchGames() {
                         ))}
                         {game.protections.length === 0 || game.protections[0] === "" ? <span className="opacity-50">TBD</span> : ""}
                     </div>
-                    <div className="my-3 lg:my-0 text-lg">
+                    <div className="my-3 lg:my-0 text-lg lg:text-right lg:pr-4">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">SCENE GROUPS</div>
                         {game.groups?.map(groups => (
                             <span className="mx-1" key={groups}>{groups}</span>
                         ))}
-                        {game.groups.length === 0 || game.groups[0] === "" ? <span className="opacity-50">TBD</span> : ""}
+                        {game.groups.length === 0 || game.groups[0] === "" ? <span className="opacity-50">N/A</span> : ""}
                     </div>
 
                 </div>
@@ -145,11 +146,38 @@ function SearchGames() {
 
 
     const placeholders = [];
-    for (let i = 0; i < 6; i++) {
-        placeholders.push(<GameCard key={i}/>);
+    for (let i = 0; i < 12; i++) {
+        placeholders.push(
+            <div className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-gray-600`}>
+                <img className={`h-14 w-32 object-cover`}
+                     src='/assets/images/game-placeholder.jpg' alt=""/>
+                <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center items-center">
+                    <div className="my-3 lg:my-0 text-lg lg:text-left lg:pl-4">
+                        <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">GAME</div>
+                        <Skeleton height={'20px'} width={'80%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={50}/>
+                    </div>
+                    <div className="my-3 lg:my-0 text-lg">
+                        <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">RELEASE DATE</div>
+                        <Skeleton height={'20px'} width={'80%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={50}/>
+                    </div>
+                    <div className="my-3 lg:my-0 text-lg">
+                        <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">CRACK DATE</div>
+                        <Skeleton height={'20px'} width={'80%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={50}/>
+                    </div>
+                    <div className="my-3 lg:my-0 text-lg">
+                        <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">PROTECTIONS</div>
+                        <Skeleton height={'20px'} width={'80%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={50}/>
+                    </div>
+                    <div className="my-3 lg:my-0 text-lg lg:text-right lg:pr-4">
+                        <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">SCENE GROUPS</div>
+                        <Skeleton height={'20px'} width={'80%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={50}/>
+                    </div>
+
+                </div>
+            </div>
+        );
     }
 
-    console.log(games);
 
     return (
 
@@ -195,14 +223,14 @@ function SearchGames() {
                 <div className="hidden lg:grid grid-cols-[150px_1fr] text-center bg-app-black/50 py-3 border-y-2 border-gray-700">
                     <span>Cover</span>
                     <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center">
-                        <div>GAME</div>
+                        <div className="lg:text-left lg:pl-4">GAME</div>
                         <div>Release Date</div>
                         <div>Crack Date</div>
                         <div>PROTECTIONS</div>
-                        <div>SCENE GROUPS</div>
+                        <div className="lg:text-right lg:pr-4">SCENE GROUPS</div>
                     </div>
                 </div>
-                {!games && placeholders}
+                {games.length === 0 && placeholders}
 
                 {games &&
                     <div className="">
