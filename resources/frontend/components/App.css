@@ -43,6 +43,9 @@ nav a.active {
     /*text-shadow: 0.5px 0.5px 0px #ff3333, -0.5px -0.5px 0px #ff3333;*/
 }
 
+nav a.active:hover{
+    color: #ff0000;
+}
 
 
 input.custom-input:-webkit-autofill {
