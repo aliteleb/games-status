@@ -108,50 +108,9 @@ function Comment(props) {
 
     return (
         <div className={props.className}>
-            <article className="p-4 text-base rounded-lg">
-                <footer className="flex justify-between items-center mb-2">
-                    <div className="flex items-center">
-                        <Link to={`/user/${comment?.username}`} className="inline-flex items-center mr-3 text-sm cursor-pointer text-gray-200 font-semibold">
-                            <img className="mr-2 w-6 h-6 rounded-full"
-                                 src={comment?.user_image ? comment?.user_image : "https://t4.ftcdn.net/jpg/04/43/35/29/240_F_443352949_1eX3IagFInYtf3d3tkXDSQkymM2HfSXq.jpg"}
-                                 alt={comment?.username}/>
-                            {comment?.username && comment.username}
-                            {!(comment?.username) &&
-                                <Skeleton width={'5rem'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
-                            }
-                        </Link>
-                        <p className="text-xs text-gray-400">
-                            {comment?.time && comment.time}
-                            {!(comment?.time) &&
-                                <Skeleton width={'6rem'} height={'12px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
-                            }
-                        </p>
-                    </div>
-                    <button onClick={toggleClass} onBlur={() => {
-                        setTimeout(() => {
-                            showDropMenu.current.classList.add("hidden")
-                        }, 100)
-                    }} className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
-                        <BiDotsHorizontalRounded fontSize="30px"/>
-                    </button>
-                    {/* Dropdown menu */}
-                    <div ref={showDropMenu} onClick={removeComment} className={`hidden w-44 z-10 bg-black/20 rounded overflow-hidden divide-y shadow absolute mt-[90px] animate-slide-down`}
-                         style={{right: '10px'}}>
-                        <ul className="text-sm text-gray-300 y-200">
-                            <li>
-                                <button disabled="disabled" className="flex w-full items-center cursor-pointer py-2 transition disabled:cursor-default disabled:opacity-50">
-                                    <GoReport className='text-lg mx-2'/>
-                                    <span className='text-md text-left'>Report</span>
-                                </button>
-                            </li>
-                            {comment?.user?.username === user?.username &&
-                                <li><span className="flex items-center cursor-pointer py-2 transition hover:bg-black/30"><CiCircleRemove
-                                    className='text-lg mx-2'/> Remove</span></li>}
-                        </ul>
-                    </div>
-                </footer>
+            <article className="p-[0.7rem] text-base rounded-lg">
                 <div className='flex items-center'>
-                    {comment?.votes !== null &&
+                {comment?.votes !== null &&
                         <div className='flex flex-col items-center'>
                             <button
                                 data-vote="up"
@@ -174,7 +133,49 @@ function Comment(props) {
                     {(comment?.votes == null) &&
                         <Skeleton width={'2rem'} height={'6rem'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={10}/>
                     }
-                    <div>
+                    <div className='w-full'>
+                        <footer className="flex justify-between items-center">
+                            <div className="flex items-center mx-6">
+                                <Link to={`/user/${comment?.username}`} className="inline-flex items-center mr-3 text-sm cursor-pointer text-gray-200 font-semibold">
+                                    <img className="mr-2 w-6 h-6 rounded-full"
+                                        src={comment?.user_image ? comment?.user_image : "https://t4.ftcdn.net/jpg/04/43/35/29/240_F_443352949_1eX3IagFInYtf3d3tkXDSQkymM2HfSXq.jpg"}
+                                        alt={comment?.username}/>
+                                    {comment?.username && comment.username}
+                                    {!(comment?.username) &&
+                                        <Skeleton width={'5rem'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
+                                    }
+                                </Link>
+                                <p className="text-xs text-gray-400">
+                                    {comment?.time && comment.time}
+                                    {!(comment?.time) &&
+                                        <Skeleton width={'6rem'} height={'12px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
+                                    }
+                                </p>
+                            </div>
+                            <button onClick={toggleClass} onBlur={() => {
+                                setTimeout(() => {
+                                    showDropMenu.current.classList.add("hidden")
+                                }, 100)
+                            }} className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
+                                <BiDotsHorizontalRounded fontSize="30px"/>
+                            </button>
+                            {/* Dropdown menu */}
+                            <div ref={showDropMenu} onClick={removeComment} className={`hidden w-44 z-10 bg-black/20 rounded overflow-hidden divide-y shadow absolute mt-[90px] animate-slide-down`}
+                                style={{right: '10px'}}>
+                                <ul className="text-sm text-gray-300 y-200">
+                                    <li>
+                                        <button disabled="disabled" className="flex w-full items-center cursor-pointer py-2 transition disabled:cursor-default disabled:opacity-50">
+                                            <GoReport className='text-lg mx-2'/>
+                                            <span className='text-md text-left'>Report</span>
+                                        </button>
+                                    </li>
+                                    {comment?.user?.username === user?.username &&
+                                        <li><span className="flex items-center cursor-pointer py-2 transition hover:bg-black/30"><CiCircleRemove
+                                            className='text-lg mx-2'/> Remove</span></li>}
+                                </ul>
+                            </div>
+                        </footer>
+                        <div>
                         <p className="mx-6 text-gray-400 w-[9rem] sm:w-[20rem] md:w-[30rem] max-w-[65rem]">
                             {comment?.mention && <span class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">@{comment.mention}</span>}
                             {comment?.body && comment.body}
@@ -182,7 +183,7 @@ function Comment(props) {
                                 <Skeleton count={3} width={'100%'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
                             }
                         </p>
-                        <div className="mx-6 flex flex-col mt-4 space-x-4">
+                        <div className="mx-6 flex flex-col mt-3 space-x-4">
                             {comment?.body &&
                                 <button onClick={() => {
                                     setReplyForm(!replyForm);
@@ -204,7 +205,9 @@ function Comment(props) {
                                 <Skeleton width={'4rem'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
                             }
                         </div>
+                        </div>
                     </div>
+
                 </div>
 
             </article>
