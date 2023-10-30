@@ -178,7 +178,7 @@ class GameController extends Controller
             if($reply->replies)
                 $replies = array_merge($replies, $this->refactReplies($reply->replies, $reply->username));
 
-            $reply->rely_to = $rely_to;
+            $reply->mention = $rely_to;
             unset($reply->replies);
         }
         return $replies;
