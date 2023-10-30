@@ -9,13 +9,15 @@ import {GoReport} from 'react-icons/go'
 import {CiCircleRemove} from 'react-icons/ci'
 import {useAuth} from "../api/AuthContext";
 import {refreshPageSize} from "../core/BlurredBackground.jsx";
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Comment(props) {
 
     const {user} = useAuth();
     let [comment, setComment] = React.useState(null);
+    let [mention, setMention] = React.useState(null)
     let [replyForm, setReplyForm] = React.useState(false)
+    let [replyTo, setReplyTo] = React.useState(null)
     let [loading, setLoading] = React.useState(false)
     let [replyInput, setReplyInput] = React.useState({
         body: "",
@@ -35,6 +37,9 @@ function Comment(props) {
         setLoading(true);
 
         let formData = new FormData(formRef.current);
+
+        formData.append("reply_to", replyTo)
+
 
         setLoading(true)
         ApiClient().post(`/comments/create`, formData)
@@ -57,6 +62,7 @@ function Comment(props) {
                 toast.error(message);
             });
     }
+
 
 
     let handleChange = (e) => {
@@ -186,7 +192,15 @@ function Comment(props) {
                         <div className="mx-6 flex flex-col mt-3 space-x-4">
                             {comment?.body &&
                                 <button onClick={() => {
-                                    setReplyForm(!replyForm);
+                                    if(props.setReplyForm){
+                                        props.setReplyForm(true)
+                                        props.setMention(comment.username)
+                                        props.setReplyTo(comment.id)
+                                    }else{
+                                        setReplyForm(!replyForm);
+                                        setMention(comment.username)
+                                        setReplyTo(null)
+                                    }
                                     refreshPageSize();
                                     setTimeout(() => {
                                         document.getElementById('reply_input_' + comment.id).focus();
@@ -212,12 +226,12 @@ function Comment(props) {
 
             </article>
             {comment?.replies?.length > 0 && comment.replies.map((reply, index) => (
-                <Comment info={reply} key={index} setComments={props.setComments} className="border-l-[3rem] border-l-black/10 animate-slide-down-slow"/>
+                <Comment setReplyTo={setReplyTo}  setMention={setMention} setReplyForm={setReplyForm} info={reply} key={index} setComments={props.setComments} className="border-l-[3rem] border-l-black/10 animate-slide-down-slow"/>
             ))}
 
             {replyForm &&
                 <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap animate-slide-down">
-                    <div className='flex items-center w-full'>
+                    <div className='flex items-center w-full relative'>
                         <input
                             onChange={handleChange}
                             onBlur={() => {
@@ -231,8 +245,9 @@ function Comment(props) {
                             autoComplete='one-time-code'
                             id={`reply_input_${comment.id}`}
                             placeholder='Your reply ...'
-                            className="bg-transparent w-full text-sm md:text-xs h-10 transition ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 pl-4 pr-12 pr-[10rem] mb-4 mt-2 rounded-md"
+                            className={`bg-transparent w-full text-sm md:text-xs ${mention ? "h-[4.5rem]" : "h-10"} transition ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 pl-4 pr-12 ${mention && "pt-6"} mb-4 mt-2 rounded-md`}
                         />
+                        {mention && <span class="bg-gray-100 absolute left-2 top-[1rem] text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">@{mention}</span>}
                         <input type="hidden" name='reply_to' value={comment.id}/>
                         <RiSendPlane2Fill onClick={handleReplySubmit} className='mb-4 mt-2 relative right-[2rem] text-gray-400 hover:text-gray-300 transition cursor-pointer'/>
                     </div>
