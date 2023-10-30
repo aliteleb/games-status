@@ -161,8 +161,8 @@ function SearchGames() {
             <div key={index} className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-${game.status_color}`}>
                 <img className={`h-full w-32 object-cover ${game.image && 'animate-fade-in'}`}
                      src={game.image ? game.image : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
-                <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center items-center">
-                    <div className="my-3 lg:my-0 text-lg lg:text-left lg:pl-4">
+                <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center items-center text-gray-400">
+                    <div className="my-3 lg:my-0 text-lg lg:text-left lg:pl-4 text-gray-300 font-bold">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">GAME</div>
                         {game.title}
                     </div>
@@ -177,14 +177,14 @@ function SearchGames() {
                     <div className="my-3 lg:my-0 text-lg">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">PROTECTIONS</div>
                         {game.protections?.map((protection, index) => (
-                            <Link to={`/protection/${protection.slug}`} className="mx-1 transition hover:text-gray-200/50" key={index}>{protection.name}</Link>
+                            <Link to={`/protection/${protection.slug}`} className="mx-1 transition hover:text-gray-200" key={index}>{protection.name}</Link>
                         ))}
                         {game.protections.length === 0 || game.protections[0].name === "" ? <span className="opacity-50">TBD</span> : ""}
                     </div>
                     <div className="my-3 lg:my-0 text-lg lg:text-right lg:pr-4">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">SCENE GROUPS</div>
                         {game.groups?.map((group, index) => (
-                            <Link to={`/group/${group.slug}`} className="mx-1 transition hover:text-gray-200/50 block" key={index}>{group.name}</Link>
+                            <Link to={`/group/${group.slug}`} className="mx-1 transition hover:text-gray-200 block" key={index}>{group.name}</Link>
                         ))}
                         {game.groups.length === 0 || game.groups[0].name === "" ? <span className="opacity-50">N/A</span> : ""}
                     </div>
