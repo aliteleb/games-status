@@ -67,8 +67,15 @@ function User() {
     return (
         <>
             <BlurredBackground/>
-            <div className='flex justify-between w-full bg-black/50 h-[22rem] rounded-md relative'>
-                <div className="w-full h-full absolute bg-gray-800/60 z-[-1]"/>
+            <div className='flex justify-between w-full h-[22rem] overflow-hidden rounded-md relative'>
+                <div className="w-full bg-black/70 h-full absolute z-[-1]"
+                     style={{ clipPath: "polygon(66.6666% 0px, 100% 0%, 100% 100%, 33.3333% 100%)", 
+                }}
+                />
+                <div className="w-full bg-black/50 h-full absolute  z-[-1]"
+                     style={{ clipPath: "polygon(0 0px, 66.6666% 0%, 33.3333% 100%, 0 100%)",
+                }}
+                />
                 <div className='flex flex-col justify-center items-center w-full'>
                     { response &&
                         <img
@@ -84,18 +91,18 @@ function User() {
                     <h1 className='mt-3 text-xl'>{response ? response.username :
                         <Skeleton width={150} height={20} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}</h1>
                 </div>
-                <div className='text-center border-t md:border-0 border-gray-300 w-[80%] pt-3 md:col-span-1 col-span-2 m-auto'>
-                    <div className='text-xl'>{response ? "GAMES" :
+                <div className='text-center border-t md:border-0 border-gray-300 w-full pt-3 md:col-span-1 col-span-2 m-auto'>
+                    <div className='text-2xl text-gray-400'>{response ? "GAMES" :
                         <Skeleton width={'25%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}</div>
                     <div className='my-2 text-2xl'>
                         {response ? response.games_count : <Skeleton width={'15%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                     </div>
                 </div>
             </div>
-            <div className='flex flex-col justify-between  my-6'>
+            <div className='flex flex-col justify-between my-6'>
                 <div className="border-b border-gray-500/50 pb-2 text-xl">{response && `Games (${response.games_count})`}</div>
                 <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
-                    {!games && placeholders}
+                    {!response && placeholders}
                     {showGames}
                     {games.length === 0 && <div className='col-span-3 text-center text-xl'>This user not following any games yet.</div>}
                 </div>

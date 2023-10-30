@@ -39,7 +39,7 @@ export default {
             },
             maxHeight: {
                 'height': 'fit-content',
-              },
+            },
         },
 
     },
