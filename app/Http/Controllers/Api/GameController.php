@@ -111,7 +111,7 @@ class GameController extends Controller
 
         //return $this->refactComments($game->comments);
 
-        Comment::refactComments($game->comments);
+        $game->comments = Comment::refactComments($game->comments);
         $game->comments->map(function ($comment) use ($user_id) {
             $comment->voted = null;
             $comment->reactions->map(function ($reaction) use ($comment, $user_id) {

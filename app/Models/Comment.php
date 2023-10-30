@@ -92,4 +92,31 @@ class Comment extends Model
 
     }
 
+    public static function refactComments($comments){
+
+        foreach ($comments as $comment)
+        {
+            $replies = $comment->replies;
+            unset($comment->replies);
+            $comment->replies = self::refactReplies($replies, $comment->username);
+        }
+
+        return $comments;
+
+    }
+    public static function refactReplies($comments, $rely_to = null){
+
+        $replies = [];
+        foreach ($comments as $reply)
+        {
+            $replies[] = $reply;
+            if($reply->replies)
+                $replies = array_merge($replies, self::refactReplies($reply->replies, $reply->username));
+
+            $reply->mention = $rely_to;
+            unset($reply->replies);
+        }
+        return $replies;
+    }
+
 }
