@@ -59,7 +59,7 @@ export default function App() {
         <BrowserRouter>
             <ScrollToTop />
             <Navbar/>
-                <div className="container py-28 m-[auto] text-gray-200 px-2 md:px-0">
+                <div className="container py-28 m-[auto] text-gray-200 px-2 xl:px-0">
                     <Routes>
                         <Route path='/' element={<Home/>}/>
                         <Route path='/nfos' element={<NFOS/>}/>

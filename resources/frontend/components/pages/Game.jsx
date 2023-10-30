@@ -202,21 +202,21 @@ function Game() {
                     </div>
                 </div>
 
-                <div className='flex w-full gap-x-4 mt-4'>
-                    <div className='w-1/3 bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition'>
+                <div className='flex w-full flex-col gap-y-2 md:flex-row gap-x-4 mt-4'>
+                    <div className='md:w-1/3 w-full flex-wrap bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition'>
                         <AiOutlineDollarCircle className='w-16 h-8 text-gray-300'/>
                         PRICE
-                        <span>70$</span>
+                        <span className='font-bold'>70$</span>
                     </div>
-                    <div className='w-1/3 bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition'>
+                    <div className='md:w-1/3 w-full bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition'>
                         <MdOutlineStarRate className='w-16 h-8 text-gray-300'/>
                         METACRITIC
-                        <span>94</span>
+                        <span className='font-bold'>94</span>
                     </div>
-                    <a href='#co' className='w-1/3 bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition cursor-pointer'>
+                    <a href='#co' className='md:w-1/3 w-full  bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition cursor-pointer'>
                         <LiaCommentSolid className='w-16 h-8 text-gray-300'/>
                         COMMENTS
-                        <span>{comments.length}</span>
+                        <span className='font-bold'>{comments.length}</span>
                     </a>
                 </div>
 

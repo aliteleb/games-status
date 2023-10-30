@@ -191,7 +191,7 @@ function Comment(props) {
                             </div>
                         </footer>
                         <div>
-                        <p className="mx-6 text-gray-400 w-[9rem] sm:w-[20rem] md:w-[30rem] max-w-[65rem]">
+                        <p className="mx-6  break-words text-gray-400 w-[9rem] sm:w-[20rem] md:w-[30rem] max-w-[65rem]">
                             {comment?.mention && <span className="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">@{comment.mention}</span>}
                             {comment?.body && comment.body}
                             {!(comment?.body) &&
