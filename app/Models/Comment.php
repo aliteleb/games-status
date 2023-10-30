@@ -100,10 +100,10 @@ class Comment extends Model
             unset($comment->replies);
             $comment->replies = self::refactReplies($replies, $comment->username);
             $comment->replies = collect($comment->replies)->sortBy('id');
+            $comment->replies = array_values($comment->replies->toArray());
         }
 
         return $comments;
-
     }
     public static function refactReplies($comments, $rely_to = null){
 

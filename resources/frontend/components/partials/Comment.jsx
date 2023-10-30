@@ -15,6 +15,7 @@ function Comment(props) {
 
     const {user} = useAuth();
     let [comment, setComment] = React.useState(null);
+    let [replies, setReplies] = React.useState([]);
     let [mention, setMention] = React.useState(null)
     let [replyForm, setReplyForm] = React.useState(false)
     let [replyTo, setReplyTo] = React.useState(null)
@@ -25,6 +26,9 @@ function Comment(props) {
 
     useEffect(() => {
         setComment(props.info)
+        if(props.replies)
+            setReplies(props.replies)
+
     })
     refreshPageSize()
 
@@ -188,7 +192,7 @@ function Comment(props) {
                         </footer>
                         <div>
                         <p className="mx-6 text-gray-400 w-[9rem] sm:w-[20rem] md:w-[30rem] max-w-[65rem]">
-                            {comment?.mention && <span class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">@{comment.mention}</span>}
+                            {comment?.mention && <span className="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">@{comment.mention}</span>}
                             {comment?.body && comment.body}
                             {!(comment?.body) &&
                                 <Skeleton count={3} width={'100%'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
@@ -234,9 +238,10 @@ function Comment(props) {
                 </div>
 
             </article>
-            {comment?.replies?.length > 0 && comment.replies.map((reply, index) => (
-                <Comment parentComment={comment} setReplyTo={setReplyTo} setMention={setMention} setReplyForm={setReplyForm} info={reply} key={index} setComments={props.setComments} className="border-l-[3rem] border-l-black/10 animate-slide-down-slow"/>
-            ))}
+            {replies.length > 0 && replies.map((reply, index) => {
+                return <Comment parentComment={comment} setReplyTo={setReplyTo} setMention={setMention} setReplyForm={setReplyForm} info={reply} key={index}
+                                setComments={props.setComments} className="border-l-[3rem] border-l-black/10 animate-slide-down-slow"/>
+            })}
 
             {replyForm &&
                 <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap animate-slide-down">
@@ -251,7 +256,7 @@ function Comment(props) {
                             placeholder='Your reply ...'
                             className={`bg-transparent w-full text-sm md:text-xs ${mention ? "h-[4.5rem]" : "h-10"} transition ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 pl-4 pr-12 ${mention && "pt-6"} mb-4 mt-2 rounded-md`}
                         />
-                        {mention && <span class="bg-gray-100 absolute left-2 top-[1rem] text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">@{mention}</span>}
+                        {mention && <span className="bg-gray-100 absolute left-2 top-[1rem] text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">@{mention}</span>}
                         <input type="hidden" name='reply_to' value={comment.id}/>
                         <RiSendPlane2Fill onClick={handleReplySubmit} className='mb-4 mt-2 relative right-[2rem] text-gray-400 hover:text-gray-300 transition cursor-pointer'/>
                     </div>
