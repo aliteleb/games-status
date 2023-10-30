@@ -60,7 +60,7 @@ class CommentController extends Controller
             'user_id' => auth()->user()->id,
             'game_id' => $game_id,
             'body' => $body,
-            'reply_to' => $parent_id,
+            'reply_to' => $reply_to,
         ]);
 
         return response()->api(

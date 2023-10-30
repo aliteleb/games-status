@@ -38,11 +38,16 @@ function Comment(props) {
 
         let formData = new FormData(formRef.current);
 
-        formData.append("reply_to", replyTo)
-
+        let reply_to = formData.get('reply_to');
+        if(replyTo)
+            reply_to = replyTo;
 
         setLoading(true)
-        ApiClient().post(`/comments/create`, formData)
+        ApiClient().post(`/comments/create`, {
+            slug: formData.get('slug'),
+            body: formData.get('body'),
+            reply_to: reply_to,
+        })
             .then((res) => {
                 setLoading(false);
                 setReplyInput({body: ""});
@@ -196,15 +201,19 @@ function Comment(props) {
                                         props.setReplyForm(true)
                                         props.setMention(comment.username)
                                         props.setReplyTo(comment.id)
+                                        setTimeout(() => {
+                                            document.getElementById('reply_input_' + props.parentComment.id).focus();
+                                        }, 50);
                                     }else{
-                                        setReplyForm(!replyForm);
-                                        setMention(comment.username)
+                                        setReplyForm(true);
+                                        setMention(null) // comment.username
                                         setReplyTo(null)
+                                        setTimeout(() => {
+                                            document.getElementById('reply_input_' + comment.id).focus();
+                                        }, 50);
                                     }
                                     refreshPageSize();
-                                    setTimeout(() => {
-                                        document.getElementById('reply_input_' + comment.id).focus();
-                                    }, 50);
+
                                 }} type="button"
                                         className="flex items-center text-sm text-gray-500 hover:text-gray-400 hover:underline y-400 font-medium">
                                     <svg className="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
@@ -226,7 +235,7 @@ function Comment(props) {
 
             </article>
             {comment?.replies?.length > 0 && comment.replies.map((reply, index) => (
-                <Comment setReplyTo={setReplyTo}  setMention={setMention} setReplyForm={setReplyForm} info={reply} key={index} setComments={props.setComments} className="border-l-[3rem] border-l-black/10 animate-slide-down-slow"/>
+                <Comment parentComment={comment} setReplyTo={setReplyTo} setMention={setMention} setReplyForm={setReplyForm} info={reply} key={index} setComments={props.setComments} className="border-l-[3rem] border-l-black/10 animate-slide-down-slow"/>
             ))}
 
             {replyForm &&
@@ -234,11 +243,6 @@ function Comment(props) {
                     <div className='flex items-center w-full relative'>
                         <input
                             onChange={handleChange}
-                            onBlur={() => {
-                                if (replyInput.body.length === 0) setTimeout(() => {
-                                    setReplyForm(false)
-                                }, 100)
-                            }}
                             name='body'
                             value={replyInput.body}
                             type="text"

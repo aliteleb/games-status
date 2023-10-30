@@ -99,6 +99,7 @@ class Comment extends Model
             $replies = $comment->replies;
             unset($comment->replies);
             $comment->replies = self::refactReplies($replies, $comment->username);
+            $comment->replies = collect($comment->replies)->sortBy('id');
         }
 
         return $comments;
