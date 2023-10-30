@@ -15,6 +15,7 @@ function SearchGames() {
 
     })
     const [games, setGames] = React.useState([]);
+    const [response, setResponse] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
     const [nextPage, setNextPage] = React.useState(null);
     const [crackStatus, setCrackStatus] = React.useState([])
@@ -39,7 +40,13 @@ function SearchGames() {
     const loadGames = (pageUrl) => {
         if (pageUrl) {
             setIsLoading(true);
-            ApiClient().post(pageUrl)
+            ApiClient().post(pageUrl,
+                {
+                    "search": formData.search_text,
+                    "crack_status": formData.crack_status,
+                    "release_status": formData.release_status,
+                    "genres": formData.selected_genres
+                })
                 .then((res) => {
                     setGames((prevGames) => [...prevGames, ...res.data.data.games.data]);
                     setNextPage(res.data.data.games.next_page_url);
@@ -99,6 +106,7 @@ function SearchGames() {
                 "genres": formData.selected_genres
             }).then(res => {
             setGames(res.data.data.games.data)
+            setResponse(res.data)
         }).catch(err => {
             toast.error(err.response.message)
         })
@@ -149,7 +157,7 @@ function SearchGames() {
         }
 
         return (
-            <div className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-${game.status_color}`}>
+            <div key={index} className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-${game.status_color}`}>
                 <img className={`h-full w-32 object-cover ${game.image && 'animate-fade-in'}`}
                      src={game.image ? game.image : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
                 <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center items-center">
@@ -190,7 +198,7 @@ function SearchGames() {
     const placeholders = [];
     for (let i = 0; i < 12; i++) {
         placeholders.push(
-            <div className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-gray-600`}>
+            <div key={i} className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-gray-600`}>
                 <img className={`h-14 w-32 object-cover`}
                      src='/assets/images/game-placeholder.jpg' alt=""/>
                 <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center items-center">
@@ -278,7 +286,10 @@ function SearchGames() {
                         <div className="lg:text-right lg:pr-4">SCENE GROUPS</div>
                     </div>
                 </div>
-                {games.length === 0 && placeholders}
+                {!response && placeholders}
+                {response && games.length === 0 ?
+                    <div className="text-center p-6 text-lg">No results found</div>
+                    : ''}
 
                 {games &&
                     <div className="">
@@ -299,7 +310,6 @@ function SearchGames() {
                             </svg>
                         </div>
                     </div>
-
                 }
             </div>
 

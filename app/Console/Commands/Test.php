@@ -31,15 +31,11 @@ class Test extends Command
      */
     public function handle(): void
     {
-        $games = Game::where('need_crack', true)->get();
+        $games = Game::whereNull('crack_date')->get();
 
         foreach ($games as $game)
         {
-            if($game->crack_date == null){
-                $game->game_status_id = 1;
-            }
-            else
-                $game->game_status_id = 2;
+            $game->game_status_id = 1;
 
             $game->save();
 

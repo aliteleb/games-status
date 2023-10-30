@@ -17,25 +17,28 @@ class GameController extends Controller
     {
         $query = Game::with(['groups:name', 'protections:name'])
             ->select(['id', 'name', 'slug', 'release_date', 'crack_date', 'steam_appid'])
-            ->where('need_crack', true);
+            ->where('need_crack', true)
+            ->whereHas('genres');
 
-        if ($request->input('crack_status') == 1) {
-            $query->where('need_crack', true);
+        if ($request->input('crack_status')) {
+            $query->where('game_status_id', $request->input('crack_status'));
         }
 
+        $today = now()->format('Y-m-d');
+
         if ($request->input('release_status') == 1) {
-            $today = now()->format('Y-m-d');
-            $query->where('release_date', '>=', $today);
-        } elseif ($request->input('release_status') == 2) {
-            $today = now()->format('Y-m-d');
             $query->where('release_date', '<', $today);
+        } elseif ($request->input('release_status') == 2) {
+            $query->where('release_date', '>=', $today);
         }
 
         if ($request->input('genres')) {
             $genres = $request->input('genres');
-            $query->whereHas('genres', function ($q) use ($genres) {
-                $q->whereIn('name', $genres);
+            //$genres = Genre::select('id')->whereIn('name', $genres)->get()->pluck('id');
+            $query->whereHas('genres', function ($query) use ($genres) {
+                $query->whereIn('genres.id', $genres);
             });
+
         }
 
         if ($request->input('search')) {
