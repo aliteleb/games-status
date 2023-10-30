@@ -164,7 +164,7 @@ function SearchGames() {
                 <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center items-center text-gray-400">
                     <div className="my-3 lg:my-0 text-lg lg:text-left lg:pl-4 text-gray-300 font-bold">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">GAME</div>
-                        {game.title}
+                        <Link to={`/game/${game.slug}`} className="transition hover:text-white">{game.title}</Link>
                     </div>
                     <div className="my-3 lg:my-0 text-lg">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">RELEASE DATE</div>

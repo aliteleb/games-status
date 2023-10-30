@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
+use App\Models\Comment;
 use App\Models\Game;
 use App\Models\Genre;
 use App\Models\Status;
@@ -110,7 +111,7 @@ class GameController extends Controller
 
         //return $this->refactComments($game->comments);
 
-        $this->refactComments($game->comments);
+        Comment::refactComments($game->comments);
         $game->comments->map(function ($comment) use ($user_id) {
             $comment->voted = null;
             $comment->reactions->map(function ($reaction) use ($comment, $user_id) {
@@ -156,32 +157,6 @@ class GameController extends Controller
             message: $game->name . __(" Page")
         );
 
-    }
-    private function refactComments($comments){
-
-        foreach ($comments as $comment)
-        {
-            $replies = $comment->replies;
-            unset($comment->replies);
-            $comment->replies = $this->refactReplies($replies, $comment->username);
-        }
-
-        return $comments;
-
-    }
-    private function refactReplies($comments, $rely_to = null){
-
-        $replies = [];
-        foreach ($comments as $reply)
-        {
-            $replies[] = $reply;
-            if($reply->replies)
-                $replies = array_merge($replies, $this->refactReplies($reply->replies, $reply->username));
-
-            $reply->mention = $rely_to;
-            unset($reply->replies);
-        }
-        return $replies;
     }
 
     public function follow(Request $request, $game_id)
