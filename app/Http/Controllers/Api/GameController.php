@@ -15,7 +15,7 @@ class GameController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Game::with(['groups:name', 'protections:name'])
+        $query = Game::with(['groups:name,slug', 'protections:name,slug'])
             ->select(['id', 'name', 'slug', 'release_date', 'crack_date', 'steam_appid'])
             ->where('need_crack', true)
             ->whereHas('genres');
@@ -34,7 +34,6 @@ class GameController extends Controller
 
         if ($request->input('genres')) {
             $genres = $request->input('genres');
-            //$genres = Genre::select('id')->whereIn('name', $genres)->get()->pluck('id');
             $query->whereHas('genres', function ($query) use ($genres) {
                 $query->whereIn('genres.id', $genres);
             });
@@ -73,14 +72,6 @@ class GameController extends Controller
             $game->days_diff = $daysDifference;
             $game->image = 'https://cdn.cloudflare.steamstatic.com/steam/apps/'.$game->steam_appid.'/header.jpg';
             $game->is_following = $is_following;
-
-            $groups = $game->groups->pluck('name');
-            unset($game->groups);
-            $game->groups = $groups;
-
-            $groups = $game->protections->pluck('name');
-            unset($game->protections);
-            $game->protections = $groups;
 
             unset($game->name);
         });

@@ -4,6 +4,7 @@ import ApiClient from '../../services/ApiClient'
 import {refreshPageSize} from "../core/BlurredBackground.jsx";
 import Skeleton from "react-loading-skeleton";
 import toast from "react-hot-toast";
+import {Link} from "react-router-dom";
 
 function SearchGames() {
 
@@ -175,17 +176,17 @@ function SearchGames() {
                     </div>
                     <div className="my-3 lg:my-0 text-lg">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">PROTECTIONS</div>
-                        {game.protections?.map(protection => (
-                            <span className="mx-1" key={protection}>{protection}</span>
+                        {game.protections?.map((protection, index) => (
+                            <Link to={`/protection/${protection.slug}`} className="mx-1 transition hover:text-gray-200/50" key={index}>{protection.name}</Link>
                         ))}
-                        {game.protections.length === 0 || game.protections[0] === "" ? <span className="opacity-50">TBD</span> : ""}
+                        {game.protections.length === 0 || game.protections[0].name === "" ? <span className="opacity-50">TBD</span> : ""}
                     </div>
                     <div className="my-3 lg:my-0 text-lg lg:text-right lg:pr-4">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">SCENE GROUPS</div>
-                        {game.groups?.map(groups => (
-                            <span className="mx-1" key={groups}>{groups}</span>
+                        {game.groups?.map((group, index) => (
+                            <Link to={`/group/${group.slug}`} className="mx-1 transition hover:text-gray-200/50 block" key={index}>{group.name}</Link>
                         ))}
-                        {game.groups.length === 0 || game.groups[0] === "" ? <span className="opacity-50">N/A</span> : ""}
+                        {game.groups.length === 0 || game.groups[0].name === "" ? <span className="opacity-50">N/A</span> : ""}
                     </div>
 
                 </div>
@@ -240,6 +241,7 @@ function SearchGames() {
                     <input
                         type="text"
                         placeholder='Search...'
+                        autoComplete="one-time-code"
                         className='w-full h-12 text-lg uppercase rounded-sm px-3 bg-body focus:outline-none'
                         name='search_text'
                         value={formData.search_text}
@@ -276,8 +278,8 @@ function SearchGames() {
             </div>
 
             <div className={`flex flex-col text-gray-300 shadow-lg overflow-hidden border-2 border-app-black/50`}>
-                <div className="hidden lg:grid grid-cols-[150px_1fr] text-center bg-app-black/50 py-3 border-y-2 border-gray-700">
-                    <span>Cover</span>
+                <div className="hidden lg:grid grid-cols-[150px_1fr] text-center bg-app-black/50 py-4 border-y-2 border-gray-700 font-extrabold text-lg text-gray-500">
+                    <span>COVER</span>
                     <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center">
                         <div className="lg:text-left lg:pl-4">GAME</div>
                         <div>Release Date</div>
