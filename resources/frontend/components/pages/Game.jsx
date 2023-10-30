@@ -7,6 +7,9 @@ import {toast} from 'react-hot-toast';
 import {RiSendPlane2Fill} from 'react-icons/ri'
 import CommentPlaceholder from "../layouts/CommentPlaceholder.jsx";
 import BlurredBackground, {refreshPageSize} from "../core/BlurredBackground.jsx";
+import {AiOutlineDollarCircle} from 'react-icons/ai'
+import {MdOutlineStarRate} from 'react-icons/md'
+import {LiaCommentSolid} from 'react-icons/lia'
 
 function Game() {
 
@@ -199,7 +202,25 @@ function Game() {
                     </div>
                 </div>
 
-                <section className="bg-black/50 py-8 lg:py-16 antialiased relative z-20">
+                <div className='flex w-full gap-x-4 mt-4'>
+                    <div className='w-1/3 bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition'>
+                        <AiOutlineDollarCircle className='w-16 h-8 text-gray-300'/>
+                        PRICE
+                        <span>70$</span>
+                    </div>
+                    <div className='w-1/3 bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition'>
+                        <MdOutlineStarRate className='w-16 h-8 text-gray-300'/>
+                        METACRITIC
+                        <span>94</span>
+                    </div>
+                    <a href='#co' className='w-1/3 bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition cursor-pointer'>
+                        <LiaCommentSolid className='w-16 h-8 text-gray-300'/>
+                        COMMENTS
+                        <span>{comments.length}</span>
+                    </a>
+                </div>
+
+                <section id="co" className="bg-black/50 py-8 lg:py-16 mt-4 antialiased relative z-20">
                     <div className="px-4 pb-36">
                         <div className="flex justify-between items-center mb-6">
                             <h2 className="text-lg lg:text-2xl font-bold text-gray-300">
