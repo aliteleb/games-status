@@ -176,6 +176,7 @@ function Comment(props) {
                     }
                     <div>
                         <p className="mx-6 text-gray-400 w-[9rem] sm:w-[20rem] md:w-[30rem] max-w-[65rem]">
+                            {comment?.mention && <span class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">@{comment.mention}</span>}
                             {comment?.body && comment.body}
                             {!(comment?.body) &&
                                 <Skeleton count={3} width={'100%'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
