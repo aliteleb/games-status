@@ -46,7 +46,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    protected $appends = ['following', 'avatar', 'small_avatar'];
+    protected $appends = ['avatar', 'small_avatar'];
 
     public function setPasswordAttribute($value)
     {

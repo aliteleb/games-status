@@ -108,6 +108,9 @@ class GameController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
+        //return $this->refactComments($game->comments);
+
+        $this->refactComments($game->comments);
         $game->comments->map(function ($comment) use ($user_id) {
             $comment->voted = null;
             $comment->reactions->map(function ($reaction) use ($comment, $user_id) {
@@ -117,8 +120,10 @@ class GameController extends Controller
 
             unset($comment->reactions);
             unset($comment->user);
-
         });
+
+
+
         $release_date = Carbon::parse($game->release_date);
         $crack_date = Carbon::parse($game->crack_date);
         $daysDifference = $crack_date->diffInDays($release_date);
@@ -151,6 +156,32 @@ class GameController extends Controller
             message: $game->name . __(" Page")
         );
 
+    }
+    private function refactComments($comments){
+
+        foreach ($comments as $comment)
+        {
+            $replies = $comment->replies;
+            unset($comment->replies);
+            $comment->replies = $this->refactReplies($replies, $comment->username);
+        }
+
+        return $comments;
+
+    }
+    private function refactReplies($comments, $rely_to = null){
+
+        $replies = [];
+        foreach ($comments as $reply)
+        {
+            $replies[] = $reply;
+            if($reply->replies)
+                $replies = array_merge($replies, $this->refactReplies($reply->replies, $reply->username));
+
+            $reply->rely_to = $rely_to;
+            unset($reply->replies);
+        }
+        return $replies;
     }
 
     public function follow(Request $request, $game_id)
