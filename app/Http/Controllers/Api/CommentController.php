@@ -49,6 +49,10 @@ class CommentController extends Controller
             $parent = Comment::find($reply_to);
             $game_id = $parent->game_id;
             $parent_id = $parent->id;
+
+            $reply_to = $parent->id;
+            if($parent->reply_to)
+                $reply_to = $parent->reply_to;
         }
 
         if (!$parent) {
@@ -171,7 +175,8 @@ class CommentController extends Controller
             $ids[] = $reply->id;
 
             // Recursively delete nested replies
-            $ids = array_merge($ids, $this->deleteReplies($reply));
+            if($comment->reply_to == null)
+                $ids = array_merge($ids, $this->deleteReplies($reply));
 
             // Delete the reply
             // $reply->delete();
