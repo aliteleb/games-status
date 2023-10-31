@@ -1,9 +1,40 @@
 import React from 'react'
 import Select from 'react-select';
+import {useAuth} from '../api/AuthContext'
+import ApiClient from '../../services/ApiClient'
+import {toast} from "react-hot-toast";
+import { inputValidation } from '../helpers/General';
 
 function Profile() {
 
-    let [loading, setLoading] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
+    const [avatarFormErrors, setAvatarFormErrors] = React.useState(null);
+    const [detailsFormErrors, setDetailsFormErrors] = React.useState(null);
+    const [securityFormErrors, setSecurityFormErrors] = React.useState(null);
+    const [emailFormErrors, setEmailFormErrors] = React.useState(null);
+
+    let [avatarFormData, setAvatarFormData] = React.useState({
+        avatar: null,
+    });
+
+    let [detailsFormData, setDetailsFormData] = React.useState({
+        display_name: null,
+        username: null,
+        country_code: null,
+    })
+
+    let [emailFormData, setEmailFormData] = React.useState({
+        email: null,
+    })
+
+    let [securityFormData, setSecurityFormData] = React.useState({
+        current_password: null,
+        new_password: null,
+        new_password_confirmation: null,
+    })
+
+
+    const {updateUser, user} = useAuth()
 
     const options = [
         {value: 'AF', label: 'Afghanistan'},
@@ -254,104 +285,263 @@ function Profile() {
     }
     `;
 
+    let handleAvatar = (e) => {
+        const file = e.target.files[0];
+
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                setAvatarFormData({...avatarFormData, avatar: file});
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+    
+    let handleDetailsChange = (e) => {
+        setDetailsFormData(prev => (
+            {
+                ...prev,
+                [e.target.name]: e.target.value
+            }
+        ))
+    }
+
+    let handleEmailChange = (e) => {
+        setEmailFormData(prev => (
+            {
+                ...prev,
+                [e.target.name]: e.target.value
+            }
+        ))
+    }
+
+    let handelSecurityChange = (e) => {
+        setSecurityFormData(prev => (
+            {
+                ...prev,
+                [e.target.name]: e.target.value
+            }
+        ))
+    }
+
+    // Submit Functions
+
+    let handleAvatarSubmit = () => {
+        ApiClient().post('',
+        {
+
+        }
+        )
+    }
+
+    let handleDetailsSubmit = (e) => {
+        e.preventDefault()
+        ApiClient().post('/user/update', {detailsFormData})
+        .then(res => {
+            
+        })
+        .catch(err => console.log(err))
+    }
+
+    let handleEmailSubmit = (e) => {
+        e.preventDefault()
+        ApiClient().post('/user/email/update', emailFormData)
+        .then(res => {
+            setEmailFormErrors(null)
+            toast.success(res.data.message)
+            setEmailFormData({email: ""})
+        })
+        .catch(err => 
+            setEmailFormErrors(err.response.data.data)
+        )
+    }
+    
 
     return (
-        <div className='flex'>
-            <div className='flex flex-col w-1/3 items-center'>
-                <h1>Username</h1>
-                <div>@Name</div>
-                <img className='w-36 h-36 rounded-full' src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
+        <div className='flex gap-x-4'>
+            <form className='flex flex-col w-1/3 h-[40rem] items-center pt-32 overflow-hidden max-w-screen-xl p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300'>
+                <h1>{user?.username}</h1>
+                <div className='mt-2'>@Name</div>
                 <div className='mt-6 flex flex-col items-center'>
                     <label htmlFor="upload">Profile Picture <span className='text-xs text-gray-500 mx-3'>[jpg, png, gif] - (100x100)</span></label>
+                    <img className='rounded-full w-28 h-28 mt-4' src={avatarFormData.avatar && URL.createObjectURL(avatarFormData.avatar)} alt='avatar'/>
                     <label
                         htmlFor="avatar"
-                        className="relative group mt-2 h-24 w-24 border-dotted bg-gray-700/20 border-2 transition hover:border-gray-400 transition cursor-pointer text-2xl rounded flex justify-center items-center group"
+                        className="relative rounded mt-4 h-10 w-44 bg-red-700 transition hover:bg-red-600 transition cursor-pointer text-md flex justify-center items-center"
                     >
                         <input
+                            onChange={handleAvatar}
                             id="avatar"
                             name="avatar"
                             type="file"
                             accept=".jpg, .jpeg, .png" // Define the accepted file types
-                            className="hidden"
+                            className="hidden "
                         />
+                        {inputValidation('avatar', avatarFormErrors)}
+                        Upload new image
                     </label>
+                    <button 
+                        // onClick={handleSubmit}
+                        className={`cursor-pointer w-max mt-6 text-gray-200 bg-red-700 hover:bg-red-600 transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
+                        disabled={loading}
+                    >
+                    {loading ?
+                        <>
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Saving...
+                        </> : <>Save</>
+                    }
+                    </button>
                 </div>
-            </div>
+            </form>
 
             <style dangerouslySetInnerHTML={{__html: styles}}/>
 
 
-            <form className='w-2/3'>
-                <div className='mt-6 flex flex-col relative'>
-                    <label htmlFor="username">Username</label>
-                    <input
-                        // onChange={handleInputChange}
-                        name='username'
-                        // value={formData.username}
-                        type="text"
-                        className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'
-                        autoComplete="one-time-code"
-                        required="required"/>
-                    {/* {inputValidation('username')} */}
+            <div className='w-2/3 gap-y-4'>
+                <form className='overflow-hidden max-w-screen-xl mx-auto p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300'>
+                    <h1 className='font-bold text-gray-400 border-b-2 border-gray-600 pb-2'>Details</h1>
+                    <div className='mt-12 flex flex-col relative'>
+                        <label htmlFor="displat_name">Display Name</label>
+                        <input
+                            onChange={handleDetailsChange}
+                            name='display_name'
+                            value={detailsFormData.display_name}
+                            type="text"
+                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'
+                            autoComplete="one-time-code"
+                            required="required"/>
+                        {inputValidation('display_name', detailsFormErrors)}
                     </div>
 
-                    
                     <div className='mt-6 flex flex-col relative'>
-                        <label htmlFor="password">Password</label>
-                        <input autoComplete='one-time-code' 
-                            //    onChange={handleInputChange}
-                            name='password'
-                            //    value={formData.password}
-                            type="password"
-                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
-                        {/* {inputValidation('password')} */}
+                        <label htmlFor="username">Username</label>
+                        <input
+                            onChange={handleDetailsChange}
+                            name='username'
+                            value={detailsFormData.username}
+                            defaultValue={user?.username}
+                            type="text"
+                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'
+                            autoComplete="one-time-code"
+                            required="required"/>
+                        {inputValidation('username', detailsFormErrors)}
                     </div>
-                    <div className='mt-6 flex flex-col relative'>
-                        <label htmlFor="password">Confirm Password</label>
-                        <input autoComplete='one-time-code' 
-                            //    onChange={handleInputChange}
-                            name='password_confirmation'
-                            //    value={formData.password_confirmation}
-                            type="password"
-                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
-                        {/* {inputValidation('password_confirmation')} */}
-                    </div>
-                    <div className='mt-6 flex flex-col relative'>
-                        <label htmlFor="email">Email Address (No Spam!)</label>
-                        <input autoComplete='one-time-code'
-                            //    onChange={handleInputChange}
-                            name='email'
-                            //    value={formData.email}
-                            type="email"
-                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
 
-                        {/* {inputValidation('email')} */}
-                    </div>
                     <div className='mt-6 flex flex-col relative'>
                         <label htmlFor="country">Gender</label>
                         <Select
                             isDisabled="true"
-                            // options={genders}
-                            name='country_code'
-                            // onChange={(selectedOption) => {
-                            //     setFormData({...formData, gender: selectedOption.value});
-                            // }}
                             className='react-select-container mt-2'
                             classNamePrefix="react-select"
                         />
-                        {/* {inputValidation('country_code')} */}
-
                     </div>
+
                     <div className='mt-6 flex flex-col relative'>
                         <label htmlFor="country">Country</label>
                         <Select
                             options={options}
                             name='country_code'
+                            onChange={(selectedOption) => {
+                                setDetailsFormData({...detailsFormData, country_code: selectedOption.value});
+                            }}
                             defaultValue={{label: "Afghanistan", value: 'AF'}}
                             className='react-select-container mt-2'
                             classNamePrefix="react-select"
                         />
-                        {/* {inputValidation('country_code')} */}
+                        {inputValidation('country_code', detailsFormErrors)}
+                    </div>
+
+                    <button 
+                            className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
+                            disabled={loading}
+                            onClick={handleDetailsSubmit}
+                    >
+                        {loading ?
+                            <>
+                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Updating...
+                            </> : <>Update</>
+                        }
+                    </button>
+                </form>
+
+                <form className='overflow-hidden mt-6 max-w-screen-xl mx-auto p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300'>
+                    <h1 className='font-bold text-gray-400 border-b-2 border-gray-600 pb-2'>Email</h1>
+                    <div className='mt-6 flex flex-col relative'>
+                        <label>New Email Address (No Spam!)</label>
+                        <input 
+                            autoComplete='one-time-code'
+                            onChange={handleEmailChange}
+                            name='email'
+                            value={emailFormData.email}
+                            type="email"
+                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
+                        {inputValidation('email', emailFormErrors)}
+                    </div>
+                    <button 
+                            // onClick={handleSubmit}
+                            className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
+                            disabled={loading}
+                            onClick={handleEmailSubmit}
+                    >
+                        {loading ?
+                            <>
+                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Updating...
+                            </> : <>Update</>
+                        }
+
+                    </button>
+                </form>
+
+                <form className='overflow-hidden mt-6 max-w-screen-xl mx-auto p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300'>
+                    <h1 className='font-bold text-gray-400 border-b-2 border-gray-600 pb-2'>Security</h1>
+                    <div className='mt-12 flex flex-col relative'>
+                        <label htmlFor="password">Current Password</label>
+                        <input autoComplete='one-time-code' 
+                            onChange={handelSecurityChange}
+                            name='password'
+                            value={securityFormData.password}
+                            type="password"
+                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
+                        {inputValidation('password', securityFormErrors)}
+                    </div>
+
+                    <div className='mt-6 flex flex-col relative'>
+                        <label htmlFor="password">New Password</label>
+                        <input autoComplete='one-time-code' 
+                            onChange={handelSecurityChange}
+                            name='new_password'
+                            value={securityFormData.new_password}
+                            type="password"
+                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
+                        {inputValidation('new_password', securityFormErrors)}
+                    </div>
+
+                    <div className='mt-6 flex flex-col relative'>
+                        <label htmlFor="password">Confirm Password</label>
+                        <input autoComplete='one-time-code' 
+                            onChange={handelSecurityChange}
+                            name='new_password_confirmation'
+                            value={securityFormData.password_confirmation}
+                            type="password"
+                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
+                        {inputValidation('new_password_confirmation', emailFormErrors)}
                     </div>
                     <button 
                             // onClick={handleSubmit}
@@ -366,11 +556,13 @@ function Profile() {
                                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
                                 Updating...
-                            </> : <>Update Info</>
+                            </> : <>Update</>
                         }
 
                     </button>
-            </form>
+                </form>
+
+            </div>
         </div>
     )
 }

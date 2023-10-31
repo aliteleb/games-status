@@ -55,7 +55,7 @@ export default function Login() {
                         value={formData.username}
                         onChange={handleChange}
                         type="text"
-                        className="bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm"
+                        className="bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm"
                     />
                 </div>
                 <div className="mt-6 flex flex-col">
@@ -65,7 +65,7 @@ export default function Login() {
                         value={formData.password}
                         onChange={handleChange}
                         type="password"
-                        className="bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm"
+                        className="bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm"
                     />
                 </div>
                 <button

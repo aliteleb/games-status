@@ -4,6 +4,7 @@ import ApiClient from "../../services/ApiClient.js";
 import {MdDoneOutline} from 'react-icons/md'
 import {toast} from "react-hot-toast";
 import Select from 'react-select';
+import { inputValidation } from '../helpers/General.jsx';
 
 export default function SignUp() {
 
@@ -21,11 +22,7 @@ export default function SignUp() {
 
     let [response, setResponse] = React.useState()
 
-    const [formErrors, setFormErrors] = React.useState({});
-
-    const inputValidation = (input) => {
-        return (formErrors[input] !== undefined && <div className='text-orange-400 text-sm mt-1'>{formErrors[input][0]}</div>);
-    }
+    const [formErrors, setFormErrors] = React.useState(null);
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
@@ -386,7 +383,7 @@ export default function SignUp() {
                                 className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'
                                 autoComplete="one-time-code"
                                 required="required"/>
-                            {inputValidation('username')}
+                            {inputValidation('username', formErrors)}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="password">Password</label>
@@ -395,7 +392,7 @@ export default function SignUp() {
                                    value={formData.password}
                                    type="password"
                                    className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
-                            {inputValidation('password')}
+                            {inputValidation('password', formErrors)}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="password">Confirm Password</label>
@@ -404,7 +401,7 @@ export default function SignUp() {
                                    value={formData.password_confirmation}
                                    type="password"
                                    className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
-                            {inputValidation('password_confirmation')}
+                            {inputValidation('password_confirmation', formErrors)}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="email">Email Address (No Spam!)</label>
@@ -414,7 +411,7 @@ export default function SignUp() {
                                    type="email"
                                    className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
 
-                            {inputValidation('email')}
+                            {inputValidation('email', formErrors)}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="country">Gender</label>
@@ -427,7 +424,7 @@ export default function SignUp() {
                                 className='react-select-container mt-2'
                                 classNamePrefix="react-select"
                             />
-                            {inputValidation('country_code')}
+                            {inputValidation('gender', formErrors)}
 
                         </div>
                         <div className='mt-6 flex flex-col relative'>
@@ -442,7 +439,7 @@ export default function SignUp() {
                                 className='react-select-container mt-2'
                                 classNamePrefix="react-select"
                             />
-                            {inputValidation('country_code')}
+                            {inputValidation('country_code', formErrors)}
 
                         </div>
                         <div className='mt-6 flex flex-col'>
@@ -471,7 +468,7 @@ export default function SignUp() {
                                     backgroundImage: formData.avatar ? `url(${URL.createObjectURL(formData.avatar)})` : `url('/assets/images/upload-icon.svg')`,
                                 }} className={`absolute w-full h-full transition bg-no-repeat bg-center ${isDragOver ? "scale-110" : "opacity-75"}`}></div>
                             </label>
-                            {inputValidation('avatar')}
+                            {inputValidation('avatar', formErrors)}
                         </div>
 
                         <button onClick={handleSubmit}
