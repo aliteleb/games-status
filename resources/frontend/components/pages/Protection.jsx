@@ -67,11 +67,10 @@ const Protection = () => {
     refreshPageSize()
     return (
         <>
-            <BlurredBackground/>
 
             <div className='flex justify-between w-full h-[22rem] overflow-hidden rounded-md relative'>
                 <div className="w-full bg-black/70 h-full absolute z-[-1]"
-                     style={{ clipPath: "polygon(66.6666% 0px, 100% 0%, 100% 100%, 33.3333% 100%)", 
+                     style={{ clipPath: "polygon(66.6666% 0px, 100% 0%, 100% 100%, 33.3333% 100%)",
                 }}
                 />
                 <div className="w-full bg-black/50 h-full absolute  z-[-1]"

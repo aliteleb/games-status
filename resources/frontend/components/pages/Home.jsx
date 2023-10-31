@@ -31,7 +31,6 @@ export default function Home() {
     refreshPageSize()
     return (
         <>
-            <BlurredBackground/>
             <div className={'flex flex-wrap justify-between'}>
                 <div className={'text-white text-lg font-bold'}>Hot Games</div>
                 <div className={'text-white text-sm'}>

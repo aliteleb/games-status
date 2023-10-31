@@ -60,7 +60,6 @@ export default function Protections() {
     refreshPageSize()
     return (
         <>
-            <BlurredBackground/>
             <div className="border-b border-gray-500/50 pb-2 text-xl">Groups</div>
             <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
                 {groups.length > 0 || placeholders}

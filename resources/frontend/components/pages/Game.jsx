@@ -41,7 +41,7 @@ function Game() {
         setInterval(fetchGame, 30000);
 
     }, []);
-    refreshPageSize()
+    refreshPageSize("games")
 
     let handleChange = (e) => {
         setCreateComment(prevComment => ({
@@ -80,7 +80,7 @@ function Game() {
                 setComments(res.data.data)
                 setCreateComment({comment_value: ""})
 
-                refreshPageSize()
+                refreshPageSize("games")
             })
             .catch(err => {
                 setLoading(false)
@@ -123,7 +123,7 @@ function Game() {
 
     return (
         <>
-            <BlurredBackground image={game.cover}/>
+            <BlurredBackground image={game.cover} id="games"/>
 
             <div>
                 <div className={`flex relative z-20 text-gray-300 border-t-[5px] border-${game.status_color} shadow-lg overflow-hidden`}
