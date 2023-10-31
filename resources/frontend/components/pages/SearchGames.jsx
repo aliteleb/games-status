@@ -5,6 +5,11 @@ import {refreshPageSize} from "../core/BlurredBackground.jsx";
 import Skeleton from "react-loading-skeleton";
 import toast from "react-hot-toast";
 import {Link} from "react-router-dom";
+import {LiaCcDiscover} from 'react-icons/lia'
+import {IoGameControllerOutline} from 'react-icons/io5'
+import {HiOutlineRocketLaunch, HiUserGroup} from 'react-icons/hi2'
+import {GiCrackedShield} from 'react-icons/gi'
+import {BsShieldExclamation} from 'react-icons/bs'
 
 function SearchGames() {
 
@@ -278,14 +283,32 @@ function SearchGames() {
             </div>
 
             <div className={`flex flex-col text-gray-300 shadow-lg overflow-hidden border-2 border-app-black/50`}>
-                <div className="hidden lg:grid grid-cols-[150px_1fr] text-center bg-app-black/50 py-4 border-y-2 border-gray-700 font-extrabold text-lg text-gray-500">
-                    <span>COVER</span>
-                    <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center">
-                        <div className="lg:text-left lg:pl-4">GAME</div>
-                        <div>Release Date</div>
-                        <div>Crack Date</div>
-                        <div>PROTECTIONS</div>
-                        <div className="lg:text-right lg:pr-4">SCENE GROUPS</div>
+                <div className="hidden lg:grid grid-cols-[150px_1fr] text-center divide-gray-600 divide-x bg-app-black/50 py-4 border-y-2 border-gray-700 font-extrabold text-lg text-gray-500">
+                    <span className='flex items-center gap-x-2 px-2 '>
+                        <LiaCcDiscover className='w-6 h-6 text-gray-400'/>
+                        COVER
+                    </span>
+                    <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center divide-gray-600 divide-x">
+                        <div className="lg:text-left lg:pl-4 flex items-center gap-x-2 ">
+                            <IoGameControllerOutline className='w-6 h-6 text-gray-400'/>
+                            GAME
+                        </div>
+                        <div className='flex items-center gap-x-2 justify-center '>
+                            <HiOutlineRocketLaunch className='w-6 h-6 text-gray-400'/>
+                            Release Date
+                        </div>
+                        <div className='flex items-center gap-x-2 justify-center '>
+                            <GiCrackedShield className='w-6 h-6 text-gray-400'/>
+                            Crack Date
+                        </div>
+                        <div className='flex items-center gap-x-2 justify-center '>
+                            <BsShieldExclamation className='w-6 h-6 text-gray-400'/>
+                            PROTECTIONS
+                        </div>
+                        <div className="lg:text-right lg:pr-4 flex items-center gap-x-2 justify-center ">
+                            <HiUserGroup className='w-6 h-6 text-gray-400'/>
+                            SCENE GROUPS
+                        </div>
                     </div>
                 </div>
                 {!response && placeholders}
