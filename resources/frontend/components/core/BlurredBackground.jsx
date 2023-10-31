@@ -4,9 +4,10 @@ export const refreshPageSize = (id = "") => {
     const root = document.getElementById("root");
     const height = Math.max(root.scrollHeight, root.offsetHeight);
     let blurredBg = document.getElementById("blurred-bg" + id);
-    if (blurredBg) {
-        blurredBg.style.height = height + "px";
-    }
+    if (blurredBg) blurredBg.style.height = height + "px";
+
+    let blurredBgDef = document.getElementById("blurred-bg");
+    if (blurredBgDef) blurredBgDef.style.height = height + "px";
 };
 
 function BlurredBackground(props) {
