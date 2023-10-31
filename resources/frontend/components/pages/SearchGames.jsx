@@ -9,6 +9,7 @@ import {LiaCcDiscover} from 'react-icons/lia'
 import {IoGameControllerOutline} from 'react-icons/io5'
 import {HiOutlineRocketLaunch, HiUserGroup} from 'react-icons/hi2'
 import {GiCrackedShield} from 'react-icons/gi'
+import {GiPirateFlag} from 'react-icons/gi'
 import {BsShieldExclamation} from 'react-icons/bs'
 
 function SearchGames() {
@@ -306,7 +307,7 @@ function SearchGames() {
                             PROTECTIONS
                         </div>
                         <div className="lg:text-right lg:pr-4 flex items-center gap-x-2 justify-center ">
-                            <HiUserGroup className='w-6 h-6 text-gray-400'/>
+                            <GiPirateFlag className='w-6 h-6 text-gray-400'/>
                             SCENE GROUPS
                         </div>
                     </div>
