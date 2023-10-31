@@ -10,6 +10,11 @@ import Sidebar, {collapseSidebar} from "./Sidebar.jsx";
 import {useAuth} from "../api/AuthContext.jsx";
 import NotificationsBar from './NotificationsBar.jsx'
 import {Toaster} from "react-hot-toast";
+import {AiOutlineUser} from 'react-icons/ai'
+import {HiOutlineMail} from 'react-icons/hi'
+import {CgProfile} from 'react-icons/cg'
+import {GoSignOut} from 'react-icons/go'
+
 
 function Navbar() {
     const {user} = useAuth();
@@ -102,19 +107,29 @@ function Navbar() {
                 id="user-dropdown">
                 <div className="px-4 py-3">
                     <Link onClick={() => setShowProfilePopup(false)} to={`/user/${user?.username}`}>
-                        <span className="block text-sm text-gray-900 dark:text-white">{user?.username}</span>
-                        <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{user?.email}</span>
+                        <span className="block text-sm text-center text-white">
+                            @{user?.username}
+                        </span>
+                        <span className="block text-sm mt-1 truncate text-center text-gray-400 hover:text-gray-300 transition group">
+                            <HiOutlineMail className="w-5 h-5 inline mx-1 text-gray-400 group-hover:text-gray-300 transition"/>
+                            {user?.email}
+                        </span>
                     </Link>
                 </div>
                 <ul className="py-2" aria-labelledby="user-menu-button">
                     <li>
                         <NavLink onClick={() => setShowProfilePopup(false)} to="/profile"
-                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile Settings</NavLink>
+                                 className="block py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                 <CgProfile className="w-5 h-5 mx-2 inline mx-1 text-gray-400"/>
+                                 Profile Settings
+                        </NavLink>
                     </li>
                     <li>
                         <NavLink onClick={() => setShowProfilePopup(false)} to="/logout"
-                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
-                            out</NavLink>
+                                 className="block py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                 <GoSignOut className="w-5 h-5 mx-2 inline mx-1 text-gray-400"/>
+                                 Signout
+                        </NavLink>
                     </li>
                 </ul>
             </div>
