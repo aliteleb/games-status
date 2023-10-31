@@ -4,9 +4,11 @@ import { useAuth } from '../api/AuthContext.jsx';
 import ApiClient from '../../services/ApiClient.js';
 import { toast } from 'react-hot-toast';
 
-export default function Login({ loading, setLoading }) {
+export default function Login() {
     const { updateUser } = useAuth();
     const navigate = useNavigate();
+
+    let [loading, setLoading] = React.useState(false)
 
     const [formData, setFormData] = React.useState({
         username: '',
@@ -19,6 +21,7 @@ export default function Login({ loading, setLoading }) {
             [e.target.name]: e.target.value,
         }));
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

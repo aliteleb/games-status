@@ -3,6 +3,7 @@ import Select from 'react-select';
 
 function Profile() {
 
+    let [loading, setLoading] = React.useState(false)
 
     const options = [
         {value: 'AF', label: 'Afghanistan'},
@@ -246,6 +247,14 @@ function Profile() {
         {value: "VI", label: "US Virgin Islands"}
     ]
 
+    const styles = `
+    .react-select-container .react-select__control{
+        background-color: #00000033;
+        border: 1px solid #61656c;
+    }
+    `;
+
+
     return (
         <div className='flex'>
             <div className='flex flex-col w-1/3 items-center'>
@@ -269,64 +278,99 @@ function Profile() {
                 </div>
             </div>
 
-            <div className='w-2/3'>
-            <div className='mt-6 flex flex-col relative'>
-                                <label htmlFor="username">Username</label>
-                                <input
-                                    // onChange={handleInputChange}
-                                    name='username'
-                                    // value={formData.username}
-                                    type="text"
-                                    className='rounded mt-2 h-9 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 text-sm'
-                                    autoComplete="one-time-code"
-                                    required="required"/>
-                                {/* {inputValidation('username')} */}
-                            </div>
-                            <div className='mt-6 flex flex-col relative'>
-                                <label htmlFor="password">Password</label>
-                                <input autoComplete='one-time-code' 
-                                    //    onChange={handleInputChange}
-                                    name='password'
-                                    //    value={formData.password}
-                                    type="password"
-                                    className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
-                                {/* {inputValidation('password')} */}
-                            </div>
-                            <div className='mt-6 flex flex-col relative'>
-                                <label htmlFor="password">Confirm Password</label>
-                                <input autoComplete='one-time-code' 
-                                    //    onChange={handleInputChange}
-                                    name='password_confirmation'
-                                    //    value={formData.password_confirmation}
-                                    type="password"
-                                    className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
-                                {/* {inputValidation('password_confirmation')} */}
-                            </div>
-                            <div className='mt-6 flex flex-col relative'>
-                                <label htmlFor="email">Email Address (No Spam!)</label>
-                                <input autoComplete='one-time-code'
-                                    //    onChange={handleInputChange}
-                                    name='email'
-                                    //    value={formData.email}
-                                    type="email"
-                                    className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+            <style dangerouslySetInnerHTML={{__html: styles}}/>
 
-                                {/* {inputValidation('email')} */}
-                            </div>
-                            <div className='mt-6 flex flex-col relative'>
-                                <label htmlFor="country">Country</label>
-                                <Select
-                                    options={options}
-                                    name='country_code'
-                                    defaultValue={{label: "Afghanistan", value: 'AF'}}
-                                    className='react-select-container mt-2'
-                                    classNamePrefix="react-select"
 
-                                />
-                                {/* {inputValidation('country_code')} */}
+            <form className='w-2/3'>
+                <div className='mt-6 flex flex-col relative'>
+                    <label htmlFor="username">Username</label>
+                    <input
+                        // onChange={handleInputChange}
+                        name='username'
+                        // value={formData.username}
+                        type="text"
+                        className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'
+                        autoComplete="one-time-code"
+                        required="required"/>
+                    {/* {inputValidation('username')} */}
+                    </div>
 
-                            </div>
-            </div>
+                    
+                    <div className='mt-6 flex flex-col relative'>
+                        <label htmlFor="password">Password</label>
+                        <input autoComplete='one-time-code' 
+                            //    onChange={handleInputChange}
+                            name='password'
+                            //    value={formData.password}
+                            type="password"
+                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
+                        {/* {inputValidation('password')} */}
+                    </div>
+                    <div className='mt-6 flex flex-col relative'>
+                        <label htmlFor="password">Confirm Password</label>
+                        <input autoComplete='one-time-code' 
+                            //    onChange={handleInputChange}
+                            name='password_confirmation'
+                            //    value={formData.password_confirmation}
+                            type="password"
+                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
+                        {/* {inputValidation('password_confirmation')} */}
+                    </div>
+                    <div className='mt-6 flex flex-col relative'>
+                        <label htmlFor="email">Email Address (No Spam!)</label>
+                        <input autoComplete='one-time-code'
+                            //    onChange={handleInputChange}
+                            name='email'
+                            //    value={formData.email}
+                            type="email"
+                            className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
+
+                        {/* {inputValidation('email')} */}
+                    </div>
+                    <div className='mt-6 flex flex-col relative'>
+                        <label htmlFor="country">Gender</label>
+                        <Select
+                            isDisabled="true"
+                            // options={genders}
+                            name='country_code'
+                            // onChange={(selectedOption) => {
+                            //     setFormData({...formData, gender: selectedOption.value});
+                            // }}
+                            className='react-select-container mt-2'
+                            classNamePrefix="react-select"
+                        />
+                        {/* {inputValidation('country_code')} */}
+
+                    </div>
+                    <div className='mt-6 flex flex-col relative'>
+                        <label htmlFor="country">Country</label>
+                        <Select
+                            options={options}
+                            name='country_code'
+                            defaultValue={{label: "Afghanistan", value: 'AF'}}
+                            className='react-select-container mt-2'
+                            classNamePrefix="react-select"
+                        />
+                        {/* {inputValidation('country_code')} */}
+                    </div>
+                    <button 
+                            // onClick={handleSubmit}
+                            className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
+                            disabled={loading}
+                    >
+                        {loading ?
+                            <>
+                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Updating...
+                            </> : <>Update Info</>
+                        }
+
+                    </button>
+            </form>
         </div>
     )
 }
