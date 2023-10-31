@@ -15,7 +15,7 @@ class UserController extends Controller
     public function show($username)
     {
         $user = User::select(['id', 'username'])
-            ->with('games', function ($query){
+            ->with('games', function ($query) {
                 return $query->paginate(12);
             })
             ->withCount('games')
@@ -30,21 +30,21 @@ class UserController extends Controller
         $total_pages = ceil($user->games_count / 12);
         $next_page = 2;
         $next_page_url = null;
-        if(request()->query('page'))
+        if (request()->query('page'))
             $next_page = request()->query('page') + 1;
 
-        if($next_page > $total_pages)
+        if ($next_page > $total_pages)
             $next_page = null;
 
-        if($next_page)
-            $next_page_url = route('api.user').'/'.$username.'?page='.$next_page;
+        if ($next_page)
+            $next_page_url = route('api.user') . '/' . $username . '?page=' . $next_page;
 
         $user->last_page = $total_pages;
         $user->next_page_url = $next_page_url;
 
         return response()->api(
             data: $user,
-            message: $user->username.__(" Profile")
+            message: $user->username . __(" Profile")
         );
 
     }
@@ -55,14 +55,10 @@ class UserController extends Controller
 
         // Validate the request data
         $validator = Validator::make($request->all(), [
-            'password' => 'required|string|min:8|max:32|confirmed',
-            'password_confirmation' => 'required|string|min:8|max:32|same:password',
+            'current_password' => 'required|string|min:8|max:32|confirmed',
+            'new_password' => 'required|string|min:8|max:32|confirmed',
+            'new_password_confirmation' => 'required|string|min:8|max:32|same:new_password',
         ]);
-
-        // Check if the current password is correct
-        if (!Hash::check($request->input('current_password'), $user->password)) {
-            return response()->json(['error' => 'The current password is incorrect'], 422);
-        }
 
         if ($validator->fails()) {
             return response()->api(
@@ -73,12 +69,18 @@ class UserController extends Controller
             );
         }
 
+        // Check if the current password is correct
+        if (!Hash::check($request->input('current_password'), $user->password)) {
+            $validator->errors()->add('current_password', 'The current password is incorrect');
+        }
+
         // Update the user's password
-        $user->password = Hash::make($request->input('password'));
+        $user->password = $request->input('new_password');
         $user->save();
 
         return response()->json(['message' => 'Password changed successfully']);
     }
+
     public function updateEmail(Request $request)
     {
         $user = Auth::user();
