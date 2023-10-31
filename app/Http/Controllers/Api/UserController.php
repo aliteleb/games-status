@@ -78,7 +78,10 @@ class UserController extends Controller
         $user->password = $request->input('new_password');
         $user->save();
 
-        return response()->json(['message' => 'Password changed successfully']);
+        return response()->api(
+            data: $user,
+            message: __('Password changed successfully')
+        );
     }
 
     public function updateEmail(Request $request)
