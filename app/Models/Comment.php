@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'game_id', 'body', 'reply_to'];
+    protected $fillable = ['user_id', 'game_id', 'body', 'reply_to', 'mention'];
     protected $appends = ['time', 'username', 'user_image', 'votes', 'voted'];
     protected $hidden = ['created_at', 'updated_at'];
 
@@ -114,7 +114,7 @@ class Comment extends Model
             if($reply->replies)
                 $replies = array_merge($replies, self::refactReplies($reply->replies, $reply->username));
 
-            $reply->mention = $rely_to;
+            //$reply->mention = $rely_to;
             unset($reply->replies);
         }
         return $replies;

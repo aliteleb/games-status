@@ -43,16 +43,16 @@ class CommentController extends Controller
 
         $parent = null;
         $game_id = null;
-        $parent_id = null;
-
+        $parent_username = null;
         if ($reply_to) {
             $parent = Comment::find($reply_to);
             $game_id = $parent->game_id;
-            $parent_id = $parent->id;
+            $parent_username = $parent->username;
 
             $reply_to = $parent->id;
             if($parent->reply_to)
                 $reply_to = $parent->reply_to;
+
         }
 
         if (!$parent) {
@@ -65,6 +65,7 @@ class CommentController extends Controller
             'game_id' => $game_id,
             'body' => $body,
             'reply_to' => $reply_to,
+            'mention' => $parent_username
         ]);
 
         return response()->api(
@@ -87,7 +88,7 @@ class CommentController extends Controller
             );
         }
 
-        $comment = Comment::find($comment_id);
+        $comment = Comment::findOrFail($comment_id);
 
         $user = auth()->user();
         $reaction = Reaction::where('comment_id', $comment->id)
