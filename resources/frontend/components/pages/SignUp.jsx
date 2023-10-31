@@ -5,16 +5,19 @@ import {MdDoneOutline} from 'react-icons/md'
 import {toast} from "react-hot-toast";
 import Select from 'react-select';
 
-export default function SignUp({loading, setLoading}) {
+export default function SignUp() {
 
     let [formData, setFormData] = React.useState({
-        username: "",
-        password: "",
-        password_confirmation: "",
-        email: "",
-        country_code: "AF",
+        username: null,
+        password: null,
+        password_confirmation: null,
+        email: null,
+        gender: null ,
+        country_code: null,
         avatar: null,
     });
+
+    let [loading, setLoading] = React.useState(false)
 
     let [response, setResponse] = React.useState()
 
@@ -41,6 +44,7 @@ export default function SignUp({loading, setLoading}) {
                 password: formData.password,
                 password_confirmation: formData.password_confirmation,
                 email: formData.email,
+                gender: formData.gender,
                 country_code: formData.country_code,
                 avatar: formData.avatar
             }, {
@@ -348,6 +352,19 @@ export default function SignUp({loading, setLoading}) {
         {value: "VI", label: "US Virgin Islands"}
     ]
 
+    const genders = [
+        {value: 'male', label: 'Male'},
+        {value: 'female', label: 'Female'},
+    ]
+
+    // Define your styles as a string
+    const styles = `
+    .react-select-container .react-select__control{
+        background-color: #00000033;
+        border: 1px solid #61656c;
+    }
+    `;
+
     return (
         <>
             {response === undefined && <div className="text-center text-xl mx-2 my-6 text-gray-200"> Create new account</div>}
@@ -355,6 +372,9 @@ export default function SignUp({loading, setLoading}) {
             <div className={`p-6 bg-app-black/50 rounded-md text-gray-300 overflow-hidden`}>
                 <form onSubmit={handleSubmit} encType="multipart/form-data">
                     <div className={(response && response.data.status === "success") ? "hidden" : ""}>
+
+                        <style dangerouslySetInnerHTML={{__html: styles}}/>
+
                         <header className='border-b-2 pb-[10px] font-bold text-xl'>Sign Up</header>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="username">Username</label>
@@ -363,7 +383,7 @@ export default function SignUp({loading, setLoading}) {
                                 name='username'
                                 value={formData.username}
                                 type="text"
-                                className='bg-transparent border border-gray/50 rounded mt-2 h-12 px-4 focus:outline-none text-sm'
+                                className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'
                                 autoComplete="one-time-code"
                                 required="required"/>
                             {inputValidation('username')}
@@ -374,7 +394,7 @@ export default function SignUp({loading, setLoading}) {
                                    name='password'
                                    value={formData.password}
                                    type="password"
-                                   className='bg-body rounded mt-2 h-12 px-4 focus:outline-none text-sm'/>
+                                   className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
                             {inputValidation('password')}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
@@ -383,7 +403,7 @@ export default function SignUp({loading, setLoading}) {
                                    name='password_confirmation'
                                    value={formData.password_confirmation}
                                    type="password"
-                                   className='bg-body rounded mt-2 h-12 px-4 focus:outline-none text-sm'/>
+                                   className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
                             {inputValidation('password_confirmation')}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
@@ -392,9 +412,23 @@ export default function SignUp({loading, setLoading}) {
                                    name='email'
                                    value={formData.email}
                                    type="email"
-                                   className='bg-body rounded mt-2 h-12 px-4 focus:outline-none text-sm'/>
+                                   className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'/>
 
                             {inputValidation('email')}
+                        </div>
+                        <div className='mt-6 flex flex-col relative'>
+                            <label htmlFor="country">Gender</label>
+                            <Select
+                                options={genders}
+                                name='country_code'
+                                onChange={(selectedOption) => {
+                                    setFormData({...formData, gender: selectedOption.value});
+                                }}
+                                className='react-select-container mt-2'
+                                classNamePrefix="react-select"
+                            />
+                            {inputValidation('country_code')}
+
                         </div>
                         <div className='mt-6 flex flex-col relative'>
                             <label htmlFor="country">Country</label>
@@ -404,10 +438,9 @@ export default function SignUp({loading, setLoading}) {
                                 onChange={(selectedOption) => {
                                     setFormData({...formData, country_code: selectedOption.value});
                                 }}
-                                defaultValue={{label: "Afghanistan", value: 'AF'}}
+                                // defaultValue={{label: "Afghanistan", value: 'AF'}}
                                 className='react-select-container mt-2'
                                 classNamePrefix="react-select"
-
                             />
                             {inputValidation('country_code')}
 
@@ -466,7 +499,7 @@ export default function SignUp({loading, setLoading}) {
                 {
                     ((response && response.data.status === "success") &&
                         <div className='flex flex-col my-10 justify-center items-center'>
-                            <MdDoneOutline className='bg-gray-500 rounded-full w-20 h-20 p-3'/>
+                            <MdDoneOutline className='bg-emerald-700 rounded-full w-20 h-20 p-3'/>
                             <h2 className='text-gray-400 text-2xl mt-12'>Success!</h2>
                             <div className='text-gray-400 text-md mx-4 mt-6'>You have registered for your account</div>
                             <Link to="/login" className='text-gray-400 hover:text-gray-300 transition mt-12'>

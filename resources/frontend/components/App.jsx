@@ -31,8 +31,6 @@ import Profile from "./pages/Profile";
 export default function App() {
     window.ondragstart = () => false;
 
-    let [loading, setLoading] = React.useState(false);
-
     React.useEffect(() => {
         const handleTabKeyPress = (e) => {
             if (e.key === "Tab") {
@@ -72,13 +70,13 @@ export default function App() {
                     <Route
                         path="/login"
                         element={
-                            <Login loading={loading} setLoading={setLoading} />
+                            <Login />
                         }
                     />
                     <Route
                         path="/sign-up"
                         element={
-                            <SignUp loading={loading} setLoading={setLoading} />
+                            <SignUp />
                         }
                     />
                     <Route path="/about" element={<About />} />
