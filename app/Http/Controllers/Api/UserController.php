@@ -49,6 +49,38 @@ class UserController extends Controller
 
     }
 
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|min:3|max:16|unique:users,username,' . $user->id,
+            'country_code' => 'required|string|min:2|max:2',
+            'display_name' => 'required|string|min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->api(
+                status: "error",
+                data: $validator->errors(),
+                message: __("Whoops! Something went wrong."),
+                status_code: 422
+            );
+        }
+
+        // Update the user's information
+        $user->username = $request->input('username');
+        $user->display_name = $request->input('display_name');
+        $user->country_code = $request->input('country_code');
+
+        $user->save();
+
+        return response()->api(
+            data: $user,
+            message: __('Information updated successfully')
+        );
+    }
     public function updatePassword(Request $request)
     {
         $user = Auth::user();
