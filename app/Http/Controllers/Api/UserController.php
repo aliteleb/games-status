@@ -63,8 +63,14 @@ class UserController extends Controller
         // Check if the current password is correct
         if (!Hash::check($request->input('current_password'), $user->password)) {
             $validator->errors()->add('current_password', 'The current password is incorrect');
+            return response()->api(
+                status: "error",
+                data: $validator->errors(),
+                message: __("Whoops! Something went wrong."),
+                status_code: 422
+            );
         }
-        
+
         if ($validator->fails()) {
             return response()->api(
                 status: "error",
