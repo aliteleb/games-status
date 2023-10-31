@@ -27,6 +27,7 @@ import User from './pages/User';
 import Logout from './pages/Logout';
 import ScrollToTop from './layouts/ScrollToTop';
 import BlurredBackground from "./core/BlurredBackground.jsx";
+import Profile from './pages/Profile';
 
 export default function App() {
 
@@ -84,6 +85,7 @@ export default function App() {
                         <Route path='/game/:slug' element={<Game/>}/>
                         <Route path='/user/:username' element={<User/>}/>
                         <Route path='/logout' element={<Logout/>}/>
+                        <Route path='/profile' element={<Profile/>}/>
 
                         <Route path='*' element={<PageNotFound/>}/>
                     </Routes>

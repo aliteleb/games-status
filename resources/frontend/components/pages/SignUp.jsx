@@ -363,7 +363,7 @@ export default function SignUp({loading, setLoading}) {
                                 name='username'
                                 value={formData.username}
                                 type="text"
-                                className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'
+                                className='bg-transparent border border-gray/50 rounded mt-2 h-12 px-4 focus:outline-none text-sm'
                                 autoComplete="one-time-code"
                                 required="required"/>
                             {inputValidation('username')}
@@ -374,7 +374,7 @@ export default function SignUp({loading, setLoading}) {
                                    name='password'
                                    value={formData.password}
                                    type="password"
-                                   className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+                                   className='bg-body rounded mt-2 h-12 px-4 focus:outline-none text-sm'/>
                             {inputValidation('password')}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
@@ -383,7 +383,7 @@ export default function SignUp({loading, setLoading}) {
                                    name='password_confirmation'
                                    value={formData.password_confirmation}
                                    type="password"
-                                   className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+                                   className='bg-body rounded mt-2 h-12 px-4 focus:outline-none text-sm'/>
                             {inputValidation('password_confirmation')}
                         </div>
                         <div className='mt-6 flex flex-col relative'>
@@ -392,7 +392,7 @@ export default function SignUp({loading, setLoading}) {
                                    name='email'
                                    value={formData.email}
                                    type="email"
-                                   className='bg-body rounded mt-2 h-9 px-4 focus:outline-none text-sm'/>
+                                   className='bg-body rounded mt-2 h-12 px-4 focus:outline-none text-sm'/>
 
                             {inputValidation('email')}
                         </div>
