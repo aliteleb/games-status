@@ -5,8 +5,24 @@ import { MdDoneOutline } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import Select from "react-select";
 import { inputValidation } from "../helpers/General.jsx";
+import { useAuth } from '../api/AuthContext.jsx';
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+
+    const {user} = useAuth()
+    const navigate = useNavigate()
+
+    const checkUser = () => {
+        user ? navigate("/") : null
+    }
+
+    checkUser()
+
+    let signUpRef = React.useRef(null)
+    React.useEffect( () => {
+        !user ? signUpRef.current.classList.remove('hidden') : null
+    }, [])
 
     let [formData, setFormData] = React.useState({
         username: null,
@@ -361,10 +377,10 @@ export default function SignUp() {
     `;
 
     return (
-        <>
+        <div className={`hidden ${user ? "hidden" : "block"}`}>
             {response === undefined && <div className="mx-2 my-6 text-center text-xl text-gray-200"> Create new account</div>}
 
-            <div className={`p-6 bg-app-black/50 rounded-md text-gray-300 overflow-hidden`}>
+            <div ref={signUpRef} className={`p-6 bg-app-black/50 rounded-md text-gray-300 overflow-hidden`}>
                 <form onSubmit={handleSubmit} encType="multipart/form-data">
                     <div className={(response && response.data.status === "success") ? "hidden" : ""}>
 
@@ -507,6 +523,6 @@ export default function SignUp() {
                 }
             </div>
 
-        </>
+        </div>
     );
 }
