@@ -82,7 +82,10 @@ export default function App() {
                     <Route path="/game/:slug" element={<Game />} />
                     <Route path="/user/:username" element={<User />} />
                     <Route path="/logout" element={<Logout />} />
+
+                    {/* Auth*/}
                     <Route path="/profile" element={<AuthMiddleware element={<Profile />} />} />
+
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </div>
