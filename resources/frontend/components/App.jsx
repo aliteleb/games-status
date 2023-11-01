@@ -28,6 +28,7 @@ import Logout from "./pages/Logout";
 import ScrollToTop from "./layouts/ScrollToTop";
 import BlurredBackground from "./core/BlurredBackground.jsx";
 import Profile from "./pages/Profile";
+import { AuthMiddleware } from "../middlewares/AuthMiddleware.js";
 
 export default function App() {
     window.ondragstart = () => false;
@@ -69,33 +70,19 @@ export default function App() {
                     <Route path="/get-karma" element={<GetKarma />} />
                     <Route path="/forum" element={<Forum />} />
                     <Route path="/messages" element={<Messages />} />
-                    <Route
-                        path="/login"
-                        element={
-                            <Login />
-                        }
-                    />
-                    <Route
-                        path="/sign-up"
-                        element={
-                            <SignUp />
-                        }
-                    />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/terms-conditions" element={<Terms />} />
-                    <Route
-                        path="/frequency-questions"
-                        element={<FrequencyQuestions />}
-                    />
+                    <Route path="/frequency-questions" element={<FrequencyQuestions />} />
                     <Route path="/games" element={<SearchGames />} />
                     <Route path="/protection/:slug" element={<Protection />} />
                     <Route path="/group/:slug" element={<Group />} />
                     <Route path="/game/:slug" element={<Game />} />
                     <Route path="/user/:username" element={<User />} />
                     <Route path="/logout" element={<Logout />} />
-                    <Route path="/profile" element={<Profile />} />
-
+                    <Route path="/profile" element={<AuthMiddleware element={<Profile />} />} />
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </div>

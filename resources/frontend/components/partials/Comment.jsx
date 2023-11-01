@@ -122,7 +122,7 @@ function Comment(props) {
 
     return (
         <div className={props.className}>
-            <article className="rounded-lg text-base my-1 pb-1">
+            <article className="rounded-lg text-base my-1 pb-1 group">
                 <div className='grid grid-cols-[auto_1fr]'>
                     {comment?.votes !== null &&
                         <div className='flex flex-col items-center'>
@@ -190,7 +190,7 @@ function Comment(props) {
                                 </ul>
                             </div>
                         </footer>
-                        <div className="group">
+                        <div>
                             <p className="mx-6 break-words text-gray-300 w-[25rem] max-w-[65rem] md:w-[35rem] lg:w-[50rem]">
                                 {comment?.mention && <span
                                     className="mr-2 rounded-full bg-gray-100 text-xs font-medium text-gray-800 px-2.5 py-0.5 dark:bg-gray-700 dark:text-gray-300">@{comment.mention}</span>}
