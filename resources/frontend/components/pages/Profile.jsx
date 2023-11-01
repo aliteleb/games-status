@@ -457,7 +457,6 @@ function Profile() {
                                 onChange={handleDetailsChange}
                                 name='username'
                                 value={detailsFormData.username}
-                                defaultValue={user?.username}
                                 type="text"
                                 className='bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm'
                                 autoComplete="one-time-code"
@@ -490,7 +489,7 @@ function Profile() {
                         </div>
 
                         <button 
-                                className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
+                                className={`relative rounded mt-4 h-10 w-32 bg-red-700 transition hover:bg-red-600 transition cursor-pointer text-md flex justify-center items-center ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
                                 disabled={loading}
                                 onClick={handleDetailsSubmit}
                         >
@@ -528,7 +527,7 @@ function Profile() {
                         </div>
                         <button 
                                 // onClick={handleSubmit}
-                                className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
+                                className={`relative rounded mt-4 h-10 w-32 bg-red-700 transition hover:bg-red-600 transition cursor-pointer text-md flex justify-center items-center ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
                                 disabled={loading}
                                 onClick={handleEmailSubmit}
                         >
@@ -581,7 +580,7 @@ function Profile() {
                             {inputValidation('new_password_confirmation', securityFormErrors)}
                         </div>
                         <button 
-                                className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
+                                className={`relative rounded mt-4 h-10 w-32 bg-red-700 transition hover:bg-red-600 transition cursor-pointer text-md flex justify-center items-center ${loading ? 'disabled-button hover:bg-[#282c39]' : ''}`}
                                 disabled={loading}
                                 onClick={handleSecuritySubmit}
                         >
