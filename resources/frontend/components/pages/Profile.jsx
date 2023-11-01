@@ -154,7 +154,7 @@ function Profile() {
             </h1>
             <div className="gap-x-4 mt-4">
                 <div className="flex justify-between gap-x-3">
-                    <form className="flex flex-col w-1/3 items-center pt-32 overflow-hidden max-w-screen-xl p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300">
+                    <form className="flex flex-col w-1/3 items-center pt-32 max-w-screen-xl p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300">
                         <h1>{user?.username}</h1>
                         <div className="mt-2">@Name</div>
                         <div className="mt-6 flex flex-col items-center">
@@ -227,7 +227,7 @@ function Profile() {
                         </div>
                     </form>
 
-                    <form className="overflow-hidden max-w-screen-xl w-2/3 p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300">
+                    <form className="max-w-screen-xl w-2/3 p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300">
                         <h1 className="font-bold text-xl text-gray-400 border-b-2 border-gray-600 pb-2">
                             General
                         </h1>
@@ -334,7 +334,7 @@ function Profile() {
                 <style dangerouslySetInnerHTML={{ __html: styles }} />
 
                 <div className="flex gap-x-3">
-                    <form className="overflow-hidden w-1/2 mt-6 max-w-screen-xl mx-auto p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300">
+                    <form className="w-1/2 mt-6 max-w-screen-xl mx-auto p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300">
                         <h1 className="font-bold text-gray-400 border-b-2 border-gray-600 pb-2 text-xl">
                             Change Email
                         </h1>
@@ -390,7 +390,7 @@ function Profile() {
                         </button>
                     </form>
 
-                    <form className="overflow-hidden w-1/2 mt-6 max-w-screen-xl mx-auto p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300">
+                    <form className="w-1/2 mt-6 max-w-screen-xl mx-auto p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300">
                         <h1 className="font-bold text-gray-400 border-b-2 border-gray-600 pb-2 text-xl">
                             Change Password
                         </h1>
