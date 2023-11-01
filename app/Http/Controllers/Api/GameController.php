@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\GameResource;
 use App\Models\Comment;
 use App\Models\Game;
 use App\Models\Genre;
@@ -118,7 +117,6 @@ class GameController extends Controller
                 if ($reaction->user_id == $user_id)
                     $comment->voted = $reaction->type;
             });
-
             unset($comment->reactions);
             unset($comment->user);
         });

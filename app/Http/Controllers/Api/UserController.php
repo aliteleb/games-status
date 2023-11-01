@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -121,7 +122,6 @@ class UserController extends Controller
             message: __('Password changed successfully')
         );
     }
-
     public function updateEmail(Request $request)
     {
         $user = Auth::user();
@@ -147,6 +147,41 @@ class UserController extends Controller
         return response()->api(
             data: $user,
             message: __('Email changed successfully')
+        );
+    }
+    public function updateAvatar(Request $request)
+    {
+        $user = Auth::user();
+
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'avatar' => 'required|image|mimes:jpeg,png,gif,webp,svg|max:1000',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->api(
+                status: "error",
+                data: $validator->errors(),
+                message: __("Whoops! Something went wrong."),
+                status_code: 422
+            );
+        }
+
+        // Retrieve the uploaded files
+        $avatar = $request->file('avatar');
+
+        // Profile avatar
+        Image::make($avatar)->encode('webp', 100)->resize(100, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('assets/images/users/100/' . $user->id . '.webp'));
+        // Comments avatar
+        Image::make($avatar)->encode('webp', 50)->resize(50, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('assets/images/users/50/' . $user->id . '.webp'));
+
+        return response()->api(
+            data: $user,
+            message: __('Avatar changed successfully')
         );
     }
 }

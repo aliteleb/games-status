@@ -18,7 +18,7 @@ function Logout() {
         let logout = async () => {
 
             let response = await ApiClient().get('/logout')
-            .then(res => 
+            .then(res =>
                 setResponse(res.data),
                 updateUser(null),
                 setTimeout(()=> {
@@ -35,11 +35,11 @@ function Logout() {
     console.log(response);
 
     return (
-        <div className='p-6 md:w-[50%] m-auto bg-app-black/50 rounded-md text-gray-300 overflow-hidden'>
-            <div className='flex flex-col my-10 justify-center items-center'>
-                {!response && <AiOutlineLoading className='animate-spin rounded-full w-20 h-20 p-3'/>}
-                {response && <MdDoneOutline className='bg-emerald-700 rounded-full w-20 h-20 p-3'/>}
-                <h2 className='text-gray-400 text-2xl mt-12'>{response ? "Signed out" : "Signing out..."}</h2>
+        <div className='m-auto overflow-hidden rounded-md p-6 text-gray-300 bg-app-black/50 md:w-[50%]'>
+            <div className='my-10 flex flex-col items-center justify-center'>
+                {!response && <AiOutlineLoading className='h-20 w-20 animate-spin rounded-full p-3'/>}
+                {response && <MdDoneOutline className='h-20 w-20 rounded-full bg-emerald-700 p-3'/>}
+                <h2 className='mt-12 text-2xl text-gray-400'>{response ? "Signed out" : "Signing out..."}</h2>
                 <div className={`text-gray-400 text-md mx-4 mt-6 ${!response ? "hidden" : ""}`}>Redirecting to home page...</div>
             </div>
         </div>

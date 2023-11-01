@@ -90,16 +90,16 @@ const GameCard = (props) => {
                         checked={follow}
                         onChange={handleFollowChange}
                         onClick={(e) => e.stopPropagation()}
-                        className="before:ring-2 before:ring-gray-700 before:hover:ring-2 before:hover:bg-gray-700/70 before:checked:bg-gray-700 before:hover:checked:bg-gray-700"/>
+                        className="before:ring-2 before:ring-gray-700 before:checked:bg-gray-700 before:hover:checked:bg-gray-700 before:hover:bg-gray-700/70 before:hover:ring-2"/>
                 }
             </div>
         </div>
     </>);
     return (
         <div className={'h-full flex flex-col shadow-md shadow-black bg-black ' + props.className || ''}>
-            {game.slug ? <Link className="w-full h-full flex flex-col" to={`/game/${game.slug}`}>{card}</Link> : card}
+            {game.slug ? <Link className="flex h-full w-full flex-col" to={`/game/${game.slug}`}>{card}</Link> : card}
 
-            {props.size === "large" && <div className="flex flex-wrap justify-around h-full">
+            {props.size === "large" && <div className="flex h-full flex-wrap justify-around">
                 <div className="w-full">
                     <Skeleton width={'100%'} height={'100%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={0}/>
                 </div>

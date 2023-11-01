@@ -58,7 +58,7 @@ export default function App() {
             <BlurredBackground />
             <ScrollToTop />
             <Navbar />
-            <div className="container py-28 m-[auto] text-gray-200 px-2 xl:px-0">
+            <div className="container px-2 py-28 text-gray-200 m-[auto] xl:px-0">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/nfos" element={<NFOS />} />

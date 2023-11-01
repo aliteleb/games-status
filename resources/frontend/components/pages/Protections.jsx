@@ -63,7 +63,7 @@ export default function Protections() {
     refreshPageSize()
     return (
         <>
-            <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
+            <div className="mt-3 grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {protections.length > 0 || placeholders}
                 {showProtections}
             </div>

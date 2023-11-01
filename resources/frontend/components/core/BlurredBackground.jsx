@@ -122,7 +122,7 @@ function BlurredBackground(props) {
                 }
                 alt="bg"
             />
-            <div className="absolute top-[4rem] w-full h-[200%] -translate-x-1/2 left-1/2 backdrop-blur-xl z-0" />
+            <div className="absolute left-1/2 z-0 w-full -translate-x-1/2 backdrop-blur-xl top-[4rem] h-[200%]" />
         </div>
     );
 }

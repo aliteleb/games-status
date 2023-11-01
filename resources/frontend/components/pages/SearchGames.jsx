@@ -167,30 +167,30 @@ function SearchGames() {
             <div key={index} className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-${game.status_color}`}>
                 <img className={`h-full w-32 object-cover ${game.image && 'animate-fade-in'}`}
                      src={game.image ? game.image : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
-                <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center items-center text-gray-400">
-                    <div className="my-3 lg:my-0 text-lg lg:text-left lg:pl-4 text-gray-300 font-bold">
+                <div className="grid items-center text-center text-gray-400 grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr]">
+                    <div className="my-3 text-lg font-bold text-gray-300 lg:my-0 lg:pl-4 lg:text-left">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">GAME</div>
                         <Link to={`/game/${game.slug}`} className="transition hover:text-white">{game.title}</Link>
                     </div>
-                    <div className="my-3 lg:my-0 text-lg">
+                    <div className="my-3 text-lg lg:my-0">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">RELEASE DATE</div>
                         {game.release_date ? game.release_date : <span className="opacity-50">N/A</span>}
                     </div>
-                    <div className="my-3 lg:my-0 text-lg">
+                    <div className="my-3 text-lg lg:my-0">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">CRACK DATE</div>
                         {game.crack_date ? game.crack_date : <span className="opacity-50">N/A</span>}
                     </div>
-                    <div className="my-3 lg:my-0 text-lg">
+                    <div className="my-3 text-lg lg:my-0">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">PROTECTIONS</div>
                         {game.protections?.map((protection, index) => (
                             <Link to={`/protection/${protection.slug}`} className="mx-1 transition hover:text-gray-200" key={index}>{protection.name}</Link>
                         ))}
                         {game.protections.length === 0 || game.protections[0].name === "" ? <span className="opacity-50">TBD</span> : ""}
                     </div>
-                    <div className="my-3 lg:my-0 text-lg lg:text-right lg:pr-4">
+                    <div className="my-3 text-lg lg:my-0 lg:pr-4 lg:text-right">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">SCENE GROUPS</div>
                         {game.groups?.map((group, index) => (
-                            <Link to={`/group/${group.slug}`} className="mx-1 transition hover:text-gray-200 block" key={index}>{group.name}</Link>
+                            <Link to={`/group/${group.slug}`} className="mx-1 block transition hover:text-gray-200" key={index}>{group.name}</Link>
                         ))}
                         {game.groups.length === 0 || game.groups[0].name === "" ? <span className="opacity-50">N/A</span> : ""}
                     </div>
@@ -208,24 +208,24 @@ function SearchGames() {
             <div key={i} className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-gray-600`}>
                 <img className={`h-14 w-32 object-cover`}
                      src='/assets/images/game-placeholder.jpg' alt=""/>
-                <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center items-center">
-                    <div className="my-3 lg:my-0 text-lg lg:text-left lg:pl-4">
+                <div className="grid items-center text-center grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr]">
+                    <div className="my-3 text-lg lg:my-0 lg:pl-4 lg:text-left">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">GAME</div>
                         <Skeleton height={'20px'} width={'80%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={50}/>
                     </div>
-                    <div className="my-3 lg:my-0 text-lg">
+                    <div className="my-3 text-lg lg:my-0">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">RELEASE DATE</div>
                         <Skeleton height={'20px'} width={'80%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={50}/>
                     </div>
-                    <div className="my-3 lg:my-0 text-lg">
+                    <div className="my-3 text-lg lg:my-0">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">CRACK DATE</div>
                         <Skeleton height={'20px'} width={'80%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={50}/>
                     </div>
-                    <div className="my-3 lg:my-0 text-lg">
+                    <div className="my-3 text-lg lg:my-0">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">PROTECTIONS</div>
                         <Skeleton height={'20px'} width={'80%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={50}/>
                     </div>
-                    <div className="my-3 lg:my-0 text-lg lg:text-right lg:pr-4">
+                    <div className="my-3 text-lg lg:my-0 lg:pr-4 lg:text-right">
                         <div className="text-[#dddddd99] font-extralight text-sm lg:hidden">SCENE GROUPS</div>
                         <Skeleton height={'20px'} width={'80%'} baseColor={'#27282e'} highlightColor={'#424349'} borderRadius={50}/>
                     </div>
@@ -248,16 +248,16 @@ function SearchGames() {
                         type="text"
                         placeholder='Search...'
                         autoComplete="one-time-code"
-                        className='w-full h-12 text-lg uppercase rounded-sm px-3 bg-body focus:outline-none'
+                        className='h-12 w-full rounded-sm px-3 text-lg uppercase bg-body focus:outline-none'
                         name='search_text'
                         value={formData.search_text}
                         onChange={handleSearchChange}
                     />
-                    <div className='flex flex-col w-full items-center md:flex md:flex-row mt-2 justify-between md:gap-x-12 xl:gap-x-24'>
+                    <div className='mt-2 flex w-full flex-col items-center justify-between md:flex md:flex-row md:gap-x-12 xl:gap-x-24'>
                         <Select
                             options={crackStatus}
                             placeholder="Select Status..."
-                            className='react-select-container mt-2 w-2/3 md:w-1/3 uppercase'
+                            className='mt-2 w-2/3 uppercase react-select-container md:w-1/3'
                             classNamePrefix="react-select"
                             value={crackStatus.find(option => option.value === formData.crack_status)}
                             onChange={(selectedOption) => handleSingleSelectChange('crack_status', selectedOption)}
@@ -265,7 +265,7 @@ function SearchGames() {
                         <Select
                             options={releaseStatus}
                             placeholder="Release Status..."
-                            className='react-select-container mt-2 w-2/3 md:w-1/3 uppercase'
+                            className='mt-2 w-2/3 uppercase react-select-container md:w-1/3'
                             classNamePrefix="react-select"
                             value={releaseStatus.find(option => option.value === formData.release_status)}
                             onChange={(selectedOption) => handleSingleSelectChange('release_status', selectedOption)}
@@ -273,7 +273,7 @@ function SearchGames() {
                         <Select
                             options={genres}
                             placeholder="Select Genres..."
-                            className='react-select-container mt-2 w-2/3 md:w-1/3 uppercase'
+                            className='mt-2 w-2/3 uppercase react-select-container md:w-1/3'
                             classNamePrefix="react-select"
                             isMulti
                             value={formData.selected_genres.map(genre => genres.find(option => option.value === genre))}
@@ -284,37 +284,37 @@ function SearchGames() {
             </div>
 
             <div className={`flex flex-col text-gray-300 shadow-lg overflow-hidden border-2 border-app-black/50`}>
-                <div className="hidden lg:grid grid-cols-[150px_1fr] text-center divide-gray-600 divide-x bg-app-black/50 py-4 border-y-2 border-gray-700 font-extrabold text-lg text-gray-500">
-                    <span className='flex items-center gap-x-2 px-2 '>
-                        <LiaCcDiscover className='w-6 h-6 text-gray-400'/>
+                <div className="hidden border-y-2 border-gray-700 py-4 text-center text-lg font-extrabold text-gray-500 grid-cols-[150px_1fr] divide-gray-600 divide-x bg-app-black/50 lg:grid">
+                    <span className='flex items-center gap-x-2 px-2'>
+                        <LiaCcDiscover className='h-6 w-6 text-gray-400'/>
                         COVER
                     </span>
-                    <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] text-center divide-gray-600 divide-x">
-                        <div className="lg:text-left lg:pl-4 flex items-center gap-x-2 ">
-                            <IoGameControllerOutline className='w-6 h-6 text-gray-400'/>
+                    <div className="grid text-center grid-cols-[1fr_1fr_1fr_1fr_1fr] divide-gray-600 divide-x">
+                        <div className="flex items-center gap-x-2 lg:pl-4 lg:text-left">
+                            <IoGameControllerOutline className='h-6 w-6 text-gray-400'/>
                             GAME
                         </div>
-                        <div className='flex items-center gap-x-2 justify-center '>
-                            <HiOutlineRocketLaunch className='w-6 h-6 text-gray-400'/>
+                        <div className='flex items-center justify-center gap-x-2'>
+                            <HiOutlineRocketLaunch className='h-6 w-6 text-gray-400'/>
                             Release Date
                         </div>
-                        <div className='flex items-center gap-x-2 justify-center '>
-                            <GiCrackedShield className='w-6 h-6 text-gray-400'/>
+                        <div className='flex items-center justify-center gap-x-2'>
+                            <GiCrackedShield className='h-6 w-6 text-gray-400'/>
                             Crack Date
                         </div>
-                        <div className='flex items-center gap-x-2 justify-center '>
-                            <BsShieldExclamation className='w-6 h-6 text-gray-400'/>
+                        <div className='flex items-center justify-center gap-x-2'>
+                            <BsShieldExclamation className='h-6 w-6 text-gray-400'/>
                             PROTECTIONS
                         </div>
-                        <div className="lg:text-right lg:pr-4 flex items-center gap-x-2 justify-center ">
-                            <GiPirateFlag className='w-6 h-6 text-gray-400'/>
+                        <div className="flex items-center justify-center gap-x-2 lg:pr-4 lg:text-right">
+                            <GiPirateFlag className='h-6 w-6 text-gray-400'/>
                             SCENE GROUPS
                         </div>
                     </div>
                 </div>
                 {!response && placeholders}
                 {response && games.length === 0 ?
-                    <div className="text-center p-6 text-lg">No results found</div>
+                    <div className="p-6 text-center text-lg">No results found</div>
                     : ''}
 
                 {games &&
