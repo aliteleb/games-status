@@ -39,7 +39,7 @@ function Game() {
         };
 
         fetchGame();
-        setInterval(fetchGame, 30000);
+        setInterval(fetchGame, 10000);
     }, []);
 
     refreshPageSize("games");
@@ -144,7 +144,7 @@ function Game() {
                         alt=""
                     />
 
-                    <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr] md:grid-cols-[250px_2fr_1fr] w-full bg-black/80 justify-items-center">
+                    <div className="grid w-full grid-cols-1 justify-items-center bg-black/80 sm:grid-cols-[1fr_1fr] md:grid-cols-[250px_2fr_1fr]">
                         <img
                             className={`col-span-2 sm:col-auto w-full object-cover h-[22rem] ${
                                 game.poster && "animate-fade-in"
@@ -156,10 +156,10 @@ function Game() {
                             }
                             alt=""
                         />
-                        <div className="h-[22rem] w-full px-4 py-2 text-center sm:text-left">
-                            <div className="grid grid-rows-[1fr_1fr] w-max mx-auto sm:mx-0 mt-2 sm:mt-0">
+                        <div className="w-full px-4 py-2 text-center h-[22rem] sm:text-left">
+                            <div className="mx-auto mt-2 grid w-max grid-rows-[1fr_1fr] sm:mx-0 sm:mt-0">
                                 <div className="flex justify-between">
-                                    <div className="text-white/40 font-extralight">
+                                    <div className="font-extralight text-white/40">
                                         {game.status_text && "STATUS"}
                                     </div>
                                     <div
@@ -189,7 +189,7 @@ function Game() {
                                     )}
                                 </div>
                             </div>
-                            <div className="w-full my-5">
+                            <div className="my-5 w-full">
                                 <div className="text-[#dddddd99] font-extralight">
                                     GAME
                                 </div>
@@ -205,7 +205,7 @@ function Game() {
                                     )}
                                 </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-y-4 justify-between">
+                            <div className="grid grid-cols-2 justify-between gap-y-4">
                                 <div>
                                     <div className="text-[#dddddd99] font-extralight">
                                         RELEASE DATE
@@ -230,7 +230,7 @@ function Game() {
                                         {game.protections?.map((drm, index) => (
                                             <Link
                                                 key={index}
-                                                className="inline-block mx-1 transition hover:opacity-70"
+                                                className="mx-1 inline-block transition hover:opacity-70"
                                                 to={`/protection/${drm.slug}`}
                                             >
                                                 {drm.name}
@@ -271,7 +271,7 @@ function Game() {
                                         {game.groups?.map((group, index) => (
                                             <Link
                                                 key={index}
-                                                className="inline-block mx-1 transition hover:opacity-70"
+                                                className="mx-1 inline-block transition hover:opacity-70"
                                                 to={`/group/${group.slug}`}
                                             >
                                                 {group.name}
@@ -290,7 +290,7 @@ function Game() {
                                 </div>
                             </div>
                         </div>
-                        <div className="text-center border-t md:border-0 border-gray-300 w-[80%] pt-3 md:col-span-1 col-span-2 m-auto">
+                        <div className="col-span-2 m-auto border-t border-gray-300 pt-3 text-center w-[80%] md:col-span-1 md:border-0">
                             <div className="text-xl">FOLLOWERS</div>
                             <div className="my-2 text-2xl">
                                 {game.name ? (
@@ -305,7 +305,7 @@ function Game() {
                                     />
                                 )}
                             </div>
-                            <div className="flex flex-wrap justify-center py-2 rounded ">
+                            <div className="flex flex-wrap justify-center rounded py-2">
                                 <input
                                     checked={follow}
                                     onChange={handleFollowChange}
@@ -319,22 +319,22 @@ function Game() {
                     </div>
                 </div>
 
-                <div className="flex w-full flex-col gap-y-2 md:flex-row gap-x-4 mt-4">
-                    <div className="md:w-1/3 w-full flex-wrap bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition">
-                        <AiOutlineDollarCircle className="w-16 h-8 text-gray-300" />
+                <div className="mt-4 flex w-full flex-col gap-x-4 gap-y-2 md:flex-row">
+                    <div className="flex h-14 w-full flex-wrap items-center justify-between rounded bg-black/30 px-3 text-gray-300 transition hover:bg-black/40 md:w-1/3">
+                        <AiOutlineDollarCircle className="h-8 w-16 text-gray-300" />
                         PRICE
                         <span className="font-bold">70$</span>
                     </div>
-                    <div className="md:w-1/3 w-full bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition">
-                        <MdOutlineStarRate className="w-16 h-8 text-gray-300" />
+                    <div className="flex h-14 w-full items-center justify-between rounded bg-black/30 px-3 text-gray-300 transition hover:bg-black/40 md:w-1/3">
+                        <MdOutlineStarRate className="h-8 w-16 text-gray-300" />
                         METACRITIC
                         <span className="font-bold">94</span>
                     </div>
                     <a
                         href="#co"
-                        className="md:w-1/3 w-full  bg-black/30 rounded h-14 text-gray-300 flex items-center justify-between px-3 hover:bg-black/40 transition cursor-pointer"
+                        className="flex h-14 w-full cursor-pointer items-center justify-between rounded bg-black/30 px-3 text-gray-300 transition hover:bg-black/40 md:w-1/3"
                     >
-                        <LiaCommentSolid className="w-16 h-8 text-gray-300" />
+                        <LiaCommentSolid className="h-8 w-16 text-gray-300" />
                         COMMENTS
                         <span className="font-bold">{comments.length}</span>
                     </a>
@@ -342,18 +342,18 @@ function Game() {
 
                 <section
                     id="co"
-                    className="bg-black/50 py-8 lg:py-16 mt-4 antialiased relative z-20"
+                    className="relative z-20 mt-4 bg-black/50 py-8 antialiased lg:py-16"
                 >
                     <div className="px-4 pb-36">
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-lg lg:text-2xl font-bold text-gray-300">
+                        <div className="mb-6 flex items-center justify-between">
+                            <h2 className="text-lg font-bold text-gray-300 lg:text-2xl">
                                 Comments ({comments.length})
                             </h2>
                         </div>
                         <div className="mb-6">
                             <form
                                 onSubmit={handleSubmit}
-                                className="block relative "
+                                className="relative block"
                             >
                                 <input
                                     type="text"
@@ -361,14 +361,14 @@ function Game() {
                                     name="comment_value"
                                     value={createComment.comment_value}
                                     id="comment"
-                                    className="bg-transparent w-full text-md h-16 transition ring-1 ring-gray-400/50 focus:ring-gray-400 focus:outline-none text-gray-200 pl-4 pr-12 mb-4 rounded-md "
+                                    className="mb-4 h-16 w-full rounded-md bg-transparent pr-12 pl-4 text-gray-200 ring-1 ring-gray-400/50 transition text-md focus:outline-none focus:ring-gray-400"
                                     placeholder="Your comment ..."
                                     required=""
                                     onChange={handleChange}
                                 />
                                 <RiSendPlane2Fill
                                     onClick={handleSubmit}
-                                    className=" mb-4 absolute top-[1.2rem] right-[1rem] text-gray-400 hover:text-gray-300 transition cursor-pointer"
+                                    className="absolute mb-4 cursor-pointer text-gray-400 transition top-[1.2rem] right-[1rem] hover:text-gray-300"
                                     style={{ fontSize: "25px" }}
                                 />
                             </form>

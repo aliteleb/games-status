@@ -45,9 +45,9 @@ export default function Login() {
     };
 
     return (
-        <div className="w-full overflow-hidden max-w-screen-xl mx-auto p-6 bg-app-black bg-opacity-60 rounded-md text-gray-300">
+        <div className="mx-auto w-full max-w-screen-xl overflow-hidden rounded-md bg-opacity-60 p-6 text-gray-300 bg-app-black">
             <form onSubmit={handleSubmit}>
-                <header className="border-b-2 pb-[10px] font-bold text-xl">Login</header>
+                <header className="border-b-2 text-xl font-bold pb-[10px]">Login</header>
                 <div className="mt-6 flex flex-col">
                     <label htmlFor="username">Username</label>
                     <input
@@ -55,7 +55,7 @@ export default function Login() {
                         value={formData.username}
                         onChange={handleChange}
                         type="text"
-                        className="bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm"
+                        className="mt-2 h-12 rounded bg-black/20 px-4 text-sm ring-1 ring-gray-400/50 focus:outline-none focus:ring-gray-500"
                     />
                 </div>
                 <div className="mt-6 flex flex-col">
@@ -65,7 +65,7 @@ export default function Login() {
                         value={formData.password}
                         onChange={handleChange}
                         type="password"
-                        className="bg-black/20 rounded mt-2 h-12 px-4 ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-sm"
+                        className="mt-2 h-12 rounded bg-black/20 px-4 text-sm ring-1 ring-gray-400/50 focus:outline-none focus:ring-gray-500"
                     />
                 </div>
                 <button
@@ -78,7 +78,7 @@ export default function Login() {
                     {loading ? (
                         <>
                             <svg
-                                className="animate-spin -ml-1 mr-3 h-5 w-5 inline-block"
+                                className="mr-3 -ml-1 inline-block h-5 w-5 animate-spin"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -98,7 +98,7 @@ export default function Login() {
                 </button>
                 <div className="mt-4 text-sm text-gray-400">
                     Don't have an account?
-                    <Link to="/sign-up" className="mx-2 text-gray-200 hover:text-gray-300 transition">
+                    <Link to="/sign-up" className="mx-2 text-gray-200 transition hover:text-gray-300">
                         Sign Up
                     </Link>
                 </div>

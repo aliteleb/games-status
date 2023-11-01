@@ -44,7 +44,7 @@ function Navbar() {
 
     return (
         <>
-            <nav className="fixed w-full z-50 grid grid-cols-[1fr_auto_1fr] px-1 md:px-6 text-white bg-app-black/70 items-center backdrop-blur-xl ">
+            <nav className="fixed z-50 grid w-full items-center px-1 text-white backdrop-blur-xl grid-cols-[1fr_auto_1fr] bg-app-black/70 md:px-6">
                 <div className="flex items-center" id="left-nav">
                     <MenuIcon onClick={() => {
                         document.getElementById('sidebar').style.left = '0';
@@ -56,16 +56,16 @@ function Navbar() {
                     <UsersIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition'}/>
                 </div>
 
-                <div className="grid grid-cols-[auto_1fr_auto] sm:grid-cols-[1fr_auto_1fr] items-center justify-center h-[4rem]">
-                    <div className="hidden sm:block text-end">
-                        <NavLink onClick={collapseSidebar} to="/games" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">GAMES</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/groups" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">GROUPS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer hover:text-gray-400 transition">PROTECTIONS</NavLink>
+                <div className="grid items-center justify-center grid-cols-[auto_1fr_auto] h-[4rem] sm:grid-cols-[1fr_auto_1fr]">
+                    <div className="hidden text-end sm:block">
+                        <NavLink onClick={collapseSidebar} to="/games" className="mx-2 hidden cursor-pointer transition hover:text-gray-400 xl:inline-block">GAMES</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/groups" className="mx-2 hidden cursor-pointer transition hover:text-gray-400 lg:inline-block">GROUPS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer transition hover:text-gray-400">PROTECTIONS</NavLink>
                     </div>
                     <div className="mx-3 md:mx-6">
                         <NavLink onClick={collapseSidebar} to="/" className="relative">
-                            <img src="/assets/images/logo.png" className="w-16 h-16 top-5 relative animate-glow" alt="Logo"/>
-                            <div className="cursor-auto w-[10rem] h-[10rem] absolute bg-app-black/70" style={{
+                            <img src="/assets/images/logo.png" className="relative top-5 h-16 w-16 animate-glow" alt="Logo"/>
+                            <div className="absolute cursor-auto w-[10rem] h-[10rem] bg-app-black/70" style={{
                                 top: '-100%',
                                 left: '-75%',
                                 zIndex: '-1',
@@ -74,18 +74,18 @@ function Navbar() {
                         </NavLink>
                     </div>
                     <div className="hidden sm:block">
-                        <NavLink onClick={collapseSidebar} to="/free-games" className="mx-2 cursor-pointer hover:text-gray-400 transition">FREE GAMES</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/points" className="hidden lg:inline-block mx-2 cursor-pointer hover:text-gray-400 transition">POINTS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/market" className="hidden xl:inline-block mx-2 cursor-pointer hover:text-gray-400">MARKET</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/free-games" className="mx-2 cursor-pointer transition hover:text-gray-400">FREE GAMES</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/points" className="mx-2 hidden cursor-pointer transition hover:text-gray-400 lg:inline-block">POINTS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/market" className="mx-2 hidden cursor-pointer hover:text-gray-400 xl:inline-block">MARKET</NavLink>
                     </div>
                 </div>
 
                 <div className="flex items-center justify-end">
                     <NavLink to="/messages">
-                        <InboxIcon className="mx-2 hover:text-gray-400 transition  "/>
+                        <InboxIcon className="mx-2 transition hover:text-gray-400"/>
                     </NavLink>
                     <div onClick={() => document.querySelector('#notifications-bar').style.right = '0'}>
-                        <NotificationIcon className="mx-2 cursor-pointer hover:text-gray-400 transition  "/>
+                        <NotificationIcon className="mx-2 cursor-pointer transition hover:text-gray-400"/>
                     </div>
 
                     {user &&
@@ -97,7 +97,7 @@ function Navbar() {
                     }
                     {!user &&
                         <NavLink to="/login">
-                            <UserIcon className="hover:text-gray-400 transition mx-2"/>
+                            <UserIcon className="mx-2 transition hover:text-gray-400"/>
                         </NavLink>
                     }
                 </div>
@@ -107,11 +107,11 @@ function Navbar() {
                 id="user-dropdown">
                 <div className="px-4 py-3">
                     <Link onClick={() => setShowProfilePopup(false)} to={`/user/${user?.username}`}>
-                        <span className="block text-sm text-center text-white">
+                        <span className="block text-center text-sm text-white">
                             @{user?.username}
                         </span>
-                        <span className="block text-sm mt-1 truncate text-center text-gray-400 hover:text-gray-300 transition group">
-                            <HiOutlineMail className="w-5 h-5 inline mx-1 text-gray-400 group-hover:text-gray-300 transition"/>
+                        <span className="mt-1 block truncate text-center text-sm text-gray-400 transition group hover:text-gray-300">
+                            <HiOutlineMail className="mx-1 inline h-5 w-5 text-gray-400 transition group-hover:text-gray-300"/>
                             {user?.email}
                         </span>
                     </Link>
@@ -119,15 +119,15 @@ function Navbar() {
                 <ul className="py-2" aria-labelledby="user-menu-button">
                     <li>
                         <NavLink onClick={() => setShowProfilePopup(false)} to="/profile"
-                                 className="block py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                 <CgProfile className="w-5 h-5 mx-2 inline mx-1 text-gray-400"/>
+                                 className="block py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                                 <CgProfile className="mx-1 mx-2 inline h-5 w-5 text-gray-400"/>
                                  Profile Settings
                         </NavLink>
                     </li>
                     <li>
                         <NavLink onClick={() => setShowProfilePopup(false)} to="/logout"
-                                 className="block py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                 <GoSignOut className="w-5 h-5 mx-2 inline mx-1 text-gray-400"/>
+                                 className="block py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                                 <GoSignOut className="mx-1 mx-2 inline h-5 w-5 text-gray-400"/>
                                  Signout
                         </NavLink>
                     </li>

@@ -68,28 +68,28 @@ const Protection = () => {
     return (
         <>
 
-            <div className='flex justify-between w-full h-[22rem] overflow-hidden rounded-md relative'>
-                <div className="w-full bg-black/70 h-full absolute z-[-1]"
+            <div className='relative flex w-full justify-between overflow-hidden rounded-md h-[22rem]'>
+                <div className="absolute h-full w-full bg-black/70 z-[-1]"
                      style={{ clipPath: "polygon(66.6666% 0px, 100% 0%, 100% 100%, 33.3333% 100%)",
                 }}
                 />
-                <div className="w-full bg-black/50 h-full absolute  z-[-1]"
+                <div className="absolute h-full w-full bg-black/50 z-[-1]"
                      style={{ clipPath: "polygon(0 0px, 66.6666% 0%, 33.3333% 100%, 0 100%)",
                 }}
                 />
-                <div className='flex justify-between items-center text-center w-full'>
-                    <div className='flex flex-col w-full items-center gap-y-1'>
+                <div className='flex w-full items-center justify-between text-center'>
+                    <div className='flex w-full flex-col items-center gap-y-1'>
                         <div className='text-lg text-[#dddddd99] font-extralight w-full'>PROTECTION NAME</div>
-                        <div className='text-2xl font-bold relative w-full'>{!response ? <Skeleton width={'15%'} height={'25px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/> : response?.data.name}</div>
+                        <div className='relative w-full text-2xl font-bold'>{!response ? <Skeleton width={'15%'} height={'25px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/> : response?.data.name}</div>
                     </div>
-                    <div className='flex flex-col w-full items-center gap-y-1'>
+                    <div className='flex w-full flex-col items-center gap-y-1'>
                         <div className='text-lg text-[#dddddd99] font-extralight text-center w-full'>GAMES</div>
-                        <div className='text-2xl font-bold relative w-full'>{!response ? <Skeleton width={'15%'} height={'25px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/> : response?.data.games_count}</div>
+                        <div className='relative w-full text-2xl font-bold'>{!response ? <Skeleton width={'15%'} height={'25px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/> : response?.data.games_count}</div>
                     </div>
                 </div>
             </div>
 
-            <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
+            <div className="mt-3 grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {games.length > 0 || placeholders}
                 {showGames}
             </div>

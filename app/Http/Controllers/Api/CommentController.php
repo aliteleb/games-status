@@ -69,7 +69,7 @@ class CommentController extends Controller
         ]);
 
         return response()->api(
-            data: self::latest_comments($game_id),
+            data: Comment::latest_comments($game_id),
             message: 'Comment posted successfully',
         );
 
@@ -110,7 +110,7 @@ class CommentController extends Controller
             ]);
         }
 
-        $comments = self::latest_comments($comment->game_id);
+        $comments = Comment::latest_comments($comment->game_id);
 
         return response()->api(
             data: $comments,
@@ -131,39 +131,9 @@ class CommentController extends Controller
         $comment->delete();
 
         return response()->api(
-            data: self::latest_comments($game_id),
+            data: Comment::latest_comments($game_id),
             message: 'Comment deleted',
         );
-    }
-
-    public static function latest_comments($game_id)
-    {
-        $user = auth()->user();
-
-        $comments = Comment::where('game_id', $game_id)
-            ->whereNull('reply_to')
-            ->with(['user', 'replies', 'reactions'])
-            ->latest()->get();
-
-        $comments = Comment::refactComments($comments);
-
-        $comments->map(function ($comment) use ($user) {
-            $comment->voted = null;
-            $comment->reactions->map(function ($reaction) use ($comment, $user) {
-                if ($reaction->user_id == $user->id)
-                    $comment->voted = $reaction->type;
-            });
-
-            if ($comment->user)
-                $comment->username = $comment->user->username;
-            else
-                $comment->username = 'N/A';
-
-            unset($comment->reactions);
-            unset($comment->user);
-        });
-
-        return $comments;
     }
 
     private function deleteReplies($comment)

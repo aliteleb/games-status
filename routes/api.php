@@ -51,6 +51,7 @@ Route::middleware(ApiAuthenticate::class)->group(function () {
     Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
     Route::post('/user/password/update', [UserController::class, 'updatePassword'])->name('user.password.update');
     Route::post('/user/email/update', [UserController::class, 'updateEmail'])->name('user.email.update');
+    Route::post('/user/avatar/update', [UserController::class, 'updateAvatar'])->name('user.avatar.update');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::post('/games/{game_id}/follow', [GameController::class, 'follow'])->name('game.follow');

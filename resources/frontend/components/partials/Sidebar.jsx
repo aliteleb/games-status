@@ -24,23 +24,23 @@ function Sidebar() {
     const {user} = useAuth();
 
     return (
-        <div id={'sidebar'} className='z-[51] flex flex-col w-64 xl:w-72 h-screen pt-6 fixed top-0 -left-72 transition-all '>
-            <div onClick={collapseSidebar} className='cursor-pointer w-full mb-4 px-6'>
+        <div id={'sidebar'} className='fixed top-0 -left-72 flex h-screen w-64 flex-col pt-6 transition-all z-[51] xl:w-72'>
+            <div onClick={collapseSidebar} className='mb-4 w-full cursor-pointer px-6'>
                 <Xmark className={'text-white'}/>
             </div>
-            <nav onClick={collapseSidebar} className="flex flex-col gap-y-3 px-6 text-white h-screen bg-app-black/70">
+            <nav onClick={collapseSidebar} className="flex h-screen flex-col gap-y-3 px-6 text-white bg-app-black/70">
                 <div className="flex items-center gap-x-4">
                     <UserIcon className={'text-red-800'}/>
                     <div>
                         {user &&
-                            <NavLink to="/profile" className="hover:text-gray-400 transition">PROFILE</NavLink>
+                            <NavLink to="/profile" className="transition hover:text-gray-400">PROFILE</NavLink>
                         }
 
                         {!user &&
                             <div>
-                                <NavLink className="hover:text-gray-400 transition" to="/login">LOGIN</NavLink>
+                                <NavLink className="transition hover:text-gray-400" to="/login">LOGIN</NavLink>
                                 <span className="px-1"> | </span>
-                                <NavLink className="hover:text-gray-400 transition" to="/sign-up">SIGN UP</NavLink>
+                                <NavLink className="transition hover:text-gray-400" to="/sign-up">SIGN UP</NavLink>
                             </div>
                         }
                     </div>
@@ -48,43 +48,43 @@ function Sidebar() {
 
                 <NavLink className='flex items-center gap-x-4' to="/">
                     <HomeIcon className={'text-red-800'}/>
-                    <span className='hover:text-gray-400 transition'>HOME</span>
+                    <span className='transition hover:text-gray-400'>HOME</span>
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/games">
-                    <IoGameControllerOutline className='text-red-800 w-8 h-10'/>
-                    <span className='hover:text-gray-400 transition'>GAMES</span>
+                    <IoGameControllerOutline className='h-10 w-8 text-red-800'/>
+                    <span className='transition hover:text-gray-400'>GAMES</span>
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/free-keys">
                     <FreeKeysIcon className={'text-red-800'}/>
-                    <span className='hover:text-gray-400 transition'>FREE KEYS</span>
+                    <span className='transition hover:text-gray-400'>FREE KEYS</span>
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/groups">
                     <GroupsIcon className={'text-red-800'}/>
-                    <span className='hover:text-gray-400 transition'>GROUPS</span>
+                    <span className='transition hover:text-gray-400'>GROUPS</span>
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/markets">
                     <MarketsIcon className={'text-red-800'}/>
-                    <span className='hover:text-gray-400 transition'>MARKETS</span>
+                    <span className='transition hover:text-gray-400'>MARKETS</span>
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/protections">
-                    <BsShieldExclamation className='text-red-800 w-8 h-10'/>
-                    <span className='hover:text-gray-400 transition'>PROTECTIONS</span>
+                    <BsShieldExclamation className='h-10 w-8 text-red-800'/>
+                    <span className='transition hover:text-gray-400'>PROTECTIONS</span>
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/forum">
-                    <SiGotomeeting className='text-red-800 w-8 h-10'/>
-                    <span className='hover:text-gray-400 transition'>FORUM</span>
+                    <SiGotomeeting className='h-10 w-8 text-red-800'/>
+                    <span className='transition hover:text-gray-400'>FORUM</span>
                 </NavLink>
 
                 {user &&
-                    <NavLink className='flex items-center gap-x-4 mt-auto mb-2' to="/logout">
-                        <FiLogOut className='w-[30px] h-10 text-red-800'/>
-                        <span className='hover:text-gray-400 transition'>LOGOUT</span>
+                    <NavLink className='mt-auto mb-2 flex items-center gap-x-4' to="/logout">
+                        <FiLogOut className='h-10 text-red-800 w-[30px]'/>
+                        <span className='transition hover:text-gray-400'>LOGOUT</span>
                     </NavLink>
                 }
             </nav>

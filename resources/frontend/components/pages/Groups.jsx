@@ -61,7 +61,7 @@ export default function Protections() {
     return (
         <>
             <div className="border-b border-gray-500/50 pb-2 text-xl">Groups</div>
-            <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 w-full gap-6">
+            <div className="mt-3 grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {groups.length > 0 || placeholders}
                 {showGroups}
             </div>

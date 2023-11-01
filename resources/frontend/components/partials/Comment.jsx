@@ -122,7 +122,7 @@ function Comment(props) {
 
     return (
         <div className={props.className}>
-            <article className="p-[0.7rem] text-base rounded-lg">
+            <article className="rounded-lg text-base my-1 pb-1">
                 <div className='grid grid-cols-[auto_1fr]'>
                     {comment?.votes !== null &&
                         <div className='flex flex-col items-center'>
@@ -134,7 +134,7 @@ function Comment(props) {
                                 <IoIosArrowUp/>
                             </button>
                             <div
-                                className={`min-w-[2.7rem] font-bold flex justify-center my-2 ${comment?.votes > 0 ? 'text-green-600' : comment?.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{comment?.votes}
+                                className={`min-w-[2.7rem] font-bold flex justify-center ${comment?.votes > 0 ? 'text-green-600' : comment?.votes === 0 ? 'text-gray-300' : 'text-red-700'}`}>{comment?.votes}
                             </div>
                             <button
                                 data-vote="down"
@@ -148,13 +148,13 @@ function Comment(props) {
                         <Skeleton width={'2rem'} height={'6rem'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={10}/>
                     }
                     <div className='w-full'>
-                        <footer className="flex justify-between items-center">
-                            <div className="flex items-center mx-6">
-                                <Link to={`/user/${comment?.username}`} className="inline-flex items-center mr-3 text-sm cursor-pointer text-gray-200 font-semibold">
-                                    <img className="mr-2 w-6 h-6 rounded-full"
+                        <footer className="flex items-center justify-between">
+                            <div className="mx-6 flex items-center">
+                                <Link to={`/user/${comment?.username}`} className="mr-3 inline-flex cursor-pointer items-center text-sm font-semibold text-gray-200">
+                                    <img className="mr-2 h-6 w-6 rounded-full"
                                          src={comment?.user_image ? comment?.user_image : "https://t4.ftcdn.net/jpg/04/43/35/29/240_F_443352949_1eX3IagFInYtf3d3tkXDSQkymM2HfSXq.jpg"}
                                          alt={comment?.username}/>
-                                    {comment?.username && comment.username}
+                                    {comment?.display_name && comment.display_name}
                                     {!(comment?.username) &&
                                         <Skeleton width={'5rem'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
                                     }
@@ -170,7 +170,7 @@ function Comment(props) {
                                 setTimeout(() => {
                                     showDropMenu.current.classList.add("hidden")
                                 }, 100)
-                            }} className="inline-flex items-center p-2 text-md font-medium text-center text-gray-300 hover:text-gray-400 y-400 rounded" type="button">
+                            }} className="inline-flex items-center rounded p-2 text-center font-medium text-gray-300 text-md y-400 hover:text-gray-400" type="button">
                                 <BiDotsHorizontalRounded fontSize="30px"/>
                             </button>
                             {/* Dropdown menu */}
@@ -179,27 +179,27 @@ function Comment(props) {
                                  style={{right: '10px'}}>
                                 <ul className="text-sm text-gray-300 y-200">
                                     <li>
-                                        <button disabled="disabled" className="flex w-full items-center cursor-pointer py-2 transition disabled:cursor-default disabled:opacity-50">
-                                            <GoReport className='text-lg mx-2'/>
-                                            <span className='text-md text-left'>Report</span>
+                                        <button disabled="disabled" className="flex w-full cursor-pointer items-center py-2 transition disabled:cursor-default disabled:opacity-50">
+                                            <GoReport className='mx-2 text-lg'/>
+                                            <span className='text-left text-md'>Report</span>
                                         </button>
                                     </li>
                                     {comment?.user?.username === user?.username &&
-                                        <li><span className="flex items-center cursor-pointer py-2 transition hover:bg-black/30"><CiCircleRemove
-                                            className='text-lg mx-2'/> Remove</span></li>}
+                                        <li><span className="flex cursor-pointer items-center py-2 transition hover:bg-black/30"><CiCircleRemove
+                                            className='mx-2 text-lg'/> Remove</span></li>}
                                 </ul>
                             </div>
                         </footer>
-                        <div>
-                            <p className="mx-6  break-words text-gray-400 w-[25rem] md:w-[35rem] lg:w-[50rem] max-w-[65rem]">
+                        <div className="group">
+                            <p className="mx-6 break-words text-gray-300 w-[25rem] max-w-[65rem] md:w-[35rem] lg:w-[50rem]">
                                 {comment?.mention && <span
-                                    className="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">@{comment.mention}</span>}
+                                    className="mr-2 rounded-full bg-gray-100 text-xs font-medium text-gray-800 px-2.5 py-0.5 dark:bg-gray-700 dark:text-gray-300">@{comment.mention}</span>}
                                 {comment?.body && comment.body}
                                 {!(comment?.body) &&
                                     <Skeleton count={3} width={'100%'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
                                 }
                             </p>
-                            <div className="mx-6 flex flex-col mt-3 space-x-4">
+                            <div className="mx-6 mt-2 flex flex-col space-x-4">
                                 {comment?.body &&
                                     <button onClick={() => {
                                         if (props.setReplyForm) {
@@ -220,7 +220,7 @@ function Comment(props) {
                                         refreshPageSize();
 
                                     }} type="button"
-                                            className="flex items-center text-sm text-gray-500 hover:text-gray-400 hover:underline y-400 font-medium">
+                                            className="flex items-center text-xs text-gray-500 hover:text-gray-400 opacity-0 group-hover:opacity-100">
                                         <svg className="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                                   d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
@@ -241,12 +241,12 @@ function Comment(props) {
             </article>
             {replies.length > 0 && replies.map((reply, index) => {
                 return <Comment parentComment={comment} setReplyTo={setReplyTo} setMention={setMention} setReplyForm={setReplyForm} info={reply} key={index}
-                                setComments={props.setComments} className="border-l-[3rem] border-l-black/10 animate-slide-down-slow"/>
+                                setComments={props.setComments} className="border-l-black/10 border-l-[3rem] animate-slide-down-slow"/>
             })}
 
             {replyForm &&
                 <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap animate-slide-down">
-                    <div className='flex items-center w-full relative'>
+                    <div className='relative flex w-full items-center'>
                         <input
                             onChange={handleChange}
                             name='body'
@@ -258,9 +258,9 @@ function Comment(props) {
                             className={`bg-transparent w-full text-sm md:text-xs ${mention ? "h-[4.5rem]" : "h-10"} transition ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 pl-4 pr-12 ${mention && "pt-6"} mb-4 mt-2 rounded-md`}
                         />
                         {mention && <span
-                            className="bg-gray-100 absolute left-2 top-[1rem] text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">@{mention}</span>}
+                            className="absolute left-2 mr-2 rounded-full bg-gray-100 text-xs font-medium text-gray-800 top-[1rem] px-2.5 py-0.5 dark:bg-gray-700 dark:text-gray-300">@{mention}</span>}
                         <input type="hidden" name='reply_to' value={comment.id}/>
-                        <RiSendPlane2Fill onClick={handleReplySubmit} className='mb-4 mt-2 relative right-[2rem] text-gray-400 hover:text-gray-300 transition cursor-pointer'/>
+                        <RiSendPlane2Fill onClick={handleReplySubmit} className='relative mt-2 mb-4 cursor-pointer text-gray-400 transition right-[2rem] hover:text-gray-300'/>
                     </div>
 
                 </form>

@@ -1,7 +1,7 @@
 
 
 export const inputValidation = (input, errors) => {
-    return errors ? (errors[input] !== undefined && <div className='text-orange-400 text-sm mt-1'>{errors[input][0]}</div>) : <></>
+    return errors ? (errors[input] !== undefined && <div className='mt-1 text-sm text-orange-400'>{errors[input][0]}</div>) : <></>
 }
 
 export const countriesOptions = [

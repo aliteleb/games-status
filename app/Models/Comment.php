@@ -10,10 +10,10 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'game_id', 'body', 'reply_to', 'mention'];
-    protected $appends = ['time', 'username', 'user_image', 'votes', 'voted'];
+    protected $appends = ['time', 'username', 'display_name', 'user_image', 'votes', 'voted'];
     protected $hidden = ['created_at', 'updated_at'];
 
-    protected $with = ['user:id,username', 'reactions', 'replies'];
+    protected $with = ['user:id,username,display_name', 'reactions', 'replies'];
     protected $withCount = ['reactions'];
 
     public function user()
@@ -59,6 +59,16 @@ class Comment extends Model
             return 'N/A';
 
     }
+    public function getDisplayNameAttribute()
+    {
+        if($this->user && $this->user->display_name)
+            return $this->user->display_name;
+
+        if($this->user && $this->user->username)
+            return '@'.$this->user->username;
+
+        return null;
+    }
 
     public function getVotesAttribute(){
 
@@ -90,6 +100,36 @@ class Comment extends Model
     {
         return asset('assets/images/users/50/'.$this->user_id.'.webp');
 
+    }
+
+    public static function latest_comments($game_id)
+    {
+        $user = auth()->user();
+
+        $comments = Comment::where('game_id', $game_id)
+            ->whereNull('reply_to')
+            ->with(['user', 'replies', 'reactions'])
+            ->latest()->get();
+
+        $comments = Comment::refactComments($comments);
+
+        $comments->map(function ($comment) use ($user) {
+            $comment->voted = null;
+            $comment->reactions->map(function ($reaction) use ($comment, $user) {
+                if ($reaction->user_id == $user->id)
+                    $comment->voted = $reaction->type;
+            });
+
+            if ($comment->user)
+                $comment->username = $comment->user->display_name ?: $comment->user->username;
+            else
+                $comment->username = 'N/A';
+
+            unset($comment->reactions);
+            unset($comment->user);
+        });
+
+        return $comments;
     }
 
     public static function refactComments($comments){
