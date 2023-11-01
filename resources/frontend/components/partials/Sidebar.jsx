@@ -6,12 +6,13 @@ import HomeIcon from '../icons/HomeIcon'
 import {IoGameControllerOutline} from 'react-icons/io5'
 import FreeKeysIcon from '../icons/FreeKeysIcon'
 import GroupsIcon from '../icons/GroupsIcon'
-import MarketsIcon from '../icons/MarketsIcon'
 import {BsShieldExclamation} from 'react-icons/bs'
 import {SiGotomeeting} from 'react-icons/si'
 import {FiLogOut} from 'react-icons/fi'
 import { useAuth } from '../api/AuthContext'
-import {refreshPageSize} from "../core/BlurredBackground.jsx";
+import {BsGift} from 'react-icons/bs'
+import {HiOutlineShoppingBag} from 'react-icons/hi2'
+import {GiCreditsCurrency} from 'react-icons/gi'
 
 
 export function collapseSidebar() {
@@ -56,23 +57,9 @@ function Sidebar() {
                     <span className='transition hover:text-gray-400'>GAMES</span>
                 </NavLink>
 
-                <NavLink className='flex items-center gap-x-4' to="/free-keys">
-                    <FreeKeysIcon className={'text-red-800'}/>
-                    <span className='transition hover:text-gray-400'>FREE KEYS</span>
-                </NavLink>
-                <div className='flex items-center gap-x-4' to="/free-keys">
-                    <FreeKeysIcon className={'text-red-800'}/>
-                    <span className='transition hover:text-gray-400'>FREE KEYS</span>
-                </div>
-
                 <NavLink className='flex items-center gap-x-4' to="/groups">
                     <GroupsIcon className={'text-red-800'}/>
                     <span className='transition hover:text-gray-400'>GROUPS</span>
-                </NavLink>
-
-                <NavLink className='flex items-center gap-x-4' to="/markets">
-                    <MarketsIcon className={'text-red-800'}/>
-                    <span className='transition hover:text-gray-400'>MARKETS</span>
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/protections">
@@ -80,10 +67,20 @@ function Sidebar() {
                     <span className='transition hover:text-gray-400'>PROTECTIONS</span>
                 </NavLink>
 
-                <NavLink className='flex items-center gap-x-4' to="/forum">
-                    <SiGotomeeting className='h-10 w-8 text-red-800'/>
-                    <span className='transition hover:text-gray-400'>FORUM</span>
-                </NavLink>
+                <div className='flex items-center gap-x-4 cursor-not-allowed' to="/markets">
+                    <HiOutlineShoppingBag className='h-10 w-8 text-red-800'/>
+                    <span className='transition hover:text-gray-400 font-bold'>MARKETS</span>
+                </div>
+
+                <div className='flex items-center gap-x-4 cursor-not-allowed' to="/markets">
+                    <BsGift className="h-10 w-8 text-red-800"/>
+                    <span className='transition hover:text-gray-400 font-bold'>FREE GAMES</span>
+                </div>
+
+                <div className='flex items-center gap-x-4 cursor-not-allowed' to="/markets">
+                    <GiCreditsCurrency className='h-10 w-8 text-red-800'/>
+                    <span className='transition hover:text-gray-400 font-bold'>POINTS</span>
+                </div>
 
                 {user &&
                     <NavLink className='mt-auto mb-2 flex items-center gap-x-4' to="/logout">
