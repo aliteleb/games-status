@@ -40,7 +40,7 @@ function Sidebar() {
                             <div>
                                 <NavLink className="transition hover:text-gray-400" to="/login">LOGIN</NavLink>
                                 <span className="px-1"> | </span>
-                                <NavLink className="transition hover:text-gray-400" to="/sign-up">SIGN UP</NavLink>
+                                <NavLink className="transition hover:text-gray-400" to="/signup">SIGN UP</NavLink>
                             </div>
                         }
                     </div>

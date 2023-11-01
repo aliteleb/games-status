@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import NFOS from "./pages/NFOS.jsx";
 import Navbar from "./partials/Navbar.jsx";
@@ -28,10 +28,12 @@ import Logout from "./pages/Logout";
 import ScrollToTop from "./layouts/ScrollToTop";
 import BlurredBackground from "./core/BlurredBackground.jsx";
 import Profile from "./pages/Profile";
-import { AuthMiddleware } from "../middlewares/AuthMiddleware.js";
+import { useAuth } from "./api/AuthContext.jsx";
 
 
 export default function App() {
+
+    const { user } = useAuth();
 
     window.ondragstart = () => false;
 
@@ -65,7 +67,7 @@ export default function App() {
             <div className="container px-2 py-28 text-gray-200 m-[auto] xl:px-0">
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
                     <Route path="/nfos" element={<NFOS />} />
                     <Route path="/groups" element={<Groups />} />
                     <Route path="/protections" element={<Protections />} />
@@ -74,7 +76,7 @@ export default function App() {
                     <Route path="/get-karma" element={<GetKarma />} />
                     <Route path="/forum" element={<Forum />} />
                     <Route path="/messages" element={<Messages />} />
-                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/signup" element={user ? <Navigate to="/" /> : <SignUp />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/terms-conditions" element={<Terms />} />
@@ -87,7 +89,7 @@ export default function App() {
                     <Route path="/logout" element={<Logout />} />
 
                     {/* Auth*/}
-                    <Route path="/profile" element={<AuthMiddleware element={<Profile />} />} />
+                    <Route path="/profile" element={!user ? <Navigate to="/login" /> : <Profile />} />
 
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>
