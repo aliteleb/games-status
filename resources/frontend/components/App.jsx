@@ -30,7 +30,9 @@ import BlurredBackground from "./core/BlurredBackground.jsx";
 import Profile from "./pages/Profile";
 import { AuthMiddleware } from "../middlewares/AuthMiddleware.js";
 
+
 export default function App() {
+
     window.ondragstart = () => false;
 
     React.useEffect(() => {
@@ -54,6 +56,7 @@ export default function App() {
         };
     }, []);
 
+
     return (
         <BrowserRouter>
             <BlurredBackground />
@@ -62,6 +65,7 @@ export default function App() {
             <div className="container px-2 py-28 text-gray-200 m-[auto] xl:px-0">
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/nfos" element={<NFOS />} />
                     <Route path="/groups" element={<Groups />} />
                     <Route path="/protections" element={<Protections />} />
@@ -70,7 +74,6 @@ export default function App() {
                     <Route path="/get-karma" element={<GetKarma />} />
                     <Route path="/forum" element={<Forum />} />
                     <Route path="/messages" element={<Messages />} />
-                    <Route path="/login" element={<Login />} />
                     <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />

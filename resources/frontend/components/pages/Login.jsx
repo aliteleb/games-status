@@ -7,6 +7,18 @@ import { toast } from 'react-hot-toast';
 export default function Login() {
     const { updateUser } = useAuth();
     const navigate = useNavigate();
+    const {user} = useAuth()
+
+    const checkUser = () => {
+        user ? navigate("/") : null
+    }
+
+    checkUser()
+
+    let loginRef = React.useRef(null)
+    React.useEffect( () => {
+        !user ? loginRef.current.classList.remove('hidden') : null
+    }, [])
 
     let [loading, setLoading] = React.useState(false)
 
@@ -45,7 +57,7 @@ export default function Login() {
     };
 
     return (
-        <div className="mx-auto w-full max-w-screen-xl overflow-hidden rounded-md bg-opacity-60 p-6 text-gray-300 bg-app-black">
+        <div ref={loginRef} className={`mx-auto w-full max-w-screen-xl overflow-hidden rounded-md bg-opacity-60 p-6 text-gray-300 bg-app-black hidden ${user ? "hidden" : "block"}`}>
             <form onSubmit={handleSubmit}>
                 <header className="border-b-2 text-xl font-bold pb-[10px]">Login</header>
                 <div className="mt-6 flex flex-col">

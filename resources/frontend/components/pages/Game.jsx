@@ -381,7 +381,7 @@ function Game() {
                                         key={comment.id}
                                         info={comment}
                                         replies={comment.replies}
-                                        className="border-b border-gray-500 animate-slide-down-slow"
+                                        className="border-b border-[#494a4f] animate-slide-down-slow"
                                     />
                                 );
                             })}
