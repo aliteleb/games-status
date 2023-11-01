@@ -60,6 +60,10 @@ function Sidebar() {
                     <FreeKeysIcon className={'text-red-800'}/>
                     <span className='transition hover:text-gray-400'>FREE KEYS</span>
                 </NavLink>
+                <div className='flex items-center gap-x-4' to="/free-keys">
+                    <FreeKeysIcon className={'text-red-800'}/>
+                    <span className='transition hover:text-gray-400'>FREE KEYS</span>
+                </div>
 
                 <NavLink className='flex items-center gap-x-4' to="/groups">
                     <GroupsIcon className={'text-red-800'}/>

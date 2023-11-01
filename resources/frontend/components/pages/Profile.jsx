@@ -6,16 +6,20 @@ import { toast } from "react-hot-toast";
 import { countriesOptions, inputValidation } from "../helpers/General";
 import { RiLoader3Line } from "react-icons/ri";
 import { BiSolidCloudUpload } from "react-icons/bi";
+import {CgSpinnerTwoAlt} from "react-icons/cg"
 
 function Profile() {
     const { updateUser, user } = useAuth();
 
-    const [loading, setLoading] = React.useState(false);
+    const [avatarLoading, setAvatarLoading] = React.useState(false);
+    const [detailsLoading, setDetailsLoading] = React.useState(false);
+    const [emailLoading, setEmailLoading] = React.useState(false);
+    const [securityLoading, setSecurityLoading] = React.useState(false);
+
     const [avatarFormErrors, setAvatarFormErrors] = React.useState(null);
     const [detailsFormErrors, setDetailsFormErrors] = React.useState(null);
     const [securityFormErrors, setSecurityFormErrors] = React.useState(null);
     const [emailFormErrors, setEmailFormErrors] = React.useState(null);
-
     let [avatarFormData, setAvatarFormData] = React.useState({
         avatar: ""
     });
@@ -74,6 +78,8 @@ function Profile() {
     };
 
     let handleDetailsChange = (e) => {
+        e.preventDefault()
+
         setDetailsFormData((prev) => ({
             ...prev,
             [e.target.name]: e.target.value
@@ -122,6 +128,8 @@ function Profile() {
     };
     let handleAvatarSubmit = (e) => {
         e.preventDefault();
+        setAvatarLoading(true)
+
         ApiClient().post("/user/avatar/update", {
             avatar: avatarFormData.avatar
         }, {
@@ -135,12 +143,17 @@ function Profile() {
             res.data.data.small_avatar += "?" + new Date().getTime();
             updateUser(res.data.data);
             toast.success(res.data.message);
+            setAvatarLoading(false)
         })
-            .catch((err) => setAvatarFormErrors(err.response.data.data));
+            .catch((err) => {
+                setAvatarFormErrors(err.response.data.data)
+                setAvatarLoading(false)
+            });
     };
 
     let handleDetailsSubmit = (e) => {
         e.preventDefault();
+        setDetailsLoading(true)
 
         ApiClient()
             .put("/user/update", {
@@ -157,12 +170,19 @@ function Profile() {
                     username: "",
                     country_code: ""
                 });
+
+                setDetailsLoading(false)
             })
-            .catch((err) => setDetailsFormErrors(err.response.data.data));
+            .catch((err) => {
+                setDetailsFormErrors(err.response.data.data)
+                setDetailsLoading(false)
+            });
     };
 
     const handleEmailSubmit = (e) => {
         e.preventDefault();
+        setEmailLoading(true)
+
         ApiClient()
             .post("/user/email/update", emailFormData)
             .then((res) => {
@@ -170,12 +190,18 @@ function Profile() {
                 setEmailFormErrors(null);
                 toast.success(res.data.message);
                 setEmailFormData({ email: "" });
+                setEmailLoading(false)
             })
-            .catch((err) => setEmailFormErrors(err.response.data.data));
+            .catch((err) => {
+                setEmailFormErrors(err.response.data.data)
+                setEmailLoading(false)
+            });
     };
 
     const handleSecuritySubmit = (e) => {
         e.preventDefault();
+        setSecurityLoading(true)
+
         ApiClient()
             .post("/user/password/update", passwordFormData)
             .then((res) => {
@@ -186,8 +212,12 @@ function Profile() {
                     new_password: "",
                     new_password_confirmation: ""
                 });
+                setSecurityLoading(false)
             })
-            .catch((err) => setSecurityFormErrors(err.response.data.data));
+            .catch((err) => {
+                setSecurityFormErrors(err.response.data.data)
+                setSecurityLoading(false)
+            });
     };
 
     return (
@@ -226,7 +256,7 @@ function Profile() {
                                 <div className="text-sm py-3 text-gray-400">100px <span className="text-gray-500 font-bold">x</span> 100px</div>
                                 <label
                                     htmlFor="avatar"
-                                    className={` cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2`}>
+                                    className={` cursor-pointer w-max mt-6 text-gray-100 bg-red-700 hover:bg-red-600 transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2`}>
                                     <input
                                         onChange={handleAvatar}
                                         id="avatar"
@@ -243,11 +273,14 @@ function Profile() {
                             </div>
                             <button
                                 onClick={handleAvatarSubmit}
-                                className={`self-start cursor-pointer w-max text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${
-                                    loading ? "disabled-button hover:bg-[#282c39]" : ""
+                                className={`self-start app-btn ${
+                                    avatarLoading ? "disabled-button hover:bg-[#282c39]" : ""
                                 }`}
-                                disabled={loading}>
-                                {loading ? (<> <RiLoader3Line /> Saving... </>) : "Save Changes"}
+                                disabled={avatarLoading}>
+                                {avatarLoading ? (
+                                <div className="flex items-center gap-x-1">
+                                    <CgSpinnerTwoAlt className="animate-spin w-6 h-6"/> Saving... 
+                                </div>) : "Save Changes"}
                             </button>
                         </div>
 
@@ -315,40 +348,20 @@ function Profile() {
                         </div>
 
                         <button
-                            className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${
-                                loading
+                            className={`app-btn ${
+                                detailsLoading
                                     ? "disabled-button hover:bg-[#282c39]"
                                     : ""
                             }`}
-                            disabled={loading}
+                            disabled={detailsLoading}
                             onClick={handleDetailsSubmit}
                         >
-                            {loading ? (
-                                <>
-                                    <svg
-                                        className="mr-3 -ml-1 inline-block h-5 w-5 animate-spin"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <circle
-                                            className="opacity-25"
-                                            cx="12"
-                                            cy="12"
-                                            r="10"
-                                            stroke="currentColor"
-                                            strokeWidth="4"
-                                        ></circle>
-                                        <path
-                                            className="opacity-75"
-                                            fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                        ></path>
-                                    </svg>
-                                    Updating...
-                                </>
+                            {detailsLoading ? (
+                                <div className="flex items-center gap-x-1">
+                                    <CgSpinnerTwoAlt className="animate-spin w-6 h-6"/>Saving...
+                                </div>
                             ) : (
-                                <>Update</>
+                                <>Save Changes</>
                             )}
                         </button>
                     </form>
@@ -370,41 +383,17 @@ function Profile() {
                             {inputValidation("email", emailFormErrors)}
                         </div>
                         <button
-                            // onClick={handleSubmit}
-                            className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${
-                                loading
-                                    ? "disabled-button hover:bg-[#282c39]"
-                                    : ""
-                            }`}
-                            disabled={loading}
+                            className={`app-btn`}
+                            disabled={emailLoading}
                             onClick={handleEmailSubmit}
                         >
-                            {loading ? (
-                                <>
-                                    <svg
-                                        className="mr-3 -ml-1 inline-block h-5 w-5 animate-spin"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <circle
-                                            className="opacity-25"
-                                            cx="12"
-                                            cy="12"
-                                            r="10"
-                                            stroke="currentColor"
-                                            strokeWidth="4"
-                                        ></circle>
-                                        <path
-                                            className="opacity-75"
-                                            fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                        ></path>
-                                    </svg>
-                                    Updating...
-                                </>
+                            {emailLoading ? (
+                                <div className="flex items-center gap-x-1">
+                                    <CgSpinnerTwoAlt className="animate-spin w-6 h-6"/>
+                                    Saving...
+                                </div>
                             ) : (
-                                <>Update</>
+                                <>Save Changes</>
                             )}
                         </button>
                     </form>
@@ -458,40 +447,21 @@ function Profile() {
                             )}
                         </div>
                         <button
-                            className={`cursor-pointer w-max mt-6 text-gray-200 bg-btn hover:bg-btn-hover transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ${
-                                loading
+                            className={`app-btn ${
+                                securityLoading
                                     ? "disabled-button hover:bg-[#282c39]"
                                     : ""
                             }`}
-                            disabled={loading}
+                            disabled={securityLoading}
                             onClick={handleSecuritySubmit}
                         >
-                            {loading ? (
-                                <>
-                                    <svg
-                                        className="mr-3 -ml-1 inline-block h-5 w-5 animate-spin"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <circle
-                                            className="opacity-25"
-                                            cx="12"
-                                            cy="12"
-                                            r="10"
-                                            stroke="currentColor"
-                                            strokeWidth="4"
-                                        ></circle>
-                                        <path
-                                            className="opacity-75"
-                                            fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                        ></path>
-                                    </svg>
-                                    Updating...
-                                </>
+                            {securityLoading ? (
+                                <div className="flex items-center gap-x-1">
+                                    <CgSpinnerTwoAlt className="animate-spin w-6 h-6"/>
+                                    Saving...
+                                </div>
                             ) : (
-                                <>Update</>
+                                <>Save Changes</>
                             )}
                         </button>
                     </form>

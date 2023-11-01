@@ -36,13 +36,13 @@ function SearchGames() {
     ]
 
 
-    // Define your styles as a string
-    const styles = `
-    .react-select-container .react-select__input-container,
-    .react-select-container .react-select__placeholder,
-    .react-select-container .react-select__single-value {
-        padding: 8px 0;
-    }`;
+    // // Define your styles as a string
+    // const styles = `
+    // .react-select-container .react-select__input-container,
+    // .react-select-container .react-select__placeholder,
+    // .react-select-container .react-select__single-value {
+    //     padding: 8px 0;
+    // }`;
 
     const loadGames = (pageUrl) => {
         if (pageUrl) {
@@ -235,6 +235,13 @@ function SearchGames() {
         );
     }
 
+    const styles = `
+    .react-select-container .react-select__control{
+        background-color: #00000033;
+        border: 1px solid #61656c;
+    }
+    `;
+
 
     return (
 
@@ -248,7 +255,7 @@ function SearchGames() {
                         type="text"
                         placeholder='Search...'
                         autoComplete="one-time-code"
-                        className='h-12 w-full rounded-sm px-3 text-lg uppercase bg-body focus:outline-none'
+                        className='mt-2 h-12 rounded w-full bg-black/20 px-4 text-sm ring-1 ring-gray-400/50 focus:outline-none focus:ring-gray-500'
                         name='search_text'
                         value={formData.search_text}
                         onChange={handleSearchChange}

@@ -74,9 +74,12 @@ function Navbar() {
                         </NavLink>
                     </div>
                     <div className="hidden sm:block">
-                        <NavLink onClick={collapseSidebar} to="/free-games" className="mx-2 cursor-pointer transition hover:text-gray-400">FREE GAMES</NavLink>
+                        {/* <NavLink onClick={collapseSidebar} to="/free-games" className="mx-2 cursor-pointer transition hover:text-gray-400">FREE GAMES</NavLink>
                         <NavLink onClick={collapseSidebar} to="/points" className="mx-2 hidden cursor-pointer transition hover:text-gray-400 lg:inline-block">POINTS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/market" className="mx-2 hidden cursor-pointer hover:text-gray-400 xl:inline-block">MARKET</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/market" className="mx-2 hidden cursor-pointer hover:text-gray-400 xl:inline-block">MARKET</NavLink> */}
+                        <span onClick={collapseSidebar} className="mx-2 cursor-pointer transition hover:text-gray-400">FREE GAMES</span>
+                        <span onClick={collapseSidebar} className="mx-2 hidden cursor-pointer transition hover:text-gray-400 lg:inline-block">POINTS</span>
+                        <span onClick={collapseSidebar} className="mx-2 hidden cursor-pointer hover:text-gray-400 xl:inline-block">MARKET</span>
                     </div>
                 </div>
 
