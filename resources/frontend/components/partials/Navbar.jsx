@@ -19,6 +19,7 @@ import {GoSignOut} from 'react-icons/go'
 function Navbar() {
     const {user} = useAuth();
     const [showProfilePopup, setShowProfilePopup] = React.useState(false);
+    const [showNotificationPopup, setShowNotificationPopup] = React.useState(false);
 
     React.useEffect(() => {
         // Function to handle clicks on the document
@@ -84,9 +85,19 @@ function Navbar() {
                     <NavLink to="/messages">
                         <InboxIcon className="mx-2 transition hover:text-gray-400"/>
                     </NavLink>
-                    <div onClick={() => document.querySelector('#notifications-bar').style.right = '0'}>
-                        <NotificationIcon className="mx-2 cursor-pointer transition hover:text-gray-400"/>
-                    </div>
+
+                    {user &&
+                        <NotificationIcon onClick={() => {
+                            setShowNotificationPopup(!showNotificationPopup)
+                        }} id="user-dropdown"
+                             className={`mx-2 hover:text-gray-200 transition w-8 h-8 rounded-full cursor-pointer ${showNotificationPopup ? 'text-gray-200' : 'text-gray-300'}`}
+                             src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
+                    }
+                    {!user &&
+                        <NavLink to="/login">
+                            <NotificationIcon className="mx-2 transition hover:text-gray-400"/>
+                        </NavLink>
+                    }
 
                     {user &&
                         <img onClick={() => {
@@ -102,8 +113,7 @@ function Navbar() {
                     }
                 </div>
             </nav>
-            <div
-                className={`${!showProfilePopup ? 'hidden' : 'animate-slide-down'} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
+            <div className={`${!showProfilePopup ? 'hidden' : 'animate-slide-down'} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
                 id="user-dropdown">
                 <div className="px-4 py-3 hover:bg-black/20">
                     <Link onClick={() => setShowProfilePopup(false)} to={`/user/${user?.username}`}>
@@ -120,18 +130,24 @@ function Navbar() {
                     <li>
                         <NavLink onClick={() => setShowProfilePopup(false)} to="/profile"
                                  className="block py-2 text-left text-sm text-gray-400 hover:bg-black/20">
-                                 <CgProfile className="mx-1 mx-2 inline h-5 w-5 text-gray-400"/>
+                                 <CgProfile className="mx-2 inline h-5 w-5 text-gray-400"/>
                                  Profile Settings
                         </NavLink>
                     </li>
                     <li>
                         <NavLink onClick={() => setShowProfilePopup(false)} to="/logout"
                                  className="block py-2 text-sm text-gray-400 hover:bg-black/20">
-                                 <GoSignOut className="mx-1 mx-2 inline h-5 w-5 text-gray-400"/>
-                                 Signout
+                                 <GoSignOut className="mx-2 inline h-5 w-5 text-gray-400"/>
+                                 Sign out
                         </NavLink>
                     </li>
                 </ul>
+            </div>
+            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
+                 id="notification-dropdown">
+                <div>Notification 1</div>
+                <div>Notification 2</div>
+                <div>Notification 3</div>
             </div>
             <Sidebar/>
             <NotificationsBar/>
