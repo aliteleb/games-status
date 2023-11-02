@@ -63,6 +63,7 @@ export default function Protections() {
     refreshPageSize()
     return (
         <>
+            <header className="border-b-[1px] border-[#494a4f] pb-2 text-xl font-bold">Protections</header>
             <div className="mt-3 grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {protections.length > 0 || placeholders}
                 {showProtections}

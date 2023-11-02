@@ -76,7 +76,7 @@ const Group = () => {
                 />
                 <div className='flex w-full items-center justify-between text-center'>
                     <div className='flex w-full flex-col items-center gap-y-1'>
-                        <div className='text-lg text-[#dddddd99] font-extralight w-full'>GROUP NAME</div>
+                        <div className='text-lg text-[#dddddd99] font-extralight w-full'>GROUP</div>
                         <div className='relative w-full text-2xl font-bold'>{!response ? <Skeleton width={'15%'} height={'25px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/> : response?.data.name}</div>
                     </div>
                     <div className='flex w-full flex-col items-center gap-y-1'>

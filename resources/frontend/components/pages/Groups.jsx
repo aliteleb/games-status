@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ApiClient from '../../services/ApiClient';
 import GroupCard from '../layouts/GroupCard';
-import BlurredBackground, {refreshPageSize} from "../core/BlurredBackground.jsx";
+import {refreshPageSize} from "../core/BlurredBackground.jsx";
 
 
 export default function Protections() {
@@ -60,7 +60,7 @@ export default function Protections() {
     refreshPageSize()
     return (
         <>
-            <div className="border-b border-gray-500/50 pb-2 text-xl">Groups</div>
+            <header className="border-b-[1px] border-[#494a4f] pb-2 text-xl font-bold">Groups</header>
             <div className="mt-3 grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {groups.length > 0 || placeholders}
                 {showGroups}

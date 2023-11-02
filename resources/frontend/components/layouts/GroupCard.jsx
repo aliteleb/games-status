@@ -1,6 +1,6 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
-import GroupsIcon from '../icons/GroupsIcon';
+import {GiPirateFlag} from 'react-icons/gi'
 import { Link } from 'react-router-dom';
 
 const GroupCard = (props) => {
@@ -16,7 +16,7 @@ const GroupCard = (props) => {
             <div className={`flex flex-col`} >
                 {group &&
                 <Link to={`/group/${group?.slug}`}>
-                    <GroupsIcon className='absolute top-12 h-20 w-52 text-red-800 opacity-20 right-[-3rem]'/>
+                    <GiPirateFlag className='absolute top-16 h-20 w-52 text-red-800 opacity-20 right-[-3rem]'/>
                     <div className='bg-red-900 py-3 text-center opacity-90 group-hover:bg-red-700'>
                         <span className={`${is_animated}`}>{group.name}</span>
                     </div>

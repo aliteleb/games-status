@@ -5,7 +5,7 @@ import Xmark from '../icons/Xmark'
 import HomeIcon from '../icons/HomeIcon'
 import {IoGameControllerOutline} from 'react-icons/io5'
 import FreeKeysIcon from '../icons/FreeKeysIcon'
-import GroupsIcon from '../icons/GroupsIcon'
+import {GiPirateFlag} from 'react-icons/gi'
 import {BsShieldExclamation} from 'react-icons/bs'
 import {SiGotomeeting} from 'react-icons/si'
 import {FiLogOut} from 'react-icons/fi'
@@ -58,7 +58,7 @@ function Sidebar() {
                 </NavLink>
 
                 <NavLink className='flex items-center gap-x-4' to="/groups">
-                    <GroupsIcon className={'text-red-800'}/>
+                    <GiPirateFlag className='h-10 w-8 text-red-800'/>
                     <span className='transition hover:text-gray-400'>GROUPS</span>
                 </NavLink>
 
