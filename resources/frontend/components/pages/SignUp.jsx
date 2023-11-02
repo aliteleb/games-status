@@ -125,13 +125,13 @@ export default function SignUp() {
         <>
             {response === undefined && <div className="mx-2 my-6 text-center text-xl text-gray-200"> Create new account</div>}
 
-            <div className={`p-6 bg-app-black/50 rounded-md text-gray-300 overflow-hidden`}>
+            <header className="border-b-[1px] border-[#494a4f] pb-2 text-xl font-bold">Sign Up</header>
+            <div className={`p-6 mt-4 bg-app-black/50 rounded-md text-gray-300 overflow-hidden`}>
                 <form onSubmit={handleSubmit} encType="multipart/form-data">
                     <div className={(response && response.data.status === "success") ? "hidden" : ""}>
 
                         <style dangerouslySetInnerHTML={{ __html: styles }} />
 
-                        <header className="border-b-2 text-xl font-bold pb-[10px]">Sign Up</header>
                         <div className="relative mt-6 flex flex-col">
                             <label htmlFor="username">Username</label>
                             <input

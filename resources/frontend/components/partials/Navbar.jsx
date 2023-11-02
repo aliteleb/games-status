@@ -59,7 +59,7 @@ function Navbar() {
                     <Link to="/games">
                         <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition'}/>
                     </Link>
-                    <UsersIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition'}/>
+
                 </div>
 
                 <div className="grid items-center justify-center grid-cols-[auto_1fr_auto] h-[4rem] sm:grid-cols-[1fr_auto_1fr]">
@@ -87,9 +87,6 @@ function Navbar() {
                 </div>
 
                 <div className="flex items-center justify-end">
-                    <NavLink to="/messages">
-                        <InboxIcon className="mx-2 transition hover:text-gray-400"/>
-                    </NavLink>
 
                     {user &&
                         <NotificationIcon onClick={() => {
@@ -99,9 +96,9 @@ function Navbar() {
                              src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
                     }
                     {!user &&
-                        <NavLink to="/login">
+                        <Link to="/login">
                             <NotificationIcon className="mx-2 transition hover:text-gray-400"/>
-                        </NavLink>
+                        </Link>
                     }
 
                     {user &&
@@ -112,15 +109,15 @@ function Navbar() {
                              src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
                     }
                     {!user &&
-                        <NavLink to="/login">
+                        <Link to="/login">
                             <UserIcon className="mx-2 transition hover:text-gray-400"/>
-                        </NavLink>
+                        </Link>
                     }
                 </div>
             </nav>
             <div className={`${!showProfilePopup ? 'hidden' : 'animate-slide-down'} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
                 id="user-dropdown">
-                <div className="px-4 py-3 hover:bg-black/20">
+                <div className="px-4 py-3 hover:bg-neutral-700/30 rounded-t-lg">
                     <Link onClick={() => setShowProfilePopup(false)} to={`/user/${user?.username}`}>
                         <span className="block text-center text-sm text-gray-400">
                             @{user?.username}
@@ -134,14 +131,14 @@ function Navbar() {
                 <ul className="" aria-labelledby="user-menu-button">
                     <li>
                         <NavLink onClick={() => setShowProfilePopup(false)} to="/profile"
-                                 className="block py-2 text-left text-sm text-gray-400 hover:bg-black/20">
+                                 className="block py-2 text-left text-sm text-gray-400 hover:bg-neutral-700/30">
                                  <CgProfile className="mx-2 inline h-5 w-5 text-gray-400"/>
                                  Profile Settings
                         </NavLink>
                     </li>
                     <li>
                         <NavLink onClick={() => setShowProfilePopup(false)} to="/logout"
-                                 className="block py-2 text-sm text-gray-400 hover:bg-black/20">
+                                 className="block py-2 text-sm text-gray-400 hover:bg-neutral-700/30 rounded-b-lg">
                                  <GoSignOut className="mx-2 inline h-5 w-5 text-gray-400"/>
                                  Sign out
                         </NavLink>
