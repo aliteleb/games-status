@@ -24,14 +24,20 @@ function Navbar() {
     React.useEffect(() => {
         // Function to handle clicks on the document
         const handleClickOutside = (event) => {
-            // Check if the click target is not within the user-dropdown and not the avatar button
             if (
                 showProfilePopup &&
                 !document.getElementById("user-dropdown").contains(event.target) &&
                 !document.getElementsByClassName("avatar-popup")[0].contains(event.target)
-            ) {
+            )
                 setShowProfilePopup(false);
-            }
+
+            if (
+                showProfilePopup &&
+                !document.getElementById("notification-dropdown").contains(event.target) &&
+                !document.getElementsByClassName("notification-popup")[0].contains(event.target)
+            )
+                setShowNotificationPopup(false);
+
         };
 
         // Add the event listener when the component mounts
