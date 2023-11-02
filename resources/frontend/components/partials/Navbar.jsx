@@ -10,7 +10,6 @@ import Sidebar, {collapseSidebar} from "./Sidebar.jsx";
 import {useAuth} from "../api/AuthContext.jsx";
 import NotificationsBar from './NotificationsBar.jsx'
 import {Toaster} from "react-hot-toast";
-import {AiOutlineUser} from 'react-icons/ai'
 import {HiOutlineMail} from 'react-icons/hi'
 import {CgProfile} from 'react-icons/cg'
 import {GoSignOut} from 'react-icons/go'
