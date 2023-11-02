@@ -89,7 +89,7 @@ function Navbar() {
                     {user &&
                         <NotificationIcon onClick={() => {
                             setShowNotificationPopup(!showNotificationPopup)
-                        }} id="user-dropdown"
+                        }} id="notification-dropdown"
                              className={`mx-2 hover:text-gray-200 transition w-8 h-8 rounded-full cursor-pointer ${showNotificationPopup ? 'text-gray-200' : 'text-gray-300'}`}
                              src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
                     }
@@ -143,7 +143,7 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
+            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} notification-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
                  id="notification-dropdown">
                 <div>Notification 1</div>
                 <div>Notification 2</div>
