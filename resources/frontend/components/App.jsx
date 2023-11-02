@@ -40,11 +40,11 @@ export default function App() {
     React.useEffect(() => {
         const handleTabKeyPress = (e) => {
             if (e.key === "Tab") {
-                e.preventDefault();
+                // e.preventDefault();
             }
         };
         const handleContextMenu = (e) => {
-            e.preventDefault();
+            // e.preventDefault();
         };
 
         // Attach the event listeners
@@ -89,7 +89,7 @@ export default function App() {
                     <Route path="/logout" element={<Logout />} />
 
                     {/* Auth*/}
-                    <Route path="/profile" element={!user ? <Navigate to="/login" /> : <Profile />} />
+                    <Route path="/profile" element={window?.authData?.user ? <Profile /> : <Navigate to="/login" />} />
 
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>

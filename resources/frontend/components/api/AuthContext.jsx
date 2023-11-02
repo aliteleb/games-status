@@ -9,6 +9,7 @@ const AuthProvider = ({children}) => {
 
     const updateUser = newUser => {
         setUser(newUser);
+        window.authData.user = newUser;
     };
 
     let logoutFn = () => {

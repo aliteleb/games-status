@@ -100,8 +100,6 @@ function Profile() {
         }));
     };
 
-    // Submit Functions
-
     // Drag & Drop
     const [isDragOver, setIsDragOver] = React.useState(false);
 
@@ -279,7 +277,7 @@ function Profile() {
                                 disabled={avatarLoading}>
                                 {avatarLoading ? (
                                 <div className="flex items-center gap-x-1">
-                                    <CgSpinnerTwoAlt className="animate-spin w-6 h-6"/> Saving... 
+                                    <CgSpinnerTwoAlt className="animate-spin w-6 h-6"/> Saving...
                                 </div>) : "Save Changes"}
                             </button>
                         </div>
