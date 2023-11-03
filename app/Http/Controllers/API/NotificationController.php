@@ -15,6 +15,7 @@ class NotificationController extends Controller
 
         $notifications->each(function ($notification) {
             if ($notification->game !== null) {
+                unset($notification->game);
                 $game = $notification->game;
                 $notification->game = new GameResource($game);
             }
