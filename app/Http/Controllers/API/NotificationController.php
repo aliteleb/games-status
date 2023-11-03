@@ -13,15 +13,13 @@ class NotificationController extends Controller
         $user = auth()->user();
         $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest()->get();
 
-
-        $notifications->map(function (string $notification) {
-            if($notification->game !== null)
-            {
+        $notifications->each(function ($notification) {
+            if ($notification->game !== null) {
                 $game = $notification->game;
-                unset($notification->game);
                 $notification->game = new GameResource($game);
             }
         });
+
         return response()->api(
             data: $notifications,
             message: __('Notifications')
