@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\CommentController;
-use App\Http\Controllers\Api\GameController;
-use App\Http\Controllers\Api\GroupController;
-use App\Http\Controllers\Api\HomeController;
-use App\Http\Controllers\Api\ProtectionController;
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CommentController;
+use App\Http\Controllers\API\GameController;
+use App\Http\Controllers\API\GroupController;
+use App\Http\Controllers\API\HomeController;
+use App\Http\Controllers\API\NotificationController;
+use App\Http\Controllers\API\ProtectionController;
+use App\Http\Controllers\API\UserController;
 use App\Http\Middleware\ApiAuthenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -60,5 +61,8 @@ Route::middleware(ApiAuthenticate::class)->group(function () {
     Route::post('/comments/create', [CommentController::class, 'store'])->name('comment.store');
     Route::post('/comment/vote', [CommentController::class, 'vote'])->name('comment.vote');
     Route::delete('/comment/delete/{id}', [CommentController::class, 'delete'])->name('comment.delete');
+
+    Route::get('/notifications', [NotificationController::class, 'getNotifications'])->name('notifications.index');
+    Route::post('/notifications/{notification}', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 });

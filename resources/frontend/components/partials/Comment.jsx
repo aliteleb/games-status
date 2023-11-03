@@ -29,7 +29,7 @@ function Comment(props) {
         if (props.replies)
             setReplies(props.replies)
 
-    })
+    }, [props.info])
     refreshPageSize()
 
     let formRef = React.useRef(null)
