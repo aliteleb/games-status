@@ -147,9 +147,9 @@ function Comment(props) {
                     {(comment?.votes == null) &&
                         <Skeleton width={'2rem'} height={'6rem'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={10}/>
                     }
-                    <div className='w-full'>
-                        <footer className="flex items-center justify-between">
-                            <div className="mx-4 md:mx-6 flex items-center">
+                    <div className=' sm:w-full'>
+                        <footer className="w-full flex items-center justify-between">
+                            <div className="mx-2 sm:mx-6 flex flex-wrap items-center">
                                 <Link to={`/user/${comment?.username}`} className="mr-3 inline-flex cursor-pointer items-center text-sm font-semibold text-gray-200">
                                     <img className="mr-2 h-6 w-6 rounded-full"
                                          src={comment?.user_image ? comment?.user_image : "https://t4.ftcdn.net/jpg/04/43/35/29/240_F_443352949_1eX3IagFInYtf3d3tkXDSQkymM2HfSXq.jpg"}
@@ -190,8 +190,8 @@ function Comment(props) {
                                 </ul>
                             </div>
                         </footer>
-                        <div className=''>
-                            <p className="mx-6 break-words text-gray-300 max-w-[65rem] md:w-[35rem] lg:w-[50rem]">
+                        <div className='break-words'>
+                            <p className="mx-2 sm:mx-6 break-words text-gray-300 max-w-[13rem] sm:max-w-[32rem] md:w-[35rem] lg:w-[50rem]">
                                 {comment?.mention && <span
                                     className="mr-2 rounded-full bg-gray-100 text-xs font-medium text-gray-800 px-2.5 py-0.5 dark:bg-gray-700 dark:text-gray-300">@{comment.mention}</span>}
                                 {comment?.body && comment.body}
@@ -199,7 +199,7 @@ function Comment(props) {
                                     <Skeleton count={3} width={'100%'} height={'16px'} baseColor={'#33333399'} highlightColor={'#424349'} borderRadius={50}/>
                                 }
                             </p>
-                            <div className="mx-6 mt-2 flex flex-col space-x-4">
+                            <div className="mx-2 sm:mx-6 mt-2 flex flex-col space-x-4">
                                 {comment?.body &&
                                     <button onClick={() => {
                                         if (props.setReplyForm) {
@@ -241,7 +241,7 @@ function Comment(props) {
             </article>
             {replies.length > 0 && replies.map((reply, index) => {
                 return <Comment parentComment={comment} setReplyTo={setReplyTo} setMention={setMention} setReplyForm={setReplyForm} info={reply} key={index}
-                                setComments={props.setComments} className="border-l-black/10 border-l-[3rem] animate-slide-down-slow"/>
+                                setComments={props.setComments} className="border-l-black/20 border-l-[2rem] sm:border-l-[3rem] animate-slide-down-slow"/>
             })}
 
             {replyForm &&

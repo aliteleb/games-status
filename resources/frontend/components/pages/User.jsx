@@ -64,6 +64,7 @@ function User() {
         placeholders.push(<GameCard key={i}/>);
     }
 
+
     return (
         <>
             <div className='relative flex w-full justify-between overflow-hidden rounded-md h-[22rem]'>
