@@ -61,7 +61,7 @@ class User extends Authenticatable
     }
     public function notifications()
     {
-        return $this->hasMany(Notification::class)->with('user');
+        return $this->hasMany(Notification::class)->with('comment');
     }
 
     public function getFollowingAttribute()
