@@ -78,4 +78,15 @@ class User extends Authenticatable
         return asset('assets/images/users/50/' . $this->id . '.webp');
     }
 
+    public function getDisplayNameAttribute()
+    {
+        if($this->display_name)
+            return $this->display_name;
+
+        if($this->username)
+            return $this->username;
+
+        return null;
+    }
+
 }
