@@ -75,7 +75,6 @@ class CommentController extends Controller
             $notification = Notification::create([
                 'type' => 'reply',
                 'user_id' => $parent->user_id,
-                'game_id' => $game_id,
                 'comment_id' => $comment->id,
             ]);
         }
