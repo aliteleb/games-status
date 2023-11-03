@@ -114,7 +114,7 @@ function Navbar() {
                     }
                 </div>
             </nav>
-            <div className={`${!showProfilePopup ? 'hidden' : 'animate-slide-down'} avatar-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
+            <div className={`${!showProfilePopup ? 'hidden' : 'animate-slide-down'} avatar-popup z-50 w-48 my-4 text-base list-none rounded-lg shadow bg-black/60 fixed right-[.7rem] top-[3.2rem]`}
                 id="user-dropdown">
                 <div className="px-4 py-3 hover:bg-neutral-700/30 rounded-t-lg">
                     <Link onClick={() => setShowProfilePopup(false)} to={`/user/${user?.username}`}>
@@ -144,11 +144,12 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} notification-popup z-50 w-[30rem] my-4 mx-[4.60rem] text-gray-300 list-none divide-y rounded-lg shadow bg-black divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
+            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} notification-popup flex flex-col z-50 w-[30rem] p-4 my-4 mx-[4.60rem] text-gray-300 list-none space-y-4 rounded-lg shadow bg-[#1d1c1c] fixed right-[.7rem] top-[3.2rem]`}
                  id="notification-dropdown">
                 <GameNotification />
-                <div>Notification 2</div>
-                <div>Notification 3</div>
+                <GameNotification />
+                <GameNotification />
+                <GameNotification />
             </div>
             <Sidebar/>
             <Toaster containerStyle={{top: 100}} toastOptions={{
