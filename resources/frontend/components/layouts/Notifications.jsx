@@ -1,8 +1,18 @@
 import React from 'react'
+import GameNotification from '../Notifications/GameNotification'
+import ReplyNotification from '../Notifications/ReplyNotifications'
 
 function Notifications() {
   return (
-    <div>Notifications</div>
+    <>
+      <GameNotification />
+      <GameNotification />
+      <GameNotification />
+      <GameNotification />
+      <ReplyNotification />
+      <ReplyNotification />
+      <ReplyNotification />
+    </>
   )
 }
 

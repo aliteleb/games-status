@@ -10,7 +10,7 @@ import {Toaster} from "react-hot-toast";
 import {HiOutlineMail} from 'react-icons/hi'
 import {CgProfile} from 'react-icons/cg'
 import {GoSignOut} from 'react-icons/go'
-import GameNotification from "../Notifications/GameNotification.jsx";
+import Notifications from "../layouts/Notifications.jsx";
 
 
 
@@ -144,12 +144,19 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} notification-popup flex flex-col z-50 w-[30rem] p-4 my-4 mx-[4.60rem] text-gray-300 list-none space-y-4 rounded-lg shadow bg-[#1d1c1c] fixed right-[.7rem] top-[3.2rem]`}
+            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} notification-popup flex flex-col z-50 w-[30rem] border-2 border-red-800 my-6 mx-[4.60rem] text-gray-300 list-none rounded-b rounded-tl shadow bg-[#1d1c1c] fixed right-[1.5rem] top-[3.2rem]`}
                  id="notification-dropdown">
-                <GameNotification />
-                <GameNotification />
-                <GameNotification />
-                <GameNotification />
+                <div className="h-8 w-12 z-[100] bg-red-800 right-[-0.14rem] top-[-32px] absolute" style={{ clipPath: "polygon(100% 0%, 0% 100%, 100% 100%)",
+                    }}>
+                </div>
+                <div className="flex justify-center items-center gap-x-3 bg-red-700 h-10 ">
+                    Notifications
+                    <div className="bg-red-950 rounded-full px-3 py-[2px] flex justify-center items-center">24</div>
+                </div>
+                <div className="divide-y-2 divide-red-900">
+                    <Notifications />
+                </div>
+                
             </div>
             <Sidebar/>
             <Toaster containerStyle={{top: 100}} toastOptions={{
