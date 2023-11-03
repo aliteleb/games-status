@@ -161,7 +161,7 @@ function SearchGames() {
 
         return (
             <div key={index} className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-${game.status_color}`}>
-                <img className={`h-12 w-32 object-cover mx-auto ${game.image && 'animate-fade-in'}`}
+                <img className={`h-full lg:h-12 w-32 object-cover mx-auto ${game.image && 'animate-fade-in'}`}
                      src={game.image ? game.image : '/assets/images/game-placeholder-vertical.jpg'} alt=""/>
                 <div className="grid items-center text-center text-gray-400 grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr]">
                     <div className="my-3 text-lg font-bold text-gray-300 lg:my-0 lg:pl-4 lg:text-left">
@@ -202,7 +202,7 @@ function SearchGames() {
     for (let i = 0; i < 12; i++) {
         placeholders.push(
             <div key={i} className={`grid grid-cols-[1fr_3fr] lg:grid-cols-[150px_1fr] text-center py-2 my-1 border-r-4 bg-black/20 border-gray-600`}>
-                <img className={`h-12 w-32 mx-auto object-cover`}
+                <img className={`h-full lg:h-12 w-32 mx-auto object-cover`}
                      src='/assets/images/game-placeholder.jpg' alt=""/>
                 <div className="grid items-center text-center grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr_1fr]">
                     <div className="my-3 text-lg lg:my-0 lg:pl-4 lg:text-left">
