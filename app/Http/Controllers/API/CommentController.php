@@ -65,7 +65,7 @@ class CommentController extends Controller
             'user_id' => auth()->user()->id,
             'game_id' => $game_id,
             'body' => $body,
-            'reply_to' => $parent->id,
+            'reply_to' => $reply_to,
             'mention' => $parent_username
         ]);
 
@@ -73,7 +73,7 @@ class CommentController extends Controller
         {
             $notification = Notification::create([
                 'type' => 'reply',
-                'user_id' => $reply_to,
+                'user_id' => $parent->id,
                 'game_id' => $game_id,
                 'comment_id' => $comment->id,
             ]);
