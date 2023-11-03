@@ -1,8 +1,8 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import React, { useEffect, useState } from "react";
-import IconBxsTimeFive from "../icons/IconBxsTimeFive.jsx";
-import CheckMarkIcon from "../icons/CheckMarkIcon.jsx";
+import {BiSolidTimeFive} from 'react-icons/bi'
+import {AiFillCheckCircle} from 'react-icons/ai'
 import { IoMdRemoveCircle } from "react-icons/io";
 import ApiClient from "../../services/ApiClient.js";
 import toast from "react-hot-toast";
@@ -32,13 +32,13 @@ const GameCard = (props) => {
 
     switch (statusText) {
         case "CRACKED":
-            icon = <CheckMarkIcon className={`inline-block mr-0.5 w-4 h-4 text-${color}`} />;
+            icon = <AiFillCheckCircle className={`inline-block mr-0.5 w-4 h-4 text-${color}`} />;
             break;
         case "UNCRACKED":
             icon = <IoMdRemoveCircle className={`inline-block mr-0.5 w-4 h-4 text-${color}`} />;
             break;
         default:
-            icon = <IconBxsTimeFive className={`inline-block mr-0.5 w-4 h-4 text-${color}`} />;
+            icon = <BiSolidTimeFive className={`inline-block mr-0.5 w-4 h-4 text-${color}`} />;
     }
 
     days = `D${statusText === "CRACKED" || statusText === "UNCRACKED" ? "+" : "-"}${game.days_diff}`;

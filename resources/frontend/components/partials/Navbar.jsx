@@ -1,11 +1,9 @@
 import {Link, NavLink} from "react-router-dom";
 import React from "react";
-import SearchIcon from "../icons/SearchIcon.jsx";
-import MenuIcon from "../icons/MenuIcon.jsx";
-import UsersIcon from "../icons/UsersIcon.jsx";
-import InboxIcon from "../icons/InboxIcon.jsx";
-import NotificationIcon from "../icons/NotificationIcon.jsx";
-import UserIcon from "../icons/UserIcon.jsx";
+import {BsSearch} from 'react-icons/bs'
+import {RxHamburgerMenu} from 'react-icons/rx'
+import {RiNotification2Line} from 'react-icons/ri'
+import {BiUserCircle} from 'react-icons/bi'
 import Sidebar, {collapseSidebar} from "./Sidebar.jsx";
 import {useAuth} from "../api/AuthContext.jsx";
 import NotificationsBar from './NotificationsBar.jsx'
@@ -52,12 +50,12 @@ function Navbar() {
         <>
             <nav className="fixed z-50 grid w-full items-center px-1 text-white backdrop-blur-xl grid-cols-[1fr_auto_1fr] bg-app-black/70 md:px-6">
                 <div className="flex items-center" id="left-nav">
-                    <MenuIcon onClick={() => {
+                    <RxHamburgerMenu onClick={() => {
                         document.getElementById('sidebar').style.left = '0';
                         document.getElementById('left-nav').style.opacity = '0';
-                    }} className={'cursor-pointer hover:text-gray-400 transition'}/>
+                    }} className={'cursor-pointer hover:text-gray-400 transition w-6 h-6'}/>
                     <Link to="/games">
-                        <SearchIcon className={'mx-2 cursor-pointer hover:text-gray-400 transition'}/>
+                        <BsSearch className={'mx-4 w-6 h-6 cursor-pointer hover:text-gray-400 transition'}/>
                     </Link>
 
                 </div>
@@ -89,15 +87,15 @@ function Navbar() {
                 <div className="flex items-center justify-end">
 
                     {user &&
-                        <NotificationIcon onClick={() => {
+                        <RiNotification2Line onClick={() => {
                             setShowNotificationPopup(!showNotificationPopup)
                         }} id="notification-dropdown"
-                             className={`mx-2 hover:text-gray-200 transition w-8 h-8 rounded-full cursor-pointer ${showNotificationPopup ? 'text-gray-200' : 'text-gray-300'}`}
+                             className={`mx-4 hover:text-gray-400 transition text-gray-300 w-6 h-6 rounded-full cursor-pointer ${showNotificationPopup ? 'text-gray-200' : 'text-gray-300'}`}
                              src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
                     }
                     {!user &&
                         <Link to="/login">
-                            <NotificationIcon className="mx-2 transition hover:text-gray-400"/>
+                            <RiNotification2Line className="mx-2 w-6 h-6 text-gray-300 transition hover:text-gray-400"/>
                         </Link>
                     }
 
@@ -110,7 +108,7 @@ function Navbar() {
                     }
                     {!user &&
                         <Link to="/login">
-                            <UserIcon className="mx-2 transition hover:text-gray-400"/>
+                            <BiUserCircle className="mx-2 w-8 h-8 text-gray-300 transition hover:text-gray-400"/>
                         </Link>
                     }
                 </div>

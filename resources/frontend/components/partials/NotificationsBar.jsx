@@ -1,5 +1,5 @@
 import React from 'react'
-import Xmark from '../icons/Xmark';
+import {HiXMark} from 'react-icons/hi2'
 import { useAuth } from '../api/AuthContext';
 import { Link } from 'react-router-dom';
 
@@ -10,11 +10,11 @@ export function collapseSidebar(){
 
 function NotificationsBar() {
 
-  let {user} = useAuth()
+  const {user} = useAuth()
   return (
     <div id={'notifications-bar'} className='fixed top-0 flex h-screen w-72 flex-col pt-6 pl-5 transition-all z-55 -right-[19rem] bg-app-black z-[51] xl:w-[19rem]'>
       <div onClick={collapseSidebar} className='w-fit cursor-pointer'>
-          <Xmark className={'text-white'}/>
+          <HiXMark className="w-6 h-6 text-white"/>
       </div>
       {user ? <>
         <header className='mt-4 flex justify-center text-gray-200'>

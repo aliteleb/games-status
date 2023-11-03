@@ -1,13 +1,11 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
-import UserIcon from '../icons/UserIcon'
-import Xmark from '../icons/Xmark'
-import HomeIcon from '../icons/HomeIcon'
+import {BiUserCircle} from 'react-icons/bi'
+import {HiXMark} from 'react-icons/hi2'
 import {IoGameControllerOutline} from 'react-icons/io5'
-import FreeKeysIcon from '../icons/FreeKeysIcon'
 import {GiPirateFlag} from 'react-icons/gi'
 import {BsShieldExclamation} from 'react-icons/bs'
-import {SiGotomeeting} from 'react-icons/si'
+import {AiOutlineHome} from 'react-icons/ai'
 import {FiLogOut} from 'react-icons/fi'
 import { useAuth } from '../api/AuthContext'
 import {BsGift} from 'react-icons/bs'
@@ -27,11 +25,11 @@ function Sidebar() {
     return (
         <div id={'sidebar'} className='fixed top-0 -left-72 flex h-screen w-64 flex-col pt-6 transition-all z-[51] xl:w-72'>
             <div onClick={collapseSidebar} className='mb-4 w-full cursor-pointer px-6'>
-                <Xmark className={'text-white'}/>
+                <HiXMark className='w-6 h-6 text-white'/>
             </div>
             <nav onClick={collapseSidebar} className="flex h-screen flex-col gap-y-3 px-6 text-white bg-app-black/70">
                 <div className="flex items-center gap-x-4">
-                    <UserIcon className={'text-red-800'}/>
+                    <BiUserCircle className='w-8 h-8 text-red-800'/>
                     <div>
                         {user &&
                             <NavLink to="/profile" className="transition hover:text-gray-400">PROFILE</NavLink>
@@ -48,7 +46,7 @@ function Sidebar() {
                 </div>
 
                 <NavLink className='flex items-center gap-x-4' to="/">
-                    <HomeIcon className={'text-red-800'}/>
+                    <AiOutlineHome className='h-10 w-8 text-red-800'/>
                     <span className='transition hover:text-gray-400'>HOME</span>
                 </NavLink>
 
