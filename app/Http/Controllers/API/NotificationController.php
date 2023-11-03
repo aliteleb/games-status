@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\GameResource;
 use App\Models\Notification;
 
 class NotificationController extends Controller
@@ -12,6 +13,15 @@ class NotificationController extends Controller
         $user = auth()->user();
         $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest()->get();
 
+
+        $notifications.map(function (string $notification) {
+            if($notification->game !== null)
+            {
+                $game = $notification->game;
+                unset($notification->game);
+                $notification->game = new GameResource($game);
+            }
+        });
         return response()->api(
             data: $notifications,
             message: __('Notifications')
