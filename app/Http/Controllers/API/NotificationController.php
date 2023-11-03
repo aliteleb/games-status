@@ -10,7 +10,7 @@ class NotificationController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $notifications = $user->notifications;
+        $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest();
 
         return response()->api(
             data: $notifications,
