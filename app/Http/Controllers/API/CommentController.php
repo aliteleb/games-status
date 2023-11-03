@@ -65,7 +65,7 @@ class CommentController extends Controller
             'user_id' => auth()->user()->id,
             'game_id' => $game_id,
             'body' => $body,
-            'reply_to' => $reply_to,
+            'reply_to' => $parent->id,
             'mention' => $parent_username
         ]);
 
