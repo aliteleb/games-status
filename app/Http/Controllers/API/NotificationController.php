@@ -12,7 +12,7 @@ class NotificationController extends Controller
         $user = auth()->user();
         $notifications = $user->notifications;
 
-        response()->api(
+        return response()->api(
             data: $notifications,
             message: __('Notifications')
         );
@@ -22,6 +22,9 @@ class NotificationController extends Controller
     {
         $notification->update(['is_read' => true]);
 
-        return response()->json(['message' => 'Notification marked as read.']);
+        return response()->api(
+            data: [],
+            message: __('Notification marked as read.')
+        );
     }
 }
