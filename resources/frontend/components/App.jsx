@@ -89,7 +89,7 @@ export default function App() {
                     <Route path="/logout" element={<Logout />} />
 
                     {/* Auth*/}
-                    <Route path="/profile" element={window?.authData?.user ? <Profile /> : <Navigate to="/login" />} />
+                    <Route path="/profile" element={window?.appData.auth?.user ? <Profile /> : <Navigate to="/login" />} />
 
                     <Route path="*" element={<PageNotFound />} />
                 </Routes>

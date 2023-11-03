@@ -16,7 +16,9 @@
 
     <script>
         // Pass authentication status and user information to React
-        window.authData = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => $user]) !!};
+        window.appData = {};
+        window.appData.auth = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => $user]) !!};
+        window.appData.notifications = {!! json_encode(auth()->user()->notifications) !!};
     </script>
     @viteReactRefresh
     @vite('resources/frontend/index.jsx')

@@ -9,7 +9,7 @@ const AuthProvider = ({children}) => {
 
     const updateUser = newUser => {
         setUser(newUser);
-        window.authData.user = newUser;
+        window.appData.auth.user = newUser;
     };
 
     let logoutFn = () => {
@@ -32,8 +32,8 @@ const AuthProvider = ({children}) => {
             }
         };
 
-        if(window.authData.isAuthenticated){
-            setUser(window.authData.user);
+        if(window.appData.auth.isAuthenticated){
+            setUser(window.appData.auth.user);
         }
 
     }, []);

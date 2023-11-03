@@ -11,7 +11,9 @@ class Notification extends Model
     use HasFactory;
 
     protected $fillable = ['type', 'user_id', 'game_id', 'comment_id', 'is_read'];
-
+    protected $casts = [
+        'is_read' => 'boolean',
+    ];
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
