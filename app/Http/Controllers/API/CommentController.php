@@ -75,7 +75,7 @@ class CommentController extends Controller
                 'type' => 'reply',
                 'user_id' => $parent->id,
                 'game_id' => $game_id,
-                'comment_id' => $comment->id,
+                'comment_id' => $comment->user_id,
             ]);
         }
 
