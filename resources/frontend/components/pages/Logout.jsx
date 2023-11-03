@@ -32,8 +32,6 @@ function Logout() {
 
     }, [])
 
-    console.log(response);
-
     return (
         <div className='m-auto overflow-hidden rounded-md p-6 text-gray-300 bg-app-black/50 md:w-[50%]'>
             <div className='my-10 flex flex-col items-center justify-center'>

@@ -1,19 +1,22 @@
 import React from 'react'
-import {IoCheckmarkDoneOutline} from 'react-icons/io5'
-import { useAuth } from '../api/AuthContext'
 
-function ReplyNotification() {
+function ReplyNotification(props) {
 
-  const {user} = useAuth()
+  const [replyStatus, setReplyStatus] = React.useState(props.info.is_read)
+
+  let seenComment = () => {
+    setReplyStatus(true)
+  }
 
   return (
-    <div className='flex items-center bg-black/20 relative cursor-pointer'>
-          <img className='w-12 rounded-full' src={user?.avatar} alt="" />
+    <div
+    onClick={seenComment} 
+    className='flex py-3 items-center bg-black/20 px-2 relative cursor-pointer'>
+      <img className='w-12 h-12 rounded-full' src={props.info.comment.user.avatar} alt="" />
       <div className='mx-4 py-4'>
-        <div className='font-bold'>Someone</div>
-        <p>Someone replied to you</p>
+        <p className='text-gray-300'>Your comment received a reply from <b>{props.info.comment.username}</b></p>
       </div>
-      <div className='text-green-700/70 absolute right-4 top-[-20px] text-5xl'>.</div>
+      { replyStatus || <div className='text-green-700/70 absolute right-2 top-[-20px] text-4xl'>.</div>}
     </div>
   )
 }

@@ -58,7 +58,7 @@ export default function Protections() {
         placeholders.push(<ProtectionCard key={i}/>);
     }
 
-    console.log(protections);
+
 
     refreshPageSize()
     return (

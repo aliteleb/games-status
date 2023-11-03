@@ -35,15 +35,6 @@ function SearchGames() {
         {value: "2", label: "UNRELEASED"},
     ]
 
-
-    // // Define your styles as a string
-    // const styles = `
-    // .react-select-container .react-select__input-container,
-    // .react-select-container .react-select__placeholder,
-    // .react-select-container .react-select__single-value {
-    //     padding: 8px 0;
-    // }`;
-
     const loadGames = (pageUrl) => {
         if (pageUrl) {
             setIsLoading(true);

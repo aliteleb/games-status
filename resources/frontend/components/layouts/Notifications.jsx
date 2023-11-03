@@ -1,17 +1,34 @@
 import React from 'react'
 import GameNotification from '../Notifications/GameNotification'
 import ReplyNotification from '../Notifications/ReplyNotifications'
+import ApiClient from '../../services/ApiClient'
 
 function Notifications() {
+
+  let [response, setResponse] = React.useState(null)
+  let [notifications, setNotifications] = React.useState(null)
+
+  React.useEffect( () => {
+
+    setNotifications(window.appData.notifications)
+
+    const interval = setInterval(() => {
+      ApiClient().get('/notifications')
+      .then(res => {
+        setResponse(res.data.data)
+        setNotifications(res.data.data)
+      })
+      .catch(err => console.log(err))
+    }, 5000)
+
+  }, [] )
+
+
+  let replyNotifications = notifications?.map((item, index) => item.type === 'reply' ? <ReplyNotification key={index} info={item}/> : <GameNotification key={index} info={item}/>)
+
   return (
     <>
-      <GameNotification />
-      <GameNotification />
-      <GameNotification />
-      <GameNotification />
-      <ReplyNotification />
-      <ReplyNotification />
-      <ReplyNotification />
+      {replyNotifications}
     </>
   )
 }

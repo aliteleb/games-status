@@ -144,13 +144,13 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} notification-popup flex rounded-md overflow-hidden flex-col z-50 w-[30rem] my-4 mx-[4.60rem] text-gray-300 list-none shadow bg-[#1d1c1c] fixed right-[1.5rem] top-[3.2rem]`}
+            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} notification-popup flex rounded-md overflow-hidden flex-col z-50 w-[35rem] my-4 mx-[4.60rem] text-gray-300 list-none shadow bg-[#1d1c1c] fixed right-[1.5rem] top-[3.2rem]`}
                  id="notification-dropdown">
                 <div className="flex justify-center items-center gap-x-3 bg-red-700 h-10 ">
                     Notifications
                     <div className="bg-red-950 rounded-full px-3 py-[2px] flex justify-center items-center">24</div>
                 </div>
-                <div className="divide-y divide-red-900/50">
+                <div className="divide-y  divide-red-900/50">
                     <Notifications />
                 </div>
                 
