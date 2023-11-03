@@ -87,13 +87,13 @@ function User() {
                         <Skeleton width={100} height={100} baseColor={'#27282e99'} circle={true} highlightColor={'#424349'}/>
                     }
 
-                    <h1 className='mt-3 text-xl'>{response ? response.username :
+                    <h1 className='mt-3 text-xl'>{response ? response.display_name :
                         <Skeleton width={150} height={20} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}</h1>
                 </div>
                 <div className='col-span-2 m-auto w-full border-t border-gray-300 pt-3 text-center md:col-span-1 md:border-0'>
-                    <div className='text-2xl text-gray-400'>{response ? "GAMES" :
+                    <div className='text-2xl font-extralight text-gray-400'>{response ? "GAMES" :
                         <Skeleton width={'25%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}</div>
-                    <div className='my-2 text-2xl'>
+                    <div className='my-2 text-2xl font-bold'>
                         {response ? response.games_count : <Skeleton width={'15%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                     </div>
                 </div>
