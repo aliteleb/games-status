@@ -30,7 +30,7 @@ Route::get('{any}', function () {
         if($user)
         $user = new UserResource($user);
 
-        $notifications = [];
+        $notifications = collect([]);
         if($user)
         {
             $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest()->get();
