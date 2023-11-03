@@ -14,7 +14,7 @@ class NotificationController extends Controller
         $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest()->get();
 
 
-        $notifications.map(function (string $notification) {
+        $notifications->map(function (string $notification) {
             if($notification->game !== null)
             {
                 $game = $notification->game;
