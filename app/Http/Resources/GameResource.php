@@ -44,6 +44,9 @@ class GameResource extends JsonResource
             'status_text' => $statusText,
             'days_diff' => $daysDifference,
             'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/'.$this->steam_appid.'/header.jpg',
+            'header' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $this->steam_appid . '/header.jpg',
+            'poster' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $this->steam_appid . '/library_600x900.jpg',
+            'cover' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $this->steam_appid . '/library_hero.jpg',
             'is_following' => $is_following
             // 'protections' => ProtectionResource::collection($this->whenLoaded('protections')),
             // 'groups' => GroupResource::collection($this->whenLoaded('groups')),
