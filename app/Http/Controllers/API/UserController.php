@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function show($username)
     {
-        $user = User::select(['id', 'username'])
+        $user = User::select(['id', 'username', 'display_name'])
             ->with('games', function ($query) {
                 return $query->paginate(12);
             })
