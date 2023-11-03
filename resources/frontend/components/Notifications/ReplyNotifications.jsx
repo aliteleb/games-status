@@ -5,16 +5,15 @@ import { useAuth } from '../api/AuthContext'
 function ReplyNotification() {
 
   const {user} = useAuth()
-  console.log(user);
 
   return (
-    <div className='flex items-center bg-black/20'>
-      <img className='w-12 rounded-full' src={user?.avatar} alt="" />
-      <div className='mx-4'>
-        <div className='text-center'>11/9/2023</div>
-        <p className='max-w-[90%] break-words'>messagemessagemessagemessagemessage</p>
+    <div className='flex items-center bg-black/20 relative cursor-pointer'>
+          <img className='w-12 rounded-full' src={user?.avatar} alt="" />
+      <div className='mx-4 py-4'>
+        <div className='font-bold'>Someone</div>
+        <p>Someone replied to you</p>
       </div>
-        <IoCheckmarkDoneOutline className='w-6 h-6 cursor-pointer hover:text-gray-400'/>
+      <div className='text-green-700/70 absolute right-4 top-[-20px] text-5xl'>.</div>
     </div>
   )
 }
