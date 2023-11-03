@@ -12,7 +12,10 @@ class NotificationController extends Controller
         $user = auth()->user();
         $notifications = $user->notifications;
 
-        return response()->json(['notifications' => $notifications]);
+        response()->api(
+            data: $notifications,
+            message: __('Notifications')
+        );
     }
 
     public function markAsRead(Notification $notification)
