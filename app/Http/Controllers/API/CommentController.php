@@ -69,7 +69,8 @@ class CommentController extends Controller
             'mention' => $parent_username
         ]);
 
-        if($reply_to)
+        $user = auth()->user();
+        if($parent && $parent->user_id !== $user->id)
         {
             $notification = Notification::create([
                 'type' => 'reply',
