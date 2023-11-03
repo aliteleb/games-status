@@ -19,7 +19,7 @@
         @php $user = auth()->user(); @endphp
         window.appData = {};
         window.appData.auth = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => $user]) !!};
-        window.appData.notifications = {!! json_encode($user? $user->notifications : []) !!};
+        window.appData.notifications = {!! $notifications !!};
     </script>
     @viteReactRefresh
     @vite('resources/frontend/index.jsx')

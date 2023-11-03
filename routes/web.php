@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\GameResource;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Resources\UserResource;
 
@@ -27,7 +29,21 @@ Route::get('{any}', function () {
         $user = auth()->user();
         if($user)
         $user = new UserResource($user);
-        return view('welcome', compact(['user']));
+
+        $notifications = [];
+        if($user)
+        {
+            $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest()->get();
+
+            $notifications->each(function ($notification) {
+                if ($notification->game !== null) {
+                    $notification->game_info = new GameResource($notification->game);
+                    unset($notification->game);
+                }
+            });
+        }
+
+        return view('welcome', compact(['user', 'notifications']));
     }
     else
         abort(500);
