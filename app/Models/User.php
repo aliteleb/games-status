@@ -59,6 +59,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Game::class);
     }
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 
     public function getFollowingAttribute()
     {

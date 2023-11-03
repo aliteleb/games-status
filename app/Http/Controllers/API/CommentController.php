@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Game;
+use App\Models\Notification;
 use App\Models\Reaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -60,13 +61,23 @@ class CommentController extends Controller
             $game_id = $game->id;
         }
 
-        Comment::create([
+        $comment = Comment::create([
             'user_id' => auth()->user()->id,
             'game_id' => $game_id,
             'body' => $body,
             'reply_to' => $reply_to,
             'mention' => $parent_username
         ]);
+
+        if($reply_to)
+        {
+            $notification = Notification::create([
+                'type' => 'reply',
+                'user_id' => $reply_to,
+                'game_id' => $game_id,
+                'comment_id' => $comment->id,
+            ]);
+        }
 
         return response()->api(
             data: Comment::latest_comments($game_id),

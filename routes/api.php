@@ -62,7 +62,7 @@ Route::middleware(ApiAuthenticate::class)->group(function () {
     Route::post('/comment/vote', [CommentController::class, 'vote'])->name('comment.vote');
     Route::delete('/comment/delete/{id}', [CommentController::class, 'delete'])->name('comment.delete');
 
-    Route::get('/notifications', [NotificationController::class, 'getNotifications'])->name('notifications.index');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/{notification}', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 });
