@@ -6,11 +6,12 @@ import {RiNotification2Line} from 'react-icons/ri'
 import {BiUserCircle} from 'react-icons/bi'
 import Sidebar, {collapseSidebar} from "./Sidebar.jsx";
 import {useAuth} from "../api/AuthContext.jsx";
-import NotificationsBar from './NotificationsBar.jsx'
 import {Toaster} from "react-hot-toast";
 import {HiOutlineMail} from 'react-icons/hi'
 import {CgProfile} from 'react-icons/cg'
 import {GoSignOut} from 'react-icons/go'
+import GameNotification from "../Notifications/GameNotification.jsx";
+
 
 
 function Navbar() {
@@ -143,14 +144,13 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} notification-popup z-50 w-48 my-4 text-base list-none divide-y rounded-lg shadow bg-black/60 divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
+            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} notification-popup z-50 w-[30rem] my-4 mx-[4.60rem] text-gray-300 list-none divide-y rounded-lg shadow bg-black divide-gray-600 fixed right-[.7rem] top-[3.2rem]`}
                  id="notification-dropdown">
-                <div>Notification 1</div>
+                <GameNotification />
                 <div>Notification 2</div>
                 <div>Notification 3</div>
             </div>
             <Sidebar/>
-            <NotificationsBar/>
             <Toaster containerStyle={{top: 100}} toastOptions={{
                 position: "top-center",
                 className: '',
