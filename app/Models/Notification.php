@@ -33,6 +33,9 @@ class Notification extends Model
 
     public static function latest_notifications(){
         $user = auth()->user();
+        if(!$user){
+            return collect([]);
+        }
         $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest()->get();
 
         $notifications->each(function ($notification) {
