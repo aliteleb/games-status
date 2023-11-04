@@ -22,7 +22,7 @@ class NotificationController extends Controller
         $notification->update(['is_read' => true]);
 
         return response()->api(
-            data: [],
+            data: Notification::latest_notifications(),
             message: __('Notification marked as read.')
         );
     }
