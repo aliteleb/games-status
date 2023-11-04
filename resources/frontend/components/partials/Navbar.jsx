@@ -18,7 +18,7 @@ function Navbar() {
     const {user} = useAuth();
     const [showProfilePopup, setShowProfilePopup] = React.useState(false);
     const [showNotificationPopup, setShowNotificationPopup] = React.useState(false);
-    let [notificationsCount, setNotificationsCount] = React.useState(null)
+    const [notificationsCount, setNotificationsCount] = React.useState(null)
 
     React.useEffect(() => {
 
@@ -90,11 +90,14 @@ function Navbar() {
                 <div className="flex items-center justify-end">
 
                     {user &&
-                        <RiNotification2Line onClick={() => {
-                            setShowNotificationPopup(!showNotificationPopup)
-                        }} id="notification-dropdown"
-                             className={`mx-4 hover:text-gray-400 transition text-gray-300 w-6 h-6 rounded-full cursor-pointer ${showNotificationPopup ? 'text-gray-200' : 'text-gray-300'}`}
-                             src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
+                        <div className="relative">
+                            <RiNotification2Line onClick={() => {
+                                setShowNotificationPopup(!showNotificationPopup)
+                            }} id="notification-dropdown"
+                                 className={`mx-4 hover:text-gray-400 transition text-gray-300 w-6 h-6 rounded-full cursor-pointer ${showNotificationPopup ? 'text-gray-200' : 'text-gray-300'}`}
+                                 src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
+                            <div className="absolute top-[-10px] right-8 bg-red-800 rounded-full flex items-center justify-center w-5 h-5">{notificationsCount}</div>
+                        </div>
                     }
                     {!user &&
                         <Link to="/login">
