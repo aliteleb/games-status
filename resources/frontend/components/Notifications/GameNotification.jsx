@@ -12,7 +12,7 @@ function GameNotification(props) {
 
     ApiClient().post(`/notification/${props.info.id}/read`)
     .then(res => {
-      props.setNotifications(res.data.data)
+      props.setNotifications(res.data.data.notifications)
     })
     .catch(err =>
       {

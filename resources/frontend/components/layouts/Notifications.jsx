@@ -25,6 +25,7 @@ function Notifications(props) {
     }, 5000)
   }, [] )
 
+  console.log(notifications);
 
   let replyNotifications = notifications?.map((item, index) => item.type === 'reply' ? <ReplyNotification setNotifications={setNotifications} key={index} info={item}/> : <GameNotification setNotifications={setNotifications} key={index} info={item}/>)
 
