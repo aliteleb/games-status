@@ -21,6 +21,7 @@ function Navbar() {
     let [notificationsCount, setNotificationsCount] = React.useState(null)
 
     React.useEffect(() => {
+
         // Function to handle clicks on the document
         const handleClickOutside = (event) => {
             if (
@@ -49,7 +50,7 @@ function Navbar() {
     }, [showProfilePopup], [notificationsCount]);
 
 
-  
+
 
 
     return (
@@ -153,12 +154,12 @@ function Navbar() {
                  id="notification-dropdown">
                 <div className="flex justify-center items-center gap-x-3 bg-red-700 h-10 ">
                     Notifications
-                    <div className="bg-red-950 rounded-full px-3 py-[2px] flex justify-center items-center">{notificationsCount?.length}</div>
+                    <div className="bg-red-950 rounded-full px-3 py-[2px] flex justify-center items-center">{notificationsCount}</div>
                 </div>
                 <div className="divide-y divide-red-900/50">
                     <Notifications setNotificationsCount={setNotificationsCount}/>
                 </div>
-                
+
             </div>
             <Sidebar/>
             <Toaster containerStyle={{top: 100}} toastOptions={{

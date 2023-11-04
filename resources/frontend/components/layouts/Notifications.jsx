@@ -17,12 +17,12 @@ function Notifications(props) {
       .then(res => {
         setResponse(res.data.data)
         setNotifications(res.data.data)
+        props.setNotificationsCount(res.data.data.length)
       })
       .catch(err => console.log(err))
 
     }, 5000)
 
-    props.setNotificationsCount(notifications?.length)
 
   }, [] )
 
