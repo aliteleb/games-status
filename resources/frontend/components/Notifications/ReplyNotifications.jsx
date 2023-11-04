@@ -11,7 +11,7 @@ function ReplyNotification(props) {
     return (
         <div
             onClick={seenComment}
-            className={`flex items-center bg-neutral-800 relative cursor-pointer bg-gradient-to-r ${!replyStatus ? "border-r-4 border-r-green-700" : ""} border border-transparent hover:bg-neutral-800/50 hover:border-red-700/50 transition `}>
+            className={`flex items-center bg-neutral-800 relative cursor-pointer bg-gradient-to-r ${!replyStatus ? "border-r-4 border-r-green-700" : ""} border border-transparent hover:bg-neutral-800/50 hover:border-red-700 transition `}>
 
             {replyStatus || <div className="text-green-700 absolute right-2 top-[-20px] text-4xl">.</div>}
 
