@@ -153,13 +153,15 @@ function Navbar() {
                 </ul>
             </div>
             <div
-                className={`${!showNotificationPopup ? "hidden" : "animate-slide-down"} border border-red-800 rounded-tl-none rounded-tr-none notification-popup shadow-black flex rounded-md overflow-hidden flex-col z-50 w-full overflow-y-scroll md:w-[45rem] mt-12 md:my-4 md:mx-[4.60rem] text-gray-300 list-none shadow bg-[#1d1c1c] fixed md:right-[0.7rem] top-[3.2rem]`}
+                className={`${!showNotificationPopup ? "hidden" : "animate-slide-down"} border border-red-800 rounded-tl-none rounded-tr-none notification-popup shadow-black flex rounded-md overflow-hidden flex-col z-50 w-full md:w-[45rem] mt-12 md:my-4 md:mx-[4.60rem] text-gray-300 list-none shadow bg-[#1d1c1c] fixed md:right-[0.7rem] top-[3.2rem]`}
                 id="notification-dropdown">
                 <div className="flex h-10 items-center justify-center gap-x-3 bg-red-700">
                     Notifications
                     <div className="flex items-center justify-center rounded-full bg-red-950 px-3 py-[2px]">{notificationsCount}</div>
                 </div>
-                <Notifications setUnReadNotificationsCount={setUnReadNotificationsCount} setNotificationsCount={setNotificationsCount} />
+                <div className="h-[45rem] overflow-y-scroll"> 
+                    <Notifications setUnReadNotificationsCount={setUnReadNotificationsCount} setNotificationsCount={setNotificationsCount} />
+                </div>
 
             </div>
             <Sidebar />
