@@ -28,9 +28,9 @@ function GameNotification(props) {
   return (
     <div
     onClick={seenComment}
-    className={`animate-slide-down-slow flex items-center bg-neutral-800 relative cursor-pointer bg-gradient-to-r ${!replyStatus ? "border-r-4 border-r-green-700" : ""} border border-transparent hover:bg-neutral-800/50 hover:border-red-700 transition `}>
+    className={`animate-slide-down-slow flex items-center bg-neutral-800 relative cursor-pointer bg-gradient-to-r ${!replyStatus ? "border-r-4 border-r-red-700" : ""} border border-transparent hover:bg-neutral-800/50 hover:border-red-700 transition `}>
 
-    {replyStatus || <div className="bg-green-700 absolute right-2 top-2 w-[5px] h-[5px] rounded-full text-4xl"></div>}
+    {replyStatus || <div className="bg-red-700 absolute right-2 top-2 w-[5px] h-[5px] rounded-full text-4xl"></div>}
 
     <div className="flex flex-col w-10/12">
         <div className="flex items-center">

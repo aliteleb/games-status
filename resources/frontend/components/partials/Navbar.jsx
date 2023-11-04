@@ -51,11 +51,6 @@ function Navbar() {
         };
     }, [showProfilePopup], [notificationsCount]);
 
-    const counter = React.useRef(null)
-    let hideNotificationsCounter = () => {
-        counter.current.classList.add('hidden')
-    }
-
     return (
         <>
             <nav className="fixed z-50 grid w-full items-center px-1 text-white backdrop-blur-xl grid-cols-[1fr_auto_1fr] bg-app-black/70 md:px-6">
@@ -97,13 +92,13 @@ function Navbar() {
                 <div className="flex items-center justify-end">
 
                     {user &&
-                        <div onClick={hideNotificationsCounter} className="relative">
+                        <div className="relative">
                             <RiNotification2Line onClick={() => {
                                 setShowNotificationPopup(!showNotificationPopup)
                             }} id="notification-dropdown"
                                  className={`mx-4 hover:text-gray-400 transition text-gray-300 w-6 h-6 rounded-full cursor-pointer ${showNotificationPopup ? 'text-gray-200' : 'text-gray-300'}`}
                                  src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
-                            <div ref={counter} className="absolute top-[-10px] right-8 bg-red-800 rounded-full flex items-center justify-center w-5 h-5">{unReadNotificationsCount}</div>
+                            <div className="absolute top-[-10px] right-8 bg-red-800 rounded-full flex items-center justify-center w-5 h-5">{unReadNotificationsCount}</div>
                         </div>
                     }
                     {!user &&
