@@ -146,7 +146,7 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} border border-red-800 rounded-tl-none rounded-tr-none notification-popup shadow-black flex rounded-md overflow-hidden flex-col z-50 w-full md:w-[35rem] my-4 mx-[4.60rem] text-gray-300 list-none shadow bg-[#1d1c1c] fixed right-[-4.2rem] md:right-[1.5rem] top-[3.2rem]`}
+            <div className={`${!showNotificationPopup ? 'hidden' : 'animate-slide-down'} border border-red-800 rounded-tl-none rounded-tr-none notification-popup shadow-black flex rounded-md overflow-hidden flex-col z-50 w-full md:w-[35rem] my-4 md:mx-[4.60rem] text-gray-300 list-none shadow bg-[#1d1c1c] fixed md:right-[1.5rem] top-[3.2rem]`}
                  id="notification-dropdown">
                 <div className="flex justify-center items-center gap-x-3 bg-red-700 h-10 ">
                     Notifications
