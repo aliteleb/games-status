@@ -25,8 +25,6 @@ function ReplyNotification(props) {
                 </div>
             </div>
             <div className="bottom-1 text-gray-400 text-xs text-right px-2 py-1">{props?.info.time}</div>
-
-
         </div>
     );
 }
