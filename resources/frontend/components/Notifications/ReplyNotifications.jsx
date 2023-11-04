@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ApiClient from "../../services/ApiClient";
-import {FiArrowRight} from 'react-icons/fi'
+import { BsArrowRight } from 'react-icons/bs';
 
 function ReplyNotification(props) {
 
@@ -48,7 +48,7 @@ function ReplyNotification(props) {
                 </div>
             </div>
             <div className="bottom-1 px-2 py-1 text-right text-xs text-gray-400">{props?.info.time}</div>
-            {isHovered && <FiArrowRight className="animate-slide-left-slow mx-2 h-8 w-8 rounded-full border-2 border-gray-300 p-1 text-gray-300 transition hover:border-gray-500 hover:text-gray-500"/>}
+            {isHovered && <BsArrowRight className="animate-slide-left-slow mx-2 h-9 w-9 p-1 text-gray-500 transition hover:text-gray-300"/>}
         </div>
     );
 }
