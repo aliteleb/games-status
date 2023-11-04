@@ -28,7 +28,7 @@ function GameNotification(props) {
                         console.log(err);
                 }
             );
-
+        props.setShowNotificationPopup(false)
     };
 
     console.log(props.info);

@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import ApiClient from "../../services/ApiClient";
 import { BsArrowRight } from 'react-icons/bs';
+import { useNavigate } from "react-router-dom";
 
 function ReplyNotification(props) {
+  
+    const navigate = useNavigate()
 
     const [replyStatus, setReplyStatus] = React.useState(false);
     const [isHovered, setIsHovered] = React.useState(false);
@@ -26,6 +29,8 @@ function ReplyNotification(props) {
                     console.log(err);
                 }
             );
+        
+        props.setShowNotificationPopup(false)
     };
 
 
@@ -48,7 +53,7 @@ function ReplyNotification(props) {
                 </div>
             </div>
             <div className="bottom-1 px-2 py-1 text-right text-xs text-gray-400">{props?.info.time}</div>
-            {isHovered && <BsArrowRight className="animate-slide-left-slow mx-2 h-9 w-9 p-1 text-gray-500 transition hover:text-gray-300"/>}
+            {isHovered && <BsArrowRight onClick={()=> navigate('')} className="animate-slide-left-slow mx-2 h-9 w-9 p-1 text-gray-500 transition hover:text-gray-300"/>}
         </div>
     );
 }

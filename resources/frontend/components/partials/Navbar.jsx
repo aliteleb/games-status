@@ -160,7 +160,7 @@ function Navbar() {
                     <div className="flex items-center justify-center rounded-full bg-red-950 px-3 py-[2px]">{notificationsCount}</div>
                 </div>
                 <div className="h-[35rem] overflow-x-hidden overflow-y-scroll"> 
-                    <Notifications setUnReadNotificationsCount={setUnReadNotificationsCount} setNotificationsCount={setNotificationsCount} />
+                    <Notifications setShowNotificationPopup={setShowNotificationPopup} setUnReadNotificationsCount={setUnReadNotificationsCount} setNotificationsCount={setNotificationsCount} />
                 </div>
 
             </div>
