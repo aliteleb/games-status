@@ -32,7 +32,7 @@ function Navbar() {
                 setShowProfilePopup(false);
 
             if (
-                showProfilePopup &&
+                showNotificationPopup &&
                 !document.getElementById("notification-dropdown").contains(event.target) &&
                 !document.getElementsByClassName("notification-popup")[0].contains(event.target)
             )
@@ -48,10 +48,6 @@ function Navbar() {
             document.removeEventListener("click", handleClickOutside);
         };
     }, [showProfilePopup], [notificationsCount]);
-
-
-
-
 
     return (
         <>
