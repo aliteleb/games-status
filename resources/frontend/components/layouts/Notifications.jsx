@@ -28,13 +28,13 @@ function Notifications(props) {
     }, []);
 
     return (
-        <>
+        <div className="flex flex-col gap-y-2 bg-black/50 p-2">
             {
                 notifications?.map((item, index) => item.type === "reply" ?
                     <ReplyNotification setNotifications={setNotifications} setUnReadNotificationsCount={props.setUnReadNotificationsCount} key={index} info={item} /> :
                     <GameNotification setNotifications={setNotifications} setUnReadNotificationsCount={props.setUnReadNotificationsCount} key={index} info={item} />)
             }
-        </>
+        </div>
     );
 }
 
