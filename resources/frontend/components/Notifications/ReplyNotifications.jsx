@@ -30,7 +30,7 @@ function ReplyNotification(props) {
     return (
         <div
             onClick={seenComment}
-            className={`animate-slide-down-slow flex items-center  relative cursor-pointer ${props.info.is_read ? 'bg-neutral-800/60' : 'bg-neutral-700'} bg-gradient-to-r ${!replyStatus ? "border-r-4 border-r-red-700" : ""} border border-transparent hover:bg-neutral-800/50 hover:border-red-700 transition `}>
+            className={`animate-slide-down-slow flex items-center  relative cursor-pointer ${replyStatus ? 'bg-neutral-800/60' : 'bg-neutral-700 hover:bg-neutral-800'} bg-gradient-to-r ${!replyStatus ? "border-r-4 border-r-red-700" : ""} border border-transparent hover:bg-neutral-800/50 hover:border-red-700 transition `}>
 
             {replyStatus || <div className="absolute right-2 top-2 h-[5px] w-[5px] rounded-full bg-red-700 text-4xl"></div>}
 

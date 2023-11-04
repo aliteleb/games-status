@@ -30,21 +30,21 @@ function GameNotification(props) {
     return (
         <div
             onClick={seenComment}
-            className={`animate-slide-down-slow flex items-center bg-neutral-800 relative cursor-pointer bg-gradient-to-r ${!replyStatus ? "border-r-4 border-r-red-700" : ""} border border-transparent hover:bg-neutral-800/50 hover:border-red-700 transition `}>
+            className={`animate-slide-down-slow flex items-center bg-neutral-800 relative cursor-pointer ${replyStatus ? 'bg-neutral-800/60' : 'bg-neutral-700 hover:bg-neutral-800'} bg-gradient-to-r ${!replyStatus ? "border-r-4 border-r-red-700" : ""} border border-transparent hover:bg-neutral-800/50 hover:border-red-700 transition `}>
 
-            {replyStatus || <div className="bg-red-700 absolute right-2 top-2 w-[5px] h-[5px] rounded-full text-4xl"></div>}
+            {replyStatus || <div className="absolute right-2 top-2 h-[5px] w-[5px] rounded-full bg-red-700 text-4xl"></div>}
 
-            <div className="flex flex-col w-10/12">
+            <div className="flex w-10/12 flex-col">
                 <div className="flex items-center">
-                    <img className="h-20 " src={props?.info.game_info.poster} alt="" />
+                    <img className="h-20" src={props?.info.game_info.poster} alt="" />
 
                     <div className="mx-3 py-4">
-                        <p className="text-gray-300 font-bold">{props?.info.game_info.title}</p>
+                        <p className="font-bold text-gray-300">{props?.info.game_info.title}</p>
                         <p className={`text-${color} font-bold text-xl`}>{props?.info.game_info.status_text}</p>
                     </div>
                 </div>
             </div>
-            <div className="bottom-1 text-gray-400 text-xs text-right px-2 py-1">{props?.info.time}</div>
+            <div className="bottom-1 px-2 py-1 text-right text-xs text-gray-400">{props?.info.time}</div>
         </div>
     );
 }
