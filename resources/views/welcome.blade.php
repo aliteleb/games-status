@@ -15,7 +15,6 @@
     </noscript>
 
     <script>
-        // Pass authentication status and user information to React
         @php $user = auth()->user(); @endphp
         window.appData = {};
         window.appData.auth = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => $user]) !!};
