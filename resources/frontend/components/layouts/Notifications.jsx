@@ -12,6 +12,7 @@ function Notifications(props) {
 
     setNotifications(window.appData.notifications.notifications)
     props.setNotificationsCount(window.appData.notifications.notifications_count)
+    props.setUnReadNotificationsCount(window.appData.notifications.unread_notifications)
 
     const interval = setInterval(() => {
       ApiClient().get('/notifications')

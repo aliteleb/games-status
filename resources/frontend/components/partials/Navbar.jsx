@@ -19,6 +19,8 @@ function Navbar() {
     const [showProfilePopup, setShowProfilePopup] = React.useState(false);
     const [showNotificationPopup, setShowNotificationPopup] = React.useState(false);
     const [notificationsCount, setNotificationsCount] = React.useState(null)
+    const [unReadNotificationsCount, setUnReadNotificationsCount] = React.useState(null)
+    
 
     React.useEffect(() => {
 
@@ -48,6 +50,11 @@ function Navbar() {
             document.removeEventListener("click", handleClickOutside);
         };
     }, [showProfilePopup], [notificationsCount]);
+
+    const counter = React.useRef(null)
+    let hideNotificationsCounter = () => {
+        counter.current.classList.add('hidden')
+    }
 
     return (
         <>
@@ -90,13 +97,13 @@ function Navbar() {
                 <div className="flex items-center justify-end">
 
                     {user &&
-                        <div className="relative">
+                        <div onClick={hideNotificationsCounter} className="relative">
                             <RiNotification2Line onClick={() => {
                                 setShowNotificationPopup(!showNotificationPopup)
                             }} id="notification-dropdown"
                                  className={`mx-4 hover:text-gray-400 transition text-gray-300 w-6 h-6 rounded-full cursor-pointer ${showNotificationPopup ? 'text-gray-200' : 'text-gray-300'}`}
                                  src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
-                            <div className="absolute top-[-10px] right-8 bg-red-800 rounded-full flex items-center justify-center w-5 h-5">{notificationsCount}</div>
+                            <div ref={counter} className="absolute top-[-10px] right-8 bg-red-800 rounded-full flex items-center justify-center w-5 h-5">{unReadNotificationsCount}</div>
                         </div>
                     }
                     {!user &&
@@ -156,7 +163,7 @@ function Navbar() {
                     <div className="bg-red-950 rounded-full px-3 py-[2px] flex justify-center items-center">{notificationsCount}</div>
                 </div>
                 <div className="p-2 bg-black/50 flex flex-col gap-y-2">
-                    <Notifications setNotificationsCount={setNotificationsCount}/>
+                    <Notifications setUnReadNotificationsCount={setUnReadNotificationsCount} setNotificationsCount={setNotificationsCount}/>
                 </div>
 
             </div>
