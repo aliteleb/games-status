@@ -36,6 +36,7 @@ class Notification extends Model
         if(!$user){
             return collect([]);
         }
+        $notifications_response = new \stdClass();
         $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest()->get();
 
         $notifications->each(function ($notification) {
@@ -49,6 +50,9 @@ class Notification extends Model
             unset($notification->updated_at);
         });
 
-        return $notifications;
+        $notifications_response->notifications_count = $notifications->count();
+        $notifications_response->unread_notifications = $notifications->where('is_read', false)->count();
+        $notifications_response->notifications = $notifications;
+        return $notifications_response;
     }
 }
