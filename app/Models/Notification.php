@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Http\Resources\GameResource;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,5 +29,23 @@ class Notification extends Model
     public function comment(): BelongsTo
     {
         return $this->belongsTo(Comment::class, 'comment_id');
+    }
+
+    public static function latest_notifications(){
+        $user = auth()->user();
+        $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest()->get();
+
+        $notifications->each(function ($notification) {
+            if ($notification->game !== null) {
+                $notification->game_info = new GameResource($notification->game);
+                unset($notification->game);
+            }
+            $time = Carbon::parse($notification->created_at)->diffForHumans();
+            $notification->time = $time;
+            unset($notification->created_at);
+            unset($notification->updated_at);
+        });
+
+        return $notifications;
     }
 }

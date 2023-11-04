@@ -11,22 +11,8 @@ class NotificationController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest()->get();
-
-        $notifications->each(function ($notification) {
-            if ($notification->game !== null) {
-                $notification->game_info = new GameResource($notification->game);
-                unset($notification->game);
-            }
-            $time = Carbon::parse($notification->created_at)->diffForHumans();
-            $notification->time = $time;
-            unset($notification->created_at);
-            unset($notification->updated_at);
-        });
-
         return response()->api(
-            data: $notifications,
+            data: Notification::latest_notifications(),
             message: __('Notifications')
         );
     }
