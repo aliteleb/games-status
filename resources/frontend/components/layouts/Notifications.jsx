@@ -20,6 +20,7 @@ function Notifications(props) {
         setResponse(res.data.data)
         setNotifications(res.data.data.notifications)
         props.setNotificationsCount(res.data.data.notifications_count)
+        props.setUnReadNotificationsCount(res.data.data.unread_notifications)
       })
       .catch(err => console.log(err))
 
