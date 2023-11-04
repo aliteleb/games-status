@@ -1,5 +1,5 @@
 import React from "react";
-import ApiClient from '../../services/ApiClient'
+import ApiClient from "../../services/ApiClient";
 
 function ReplyNotification(props) {
 
@@ -7,19 +7,20 @@ function ReplyNotification(props) {
 
     let seenComment = () => {
 
-      setReplyStatus(true)
-  
-      ApiClient().post(`/notification/${props.info.id}/read`)
-      .then(res => {
-        props.setNotifications(res.data.data.notifications)
-      })
-      .catch(err =>
-        {
-        setReplyStatus(false),
-        console.log(err)
-        }
-      )
-    }
+        setReplyStatus(true);
+
+        ApiClient().post(`/notification/${props.info.id}/read`)
+            .then(res => {
+                props.setNotifications(res.data.data.notifications);
+                props.setUnReadNotificationsCount(res.data.data.unread_notifications);
+
+            })
+            .catch(err => {
+                    setReplyStatus(false);
+                    console.log(err);
+                }
+            );
+    };
 
     return (
         <div
