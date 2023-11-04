@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
 use App\Models\Notification;
+use Carbon\Carbon;
 
 class NotificationController extends Controller
 {
@@ -18,6 +19,10 @@ class NotificationController extends Controller
                 $notification->game_info = new GameResource($notification->game);
                 unset($notification->game);
             }
+            $time = Carbon::parse($notification->created_at)->diffForHumans();
+            $notification->time = $time;
+            unset($notification->created_at);
+            unset($notification->updated_at);
         });
 
         return response()->api(
