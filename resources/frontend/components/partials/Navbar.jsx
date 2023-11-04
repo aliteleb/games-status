@@ -152,7 +152,7 @@ function Navbar() {
                     Notifications
                     <div className="bg-red-950 rounded-full px-3 py-[2px] flex justify-center items-center">{notificationsCount}</div>
                 </div>
-                <div className="p-2 bg-black/50 flex flex-col gap-y-3">
+                <div className="p-2 bg-black/50 flex flex-col gap-y-2">
                     <Notifications setNotificationsCount={setNotificationsCount}/>
                 </div>
 
