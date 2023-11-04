@@ -3,7 +3,7 @@ import GameNotification from '../Notifications/GameNotification'
 import ReplyNotification from '../Notifications/ReplyNotifications'
 import ApiClient from '../../services/ApiClient'
 
-function Notifications() {
+function Notifications(props) {
 
   let [response, setResponse] = React.useState(null)
   let [notifications, setNotifications] = React.useState(null)
@@ -19,7 +19,10 @@ function Notifications() {
         setNotifications(res.data.data)
       })
       .catch(err => console.log(err))
+
     }, 5000)
+
+    props.setNotificationsCount(notifications?.length)
 
   }, [] )
 

@@ -18,6 +18,7 @@ function Navbar() {
     const {user} = useAuth();
     const [showProfilePopup, setShowProfilePopup] = React.useState(false);
     const [showNotificationPopup, setShowNotificationPopup] = React.useState(false);
+    let [notificationsCount, setNotificationsCount] = React.useState(null)
 
     React.useEffect(() => {
         // Function to handle clicks on the document
@@ -45,7 +46,11 @@ function Navbar() {
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };
-    }, [showProfilePopup]);
+    }, [showProfilePopup], [notificationsCount]);
+
+
+  
+
 
     return (
         <>
@@ -148,10 +153,10 @@ function Navbar() {
                  id="notification-dropdown">
                 <div className="flex justify-center items-center gap-x-3 bg-red-700 h-10 ">
                     Notifications
-                    <div className="bg-red-950 rounded-full px-3 py-[2px] flex justify-center items-center">24</div>
+                    <div className="bg-red-950 rounded-full px-3 py-[2px] flex justify-center items-center">{notificationsCount?.length}</div>
                 </div>
-                <div className="divide-y  divide-red-900/50">
-                    <Notifications />
+                <div className="divide-y divide-red-900/50">
+                    <Notifications setNotificationsCount={setNotificationsCount}/>
                 </div>
                 
             </div>
