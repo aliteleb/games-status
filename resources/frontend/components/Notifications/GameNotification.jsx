@@ -11,9 +11,9 @@ function GameNotification(props) {
   let color = props.info.game_info.status_text ? props.info.game_info.status_text.toLowerCase() : "gray-600";
 
   return (
-    <div 
+    <div
     onClick={seenComment}
-    className='flex items-center bg-neutral-800 relative cursor-pointer p-2 hover:bg-neutral-900 transition'>
+    className='flex py-3 items-center bg-neutral-800 px-2 relative cursor-pointer bg-gradient-to-r hover:to-red-900/50 hover:from-black transition rounded'>
       <img className='w-16 h-16' src={props.info.game_info.poster} alt="game poster"/>
       <div className='mx-4'>
         <div className='font-bold text-lg'>{props.info.game_info.title}</div>

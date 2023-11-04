@@ -10,8 +10,8 @@ function ReplyNotification(props) {
 
   return (
     <div
-    onClick={seenComment} 
-    className='flex py-3 items-center bg-neutral-800 px-2 relative cursor-pointer hover:bg-neutral-900 transition'>
+    onClick={seenComment}
+    className='flex py-3 items-center bg-neutral-800 px-2 relative cursor-pointer bg-gradient-to-r hover:to-red-900/50 hover:from-black transition rounded'>
       <img className='w-12 h-12 rounded-full' src={props.info.comment.user.avatar} alt="" />
       <div className='mx-4 py-4'>
         <p className='text-gray-300'>Your comment received a reply from <b>{props.info.comment.username}</b></p>
