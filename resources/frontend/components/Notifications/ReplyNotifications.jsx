@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ApiClient from "../../services/ApiClient";
 
 function ReplyNotification(props) {
 
-    const [replyStatus, setReplyStatus] = React.useState(props?.info.is_read);
+    const [replyStatus, setReplyStatus] = React.useState(false);
 
+    useEffect(() => {
+        setReplyStatus(props?.info.is_read)
+    });
     let seenComment = () => {
 
         setReplyStatus(true);
