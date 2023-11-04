@@ -11,6 +11,7 @@ function Notifications(props) {
   React.useEffect( () => {
 
     setNotifications(window.appData.notifications)
+    props.setNotificationsCount(window.appData.notifications.length)
 
     const interval = setInterval(() => {
       ApiClient().get('/notifications')
@@ -22,8 +23,6 @@ function Notifications(props) {
       .catch(err => console.log(err))
 
     }, 5000)
-
-
   }, [] )
 
 

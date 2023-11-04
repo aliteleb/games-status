@@ -13,8 +13,8 @@ function GameNotification(props) {
   return (
     <div 
     onClick={seenComment}
-    className='flex items-center bg-black/20 relative cursor-pointer p-2'>
-      <img className='w-12' src={props.info.game_info.poster} alt="game poster"/>
+    className='flex items-center bg-black/20 relative cursor-pointer p-2 hover:bg-black/50 transition'>
+      <img className='w-16 h-16' src={props.info.game_info.poster} alt="game poster"/>
       <div className='mx-4'>
         <div className='font-bold text-lg'>{props.info.game_info.title}</div>
         <p className={`text-${color} font-bold text-xl`}>{props.info.game_info.status_text}</p>
