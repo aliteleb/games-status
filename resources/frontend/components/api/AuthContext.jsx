@@ -1,10 +1,10 @@
 // AuthContext.js
-import {createContext, useContext, useEffect, useState} from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
 import ApiClient from "../../services/ApiClient.js";
 
-export const AppContext = createContext();
+export const AppContext = createContext(null);
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
     const updateUser = newUser => {
@@ -12,15 +12,11 @@ const AuthProvider = ({children}) => {
         window.appData.auth.user = newUser;
     };
 
-    let logoutFn = () => {
-        setUser(null)
-    }
-
     useEffect(() => {
         // Fetch user data from your authentication provider
         const fetchUser = async () => {
             try {
-                const userData = await ApiClient('/user');
+                const userData = await ApiClient("/user");
 
                 if (userData.data.status === "success")
                     setUser(userData.data.data);
@@ -32,15 +28,15 @@ const AuthProvider = ({children}) => {
             }
         };
 
-        if(window.appData.auth.isAuthenticated){
+        if (window.appData.auth.isAuthenticated)
             setUser(window.appData.auth.user);
-        }
+
 
     }, []);
 
 
     return (
-        <AppContext.Provider value={{user, updateUser, logoutFn }}>
+        <AppContext.Provider value={{ user, updateUser }}>
             {children}
         </AppContext.Provider>
     );
