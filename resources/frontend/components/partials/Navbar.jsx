@@ -96,7 +96,7 @@ function Navbar() {
                             <RiNotification2Line onClick={() => {
                                 setShowNotificationPopup(!showNotificationPopup)
                             }} id="notification-dropdown"
-                                 className={`mx-4 hover:text-gray-400 transition text-gray-300 w-6 h-6 rounded-full cursor-pointer ${showNotificationPopup ? 'text-gray-200' : 'text-gray-300'}`}
+                                 className={`mx-4 transition w-6 h-6 rounded-full cursor-pointer ${showNotificationPopup ? 'text-gray-200 hover:text-gray-200' : 'text-gray-300 hover:text-gray-400'}`}
                                  src={`${user.avatar}`} alt={'avatar'} width={100} height={100}/>
                             {unReadNotificationsCount === 0 || <div className="absolute top-[-10px] text-xs right-8 bg-red-800 rounded-full flex items-center justify-center w-5 h-5">{unReadNotificationsCount}</div>}
                         </div>
