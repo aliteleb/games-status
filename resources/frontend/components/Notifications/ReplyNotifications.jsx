@@ -4,12 +4,12 @@ import { BsArrowRight } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
 
 function ReplyNotification(props) {
-
+  
     const navigate = useNavigate()
 
     const [replyStatus, setReplyStatus] = React.useState(false);
     const [isHovered, setIsHovered] = React.useState(false);
-
+  
 
     useEffect(() => {
         setReplyStatus(props?.info.is_read)
@@ -29,9 +29,12 @@ function ReplyNotification(props) {
                     console.log(err);
                 }
             );
-
-        props.setShowNotificationPopup(false)
     };
+
+    let navigateToTheGame = () => {
+        props.setShowNotificationPopup(false)
+        navigate(`/game/${props.info.game_info.slug}`)
+    }
 
     return (
         <div
@@ -44,7 +47,7 @@ function ReplyNotification(props) {
 
             <div className='flex-co flex w-9/12'>
                 <div className="flex items-center px-1">
-                    <img className="h-12 w-12 rounded-full" src={props?.info.comment.user.avatar.sizes.small} alt="" />
+                    <img className="h-12 w-12 rounded-full" src={props?.info.comment.user.avatar} alt="" />
 
                     <div className="mx-2 py-4">
                         <p className="text-gray-300">Your comment received a reply from <b>{props?.info.comment.username}</b></p>
@@ -52,9 +55,14 @@ function ReplyNotification(props) {
                 </div>
             </div>
             <div className="bottom-1 px-2 py-1 text-right text-xs text-gray-400">{props?.info.time}</div>
-            {isHovered && <BsArrowRight onClick={()=> navigate(`/game/${props.info.game_info.slug}`)} className="animate-slide-left-slow mx-2 h-9 w-9 p-1 text-gray-500 transition hover:text-gray-300"/>}
+            {isHovered && <BsArrowRight onClick={navigateToTheGame} className="animate-slide-left-slow mx-2 h-9 w-9 p-1 text-gray-500 transition hover:text-gray-300"/>}
         </div>
     );
 }
 
 export default ReplyNotification;
+
+
+
+
+
