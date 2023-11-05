@@ -33,7 +33,7 @@ class MediaController extends Controller
 
         $media = Media::upload($file, '/images', [
             "/global/" => [null, null],
-        ], false);
+        ]);
 
         // Response
         return response()->json(['status' => 'success', 'message' => __('datatable.added_successfully')]);

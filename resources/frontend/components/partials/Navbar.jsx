@@ -97,7 +97,7 @@ function Navbar() {
                         <div className="relative">
                             <RiNotification2Line onClick={() => {
                                 setShowNotificationPopup(!showNotificationPopup);
-                            }} 
+                            }}
                             id="notification-dropdown"
                             className={`border-2 border-gray-400 mx-4 transition p-2 w-9 h-9 cursor-pointer ${showNotificationPopup ? "md:border-red-700 md:rounded-t-full md:hover:border-red-700 md:text-red-700" : "border-gray-600 rounded-full hover:border-gray-400"}`}
                             src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
