@@ -245,7 +245,7 @@ function Profile() {
                                     onDragLeave={() => {
                                         setIsDragOver(false);
                                     }}
-                                    src={avatarFormData.avatar ? URL.createObjectURL(avatarFormData.avatar) : user?.avatar}
+                                    src={avatarFormData.avatar ? URL.createObjectURL(avatarFormData.avatar) : user?.avatar.sizes.large}
                                     alt="avatar"
                                     onClick={() => {
                                         document.getElementById("avatar").click();

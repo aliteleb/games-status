@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\Media;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,35 +34,28 @@ class AuthController extends Controller
             );
         }
         $data = $validator->validate();
-        try {
-            $user = User::create($data);
+
+
 
             // Retrieve the uploaded files
             $avatar = $request->file('avatar');
-            $file_name = pathinfo($avatar->getClientOriginalName(), PATHINFO_FILENAME);
-            $file_save_name = $file_name . '.webp';
+            $media = Media::upload($avatar, '/images/user', User::$media_sizes);
 
-            // Profile avatar
-            Image::make($avatar)->encode('webp', 100)->resize(100, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('assets/images/users/100/' . $user->id . '.webp'));
-            // Comments avatar
-            Image::make($avatar)->encode('webp', 50)->resize(50, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('assets/images/users/50/' . $user->id . '.webp'));
+            $user = User::create([
+                'username' => $data['username'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'gender' => $data['gender'],
+                'country_code' => $data['country_code'],
+                'media_id' => $media->id,
+            ]);
 
             return response()->api(
                 data: new UserResource($user),
                 message: __("User registered successfully.")
             );
 
-        } catch (\Exception $e) {
-            return response()->api(
-                status: "error",
-                message: __("An error occurred!."),
-                status_code: 500
-            );
-        }
+
     }
 
     public function login(Request $request)

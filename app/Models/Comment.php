@@ -13,7 +13,7 @@ class Comment extends Model
     protected $appends = ['time', 'username', 'display_name', 'user_image', 'votes', 'voted'];
     protected $hidden = ['created_at', 'updated_at'];
 
-    protected $with = ['user:id,username,display_name', 'reactions', 'replies'];
+    protected $with = ['user:id,username,display_name,media_id', 'reactions', 'replies'];
     protected $withCount = ['reactions'];
 
     public function user()
@@ -98,8 +98,11 @@ class Comment extends Model
 
     public function getUserImageAttribute()
     {
-        return asset('assets/images/users/50/'.$this->user_id.'.webp');
+        try {
+            $image = $this->user->avatar->sizes['small'];
 
+        }catch (\Exception $e) { }
+        return null;
     }
 
     public static function latest_comments($game_id)

@@ -4,12 +4,12 @@ import { BsArrowRight } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
 
 function ReplyNotification(props) {
-  
+
     const navigate = useNavigate()
 
     const [replyStatus, setReplyStatus] = React.useState(false);
     const [isHovered, setIsHovered] = React.useState(false);
-  
+
 
     useEffect(() => {
         setReplyStatus(props?.info.is_read)
@@ -29,7 +29,7 @@ function ReplyNotification(props) {
                     console.log(err);
                 }
             );
-        
+
         props.setShowNotificationPopup(false)
     };
 
@@ -44,7 +44,7 @@ function ReplyNotification(props) {
 
             <div className='flex-co flex w-9/12'>
                 <div className="flex items-center px-1">
-                    <img className="h-12 w-12 rounded-full" src={props?.info.comment.user.avatar} alt="" />
+                    <img className="h-12 w-12 rounded-full" src={props?.info.comment.user.avatar.sizes.small} alt="" />
 
                     <div className="mx-2 py-4">
                         <p className="text-gray-300">Your comment received a reply from <b>{props?.info.comment.username}</b></p>

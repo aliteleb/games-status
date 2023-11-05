@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class Media extends Model
 {
@@ -19,6 +20,8 @@ class Media extends Model
         'file',
         'alt',
         'user_id',
+        'path',
+        'prefix',
         'description',
         'status',
         'mime',
@@ -28,10 +31,12 @@ class Media extends Model
         'width',
     ];
 
-    public static function datatable($options = []) : AdvancedDataTable
+    protected $appends = ['sizes'];
+
+    public static function datatable($options = []): AdvancedDataTable
     {
         $datatable = new AdvancedDataTable(Media::class, $options);
-        $datatable->columns = ['file', 'alt', 'user.name', 'created_at'];
+        $datatable->columns = ['file', 'alt', 'user.username', 'created_at'];
         $datatable->buttons = ['selectAll', 'selectNone'];
         $datatable->add = false;
         $datatable->custom_table = true;
@@ -68,5 +73,87 @@ class Media extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function upload($file, $path, $sizes = [], $keep_same_file_name = false, $title = '', $alt = '')
+    {
+        // Create the 'media' directory if it doesn't exist
+        Storage::disk('public')->makeDirectory('media');
+        Storage::disk('media')->makeDirectory($path);
+
+        $file_save_name = round(microtime(true) * 1000) . '.webp';
+
+        if ($keep_same_file_name) {
+            // Determine the default values for alt and title
+            $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+            $file_save_name = $file_name . '.webp';
+
+            // Check if the file already exists, if so, add a number to the name
+            $counter = 1;
+
+            while (Storage::disk('media')->exists($path . $file_save_name)) {
+                $file_save_name = $file_name . '_' . $counter . '.webp';
+                $counter++;
+            }
+        }
+
+        // Get width and height of the uploaded image
+        list($image_width, $image_height) = getimagesize($file->getPathname());
+
+        // Get file size, mime type, and file type
+        $fileSize = $file->getSize();
+        $mime = $file->getClientMimeType();
+
+        // Quality
+        $quality = 100;
+        $paths = [];
+        foreach ($sizes as $prefix => $size) {
+            $width = $size[0];
+            $height = $size[1];
+
+            $full_path = $path . '/' . $prefix . '/';
+            $paths[] = $full_path;
+
+            Storage::disk('media')->makeDirectory($full_path);
+
+            $image = Image::make($file)->encode('webp', $quality);
+
+            if ($width || $height) {
+                $image = $image->resize($size[0], $size[1], function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+
+            Storage::disk('media')->put($full_path . $file_save_name, $image->stream());
+        }
+
+
+        // Create a new Media record
+        return Media::create([
+            'title' => $title,
+            'file' => $file_save_name,
+            'alt' => $alt,
+            'user_id' => auth()->check() ? auth()->user()->id : null,
+            'path' => $path,
+            'prefix' => implode(",", array_keys($sizes)),
+            'width' => $image_width,
+            'height' => $image_height,
+            'file_size' => $fileSize,
+            'mime' => $mime,
+            'type' => 'webp',
+        ]);
+
+    }
+
+    public function getSizesAttribute()
+    {
+
+        $sizes = explode(',', $this->prefix);
+        $result = [];
+        foreach ($sizes as $index => $size) {
+            $result[$size] = Storage::disk('media')->url($this->path . '/' . $size . '/' . $this->file);
+        }
+        return $result;
     }
 }

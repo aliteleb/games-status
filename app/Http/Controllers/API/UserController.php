@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
+use App\Models\Media;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class UserController extends Controller
 {
     public function show($username)
     {
-        $user = User::select(['id', 'username', 'display_name'])
+        $user = User::select(['id', 'username', 'display_name', 'media_id'])
             ->with('games', function ($query) {
                 return $query->paginate(12);
             })
@@ -173,14 +174,10 @@ class UserController extends Controller
         // Retrieve the uploaded files
         $avatar = $request->file('avatar');
 
-        // Profile avatar
-        Image::make($avatar)->encode('webp', 100)->resize(100, null, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save(public_path('assets/images/users/100/' . $user->id . '.webp'));
-        // Comments avatar
-        Image::make($avatar)->encode('webp', 50)->resize(50, null, function ($constraint) {
-            $constraint->aspectRatio();
-        })->save(public_path('assets/images/users/50/' . $user->id . '.webp'));
+        $media = Media::upload($avatar, '/images/user', User::$media_sizes);
+
+        $user->media_id = $media->id;
+        $user->save();
 
         return response()->api(
             data: $user,

@@ -95,8 +95,8 @@ function Navbar() {
                             <RiNotification2Line onClick={() => {
                                 setShowNotificationPopup(!showNotificationPopup);
                             }} id="notification-dropdown"
-                                                 className={`border-2 hover:border-gray-400 rounded-full mx-4 transition p-2 w-9 h-9 rounded-full cursor-pointer ${showNotificationPopup ? "border-gray-400" : "border-gray-600"}`}
-                                                 src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
+                                                 className={`border-2 hover:border-gray-400 rounded-full mx-4 transition p-2 w-9 h-9 cursor-pointer ${showNotificationPopup ? "border-gray-400" : "border-gray-600"}`}
+                                                 width={100} height={100} />
                             {unReadNotificationsCount === 0 || <div
                                 className="absolute right-10 top-[-6px] flex h-5 w-5 items-center justify-center rounded-full bg-red-800 text-xs">{unReadNotificationsCount}</div>}
                         </div>
@@ -112,7 +112,7 @@ function Navbar() {
                             setShowProfilePopup(!showProfilePopup);
                         }} id="user-dropdown"
                              className={`border-2 hover:border-gray-400 transition w-10 h-10 rounded-full cursor-pointer ${showProfilePopup ? "border-gray-400" : "border-gray-600"}`}
-                             src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
+                             src={`${user.avatar.sizes.medium}`} alt={"avatar"} width={100} height={100} />
                     }
                     {!user &&
                         <Link to="/login">
@@ -159,7 +159,7 @@ function Navbar() {
                     Notifications
                     <div className="flex items-center justify-center rounded-full bg-red-950 px-3 py-[2px]">{notificationsCount}</div>
                 </div>
-                <div className="h-[35rem] overflow-x-hidden overflow-y-scroll"> 
+                <div className="h-[35rem] overflow-x-hidden overflow-y-scroll">
                     <Notifications setShowNotificationPopup={setShowNotificationPopup} setUnReadNotificationsCount={setUnReadNotificationsCount} setNotificationsCount={setNotificationsCount} />
                 </div>
 
