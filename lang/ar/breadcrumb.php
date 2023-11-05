@@ -14,4 +14,6 @@ return [
     'comments' => 'التعليقات',
     'media' => 'الوسائط',
     'pages' => 'الصفحات',
+    'protections' => 'الحمايات',
+
 ];
