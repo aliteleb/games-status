@@ -99,7 +99,7 @@ function Navbar() {
                                 setShowNotificationPopup(!showNotificationPopup);
                             }} 
                             id="notification-dropdown"
-                            className={`border-2 border-gray-400 mx-4 transition p-2 w-9 h-9 cursor-pointer ${showNotificationPopup ? "md:border-red-700 md:rounded-t-full md:hover:border-red-700 md:text-red-700" : "border-gray-600 rounded-full hover:border-gray-400"}`}
+                            className={`border-2 border-gray-400 mx-4 transition p-2 w-9 h-9 rounded-t-full rounded-b-full cursor-pointer ${showNotificationPopup ? "md:border-red-700 md:rounded-b-none md:hover:border-red-700 md:text-red-700" : "border-gray-600 rounded-full hover:border-gray-400"}`}
                             src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
                             {unReadNotificationsCount === 0 || <div
                                 className='absolute right-10 top-[-6px] flex h-5 w-5 items-center justify-center bg-red-800 text-xs rounded-full'>{unReadNotificationsCount}</div>}
