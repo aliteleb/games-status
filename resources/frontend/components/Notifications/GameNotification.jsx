@@ -48,11 +48,11 @@ function GameNotification(props) {
 
             <div className="flex w-9/12 flex-col">
                 <div className="flex items-center">
-                    <img className="h-20" src={props?.info.game_info.poster} alt="" />
+                    <img className="h-28" src={props?.info.game_info.poster} alt="" />
 
                     <div className="mx-3 py-4">
-                        <p className="font-bold text-gray-300">{props?.info.game_info.title}</p>
-                        <p className={`text-${color} font-bold text-xl`}>{props?.info.game_info.status_text}</p>
+                        <p className="font-bold text-xl text-gray-300">{props?.info.game_info.title}</p>
+                        <p className={`text-${color} font-bold text-xl mt-4`}>{props?.info.game_info.status_text}</p>
                     </div>
                 </div>
             </div>
