@@ -13,15 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        Status::create(['name'=> 'UNCRACKED']);
-        Status::create(['name'=> 'CRACKED']);
-        Status::create(['name'=> 'UNKNOWN']);
+        $this->call([
+            RoleSeeder::class,
+            StatusSeeder::class,
+        ]);
     }
 }

@@ -1,0 +1,200 @@
+{
+    "company": {
+        "id": 60,
+        "name": "مدير",
+        "permission": "1",
+        "company_id": 43,
+        "summary": {
+            "TodayStatistics": "1",
+            "showShifts": "1"
+        },
+        "branches": {
+            "branchesPage": "1",
+            "updateBranches": "1",
+            "pointsDevicesPage": "1",
+            "updateDefaulTemplateSalesBill": "1"
+        },
+        "bond": {
+            "bond_view": "true",
+            "bond_modification": "true",
+            "bond_printing": "true"
+        },
+        "stores": {
+            "DeterminingStocks": "1",
+            "stocksManagementPage": "1",
+            "addStock": "1",
+            "updateStocks": "1",
+            "deleteStocks": "1",
+            "showStocks": "1",
+            "addCategoriesToStocks": "1",
+            "quantitiesTransferBondsPage": "1",
+            "addQuantityTransferBond": "0"
+        },
+        "users": {
+            "usersManagementPage": "1",
+            "addUser": "1",
+            "updateUsers": "1",
+            "deleteUsers": "1",
+            "usersJobsPage": "1",
+            "addUserJob": "1",
+            "updateUsersJobs": "1",
+            "deleteUsersJobs": "1"
+        },
+        "settings": {
+            "general_settings": {
+                "view_general_settings": "true",
+                "modify_general_settings": "true"
+            }
+        }
+    },
+    "branche": {
+        "id": 1270,
+        "branche_id": 71,
+        "permission": "0",
+        "role_id": 60,
+        "summary": {
+            "TodayStatistics": "0",
+            "showShifts": "0"
+        },
+        "categories": {
+            "showItems": "0",
+            "addItems": "0",
+            "updateItems": "0",
+            "deleteItems": "0",
+            "showProducts": "0",
+            "addProducts": "0",
+            "updateProducts": "0",
+            "deleteProducts": "0",
+            "showServices": "0",
+            "addServices": "0",
+            "updateServices": "0",
+            "deleteServices": "0",
+            "showExtras": "0",
+            "addExtras": "0",
+            "updateExtras": "0",
+            "deleteExtras": "0"
+        },
+        "shifts": {
+            "shiftsPage": "0",
+            "updateShifts": "0",
+            "reportShifts": "0"
+        },
+        "sales": {
+            "salesPage": "0",
+            "sellingReturnPage": "0",
+            "sellingReturn": "0",
+            "PrintReturnSale": "0",
+            "sellingReturnReceipt": "0",
+            "AddSalesReturnReceipts": "0",
+            "PrintSalesReturnReceipts": "0",
+            "sellingReceiptPage": "0",
+            "addSellingReceipt": "0",
+            "printSellingReceipt": "0",
+            "printSaleBill": "0",
+            "shareSaleBill": "0",
+            "addSale": "0",
+            "sale_PriceControl": "0",
+            "sale_Deduction": "0",
+            "sale_BillDeduction": "0",
+            "sale_BillDeduction_value": null,
+            "SellingNegativeAmount": "0",
+            "sale_ProfitIcon": "0",
+            "sale_AddIndividualClient": "0",
+            "sale_AddInstitutionClient": "0",
+            "sale_DeterminingCategories": "0",
+            "sale_A4Template": "1",
+            "sale_80MTemplate": "2",
+            "sale_58MTemplate": "4"
+        },
+        "prices_offers": {
+            "pricesOffersPage": "0",
+            "updatePricesOffers": "0",
+            "reportPricesOffers": "0",
+            "confirmPricesOffers": "0",
+            "addPricesOffers": "0",
+            "priceOffer_PriceControl": "0",
+            "priceOffer_Deduction": "0",
+            "priceOffer_BillDeduction": "0",
+            "priceOffer_BillDeduction_value": null,
+            "SellingNegativeValue": "0",
+            "priceOffer_ProfitIcon": "0",
+            "AddIndividualCustomer": "0",
+            "AddEnterpriseClient": "0",
+            "DeterminingCategories": "0"
+        },
+        "bond": {
+            "bondsPage": "0",
+            "addBonds": "0",
+            "addBondsItems": "0",
+            "updateBonds": "0",
+            "printBonds": "0"
+        },
+        "purchases": {
+            "purchasesPage": "0",
+            "purchaseReturnPage": "0",
+            "purchaseReturn": "0",
+            "PrintPurchaseReturn": "0",
+            "purchaseReturnReceipt": "0",
+            "addPurchaseReturnReceipt": "0",
+            "printPurchaseReturnReceipt": "0",
+            "purchaseReceiptPage": "0",
+            "addPurchaseReceipt": "0",
+            "printPurchaseReceipt": "0",
+            "addPurchase": "0",
+            "AddPurchaseInvoice": "0",
+            "addsupplier": "0",
+            "DeterminingCategories": "0"
+        },
+        "purchase_orders": {
+            "purchaseOrdersPage": "0",
+            "updatePurchaseOrders": "0",
+            "reportPurchaseOrders": "0",
+            "confirmPurchaseOrders": "0",
+            "addPurchaseOrders": "0",
+            "purchaseOrder_PriceControl": "0",
+            "purchaseOrder_AddVarietyNewRow": "0",
+            "addsupplier": "0",
+            "DeterminingCategories": "0"
+        },
+        "manufactures": {
+            "manufacturesPage": "0",
+            "addIndustrial": "0"
+        },
+        "suppliers": {
+            "showSuppliers": "0",
+            "addSuppliers": "0",
+            "updateSuppliers": "0",
+            "deleteSuppliers": "0"
+        },
+        "clients": {
+            "showCustomersIndividuals": "0",
+            "addCustomersIndividuals": "0",
+            "updateCustomersIndividuals": "0",
+            "deleteCustomersIndividuals": "0",
+            "showCustomersInstitutional": "0",
+            "addCustomersInstitutional": "0",
+            "updateCustomersInstitutional": "0",
+            "deleteCustomersInstitutional": "0"
+        },
+        "reports": {
+            "reportsPage": "0",
+            "DeterminingCategories": "0",
+            "inventoryPage": "0",
+            "printInventory": "0",
+            "salesTrafficPage": "0",
+            "printSalesTraffic": "0",
+            "purchasesTrafficPage": "0",
+            "printPurchasesTraffic": "0",
+            "financeTrafficPage": "0",
+            "printFinanceTraffic": "0",
+            "categoriesTrafficPage": "0",
+            "printCategoriesTraffic": "0",
+            "customerStatementPage": "0",
+            "printCustomerStatement": "0",
+            "supplierStatementPage": "0",
+            "printSupplierStatement": "0",
+            "accountsDebtsPage": "0",
+            "printAccountsDebts": "0"
+        }
+    }
+}
