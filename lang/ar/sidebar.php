@@ -4,7 +4,7 @@ return [
 
     'home' => 'الرئيسية',
     'posts' => 'المقالات',
-    'categories' => 'التصنيفات',
+    'protections' => 'الحمايات',
     'media' => 'الوسائط',
     'reports' => 'التقارير',
     'comments' => 'التعليقات',

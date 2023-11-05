@@ -38,6 +38,7 @@ class Media extends Model
         $datatable = new AdvancedDataTable(Media::class, $options);
         $datatable->columns = ['file', 'alt', 'user.username', 'created_at'];
         $datatable->buttons = ['selectAll', 'selectNone'];
+        $datatable->extra_selection = ['path', 'prefix'];
         $datatable->add = false;
         $datatable->custom_table = true;
         $datatable->modal_fields = [

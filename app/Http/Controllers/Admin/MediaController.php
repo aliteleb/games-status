@@ -61,20 +61,16 @@ class MediaController extends Controller
         // Get the media IDs to be deleted
         $idsToDelete = $request->input('ids', []);
 
-        // Get the paths of the files associated with the media
-        $filePaths = Media::whereIn('id', $idsToDelete)->pluck('file')->map(function ($filename) {
-            return [
-                'original' => public_path('media/images/original/' . $filename),
-                'large' => public_path('media/images/large/' . $filename),
-                'medium' => public_path('media/images/medium/' . $filename),
-                'thumbnail' => public_path('media/images/thumbnail/' . $filename),
-            ];
-        })->flatten();
-
-        // Delete the files from storage
-        foreach ($filePaths as $filePath) {
-            if (file_exists($filePath))
-                unlink($filePath);
+        $media = Media::whereIn('id', $idsToDelete)->get();
+        foreach ($media as $medium)
+        {
+            $files = array_values($medium->sizes);
+            foreach ($files as $file)
+            {
+                $file = public_path($file);
+                if (file_exists($file))
+                    unlink($file);
+            }
         }
 
         // Delete the media records from the database
