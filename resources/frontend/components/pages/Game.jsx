@@ -330,11 +330,14 @@ function Game() {
                         METACRITIC
                         <span className="font-bold">94</span>
                     </div>
-                    <a
+                    <a  
+                        onClick={setTimeout( ()=> {
+                            document.getElementById('comment').focus()
+                        }, 1000 )}
                         href="#co"
                         className="flex h-14 w-full cursor-pointer items-center justify-between rounded bg-black/30 px-3 text-gray-300 transition hover:bg-black/40 md:w-1/3"
                     >
-                        <LiaCommentSolid className="h-8 w-16 text-gray-300" />
+                        <LiaCommentSolid className="h-8 w-16 text-gray-300"/>
                         COMMENTS
                         <span className="font-bold">{comments.length}</span>
                     </a>
