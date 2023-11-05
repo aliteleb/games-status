@@ -36,6 +36,8 @@ function ReplyNotification(props) {
         navigate(`/game/${props.info.game_info.slug}`)
     }
 
+    console.log(props.info);
+
     return (
         <div
             onMouseEnter={() => setIsHovered(true)}
@@ -47,7 +49,7 @@ function ReplyNotification(props) {
 
             <div className='flex-co flex w-9/12'>
                 <div className="flex items-center px-1">
-                    <img className="h-12 w-12 rounded-full" src={props?.info.comment.user.avatar} alt="" />
+                    <img className="h-12 w-12 rounded-full" src={props?.info.comment.user.small_avatar} alt="" />
 
                     <div className="mx-2 py-4">
                         <p className="text-gray-300">Your comment received a reply from <b>{props?.info.comment.username}</b></p>

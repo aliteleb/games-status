@@ -51,6 +51,8 @@ function Navbar() {
         };
     }, [showProfilePopup], [notificationsCount]);
 
+    console.log(user);
+
     return (
         <>
             <nav className="fixed z-50 grid w-full grid-cols-[1fr_auto_1fr] items-center bg-app-black/70 px-1 text-white backdrop-blur-xl md:px-6">
@@ -95,11 +97,12 @@ function Navbar() {
                         <div className="relative">
                             <RiNotification2Line onClick={() => {
                                 setShowNotificationPopup(!showNotificationPopup);
-                            }} id="notification-dropdown"
-                                                 className={`border-2 hover:border-gray-400 rounded-full mx-4 transition p-2 w-9 h-9 cursor-pointer ${showNotificationPopup ? "border-gray-400" : "border-gray-600"}`}
-                                                 src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
+                            }} 
+                            id="notification-dropdown"
+                            className={`border-2 border-gray-400 mx-4 transition p-2 w-9 h-9 cursor-pointer ${showNotificationPopup ? "md:border-red-700 rounded-t-full md:hover:border-red-700 md:text-red-700" : "border-gray-600 rounded-full hover:border-gray-400"}`}
+                            src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
                             {unReadNotificationsCount === 0 || <div
-                                className={`absolute right-10 top-[-6px] flex h-5 w-5 items-center justify-center bg-red-800 text-xs  ${showNotificationPopup ? "rounded-t-full" : "rounded-full"}`}>{unReadNotificationsCount}</div>}
+                                className='absolute right-10 top-[-6px] flex h-5 w-5 items-center justify-center bg-red-800 text-xs rounded-full'>{unReadNotificationsCount}</div>}
                         </div>
                     }
                     {!user &&
@@ -113,7 +116,7 @@ function Navbar() {
                             setShowProfilePopup(!showProfilePopup);
                         }} id="user-dropdown"
                              className={`border-2 hover:border-gray-400 transition w-10 h-10 rounded-full cursor-pointer ${showProfilePopup ? "border-gray-400" : "border-gray-600"}`}
-                             src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
+                             src={`${user.avatar.sizes.medium}`} alt={"avatar"} width={100} height={100} />
                     }
                     {!user &&
                         <Link to="/login">
@@ -154,7 +157,7 @@ function Navbar() {
                 </ul>
             </div>
             <div
-                className={`${!showNotificationPopup ? "hidden" : "animate-slide-down"} border border-red-800 rounded-tl-none rounded-tr-none notification-popup shadow-black flex rounded-md overflow-hidden flex-col z-50 w-full md:w-[45rem] mt-12 md:my-4 md:mx-[4.60rem] text-gray-300 list-none shadow bg-[#1d1c1c] fixed md:right-[0.7rem] top-[3.2rem]`}
+                className={`${!showNotificationPopup ? "hidden" : "animate-slide-down"} border border-red-800 rounded-tl-none rounded-tr-none notification-popup shadow-black flex rounded-md overflow-hidden flex-col z-50 w-full md:w-[45rem] mt-12 md:my-[-3.5px] md:mx-[4.60rem] text-gray-300 list-none shadow bg-[#1d1c1c] fixed md:right-[0.4rem] top-[3.2rem]`}
                 id="notification-dropdown">
                 <div className="flex h-10 items-center justify-center gap-x-3 bg-red-700">
                     Notifications
