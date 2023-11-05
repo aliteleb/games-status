@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\DrmProtection;
+use App\Models\Protection;
 use App\Models\Game;
 use App\Models\Genre;
 use Illuminate\Console\Command;

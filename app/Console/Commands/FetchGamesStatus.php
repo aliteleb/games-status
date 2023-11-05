@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\DrmProtection;
+use App\Models\Protection;
 use App\Models\Game;
 use App\Models\Group;
 use Illuminate\Console\Command;
@@ -65,11 +65,11 @@ class FetchGamesStatus extends Command
                 */
 
                 if ($protections == null) {
-                    $protection = DrmProtection::firstOrCreate(['name' => strtoupper($data['protections'])]);
+                    $protection = Protection::firstOrCreate(['name' => strtoupper($data['protections'])]);
                     $game->protections()->attach([$protection->id]);
                 } else {
                     foreach ($protections as $p) {
-                        $protection = DrmProtection::firstOrCreate(['name' => strtoupper($p)]);
+                        $protection = Protection::firstOrCreate(['name' => strtoupper($p)]);
                         $game->protections()->attach([$protection->id]);
                     }
                 }

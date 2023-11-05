@@ -28,7 +28,7 @@ class Game extends Model
 
     public function protections()
     {
-        return $this->belongsToMany(DrmProtection::class, 'game_drm_protection', 'game_id', 'drm_protection_id');
+        return $this->belongsToMany(Protection::class, 'game_drm_protection', 'game_id', 'drm_protection_id');
     }
 
     public function comments()

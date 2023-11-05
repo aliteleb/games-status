@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
-use App\Models\DrmProtection;
+use App\Models\Protection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,13 +12,13 @@ class ProtectionController extends Controller
 {
     public function index(Request $request)
     {
-        $result = DB::table('drm_protections as dp')
+        $result = DB::table('protections as dp')
             ->join(DB::raw('(SELECT gdp.drm_protection_id, MAX(gdp.game_id) as game_id FROM game_drm_protection gdp GROUP BY gdp.drm_protection_id) as lg'), 'dp.id', '=', 'lg.drm_protection_id')
             ->join('games as g', 'lg.game_id', '=', 'g.id')
-            ->join(DB::raw('(SELECT drm_protections.id as drm_id, COUNT(game_drm_protection.game_id) as games_count
-                FROM drm_protections
-                JOIN game_drm_protection ON drm_protections.id = game_drm_protection.drm_protection_id
-                GROUP BY drm_protections.id) as gc'), 'dp.id', '=', 'gc.drm_id')
+            ->join(DB::raw('(SELECT protections.id as drm_id, COUNT(game_drm_protection.game_id) as games_count
+                FROM protections
+                JOIN game_drm_protection ON protections.id = game_drm_protection.drm_protection_id
+                GROUP BY protections.id) as gc'), 'dp.id', '=', 'gc.drm_id')
             ->where('g.type', 'game')
             ->select('dp.id as protection_id', 'dp.name as protection_name', 'dp.slug as protection_slug', 'gc.games_count',
                 'lg.game_id as game_id', 'g.name as game_name', 'g.slug as game_slug')
@@ -49,7 +49,7 @@ class ProtectionController extends Controller
 
     public function show($slug)
     {
-        $protection = DrmProtection::with(['games'=> function ($query) {
+        $protection = Protection::with(['games'=> function ($query) {
             return $query->paginate(12);
         }])->withCount('games')
             ->where('slug', $slug)
