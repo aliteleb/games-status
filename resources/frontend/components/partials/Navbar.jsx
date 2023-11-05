@@ -11,6 +11,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
 import { GoSignOut } from "react-icons/go";
 import Notifications from "../layouts/Notifications.jsx";
+import {RiNotificationOffFill} from 'react-icons/ri'
 
 
 function Navbar() {
@@ -96,9 +97,13 @@ function Navbar() {
                                 setShowNotificationPopup(!showNotificationPopup);
                             }} id="notification-dropdown"
                                                  className={`border-2 hover:border-gray-400 rounded-full mx-4 transition p-2 w-9 h-9 cursor-pointer ${showNotificationPopup ? "border-gray-400" : "border-gray-600"}`}
+<<<<<<< HEAD
                                                  width={100} height={100} />
+=======
+                                                 src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
+>>>>>>> 8278b314dbf5c4d1af70613571a29a617b568770
                             {unReadNotificationsCount === 0 || <div
-                                className="absolute right-10 top-[-6px] flex h-5 w-5 items-center justify-center rounded-full bg-red-800 text-xs">{unReadNotificationsCount}</div>}
+                                className={`absolute right-10 top-[-6px] flex h-5 w-5 items-center justify-center bg-red-800 text-xs  ${showNotificationPopup ? "rounded-t-full" : "rounded-full"}`}>{unReadNotificationsCount}</div>}
                         </div>
                     }
                     {!user &&
@@ -159,8 +164,19 @@ function Navbar() {
                     Notifications
                     <div className="flex items-center justify-center rounded-full bg-red-950 px-3 py-[2px]">{notificationsCount}</div>
                 </div>
+<<<<<<< HEAD
                 <div className="h-[35rem] overflow-x-hidden overflow-y-scroll">
                     <Notifications setShowNotificationPopup={setShowNotificationPopup} setUnReadNotificationsCount={setUnReadNotificationsCount} setNotificationsCount={setNotificationsCount} />
+=======
+                <div className={`${notificationsCount === 0 ? "flex justify-center items-center" : ""} max-h-[35rem] min-h-[5rem] overflow-x-hidden overflow-y-scroll`}>
+                    {notificationsCount === 0 ?
+                        <div className="text-gray-300 flex items-center gap-x-2">
+                            <RiNotificationOffFill className="w-6 h-6"/>
+                            There are no new notifications for you.
+                        </div>:
+                        <Notifications setShowNotificationPopup={setShowNotificationPopup} setUnReadNotificationsCount={setUnReadNotificationsCount} setNotificationsCount={setNotificationsCount} />
+                    }
+>>>>>>> 8278b314dbf5c4d1af70613571a29a617b568770
                 </div>
 
             </div>

@@ -28,62 +28,62 @@ function Sidebar() {
                 <HiXMark className='w-6 h-6 text-white'/>
             </div>
             <nav onClick={collapseSidebar} className="flex h-screen flex-col gap-y-3 px-6 text-white bg-app-black/70">
-                <div className="flex items-center gap-x-4">
+                <div className={`flex items-center gap-x-4 transform hover:translate-x-2 transition ${user ? 'group cursor-pointer' : ''}`}>
                     <BiUserCircle className='w-8 h-8 text-red-800'/>
                     <div>
                         {user &&
-                            <NavLink to="/profile" className="transition hover:text-gray-400">PROFILE</NavLink>
+                            <NavLink to="/profile" className="transition group-hover:text-[#ff0000]">PROFILE</NavLink>
                         }
 
                         {!user &&
                             <div>
-                                <NavLink className="transition hover:text-gray-400" to="/login">LOGIN</NavLink>
+                                <NavLink className="transition hover:text-[#ff0000]" to="/login">LOGIN</NavLink>
                                 <span className="px-1"> | </span>
-                                <NavLink className="transition hover:text-gray-400" to="/signup">SIGN UP</NavLink>
+                                <NavLink className="transition hover:text-[#ff0000]" to="/signup">SIGN UP</NavLink>
                             </div>
                         }
                     </div>
                 </div>
 
-                <NavLink className='flex items-center gap-x-4' to="/">
+                <NavLink className='flex items-center gap-x-4 transform hover:translate-x-2 transition group' to="/">
                     <AiOutlineHome className='h-10 w-8 text-red-800'/>
-                    <span className='transition hover:text-gray-400'>HOME</span>
+                    <span className='transition group-hover:text-[#ff0000]'>HOME</span>
                 </NavLink>
 
-                <NavLink className='flex items-center gap-x-4' to="/games">
+                <NavLink className='flex items-center gap-x-4 transform hover:translate-x-2 transition group' to="/games">
                     <IoGameControllerOutline className='h-10 w-8 text-red-800'/>
-                    <span className='transition hover:text-gray-400'>GAMES</span>
+                    <span className='transition group-hover:text-[#ff0000]'>GAMES</span>
                 </NavLink>
 
-                <NavLink className='flex items-center gap-x-4' to="/groups">
+                <NavLink className='flex items-center gap-x-4 transform hover:translate-x-2 transition group' to="/groups">
                     <GiPirateFlag className='h-10 w-8 text-red-800'/>
-                    <span className='transition hover:text-gray-400'>GROUPS</span>
+                    <span className='transition group-hover:text-[#ff0000]'>GROUPS</span>
                 </NavLink>
 
-                <NavLink className='flex items-center gap-x-4' to="/protections">
+                <NavLink className='flex items-center gap-x-4 transform hover:translate-x-2 transition group' to="/protections">
                     <BsShieldExclamation className='h-10 w-8 text-red-800'/>
-                    <span className='transition hover:text-gray-400'>PROTECTIONS</span>
+                    <span className='transition group-hover:text-[#ff0000]'>PROTECTIONS</span>
                 </NavLink>
 
-                <div className='flex items-center gap-x-4 cursor-not-allowed' to="/markets">
+                <div className='flex items-center gap-x-4 cursor-not-allowed hover:text-red-[#ff0000] group' to="/markets">
                     <HiOutlineShoppingBag className='h-10 w-8 text-red-800'/>
-                    <span className='transition hover:text-gray-400 font-bold'>MARKETS</span>
+                    <span className='transition group-hover:text-[#ff0000] font-bold'>MARKETS</span>
                 </div>
 
-                <div className='flex items-center gap-x-4 cursor-not-allowed' to="/markets">
+                <div className='flex items-center gap-x-4 cursor-not-allowed hover:text-red-[#ff0000] group' to="/markets">
                     <BsGift className="h-10 w-8 text-red-800"/>
-                    <span className='transition hover:text-gray-400 font-bold'>FREE GAMES</span>
+                    <span className='transition group-hover:text-[#ff0000] font-bold'>FREE GAMES</span>
                 </div>
 
-                <div className='flex items-center gap-x-4 cursor-not-allowed' to="/markets">
+                <div className='flex items-center gap-x-4 cursor-not-allowed hover:text-red-[#ff0000] group' to="/markets">
                     <GiCreditsCurrency className='h-10 w-8 text-red-800'/>
-                    <span className='transition hover:text-gray-400 font-bold'>POINTS</span>
+                    <span className='transition group-hover:text-[#ff0000] font-bold'>POINTS</span>
                 </div>
 
                 {user &&
-                    <NavLink className='mt-auto mb-2 flex items-center gap-x-4' to="/logout">
+                    <NavLink className='mt-auto mb-2 flex transform hover:translate-x-2 transition items-center gap-x-4 group' to="/logout">
                         <FiLogOut className='h-10 text-red-800 w-[30px]'/>
-                        <span className='transition hover:text-gray-400'>LOGOUT</span>
+                        <span className='transition group-hover:text-[#ff0000] font-bold'>LOGOUT</span>
                     </NavLink>
                 }
             </nav>
