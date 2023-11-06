@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\{CommentController,
     DashboardController,
+    GameController,
     GroupController,
     MediaController,
     NoteController,
@@ -28,14 +29,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Resource Routes
-Route::resource('/users', UserController::class); // CRUD routes for users
-Route::resource('/roles', RoleController::class); // CRUD routes for roles
+Route::resource('/games', GameController::class); // CRUD routes for protections
 Route::resource('/protections', ProtectionController::class); // CRUD routes for protections
 Route::resource('/groups', GroupController::class); // CRUD routes for groups
 Route::resource('/statuses', StatusController::class); // CRUD routes for statuses
 Route::resource('/comments', CommentController::class); // CRUD routes for comments
 Route::resource('/notes', NoteController::class); // CRUD routes for notes
 Route::resource('/media', MediaController::class)->parameters(['media' => 'media']); // CRUD routes for media
+Route::resource('/users', UserController::class); // CRUD routes for users
+Route::resource('/roles', RoleController::class); // CRUD routes for roles
 
 // Settings Routes
 Route::get('/settings', [SettingController::class, 'index'])->name('settings.index'); // Show settings form

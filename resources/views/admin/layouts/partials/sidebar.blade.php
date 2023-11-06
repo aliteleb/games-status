@@ -46,22 +46,12 @@
                             <span> @lang('sidebar.home')</span>
                         </a>
                     </li>
-
-                    {{--
                     <li>
-                        <a href="{{route('admin.posts.index')}}">
-                            <i class="sicon-survey"></i>
-                            <span>@lang('sidebar.posts')</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('admin.categories.index')}}">
+                        <a href="{{route('admin.games.index')}}">
                             <i class="sicon-border-all"></i>
-                            <span>@lang('sidebar.categories')</span>
+                            <span>@lang('sidebar.games')</span>
                         </a>
                     </li>
-                    --}}
-
                     <li>
                         <a href="{{route('admin.protections.index')}}">
                             <i class="sicon-border-all"></i>
@@ -98,7 +88,6 @@
                             <span>@lang('sidebar.media')</span>
                         </a>
                     </li>
-
                     <li class="navigation-header">
                         <span>@lang('sidebar.users')</span>
                     </li>
@@ -112,13 +101,11 @@
                         <a href="{{route('admin.roles.index')}}">
                             <i class="sicon-padlock-unlock"></i>
                             <span>@lang('sidebar.roles')</span>
-                            <span class="badge badge--primary">@lang('ui.new')</span>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-
     </div>
 </div>
 
