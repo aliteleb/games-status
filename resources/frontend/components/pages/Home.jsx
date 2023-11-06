@@ -38,7 +38,7 @@ export default function Home() {
                 <Link to="/terms-conditions" type="button" class="text-white bg-gray-800 hover:bg-gray-700 font-medium rounded text-sm px-5 py-2.5 mr-2 mb-2 transition">Terms & Conditions</Link>
             </div>
 
-            {/* <div className="animate-pulse flex justify-between items-center bg-black/30 px-4 py-2 rounded mt-8 h-14"></div> */}
+            <div className="animate-skeleton flex justify-between items-center bg-black/70 px-4 py-2 rounded mt-8 h-14"></div>
 
             <div className='flex flex-wrap justify-between mt-8'>
                 <div className='text-white text-lg font-bold'>Hot Games</div>

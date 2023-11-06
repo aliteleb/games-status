@@ -108,6 +108,18 @@ input.custom-input:-webkit-autofill:hover {
         transform: translateY(0);
     }
 }
+
+@keyframes skeleton {
+    50% {
+        opacity: .5
+    }
+}
+
+.animate-skeleton {
+    animation: skeleton 2s cubic-bezier(.4,0,.6,1) infinite;
+    -webkit-animation: skeleton 2s cubic-bezier(.4,0,.6,1) infinite;
+}
+
 .animate-slide-down-slow{
     transform: translateY(-10%);
     opacity: 0;
