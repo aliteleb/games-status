@@ -25,7 +25,7 @@ class RoleController extends Controller
 
         // Ajax datatable request
         if (request()->ajax()) {
-            return datatables()->of($datatable)->make(true);
+            return datatables()->of($datatable)->make();
         }
 
         // Default datatable view

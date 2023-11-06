@@ -21,6 +21,7 @@ class HomeController extends Controller
             ->latest()
             ->orderBy('ordering')
             ->where('show_in_home', true)
+            ->where('status', true)
             ->get();
 
         return response()->api(
