@@ -25,7 +25,7 @@ class RoleController extends Controller
 
         // Ajax datatable request
         if (request()->ajax()) {
-            return datatables()->of($datatable)->make();
+            return datatables()->of($datatable->Selection())->make();
         }
 
         // Default datatable view
@@ -157,7 +157,7 @@ class RoleController extends Controller
         // Exclude current controller `RoleController`
         $controllersExceptions[] = class_basename(Route::current()->controller);
 
-        $controllerPath = app_path('Http/Controllers/Backend');
+        $controllerPath = app_path('Http/Controllers/Admin');
         $files = File::allFiles($controllerPath);
 
         foreach ($files as $file) {

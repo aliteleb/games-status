@@ -2,9 +2,12 @@
 
 @section('content')
 
-    {!! Form::model($role, ['route' => ['admin.roles.update', $role->id], 'method' => 'PUT', 'class' => 'permissions-form']) !!}
-    @include('backend.roles.form')
-    {!! Form::close() !!}
+    <form action="{{ route('admin.roles.update', $role->id) }}" method="POST" class="permissions-form">
+        @method('PUT')
+        @csrf
+        @include('admin.roles.form')
+    </form>
+
 
 @endsection
 
