@@ -5,7 +5,7 @@
         bottom: 0px;
     }
 </style>
-<div class="sidebar sidebar-main">
+<div class="sidebar" style="position: fixed; top: 15px !important;">
     <div class="sidebar-content">
 
         <div class="sidebar-user sidebar-user--team">
@@ -13,7 +13,7 @@
                 <div class="media-left no-padding" id="store_avatar">
                     <div class="store-img-wrapper">
                         <img id="store_avatar_img" class="store-img img-circle img-sm" alt=""
-                             src="{{ storage('media', settings('site_logo')) }}"/>
+                             src="../../../../../public/assets/images/logo.png"/>
                     </div>
                     <div class="store-name-plan">
                         <h6 class="store-name-side font-regular">
@@ -92,12 +92,6 @@
                             <span>@lang('sidebar.media')</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="sicon-graph-bar"></i>
-                            <span>@lang('sidebar.reports')</span>
-                        </a>
-                    </li>
 
                     <li class="navigation-header">
                         <span>@lang('sidebar.users')</span>
@@ -115,17 +109,6 @@
                             <span class="badge badge--primary">@lang('ui.new')</span>
                         </a>
                     </li>
-
-                    <li class="navigation-header"><span>@lang('sidebar.settings')</span></li>
-
-                    <li>
-                        <a href="{{route('admin.settings.index')}}">
-                            <i class="sicon-settings"></i>
-                            <span>@lang('sidebar.website_settings')</span>
-                        </a>
-                    </li>
-
-
                 </ul>
             </div>
         </div>

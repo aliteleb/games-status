@@ -16,15 +16,11 @@
 
 <div class="navbar navbar-inverse" id="navbar_box">
     <div class="navbar-header">
-        <a class="navbar-brand" href="/">
-            <span class="logo"></span>
-        </a>
-
         <a class="sidebar-mobile-main-toggle" id="toggle-sidebar"><i class="sicon-menu"></i></a>
         <ul class="nav navbar-nav visible-xs navbar-top-mobile">
             <li class="changelog-headsup"></li>
             <li><a data-toggle="collapse" data-target="#navbar-user-mobile" class="mobile-avatar-box"><img
-                        src="" class="mobile-avatar" alt=""></a></li>
+                   src="" class="mobile-avatar" alt=""></a></li>
         </ul>
     </div>
     <div class="navbar-collapse collapse" id="navbar-mobile">
