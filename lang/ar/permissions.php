@@ -53,6 +53,7 @@ return [
     'Comment_show' => 'عرض التعليقات',
     'Comment_update' => 'تعديل التعليقات',
     'Comment_destroy' => 'حذف التعليقات',
+    'Comment_store' => 'تخزين التعليق',
 
     'Media' => 'الوسائط',
     'Media_index' => 'إدارة الوسائط',
@@ -60,5 +61,33 @@ return [
     'Media_store' => 'إضافة الوسائط',
     'Media_update' => 'تعديل الوسائط',
     'Media_destroy' => 'حذف الوسائط',
+
+    'Group' => 'الفريق المقرصن',
+    'Group_index' => 'إدارة الفريق',
+    'Group_show' => 'عرض الفريق',
+    'Group_store' => 'إضافة فريق',
+    'Group_update' => 'تعديل فريق',
+    'Group_destroy' => 'حذف الفريق',
+    
+    'Note' => 'الملاحظات',
+    'Note_index' => 'إدارة الملاحظة',
+    'Note_show' => 'عرض الملاحظة',
+    'Note_store' => 'إضافة ملاحظة',
+    'Note_update' => 'تعديل ملاحظة',
+    'Note_destroy' => 'حذف ملاحظة',
+
+    'Protection' => 'الحمايات',
+    'Protection_index' => 'إدارة الحماية',
+    'Protection_show' => 'عرض الحماية',
+    'Protection_store' => 'إضافة الحماية',
+    'Protection_update' => 'تعديل الحماية',
+    'Protection_destroy' => 'حذف الحماية',
+
+    'Status' => 'الحالات',
+    'Status_index' => 'إدارة الحالة',
+    'Status_show' => 'عرض الحالة',
+    'Status_store' => 'إضافة حالة',
+    'Status_update' => 'تعديل الحالة',
+    'Status_destroy' => 'حذف الحالة',
 
 ];
