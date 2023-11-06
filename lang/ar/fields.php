@@ -10,7 +10,7 @@ return [
     'views' => 'المشاهدات',
     'status' => 'الحالة',
     'info' => 'النوع',
-    'success' => 'success',
-    'warning' => 'warning',
-    'danger' => 'danger',
+    'success' => 'أخضر',
+    'warning' => 'أصفر تحذير',
+    'danger' => 'أحمر',
 ];
