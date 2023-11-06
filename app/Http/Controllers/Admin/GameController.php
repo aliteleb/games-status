@@ -17,9 +17,13 @@ class GameController extends Controller
         // Datatable
         $datatable = Game::datatable();
 
+        $query = $datatable->Selection(['is_hot' => 'desc']);
+        $query->where('type', 'game');
+        $query->orderBy('id', 'desc');
+
         // Ajax datatable request
         if (request()->ajax()) {
-            return datatables()->of($datatable->Selection())->make();
+            return datatables()->of($query)->make();
         }
 
         // Default datatable view

@@ -11,6 +11,7 @@ class Game extends Model
     use HasFactory;
 
     protected $hidden = ['pivot'];
+    protected $casts = ['is_hot' => 'boolean'];
 
     public function genres()
     {
@@ -37,16 +38,16 @@ class Game extends Model
         return $this->hasMany(Comment::class);
     }
 
-    // Api stuff
-    public static function Api($game)
+    public function status()
     {
-
+        return $this->hasOne(Status::class, 'id','game_status_id');
     }
 
     public static function datatable(): AdvancedDataTable
     {
         $datatable = new AdvancedDataTable(Game::class);
-        $datatable->columns = ['name'];
+        $datatable->columns = ['name', 'status.name', 'release_date', 'crack_date', 'is_hot'];
+        $datatable->extra_selection = ['game_status_id'];
         $datatable->actions = [
             'edit_item' => [
                 "method" => "view",

@@ -102,6 +102,8 @@ class AdvancedDataTable
             $selection = array_unique($selection);
         }
 
+        $selection = array_unique($selection);
+
         // Relation queries to get only the columns we need
         $relations_queries = [];
         foreach ($relations as $relation) {
