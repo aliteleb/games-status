@@ -33,12 +33,10 @@ export default function Home() {
     return (
         <>
             <div className="flex justify-between items-center bg-black/50 px-4 py-2 rounded">
-                <img className="w-12 h-12" src="../../../../public/assets/images/logo.png" alt="" />
-                <p className="tracking-wider">Reminder: games-status only tracks crack status and offers no download, torrent, or such.</p>
-                <Link to="/terms-conditions" type="button" class="text-white bg-gray-800 hover:bg-gray-700 font-medium rounded text-sm px-5 py-2.5 mr-2 mb-2 transition">Terms & Conditions</Link>
+                <img className="w-10 h-10" src="../../../../public/assets/images/logo.png" alt="" />
+                <p className="tracking-wider text-md text-gray-300">Reminder: games-status only tracks crack status and offers no download, torrent, or such.</p>
+                <Link to="/terms-conditions" type="button" class="text-gray-300 bg-[#242729] hover:bg-[#2d3133] font-medium rounded text-sm px-5 py-2.5 transition">Terms & Conditions</Link>
             </div>
-
-            {/* <div className="animate-pulse flex justify-between items-center bg-black/30 px-4 py-2 rounded mt-8 h-14"></div> */}
 
             <div className='flex flex-wrap justify-between mt-8'>
                 <div className='text-white text-lg font-bold'>Hot Games</div>
