@@ -67,17 +67,17 @@ function Sidebar() {
 
                 <div className='flex items-center gap-x-4 cursor-not-allowed hover:text-red-[#ff0000] group' to="/markets">
                     <HiOutlineShoppingBag className='h-10 w-8 text-red-800'/>
-                    <span className='transition group-hover:text-[#ff0000] font-bold'>MARKETS</span>
+                    <span className='transition font-bold'>MARKETS</span>
                 </div>
 
                 <div className='flex items-center gap-x-4 cursor-not-allowed hover:text-red-[#ff0000] group' to="/markets">
                     <BsGift className="h-10 w-8 text-red-800"/>
-                    <span className='transition group-hover:text-[#ff0000] font-bold'>FREE GAMES</span>
+                    <span className='transition font-bold'>FREE GAMES</span>
                 </div>
 
                 <div className='flex items-center gap-x-4 cursor-not-allowed hover:text-red-[#ff0000] group' to="/markets">
                     <GiCreditsCurrency className='h-10 w-8 text-red-800'/>
-                    <span className='transition group-hover:text-[#ff0000] font-bold'>POINTS</span>
+                    <span className='transition font-bold'>POINTS</span>
                 </div>
 
                 {user &&
