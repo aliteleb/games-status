@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
 use App\Models\Game;
+use App\Models\Note;
 
 class HomeController extends Controller
 {
@@ -16,8 +17,17 @@ class HomeController extends Controller
             ->limit(7)
             ->get();
 
+        $notes = Note::select(['body'])
+            ->latest()
+            ->orderBy('ordering')
+            ->where('show_in_home', true)
+            ->get();
+
         return response()->api(
-            data: ['hot_games' => GameResource::collection($hot_games)],
+            data: [
+                'notes' => $notes,
+                'hot_games' => GameResource::collection($hot_games)
+            ],
             message: __("Home page")
         );
     }
