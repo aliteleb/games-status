@@ -16,6 +16,7 @@ class Notification extends Model
     protected $casts = [
         'is_read' => 'boolean',
     ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -31,19 +32,23 @@ class Notification extends Model
         return $this->belongsTo(Comment::class, 'comment_id');
     }
 
-    public static function latest_notifications(){
+    public static function latest_notifications()
+    {
         $user = auth()->user();
-        if(!$user){
+        if (!$user) {
             return collect([]);
         }
         $notifications_response = new \stdClass();
-        $notifications = Notification::with(['game', 'comment'])->where('user_id', $user->id)->latest()->get();
+        $notifications = Notification::with(['game' => function ($query) {
+            return $query->with('groups');
+        }, 'comment'])->where('user_id', $user->id)->latest()->get();
 
         $notifications->each(function ($notification) {
             if ($notification->game !== null) {
                 $notification->game_info = new GameResource($notification->game);
                 unset($notification->game);
             }
+            Carbon::setLocale('en');
             $time = Carbon::parse($notification->created_at)->diffForHumans();
             $notification->time = $time;
             unset($notification->created_at);
