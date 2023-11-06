@@ -23864,6 +23864,7 @@ label {
 
 .sidebar-user {
     padding: 20px 18px;
+    padding-top: 0;
 }
 
 .sidebar-user .media {

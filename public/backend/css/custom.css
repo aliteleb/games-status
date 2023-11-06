@@ -1669,6 +1669,7 @@ a:focus {
 .sidebar {
     background: var(--color-sidebar);
     display: block;
+    top: 15px !important;
 }
 
 .sidebar-content::-webkit-scrollbar {
