@@ -27,9 +27,12 @@
     --color-dark-300: #444444;
     --color-dark-400: #333333;
     --color-danger: #f55157;
-    /* --font-main: "PingARLT"; */
-    --font-main: "Noto Kufi Arabic";
-    --font-sallaicons: "sallaicons";
+    /* --font-main:
+    "PingARLT"; */
+    --font-main:
+        "Readex Pro";
+    --font-sallaicons:
+        "sallaicons";
     --font-base: 14px;
     --b-radius: 8px;
     --b-radius-sm: 4px;

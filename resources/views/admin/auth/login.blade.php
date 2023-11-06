@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('backend/images/favicon.png') }}">
     <link rel="stylesheet" href="{{asset('backend/auth/css/bootstrap.min.css')}}" media="all">
     <link href="{{asset('backend/auth/css/style.css')}}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
     <title>@lang('auth.dashboard_login')</title>
 </head>
 <body class="login-page dark">
