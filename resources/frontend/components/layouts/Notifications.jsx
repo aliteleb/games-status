@@ -11,12 +11,15 @@ function Notifications(props) {
     const [notifications, setNotifications] = React.useState(null);
 
     React.useEffect(() => {
-        if(user){
+        
             setNotifications(window.appData.notifications.notifications);
             props.setNotificationsCount(window.appData.notifications.notifications_count);
             props.setUnReadNotificationsCount(window.appData.notifications.unread_notifications);
-    
+            
             const interval = setInterval(() => {
+                
+                if(!user) return;
+
                 ApiClient().get("/notifications")
                     .then(res => {
                         setResponse(res.data.data);
@@ -25,11 +28,10 @@ function Notifications(props) {
                         props.setUnReadNotificationsCount(res.data.data.unread_notifications);
                     })
                     .catch(err => console.log(err));
-    
-            }, 5000);
-        }
 
-    }, []);
+            }, 5000);
+
+    }, [user]);
 
     return (
         <div className="flex flex-col gap-y-2 bg-black/50 p-2">
