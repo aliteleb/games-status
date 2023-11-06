@@ -274,7 +274,6 @@
                             formField.next().find('input').prop('checked', false)
                         }
                     }
-
                     // Handle images
                     if (formField.getAttribute('type') === 'hidden' && formField.previousElementSibling.getAttribute('src') !== undefined) {
                         formField.previousElementSibling.setAttribute('src', value)

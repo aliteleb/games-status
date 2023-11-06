@@ -12,7 +12,6 @@
     </div>
 
     <script>
-
         function choose_image() {
             return new Promise((resolve, reject) => {
 
@@ -30,10 +29,8 @@
 
                     let result = {'indexes' : [], 'data': ''};
                     selectedRows.each(function () {
-                        let file_name = $(this).find('td.file span').data('text');
-                        result['indexes'].push($(this).data('id'));
-                        let image_url = "/images/medium/" + file_name;
-                        result['data'] += image_url;
+                        let file_name = $(this).find('td.preview span').data('text');
+                        result['data'] += file_name;
                     });
 
                     // Close the modal
@@ -54,7 +51,7 @@
         function change_image(e) {
             choose_image()
                 .then((selected_file) => {
-                    e.src = "{!! storage('media', '/') !!}" + selected_file.data;
+                    e.src = selected_file.data;
                     e.nextElementSibling.value = selected_file['indexes'][0];
                 })
                 .catch((error) => {
@@ -82,8 +79,8 @@
                         function custom_table_media(e, settings, json, xhr) {
                             let contents = ``;
                             json.data.forEach((item, index) => {
-                                contents += `<div class='media_wrapper custom-row media-custom-row' data-row='${index}'>`;
-                                contents += `<img src='{{storage('media', '/images/medium/')}}${item.file}' alt="${item.alt}">`;
+                                contents += `<div class='media_wrapper custom-row media-custom-row' data-preview='${item.preview}' data-row='${index}'>`;
+                                contents += `<img src='${item.preview}' alt="${item.alt}">`;
                                 contents += `</div>`;
                             });
                             return contents;
@@ -99,5 +96,4 @@
             </div>
         </div>
     </div>
-
 @endsection

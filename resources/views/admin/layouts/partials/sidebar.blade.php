@@ -68,7 +68,24 @@
                             <span>@lang('sidebar.protections')</span>
                         </a>
                     </li>
-
+                    <li>
+                        <a href="{{route('admin.groups.index')}}">
+                            <i class="sicon-border-all"></i>
+                            <span>@lang('sidebar.groups')</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.statuses.index')}}">
+                            <i class="sicon-border-all"></i>
+                            <span>@lang('sidebar.status')</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.comments.index')}}">
+                            <i class="sicon-chat-conversation-alt"></i>
+                            <span>@lang('sidebar.comments')</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{route('admin.media.index')}}">
                             <i class="sicon-film-strip"></i>
@@ -79,13 +96,6 @@
                         <a href="#">
                             <i class="sicon-graph-bar"></i>
                             <span>@lang('sidebar.reports')</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="sicon-chat-conversation-alt"></i>
-                            <span>@lang('sidebar.comments')</span>
-                            <span class='badge bg-danger' id='feedback_badge'>2</span>
                         </a>
                     </li>
 

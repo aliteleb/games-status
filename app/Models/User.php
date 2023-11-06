@@ -54,6 +54,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'status' => 'boolean',
     ];
 
     protected $with = [
@@ -64,15 +65,9 @@ class User extends Authenticatable
         'large_avatar',
         'medium_avatar',
         'small_avatar',
-    ];
-
-    /*
-    protected $appends = [
-        'small_avatar',
         'avatar_html',
         'avatar_src'
     ];
-    */
 
     public function setPasswordAttribute($value)
     {
@@ -142,9 +137,9 @@ class User extends Authenticatable
     {
         $datatable = new AdvancedDataTable(User::class);
         $datatable->columns = ['avatar_html', 'username', 'email', 'role.name', 'status'];
-        $datatable->extra_selection = ['avatar'];
+        $datatable->extra_selection = ['media_id'];
         $datatable->modal_fields = [
-            'image_src' => 'media|80x80',
+            'avatar_src' => 'media|80x80',
             'username' => 'text',
             'email' => 'email',
             'description' => 'textarea',
@@ -201,15 +196,16 @@ class User extends Authenticatable
 
     protected function getAvatarSrcAttribute()
     {
-        if ($this->avatar !== null)
-            return storage('media', 'images/small/' . $this->avatar->file);
+        if ($this->avatar && count($this->avatar->sizes) > 0)
+        {
+            return array_values($this->avatar->sizes)[0];
+        }
         return 'https://dummyimage.com/80/8db4ff/000';
     }
 
     protected function getAvatarHtmlAttribute()
     {
-        return 'https://dummyimage.com/80/8db4ff/000';
-        return $this->avatar !== null ? '<img width="80" height="80" src="' . storage('media', 'images/small/' . $this->avatar->file) . '"' : '';
+        return $this->avatar !== null ? '<img width="80" height="80" src="' . $this->avatar_src . '"' : '';
     }
 
 

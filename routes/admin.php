@@ -1,6 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\{DashboardController, MediaController, ProtectionController, RoleController, SettingController, UserController};
+use App\Http\Controllers\Admin\{CommentController,
+    DashboardController,
+    GroupController,
+    MediaController,
+    ProtectionController,
+    RoleController,
+    SettingController,
+    StatusController,
+    UserController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +29,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 // Resource Routes
 Route::resource('/users', UserController::class); // CRUD routes for users
 Route::resource('/roles', RoleController::class); // CRUD routes for roles
-Route::resource('/protections', ProtectionController::class); // CRUD routes for roles
+Route::resource('/protections', ProtectionController::class); // CRUD routes for protections
+Route::resource('/groups', GroupController::class); // CRUD routes for groups
+Route::resource('/statuses', StatusController::class); // CRUD routes for statuses
+Route::resource('/comments', CommentController::class); // CRUD routes for comments
 Route::resource('/media', MediaController::class)->parameters(['media' => 'media']); // CRUD routes for media
 
 // Settings Routes

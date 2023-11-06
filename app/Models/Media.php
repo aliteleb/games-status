@@ -31,12 +31,12 @@ class Media extends Model
         'width',
     ];
 
-    protected $appends = ['sizes'];
+    protected $appends = ['sizes', 'preview'];
 
     public static function datatable($options = []): AdvancedDataTable
     {
         $datatable = new AdvancedDataTable(Media::class, $options);
-        $datatable->columns = ['file', 'alt', 'user.username', 'created_at'];
+        $datatable->columns = ['file', 'alt', 'user.username', 'created_at', 'preview'];
         $datatable->buttons = ['selectAll', 'selectNone'];
         $datatable->extra_selection = ['path', 'prefix'];
         $datatable->add = false;
@@ -149,12 +149,19 @@ class Media extends Model
 
     public function getSizesAttribute()
     {
-
         $sizes = explode(',', $this->prefix);
         $result = [];
         foreach ($sizes as $index => $size) {
             $result[$size] = Storage::disk('media')->url($this->path . '/' . $size . '/' . $this->file);
         }
         return $result;
+    }
+    public function getPreviewAttribute()
+    {
+        if ($this->sizes && count($this->sizes) > 0)
+        {
+            return array_values($this->sizes)[0];
+        }
+        return "";
     }
 }

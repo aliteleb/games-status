@@ -26,7 +26,6 @@ class Protection extends Model
     public static function datatable($options = []): AdvancedDataTable
     {
         $datatable = new AdvancedDataTable(Protection::class, $options);
-        $datatable->name = "protections";
         $datatable->columns = ['name', 'slug'];
         $datatable->buttons = ['selectAll', 'selectNone'];
         $datatable->actions = [
