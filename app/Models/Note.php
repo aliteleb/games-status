@@ -11,10 +11,14 @@ class Note extends Model
     use HasFactory;
 
     protected $fillable = ['type', 'body', 'show_in_home', 'ordering', 'status'];
+    protected $casts = [
+        'show_in_home' => 'boolean',
+        'status' => 'boolean',
+    ];
     public static function datatable($options = []): AdvancedDataTable
     {
         $datatable = new AdvancedDataTable(Note::class, $options);
-        $datatable->columns = ['type', 'body'];
+        $datatable->columns = ['type', 'body', 'show_in_home', 'ordering', 'status'];
         $datatable->buttons = ['selectAll', 'selectNone'];
         $datatable->actions = [
             'edit_item' => [

@@ -52,9 +52,9 @@
                                         $options = explode(',', $data[1]);
                                         $select_data = [];
                                         foreach($options as $option)
-                                            {
-                                                $select_data[$option] = __('fields.'.$option);
-                                            }
+                                        {
+                                            $select_data[$option] = __('fields.'.$option);
+                                        }
                                     }else{
                                         $select_data = $data[1] ?? '';
                                         $model = explode(',', $select_data)[0];
