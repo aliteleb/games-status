@@ -90,4 +90,11 @@ return [
     'Status_update' => 'تعديل الحالة',
     'Status_destroy' => 'حذف الحالة',
 
+    'Game' => 'الألعاب',
+    'Game_index' => 'إدارة اللعبة',
+    'Game_show' => 'عرض اللعبة',
+    'Game_store' => 'إضافة لعبة',
+    'Game_update' => 'تعديل اللعبة',
+    'Game_destroy' => 'حذف اللعبة',
+
 ];
