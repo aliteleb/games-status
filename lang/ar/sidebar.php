@@ -21,8 +21,6 @@ return [
     'theme_edit' => 'تعديل المظهر',
     'theme_code_editor' => 'محرر القالب',
     'visit_site' => 'زيارة الموقع',
-    'groups' => 'المقرصنين',
+    'groups' => 'فرق القرصنة',
     'status' => 'حالة الألعاب',
-
-
 ];

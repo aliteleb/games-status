@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ApiClient from "../../services/ApiClient";
 import { BsArrowRight } from 'react-icons/bs';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function GameNotification(props) {
     
@@ -35,6 +35,8 @@ function GameNotification(props) {
         props.setShowNotificationPopup(false)
     }
 
+    console.log(props.info);
+
     let color = props?.info.game_info.status_text ? props?.info.game_info.status_text.toLowerCase() : "gray-600";
 
     return (
@@ -50,9 +52,13 @@ function GameNotification(props) {
                 <div className="flex items-center">
                     <img className="h-28" src={props?.info.game_info.poster} alt="" />
 
-                    <div className="mx-3 py-4">
+                    <div className="mx-3 py-2 h-28 flex flex-col">
                         <p className="font-bold text-xl text-gray-300">{props?.info.game_info.title}</p>
-                        <p className={`text-${color} font-bold text-xl mt-4`}>{props?.info.game_info.status_text}</p>
+                        <Link to={`/group/${props.info.game_info.groups[0].slug}`} className="mt-4 text-gray-400 hover:text-gray-300 transition">{props.info.game_info.groups[0].name}</Link>
+                        <div className="flex items-center">
+                            <p className={`text-${color} font-bold text-xl`}>{props?.info.game_info.status_text}</p>
+                            <span className="mx-6 text-gray-400">After {props.info.game_info.days_diff} days</span>
+                        </div>
                     </div>
                 </div>
             </div>

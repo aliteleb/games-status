@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import ApiClient from "../../services/ApiClient";
 import { BsArrowRight } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
+import {Link} from 'react-router-dom'
 
 function ReplyNotification(props) {
 
@@ -50,7 +51,7 @@ function ReplyNotification(props) {
                     <img className="h-9 w-9 rounded-full" src={props?.info.comment.user.avatar.sizes.small} alt="" />
 
                     <div className="mx-2 py-4">
-                        <p className="text-gray-300">Your comment received a reply from <b>{props?.info.comment.username}</b></p>
+                        <p className="text-gray-300">Your comment received a reply from <Link to={`/user/${props.info.comment.username}`} className="font-bold text-gray-200 hover:text-gray-400 transition">{props?.info.comment.username}</Link></p>
                     </div>
                 </div>
             </div>

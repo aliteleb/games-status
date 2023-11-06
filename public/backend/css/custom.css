@@ -7728,6 +7728,11 @@ table.dt th, td {
     background-color: #39afc4;
 }
 
+.table-striped tbody .slug{
+    font-size: 16px;
+    text-shadow: 0 1px 4px #0404042e;
+}
+
 #items_list_paginate,
 .dataTables_filter {
     float: left;
