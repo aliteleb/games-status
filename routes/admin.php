@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\{CommentController,
     DashboardController,
     GroupController,
     MediaController,
+    NoteController,
     ProtectionController,
     RoleController,
     SettingController,
@@ -33,6 +34,7 @@ Route::resource('/protections', ProtectionController::class); // CRUD routes for
 Route::resource('/groups', GroupController::class); // CRUD routes for groups
 Route::resource('/statuses', StatusController::class); // CRUD routes for statuses
 Route::resource('/comments', CommentController::class); // CRUD routes for comments
+Route::resource('/notes', NoteController::class); // CRUD routes for notes
 Route::resource('/media', MediaController::class)->parameters(['media' => 'media']); // CRUD routes for media
 
 // Settings Routes

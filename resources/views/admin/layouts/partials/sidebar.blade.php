@@ -87,6 +87,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route('admin.notes.index')}}">
+                            <i class="sicon-chat-conversation-alt"></i>
+                            <span>@lang('sidebar.notes')</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route('admin.media.index')}}">
                             <i class="sicon-film-strip"></i>
                             <span>@lang('sidebar.media')</span>

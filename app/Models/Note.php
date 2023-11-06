@@ -6,22 +6,15 @@ use App\Helpers\AdvancedDataTable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class Note extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
-    protected $hidden = ['pivot'];
-
-    public function games()
-    {
-        return $this->belongsToMany(Game::class);
-    }
-
+    protected $fillable = ['type', 'body', 'show_in_home', 'ordering', 'status'];
     public static function datatable($options = []): AdvancedDataTable
     {
-        $datatable = new AdvancedDataTable(Group::class, $options);
-        $datatable->columns = ['name', 'slug'];
+        $datatable = new AdvancedDataTable(Note::class, $options);
+        $datatable->columns = ['type', 'body'];
         $datatable->buttons = ['selectAll', 'selectNone'];
         $datatable->actions = [
             'edit_item' => [
@@ -32,8 +25,11 @@ class Group extends Model
             ],
         ];
         $datatable->modal_fields = [
-            'name' => 'text',
-            'slug' => 'text',
+            'type' => 'select|info,success,warning,danger',
+            'body' => 'textarea',
+            'show_in_home' => 'boolean',
+            'ordering' => 'number',
+            'status' => 'boolean',
         ];
 
         return $datatable;
@@ -43,8 +39,11 @@ class Group extends Model
     public static function validate($protection = null): array
     {
         return validate_rules([
-            'name' => 'required|string|min:3|max:255',
-            'slug' => 'required|alpha_dash|min:3|max:255|unique:protections,slug',
+            'type' => 'required|in:info,success,warning,danger',
+            'body' => 'required|string|min:3|max:255',
+            'show_in_home' => 'nullable|boolean|string',
+            'ordering' => 'nullable|numeric',
+            'status' => 'required|in:0,1',
         ], $protection, request()->all());
     }
 }

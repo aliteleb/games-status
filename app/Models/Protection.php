@@ -49,7 +49,7 @@ class Protection extends Model
     {
         return validate_rules([
             'name' => 'required|string|min:3|max:255',
-            'slug' => 'required|string|min:3|max:255|unique:protections,slug',
+            'slug' => 'required|alpha_dash|min:3|max:255|unique:protections,slug',
         ], $protection, request()->all());
     }
 }
