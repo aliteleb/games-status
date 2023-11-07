@@ -108,6 +108,8 @@ return [
     'game_title' => 'إسم اللعبة',
     'game_slug' => 'الرابط',
     'game_header' => 'الهيدر',
+    'game_poster' => 'الصورة الرئيسية',
+    'game_cover' => 'صورة الغلاف',
     'genres' => 'النوع',
     'protections' => 'الحمايات',
     'groups' => 'الفرق المقرصنة',

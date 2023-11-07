@@ -36,7 +36,7 @@
                     <div class="row justify-content-between">
 
                         <div class="d-flex flex-column justify-center align-items-center mb-3 col col-10">
-                            <label for="header">{{ __('ui.game_header') }}</label>
+                            <label for="header">{{ __('ui.game_cover') }}</label>
                             <img src="{{ asset('assets/images/game-placeholder.jpg') }}"
                                 data-modal-selection="single" data-modal-field="id" width="800" height="150" class="settings-img" alt="">
                             <input type="hidden" name="header" value="{{ isset($game) ? $game->featured_image : '' }}">
@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="d-flex flex-column justify-center align-items-center mb-3 col col-2">
-                            <label for="header">{{ __('ui.game_header') }}</label>
+                            <label for="header">{{ __('ui.game_poster') }}</label>
                             <img
                                 src="{{ asset('assets/images/game-placeholder.jpg') }}"
                                 data-modal-selection="single" data-modal-field="id" width="100" height="150" class="settings-img" alt="">
