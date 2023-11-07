@@ -45,7 +45,7 @@ class GameController extends Controller
 
     public function store(Request $request)
     {
-
+        return $request;
     }
 
     public function edit(Game $Game)
