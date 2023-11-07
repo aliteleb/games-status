@@ -8575,6 +8575,7 @@ img.settings-img {
     -moz-transition: 300ms;
     -ms-transition: 300ms;
     -o-transition: 300ms;
+    margin-top: 5px;
 }
 
 .dark img.settings-img {
