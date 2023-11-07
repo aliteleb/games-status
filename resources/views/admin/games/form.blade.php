@@ -12,7 +12,7 @@
     <div class="container f-w">
 
         <form class="game-form" action="{{ isset($game) ? route('admin.games.update', $game) : route('admin.games.store') }}" method="{{ isset($game) ? 'PUT' : 'POST' }}">
-
+            @csrf
             <div class="d-flex flex-wrap">
                 <div class="col col-9 p-2">
                     <div class=" mb-3">
