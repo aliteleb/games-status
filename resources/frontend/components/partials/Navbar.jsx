@@ -67,9 +67,9 @@ function Navbar() {
 
                 <div className="grid h-[4rem] grid-cols-[auto_1fr_auto] items-center justify-center sm:grid-cols-[1fr_auto_1fr]">
                     <div className="hidden text-end sm:block">
-                        <NavLink onClick={collapseSidebar} to="/games" className="mx-2 hidden cursor-pointer transition hover:text-gray-400 xl:inline-block">GAMES</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/groups" className="mx-2 hidden cursor-pointer transition hover:text-gray-400 lg:inline-block">GROUPS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer transition hover:text-gray-400">PROTECTIONS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/games" className="mx-2 hidden cursor-pointer transition hover:text-[#ff0000] xl:inline-block">GAMES</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/groups" className="mx-2 hidden cursor-pointer transition hover:text-[#ff0000] lg:inline-block">GROUPS</NavLink>
+                        <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer transition hover:text-[#ff0000]">PROTECTIONS</NavLink>
                     </div>
                     <div className="mx-3 md:mx-6">
                         <NavLink onClick={collapseSidebar} to="/" className="relative">
@@ -83,9 +83,9 @@ function Navbar() {
                         </NavLink>
                     </div>
                     <div className="hidden sm:block">
-                        <span onClick={collapseSidebar} className="mx-2 cursor-not-allowed font-bold transition hover:text-gray-400">FREE GAMES</span>
-                        <span onClick={collapseSidebar} className="mx-2 hidden cursor-not-allowed font-bold transition hover:text-gray-400 lg:inline-block">POINTS</span>
-                        <span onClick={collapseSidebar} className="mx-2 hidden cursor-not-allowed font-bold hover:text-gray-400 xl:inline-block">MARKET</span>
+                        <span onClick={collapseSidebar} className="mx-2 cursor-not-allowed font-bold transition">FREE GAMES</span>
+                        <span onClick={collapseSidebar} className="mx-2 hidden cursor-not-allowed font-bold transition lg:inline-block">POINTS</span>
+                        <span onClick={collapseSidebar} className="mx-2 hidden cursor-not-allowed font-bold xl:inline-block">MARKET</span>
                     </div>
                 </div>
 
