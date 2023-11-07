@@ -23,6 +23,7 @@ function Sidebar() {
     const {user} = useAuth();
 
     return (
+        
         <div id={'sidebar'} className='fixed top-0 -left-72 flex h-screen w-64 flex-col pt-6 transition-all z-[51] xl:w-72'>
             <div onClick={collapseSidebar} className='mb-4 w-full cursor-pointer px-6'>
                 <HiXMark className='w-6 h-6 text-white'/>

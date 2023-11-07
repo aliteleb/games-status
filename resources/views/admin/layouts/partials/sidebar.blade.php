@@ -41,31 +41,32 @@
                 <ul class="navigation navigation-main navigation-accordion">
 
                     <li>
-                        <a href="{{route('admin.dashboard')}}"><i class="sicon-home"></i>
+                        <a href="{{route('admin.dashboard')}}">
+                            <i class="sicon-home"></i>
                             <span> @lang('sidebar.home')</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{route('admin.games.index')}}">
-                            <i class="sicon-border-all"></i>
+                            <i class="sicon-game-controller-alt"></i>
                             <span>@lang('sidebar.games')</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{route('admin.protections.index')}}">
-                            <i class="sicon-border-all"></i>
+                            <i class="sicon-shield-alert"></i>
                             <span>@lang('sidebar.protections')</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{route('admin.groups.index')}}">
-                            <i class="sicon-border-all"></i>
+                            <i class="sicon-skull-crossbones"></i>
                             <span>@lang('sidebar.groups')</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{route('admin.statuses.index')}}">
-                            <i class="sicon-border-all"></i>
+                            <i class="sicon-alert"></i>
                             <span>@lang('sidebar.status')</span>
                         </a>
                     </li>
@@ -77,7 +78,7 @@
                     </li>
                     <li>
                         <a href="{{route('admin.notes.index')}}">
-                            <i class="sicon-chat-conversation-alt"></i>
+                            <i class="sicon-checklist"></i>
                             <span>@lang('sidebar.notes')</span>
                         </a>
                     </li>
