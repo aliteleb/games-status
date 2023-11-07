@@ -2079,9 +2079,17 @@ a:focus {
     /* z-index: 2147483647 !important; */
 }
 
+.dark .select2-container .selection .select2-selection{
+    border-color: #525c60;
+}
+
 .input-group .select2-choice {
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
+}
+
+.dark .select2-container--open .select2-dropdown--above{
+    border-color: #46474a;
 }
 
 .dropdown-menu {
