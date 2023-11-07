@@ -104,4 +104,16 @@ return [
     'reddit' => 'ريدت',
     'x' => 'إكس',
 
+    // Game 
+    'game_title' => 'إسم اللعبة',
+    'game_slug' => 'الرابط',
+    'game_header' => 'الهيدر',
+    'genres' => 'النوع',
+    'protections' => 'الحمايات',
+    'groups' => 'الفرق المقرصنة',
+    'status_name' => 'حالة اللعبة',
+    'crack_date' => 'تاريخ الكراك',
+    'release_date' => 'تايرخ الإطلاق',
+    'user_score' => 'تقييم المستخدمين',
+    'meta_score' => 'تقييم موقع Meta',
 ];
