@@ -4,16 +4,16 @@ import { BsArrowRight } from 'react-icons/bs';
 import { Link, useNavigate } from "react-router-dom";
 
 function GameNotification(props) {
-    
+
     const navigate = useNavigate()
-    
+
     const [replyStatus, setReplyStatus] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
         setReplyStatus(props?.info.is_read);
     }, [props.info.is_read]);
-    
+
     let seenComment = () => {
 
         setReplyStatus(true);
@@ -50,14 +50,14 @@ function GameNotification(props) {
 
             <div className="flex w-9/12 flex-col">
                 <div className="flex items-center">
-                    <img className="h-28" src={props?.info.game_info.poster} alt="" />
+                    <img className="h-24" src={props?.info.game_info.poster} alt="" />
 
-                    <div className="mx-3 py-2 flex flex-col">
+                    <div className="mx-3 flex flex-col">
                         <p className="font-bold text-xl text-gray-300">{props?.info.game_info.title}</p>
                         <Link to={`/group/${props.info.game_info.groups[0].slug}`} className=" text-gray-400 hover:text-gray-300 transition">{props.info.game_info.groups[0].name}</Link>
                         <div className="flex items-center">
                             <p className={`text-${color} font-bold text-2xl`}>{props?.info.game_info.status_text}</p>
-                            <span className="mx-6 text-gray-400 text-[13px]">After {props.info.game_info.days_diff} days</span>
+                            <span className={`mx-2 text-${color} text-[13px]`}>AFTER {props.info.game_info.days_diff} DAYS</span>
                         </div>
                     </div>
                 </div>
