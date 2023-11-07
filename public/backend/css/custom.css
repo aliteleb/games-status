@@ -1903,6 +1903,29 @@ a:focus {
     border-color: var(--color-secondary-50);
 }
 
+#button-style{
+    border: 1px solid #336b87;
+}
+
+#button-style:hover{
+    background-color: #336b87;
+    color: #eee;
+}
+
+.dark #button-style{
+    background-color: #336b87;
+    color: white;
+}
+
+.dark #button-style:hover{
+    border: 1px solid #28556b;
+    background-color: #28556b;
+}
+
+.dark .select2-selection__rendered{
+    background-color: #272626;
+}
+
 .label-tiffany {
     color: var(--color-primary-l) !important;
     background-color: var(--color-secondary-50);
@@ -8468,7 +8491,7 @@ form#media-dropzone {margin: 2rem 0;min-height: 180px;}
 }
 
 .dark .select2-selection.select2-selection--single{
-    background-color: #212e3d;
+    background-color: #272626;
     border-color: #525c60 !important;
     color: #aaa;
     height: 40px;
@@ -8480,7 +8503,7 @@ form#media-dropzone {margin: 2rem 0;min-height: 180px;}
 }
 
 .dark .select2-search .select2-search__field{
-    background-color: #3d4f66;
+    background-color: #272626;
     color: #aaa;
     border-color: #3f45486e;
 }
@@ -8491,15 +8514,25 @@ form#media-dropzone {margin: 2rem 0;min-height: 180px;}
 
 .dark .select2-results ul{
     color: #aaa;
+    background-color: #1a1919;
 }
 
 .dark .select2-results ul li:hover{
-    background-color: #3d4f66;
+    background-color: #515050;
 }
 
 .dark .select2-results__option.select2-results__option--highlighted{
-    background-color: #3d4f66;
+    background-color: #515050;
 }
+
+.darl .select2-search.select2-search--dropdown{
+    background-color: #515050;
+}
+
+.dark .select2-container--default .select2-dropdown--above .select2-search--dropdown{
+    background-color: rgb(29 29 29);
+}
+
 .selectize-control .selectize-input.input-active {
     border: 1px solid #aaaaaa !important;
 }
@@ -8526,6 +8559,37 @@ form#media-dropzone {margin: 2rem 0;min-height: 180px;}
 /* Settings */
 img.settings-img {
     border: 2px solid #336b87;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+}
+
+.dark img.settings-img {
+    border: 2px solid #2e383c;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+}
+
+img.settings-img:hover {
+    border: 2px solid #a7cfe2;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.dark img.settings-img:hover {
+    border: 2px solid #2e5f75;
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 1rem;

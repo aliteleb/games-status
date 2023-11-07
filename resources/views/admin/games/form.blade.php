@@ -111,7 +111,7 @@
                 <div class="col col-3 text-center post-side pt-4">
 
                     <div class="mb-5">
-                        <button type="submit" class="btn btn-success"> @lang('ui.save') </button>
+                        <button id="button-style" type="submit" class="btn btn-outline-success"> @lang('ui.save') </button>
                     </div>
 
                     <div id="header-container" class="d-flex flex-column justify-center align-items-center mb-3">
