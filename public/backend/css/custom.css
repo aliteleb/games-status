@@ -601,6 +601,22 @@ a.sidebar-control.sidebar-main-toggle.hidden-xs {
     color: #fff;
 }
 
+#cover-container{
+    caret-color: transparent;
+}
+
+#poster-container{
+    caret-color: transparent;
+}
+
+#poster-container label{
+    display: flex;
+    flex-direction: column;
+}
+
+#header-container{
+    caret-color: transparent;
+}
 
 .navigation li > a:hover {
     background-color: #384142;
@@ -1882,7 +1898,7 @@ a:focus {
 .btn-success:focus,
 .btn-success:active:focus,
 .btn-success:active:hover {
-    color: var(--color-primary-l) !important;
+    color: #cacaca;
     background-color: var(--color-secondary-50);
     border-color: var(--color-secondary-50);
 }

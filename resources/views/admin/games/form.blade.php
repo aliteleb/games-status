@@ -35,23 +35,27 @@
 
                     <div class="row justify-content-between">
 
-                        <div class="d-flex flex-column justify-center align-items-center mb-3 col col-10">
-                            <label for="header">{{ __('ui.game_cover') }}</label>
-                            <img src="{{ asset('assets/images/game-placeholder.jpg') }}"
-                                data-modal-selection="single" data-modal-field="id" width="800" height="150" class="settings-img" alt="">
-                            <input type="hidden" name="header" value="{{ isset($game) ? $game->featured_image : '' }}">
-                            @error('header')
+                        <div id="cover-container" class="d-flex flex-column justify-center align-items-center mb-3 col col-10">
+                            <label for="cover">{{ __('ui.game_cover') }}
+                                <img id="preview-image" src="{{ asset('assets/images/game-placeholder.jpg') }}"
+                                    data-modal-selection="single" data-modal-field="id" width="800" height="150" class="settings-img" alt="">
+                            </label>
+                            <input type="file" class="d-none" id="cover" name="cover" value="{{ isset($game) ? $game->featured_image : '' }}">
+                            @error('cover')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="d-flex flex-column justify-center align-items-center mb-3 col col-2">
-                            <label for="header">{{ __('ui.game_poster') }}</label>
-                            <img
-                                src="{{ asset('assets/images/game-placeholder.jpg') }}"
-                                data-modal-selection="single" data-modal-field="id" width="100" height="150" class="settings-img" alt="">
-                            <input type="hidden" name="header" value="{{ isset($game) ? $game->featured_image : '' }}">
-                            @error('header')
+                        <div id="poster-container" class="d-flex flex-column justify-center align-items-center mb-3 col col-2">
+                            <label for="poster">{{ __('ui.game_poster') }}
+                                <img
+                                    id="poster-preview"
+                                    src="{{ asset('assets/images/game-placeholder.jpg') }}"
+                                    data-modal-selection="single" data-modal-field="id" width="100" height="150" class="settings-img" alt="">
+                            </label>
+
+                            <input type="file" class="d-none" id="poster" name="poster" value="{{ isset($game) ? $game->featured_image : '' }}">
+                            @error('poster')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -110,11 +114,14 @@
                         <button type="submit" class="btn btn-success"> @lang('ui.save') </button>
                     </div>
 
-                    <div class="d-flex flex-column justify-center align-items-center mb-3">
-                        <label for="header">{{ __('ui.game_header') }}</label>
-                        <img src="{{ asset('assets/images/game-placeholder.jpg') }}"
-                             data-modal-selection="single" data-modal-field="id" width="260" height="140" class="settings-img" alt="">
-                        <input type="hidden" name="header" value="{{ isset($game) ? $game->featured_image : '' }}">
+                    <div id="header-container" class="d-flex flex-column justify-center align-items-center mb-3">
+                        <label class="d-flex flex-column" for="header">{{ __('ui.game_header') }}
+                            <img 
+                                 id="header-preview"
+                                 src="{{ asset('assets/images/game-placeholder.jpg') }}"
+                                 data-modal-selection="single" data-modal-field="id" width="260" height="140" class="settings-img" alt="">
+                        </label>
+                        <input type="file" class="d-none" id="header" name="header" value="{{ isset($game) ? $game->featured_image : '' }}">
                         @error('header')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -189,6 +196,43 @@
                     }
                 }
             });
+
+
+                // Define imgInp to represent the file input element
+            const imgInp = document.getElementById('cover'); // Change 'cover' to the ID of your file input
+
+            // Define blah to represent the image element where you want to display the preview
+            const blah = document.getElementById('preview-image'); // Change 'preview-image' to the ID of your image element
+
+            imgInp.onchange = evt => {
+                const [file] = imgInp.files;
+                if (file) {
+                    // Update the src attribute of the 'blah' image element to show the preview
+                    blah.src = URL.createObjectURL(file);
+                }
+            };
+
+                // Initialize the image preview for the poster image
+            const posterImgInp = document.getElementById('poster');
+            const posterBlah = document.getElementById('poster-preview');
+
+            posterImgInp.onchange = evt => {
+                const [file] = posterImgInp.files;
+                if (file) {
+                    posterBlah.src = URL.createObjectURL(file);
+                }
+            };
+
+            // Initialize the image preview for the header image
+            const headerImgInp = document.getElementById('header');
+            const headerBlah = document.getElementById('header-preview');
+
+            headerImgInp.onchange = evt => {
+                const [file] = headerImgInp.files;
+                if (file) {
+                    headerBlah.src = URL.createObjectURL(file);
+                }
+            };
 
         </script>
 
