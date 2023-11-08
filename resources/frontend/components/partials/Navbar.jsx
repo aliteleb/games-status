@@ -124,31 +124,31 @@ function Navbar() {
                 </div>
             </nav>
             <div
-                className={`${!showProfilePopup ? "hidden" : "animate-slide-down"} avatar-popup z-50 w-48 my-4 text-base list-none rounded-lg shadow bg-black/60 fixed right-[.7rem] top-[3.2rem]`}
+                className={`${!showProfilePopup ? "hidden" : "animate-slide-down"} avatar-popup z-50 w-72 my-4 text-base list-none rounded-lg shadow bg-black/60 fixed right-[.7rem] top-[3.2rem]`}
                 id="user-dropdown">
-                <div className="rounded-t-lg px-4 py-3 hover:bg-neutral-700/30">
+                <div className="rounded-t-lg px-4 py-3 group hover:bg-neutral-700/30">
                     <Link onClick={() => setShowProfilePopup(false)} to={`/user/${user?.username}`}>
-                        <span className="block text-center text-sm text-gray-400">
+                        <span className="block text-center text-sm text-gray-400 group-hover:text-gray-300 transition">
                             @{user?.username}
                         </span>
-                        <span className="mt-1 block truncate text-center text-sm text-gray-400">
-                            <HiOutlineMail className="mx-1 inline h-5 w-5 text-gray-400" />
+                        <span className="mt-2 block truncate text-center text-sm text-gray-400 group-hover:text-gray-300 transition">
+                            <HiOutlineMail className="mx-1 inline h-5 w-5 text-gray-400 group-hover:text-gray-300 transition" />
                             {user?.email}
                         </span>
                     </Link>
                 </div>
-                <ul className="" aria-labelledby="user-menu-button">
-                    <li>
+                <ul className="border-t border-gray-500" aria-labelledby="user-menu-button">
+                    <li className="group">
                         <NavLink onClick={() => setShowProfilePopup(false)} to="/profile"
-                                 className="block py-2 text-left text-sm text-gray-400 hover:bg-neutral-700/30">
-                            <CgProfile className="mx-2 inline h-5 w-5 text-gray-400" />
+                                 className="block py-2 text-left text-sm text-gray-400 hover:bg-neutral-700/30 hover:text-gray-300 transition ">
+                            <CgProfile className="mx-2 inline h-5 w-5 text-gray-400 group-hover:text-gray-300 transition" />
                             Profile Settings
                         </NavLink>
                     </li>
-                    <li>
+                    <li className="group">
                         <NavLink onClick={() => setShowProfilePopup(false)} to="/logout"
-                                 className="block rounded-b-lg py-2 text-sm text-gray-400 hover:bg-neutral-700/30">
-                            <GoSignOut className="mx-2 inline h-5 w-5 text-gray-400" />
+                                 className="block rounded-b-lg py-2 text-sm text-gray-400 hover:bg-neutral-700/30 hover:text-gray-300 transition">
+                            <GoSignOut className="mx-2 inline h-5 w-5 text-gray-400 group-hover:text-gray-300 transition" />
                             Sign out
                         </NavLink>
                     </li>
