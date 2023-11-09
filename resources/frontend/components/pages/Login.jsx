@@ -33,6 +33,8 @@ export default function Login() {
                 password: formData.password,
             })
             .then((response) => {
+                console.log(response.data.data);
+                window.appData.notifications = response.data.data.notifications;
                 updateUser(response.data.data);
                 toast.success(response.data.message);
                 navigate('/');

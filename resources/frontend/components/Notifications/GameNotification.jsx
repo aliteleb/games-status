@@ -35,7 +35,6 @@ function GameNotification(props) {
         props.setShowNotificationPopup(false)
     }
 
-    console.log(props.info);
 
     let color = props?.info.game_info.status_text ? props?.info.game_info.status_text.toLowerCase() : "gray-600";
 

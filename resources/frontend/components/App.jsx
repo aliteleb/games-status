@@ -2,13 +2,11 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import NFOS from "./pages/NFOS.jsx";
 import Navbar from "./partials/Navbar.jsx";
 import Groups from "./pages/Groups.jsx";
 import Protections from "./pages/Protections.jsx";
 import Markets from "./pages/Markets.jsx";
 import FreeKeys from "./pages/FreeKeys.jsx";
-import GetKarma from "./pages/GetKarma.jsx";
 import FrequencyQuestions from "./pages/FrequencyQuestions.jsx";
 import Terms from "./pages/Terms.jsx";
 import Contact from "./pages/Contact.jsx";
@@ -68,12 +66,10 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-                    <Route path="/nfos" element={<NFOS />} />
                     <Route path="/groups" element={<Groups />} />
                     <Route path="/protections" element={<Protections />} />
                     <Route path="/markets" element={<Markets />} />
                     <Route path="/free-keys" element={<FreeKeys />} />
-                    <Route path="/get-karma" element={<GetKarma />} />
                     <Route path="/forum" element={<Forum />} />
                     <Route path="/messages" element={<Messages />} />
                     <Route path="/signup" element={user ? <Navigate to="/" /> : <SignUp />} />

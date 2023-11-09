@@ -5,12 +5,29 @@ import ApiClient from "../../services/ApiClient";
 import { useAuth } from "../api/AuthContext";
 
 function Notifications(props) {
+
     const { user } = useAuth();
 
-    const [response, setResponse] = React.useState(null);
     const [notifications, setNotifications] = React.useState(null);
 
+    const updateNotifications = () => {
+        ApiClient().get("/notifications")
+            .then(res => {
+                setNotifications(res.data.data.notifications);
+                props.setNotificationsCount(res.data.data.notifications_count);
+                props.setUnReadNotificationsCount(res.data.data.unread_notifications);
+            })
+            .catch(err => console.log(err));
+        
+    };
+
+
     React.useEffect(() => {
+
+        const interval = setInterval(() => {
+            if(user) 
+                updateNotifications()
+        }, 5000);
 
         if (user) {
             setNotifications(window.appData.notifications.notifications);
@@ -18,21 +35,11 @@ function Notifications(props) {
             props.setUnReadNotificationsCount(window.appData.notifications.unread_notifications);
         }
 
-        const interval = setInterval(() => {
-
-            if (!user) return;
-
-            ApiClient().get("/notifications")
-                .then(res => {
-                    setResponse(res.data.data);
-                    setNotifications(res.data.data.notifications);
-                    props.setNotificationsCount(res.data.data.notifications_count);
-                    props.setUnReadNotificationsCount(res.data.data.unread_notifications);
-                })
-                .catch(err => console.log(err));
-
-        }, 5000);
-
+        return () => {
+            // Cleanup the interval when the component unmounts or when the user becomes null
+            clearInterval(interval);
+        };
+        
     }, [user]);
 
     return (
