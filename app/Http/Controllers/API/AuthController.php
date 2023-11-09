@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Media;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,6 +66,10 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
 
             $user = Auth::user();
+            $user->notification = Notification::latest_notifications();
+            $userResource = new UserResource($user);
+
+            return $userResource;
             return response()->api(
                 data: new UserResource($user),
                 message: __("Login successful.")
