@@ -67,11 +67,8 @@ class AuthController extends Controller
 
             $user = Auth::user();
             $user->notification = Notification::latest_notifications();
-            $userResource = new UserResource($user);
-
-            return $userResource;
             return response()->api(
-                data: new UserResource($user),
+                data: new $userResource,
                 message: __("Login successful.")
             );
 
