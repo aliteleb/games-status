@@ -66,7 +66,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
 
             $user = Auth::user();
-            $user->notification = Notification::latest_notifications();
+            $user->notifications = Notification::latest_notifications();
             return response()->api(
                 data: new UserResource($user),
                 message: __("Login successful.")
