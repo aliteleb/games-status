@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Helpers\GameApiResource;
+use App\Api\GameApiResource;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Game;
@@ -11,7 +11,6 @@ use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {

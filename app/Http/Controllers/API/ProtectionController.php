@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Helpers\GameApiResource;
-use App\Helpers\ProtectionApiResource;
+use App\Api\GameApiResource;
+use App\Api\ProtectionApiResource;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\GameCollection;
-use App\Http\Resources\GameResource;
-use App\Http\Resources\ProtectionResource;
 use App\Models\Game;
 use App\Models\Protection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ProtectionController extends Controller
