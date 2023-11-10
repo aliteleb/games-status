@@ -58,7 +58,6 @@ class GameResource extends JsonResource
         if (isset($data['status']))
             $data['status_text'] = $data['status']->name ?? null;
 
-
         if (Carbon::parse($this->release_date)->isFuture())
             $data['status_text'] = "UNRELEASED";
 

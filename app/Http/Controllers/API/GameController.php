@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helpers\GameApiResource;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Game;
@@ -91,11 +92,6 @@ class GameController extends Controller
 
     public function show(Request $request, $slug)
     {
-        $user = auth()->user();
-        $user_id = null;
-        if ($user)
-            $user_id = $user->id;
-
         $game = Game::select(['id', 'name', 'slug', 'release_date', 'crack_date', 'steam_appid', 'header', 'cover', 'poster', 'game_status_id'])
             ->with(['protections:id,name,slug', 'groups:id,name,slug', 'status:id,name',
                 'comments' => function ($query) {
@@ -109,61 +105,19 @@ class GameController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-
-        $game->comments = Comment::refactComments($game->comments);
-        $game->comments->map(function ($comment) use ($user_id) {
-            $comment->voted = null;
-            $comment->reactions->map(function ($reaction) use ($comment, $user_id) {
-                if ($reaction->user_id == $user_id)
-                    $comment->voted = $reaction->type;
-            });
-            unset($comment->reactions);
-            unset($comment->user);
-        });
-
-        $release_date = Carbon::parse($game->release_date);
-        $crack_date = Carbon::parse($game->crack_date);
-        $daysDifference = $crack_date->diffInDays($release_date);
-
-        if ($game->crack_date == null) {
-            $statusText = 'UNCRACKED';
-            $daysDifference = now()->diffInDays($release_date);
-        } else
-            $statusText = 'CRACKED';
-
-        if ($release_date->isFuture())
-            $statusText = 'UNRELEASED';
+        $game->comments = Comment::latest_comments($game->id);
 
         $user = auth()->user();
         $is_following = false;
         if ($user)
             $is_following = auth()->user()->following->contains($game->id);
 
-        $game->status_text = $statusText;
-        $game->days_diff = $daysDifference;
-
-        if(!$game->header)
-            $game->header = 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $game->steam_appid . '/header.jpg';
-        else
-            $game->header = Storage::disk('media')->url('/images/games/headers/'.$game->header);
-
-        if(!$game->poster)
-            $game->poster = 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $game->steam_appid . '/library_600x900.jpg';
-        else
-            $game->poster = Storage::disk('media')->url('/images/games/posters/'.$game->poster);
-
-        if(!$game->cover)
-            $game->cover = 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $game->steam_appid . '/library_hero.jpg';
-        else
-            $game->cover = Storage::disk('media')->url('/images/games/covers/'.$game->cover);
-
         $game->is_following = $is_following;
-        $game->release_date = $release_date->format('M d, Y');
-        $game->crack_date = $crack_date->format('M d, Y');
+        $game = (new GameApiResource($game))->get();
 
         return response()->api(
             data: $game,
-            message: $game->name . __(" Page")
+            message: $game['name'] . __(" Page")
         );
 
     }

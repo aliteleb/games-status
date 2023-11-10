@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Helpers\GameApiResource;
+use App\Helpers\ProtectionApiResource;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\GameCollection;
 use App\Http\Resources\GameResource;
 use App\Http\Resources\ProtectionResource;
+use App\Models\Game;
 use App\Models\Protection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ProtectionController extends Controller
@@ -50,35 +55,20 @@ class ProtectionController extends Controller
 
     public function show($slug)
     {
-        $protection = Protection::with(['games'=> function ($query) {
-            return $query->with('status:id,name')
-                ->paginate(12);
-        }])->withCount('games')
-            ->where('slug', $slug)
+        $protection = Protection::withCount('games')
+            ->whereSlug($slug)
             ->firstOrFail();
 
-        $total_pages = ceil($protection->games_count / 12);
-        $next_page = 2;
-        $next_page_url = null;
-        if(request()->query('page'))
-            $next_page = request()->query('page') + 1;
+        $games = Game::with('status:id,name')
+            ->select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid', 'header', 'game_status_id'])
+            ->paginate(12);
 
-        if($next_page > $total_pages)
-            $next_page = null;
-
-        if($next_page)
-            $next_page_url = route('api.protection', $slug).'?page='.$next_page;
+        $protection->games = (new GameApiResource($games))->get();
+        $protection = (new ProtectionApiResource($protection))->get();
 
         return response()->api(
-            data: new ProtectionResource($protection),
-            /*data: [
-                'name' => $protection->name,
-                'games' => GameResource::collection($protection->games),
-                'games_count' => $protection->games_count,
-                'last_page' => $total_pages,
-                'next_page_url' => $next_page_url,
-            ],*/
-            message: $protection->name.__(" Games")
+            data: $protection,
+            message: $protection['name'].__(" Games")
         );
     }
 

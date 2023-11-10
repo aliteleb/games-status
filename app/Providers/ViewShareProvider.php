@@ -38,8 +38,6 @@ class ViewShareProvider extends ServiceProvider
     {
         $this->registerValidationRules();
 
-        Paginator::defaultview('pagination');
-
         $this->views_share();
 
         Blade::directive('settings', function ($key) {
