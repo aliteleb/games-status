@@ -55,9 +55,9 @@ class GameController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:3|max:255',
             'slug' => 'required|alpha_dash|min:3|max:255|unique:games,slug',
-            'header' => 'required|image|mimes:jpeg,png,webp|max:5000',
-            'poster' => 'required|image|mimes:jpeg,png,webp|max:5000',
-            'cover' => 'required|image|mimes:jpeg,png,webp|max:5000',
+            'header' => 'required|image|mimes:jpeg,png,webp|max:10000',
+            'poster' => 'required|image|mimes:jpeg,png,webp|max:10000',
+            'cover' => 'required|image|mimes:jpeg,png,webp|max:10000',
             'release_date' => 'nullable|date',
             'crack_date' => 'nullable|date',
             'meta_score' => 'nullable|numeric|min:0|max:100',
@@ -83,12 +83,12 @@ class GameController extends Controller
         $validatedData['cover'] = $cover;
         $validatedData['need_crack'] = true;
 
-        if($validatedData->has('is_hot'))
+        if($request->has('is_hot'))
             $validatedData['is_hot'] = true;
         else
             $validatedData['is_hot'] = false;
 
-        if($validatedData->has('status'))
+        if($request->has('status'))
             $validatedData['status'] = true;
         else
             $validatedData['status'] = false;
@@ -129,9 +129,9 @@ class GameController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:3|max:255',
             'slug' => 'required|alpha_dash|min:3|max:255|unique:games,slug,' . $game->id,
-            'header' => 'nullable|image|mimes:jpeg,png,webp|max:5000',
-            'poster' => 'nullable|image|mimes:jpeg,png,webp|max:5000',
-            'cover' => 'nullable|image|mimes:jpeg,png,webp|max:5000',
+            'header' => 'nullable|image|mimes:jpeg,png,webp|max:10000',
+            'poster' => 'nullable|image|mimes:jpeg,png,webp|max:10000',
+            'cover' => 'nullable|image|mimes:jpeg,png,webp|max:10000',
             'release_date' => 'nullable|date',
             'crack_date' => 'nullable|date',
             'meta_score' => 'nullable|numeric|min:0|max:100',
