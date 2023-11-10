@@ -25,7 +25,6 @@ class GameApiResource extends ApiResource
             'comments' => $model['comments'] ?? null,
             'status_text' => $model['status']['name'],
             'days_diff' => 0,
-            'is_following' => $model['is_following'] ?? null,
             'protections' => (new ProtectionApiResource(isset($model['protections']) ? collect($model['protections']) : null))->get(),
             'groups' => (new GroupApiResource(isset($model['groups']) ? collect($model['groups']) : null))->get(),
             'status' => (new StatusApiResource($model['status'] ?: null))->get(),
@@ -45,6 +44,13 @@ class GameApiResource extends ApiResource
 
         if (isset($data['status']))
             $data['status_text'] = $data['status']['name'] ?? null;
+
+        $user = auth()->user();
+        $is_following = false;
+        if ($user)
+            $is_following = $user->following->contains($model['id']);
+
+        $data['is_following'] = $is_following;
 
         try {
             $release_date = Carbon::parse($model['release_date']);
