@@ -3,7 +3,7 @@
 namespace App\Api;
 
 
-class ProtectionApiResource extends ApiResource
+class GroupApiResource extends ApiResource
 {
     protected function resource($model): array
     {
