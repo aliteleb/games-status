@@ -114,18 +114,22 @@
                     <div class="row justify-content-between">
                         <div class="col-md-6">
                             <div class="form-group trigger">
-                                <label class="form-check-label" for="need_crack">{{ __('ui.need_crack') }}</label>
-                                <input type="checkbox" class="form-check-input" id="need_crack"
-                                           name="need_crack" {{ old('need_crack', isset($game) && $game->need_crack ? 'checked' : '') }}>
-                                <label for="need_crack" class="col-form-label trigger-label"></label>
-
+                                <label class="form-check-label" for="status">{{ __('ui.status') }}</label>
+                                <input type="checkbox" class="form-check-input" id="status" name="status" {{ old('status', isset($game) && $game->status ? 'checked' : '') }}>
+                                <label for="status" class="col-form-label trigger-label"></label>
+                                @error('status')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group trigger">
-                                <label class="form-check-label" for="status">{{ __('ui.status') }}</label>
-                                <input type="checkbox" class="form-check-input" id="status" name="status" {{ old('status', isset($game) && $game->status ? 'checked' : '') }}>
-                                <label for="status" class="col-form-label trigger-label"></label>
+                                <label class="form-check-label" for="is_hot">{{ __('ui.is_hot') }}</label>
+                                <input type="checkbox" class="form-check-input" id="is_hot" name="is_hot" {{ old('is_hot', isset($game) && $game->is_hot ? 'checked' : '') }}>
+                                <label for="is_hot" class="col-form-label trigger-label"></label>
+                                @error('is_hot')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>

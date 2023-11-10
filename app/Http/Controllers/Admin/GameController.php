@@ -82,6 +82,16 @@ class GameController extends Controller
         $validatedData['cover'] = $cover;
         $validatedData['need_crack'] = true;
 
+        if($validatedData->has('is_hot'))
+            $validatedData['is_hot'] = true;
+        else
+            $validatedData['is_hot'] = false;
+
+        if($validatedData->has('status'))
+            $validatedData['status'] = true;
+        else
+            $validatedData['status'] = false;
+
         $game = Game::create($validatedData);
 
         // Attaches
@@ -136,7 +146,7 @@ class GameController extends Controller
         }
 
         // Update only the fields that are present in the request
-        $game->fill($request->only([
+        $validatedData = $request->only([
             'name',
             'slug',
             'release_date',
@@ -144,7 +154,19 @@ class GameController extends Controller
             'meta_score',
             'user_score',
             'game_status_id',
-        ]));
+        ]);
+
+        if($request->has('is_hot'))
+            $validatedData['is_hot'] = true;
+        else
+            $validatedData['is_hot'] = false;
+
+        if($request->has('status'))
+            $validatedData['status'] = true;
+        else
+            $validatedData['status'] = false;
+
+        $game->fill($validatedData);
 
         // Handle file uploads and update filenames
         if ($request->hasFile('header')) {

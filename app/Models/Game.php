@@ -10,7 +10,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'header', 'poster', 'cover', 'release_date', 'crack_date', 'meta_score', 'user_score', 'game_status_id'];
+    protected $fillable = ['name', 'slug', 'header', 'poster', 'cover', 'release_date', 'crack_date', 'meta_score', 'user_score', 'game_status_id', 'status', 'need_crack', 'is_hot'];
     protected $hidden = ['pivot'];
     protected $casts = ['is_hot' => 'boolean'];
 
