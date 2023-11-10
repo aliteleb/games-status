@@ -16,7 +16,7 @@ class GameApiResource extends ApiResource
             'slug' => $model['slug'],
             'release_date' => $model['release_date'],
             'crack_date' => $model['crack_date'],
-            'header' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $model['steam_appid'] . '/header.jpg',
+            'header' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $model['steam_appid'] . '/capsule_616x353.jpg',
             'poster' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $model['steam_appid'] . '/library_600x900.jpg',
             'cover' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $model['steam_appid'] . '/library_hero.jpg',
             'game_status_id' => $model['game_status_id'],
