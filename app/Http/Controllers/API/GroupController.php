@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Api\GameApiResource;
+use App\Api\GroupApiResource;
+use App\Api\ProtectionApiResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
 use App\Models\Group;
@@ -52,33 +55,19 @@ class GroupController extends Controller
 
     public function show($slug)
     {
-        $protection = Group::with(['games'=> function ($query) {
-            return $query->paginate(12);
-        }])->withCount('games')
-            ->where('slug', $slug)
+        $group = Group::withCount('games')
+            ->whereSlug($slug)
             ->firstOrFail();
 
-        $total_pages = ceil($protection->games_count / 12);
-        $next_page = 2;
-        $next_page_url = null;
-        if(request()->query('page'))
-            $next_page = request()->query('page') + 1;
+        // Retrieve only the id and name columns for the associated games
+        $games = $group->games()->with('status')->paginate(12);
 
-        if($next_page > $total_pages)
-            $next_page = null;
-
-        if($next_page)
-            $next_page_url = route('api.group', $slug).'?page='.$next_page;
+        $group->games = (new GameApiResource($games))->get();
+        $group = (new GroupApiResource($group))->get();
 
         return response()->api(
-            data: [
-                'name' => $protection->name,
-                'games' => GameResource::collection($protection->games),
-                'games_count' => $protection->games_count,
-                'last_page' => $total_pages,
-                'next_page_url' => $next_page_url,
-            ],
-            message: $protection->name.__(" Games")
+            data: $group,
+            message: $group['name'].__(" Games")
         );
     }
 }

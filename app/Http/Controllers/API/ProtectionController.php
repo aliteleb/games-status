@@ -55,9 +55,7 @@ class ProtectionController extends Controller
             ->whereSlug($slug)
             ->firstOrFail();
 
-        $games = Game::with('status:id,name')
-            ->select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid', 'header', 'game_status_id'])
-            ->paginate(12);
+        $games = $protection->games()->with('status')->paginate(12);
 
         $protection->games = (new GameApiResource($games))->get();
         $protection = (new ProtectionApiResource($protection))->get();
