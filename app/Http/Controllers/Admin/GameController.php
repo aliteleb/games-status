@@ -72,7 +72,7 @@ class GameController extends Controller
                 ->withInput();
         }
 
-        $header = Media::uploadFile(file: $request->file('header'), path: "/images/games/headers/", size: [426, 240]);
+        $header = Media::uploadFile(file: $request->file('header'), path: "/images/games/headers/", size: [560, 315]);
         $poster = Media::uploadFile(file: $request->file('poster'), path: "/images/games/posters/", size: [300, 450]);
         $cover = Media::uploadFile(file: $request->file('cover'), path: "/images/games/covers/", size: [1920, 620]);
 
@@ -180,7 +180,7 @@ class GameController extends Controller
                     unlink($file);
             }
 
-            $header = Media::uploadFile(file: $request->file('header'), path: "/images/games/headers/", size: [426, 240]);
+            $header = Media::uploadFile(file: $request->file('header'), path: "/images/games/headers/", size: [560, 315]);
             $game->header = $header;
         }
 
