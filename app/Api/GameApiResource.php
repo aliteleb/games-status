@@ -61,6 +61,9 @@ class GameApiResource extends ApiResource
             $data['days_diff'] = $daysDifference;
             $data['release_date'] = $release_date->format('M d, Y');
             $data['crack_date'] = $crack_date->format('M d, Y');
+
+            if($model->crack_date == null)
+                $data['crack_date'] = "TBD";
         }
         catch (\Exception){
             $data['days_diff'] = null;

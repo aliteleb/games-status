@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Api\GameApiResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
 use App\Models\Game;
@@ -27,7 +28,7 @@ class HomeController extends Controller
         return response()->api(
             data: [
                 'notes' => $notes,
-                'hot_games' => GameResource::collection($hot_games)
+                'hot_games' => (new GameApiResource($hot_games))->get()
             ],
             message: __("Home page")
         );
