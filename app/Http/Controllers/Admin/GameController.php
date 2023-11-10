@@ -154,6 +154,7 @@ class GameController extends Controller
             'meta_score',
             'user_score',
             'game_status_id',
+            'ordering',
         ]);
 
         if($request->has('is_hot'))
@@ -178,7 +179,7 @@ class GameController extends Controller
                     unlink($file);
             }
 
-            $header = Media::uploadFile(file: $request->file('header'), path: "/images/games/headers/", size: [450, 300]);
+            $header = Media::uploadFile(file: $request->file('header'), path: "/images/games/headers/", size: [426, 240]);
             $game->header = $header;
         }
 

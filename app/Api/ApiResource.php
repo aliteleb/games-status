@@ -42,7 +42,7 @@ abstract class ApiResource
 
     private function removeHidden($model): array
     {
-        $model0 = array_filter($model, function ($value) {
+        $model = array_filter($model, function ($value) {
             return $value !== null;
         });
 

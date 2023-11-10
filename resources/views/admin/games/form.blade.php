@@ -112,7 +112,7 @@
                     </div>
 
                     <div class="row justify-content-between">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group trigger">
                                 <label class="form-check-label" for="status">{{ __('ui.status') }}</label>
                                 <input type="checkbox" class="form-check-input" id="status" name="status" {{ old('status', isset($game) && $game->status ? 'checked' : '') }}>
@@ -122,12 +122,21 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group trigger">
                                 <label class="form-check-label" for="is_hot">{{ __('ui.is_hot') }}</label>
                                 <input type="checkbox" class="form-check-input" id="is_hot" name="is_hot" {{ old('is_hot', isset($game) && $game->is_hot ? 'checked' : '') }}>
                                 <label for="is_hot" class="col-form-label trigger-label"></label>
                                 @error('is_hot')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="ordering">{{ __('ui.ordering') }}</label>
+                                <input id="ordering" type="number" name="ordering" class="form-control" value="{{ old('ordering', isset($game) ? $game->ordering : '0') }}">
+                                @error('ordering')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -219,10 +228,10 @@
 
         <script>
 
-            $("select.select2").select2({
-                "language": {
-                    "noResults": function() {
-                        return "@lang('messages.no_results_found')";
+          $("select.select2").select2({
+            "language": {
+              "noResults": function() {
+                return "@lang('messages.no_results_found')";
                     }
                 }
             });
