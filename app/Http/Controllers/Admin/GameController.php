@@ -72,7 +72,7 @@ class GameController extends Controller
                 ->withInput();
         }
 
-        $header = Media::uploadFile(file: $request->file('header'), path: "/images/games/headers/", size: [450, 300]);
+        $header = Media::uploadFile(file: $request->file('header'), path: "/images/games/headers/", size: [426, 240]);
         $poster = Media::uploadFile(file: $request->file('poster'), path: "/images/games/posters/", size: [300, 450]);
         $cover = Media::uploadFile(file: $request->file('cover'), path: "/images/games/covers/", size: [1920, 620]);
 
