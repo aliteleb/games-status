@@ -13,12 +13,14 @@ const Group = () => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [nextPage, setNextPage] = React.useState(null);
 
+    
+
     const loadGames = (pageUrl) => {
         if (pageUrl) {
             setIsLoading(true);
             ApiClient().get(pageUrl)
                 .then((res) => {
-                    setGames((prevGames) => [...prevGames, ...res.data.data.games]);
+                    setGames((prevGames) => [...prevGames, ...res.data.data.games.data]);
                     setNextPage(res.data.data.next_page_url);
                     setResponse(res.data)
                     setIsLoading(false);
