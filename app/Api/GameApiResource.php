@@ -46,19 +46,27 @@ class GameApiResource extends ApiResource
         if (isset($data['status']))
             $data['status_text'] = $data['status']->name ?? null;
 
-        if (Carbon::parse($model->release_date)->isFuture())
-            $data['status_text'] = "UNRELEASED";
+        try {
+            $release_date = Carbon::parse($model->release_date);
+            $crack_date = Carbon::parse($model->crack_date);
 
-        $release_date = Carbon::parse($model->release_date);
-        $crack_date = Carbon::parse($model->crack_date);
-        $daysDifference = $crack_date->diffInDays($release_date);
+            if (Carbon::parse($release_date)->isFuture())
+                $data['status_text'] = "UNRELEASED";
 
-        if ($model->crack_date == null)
-            $daysDifference = now()->diffInDays($release_date);
+            $daysDifference = $crack_date->diffInDays($release_date);
 
-        $data['days_diff'] = $daysDifference;
-        $data['release_date'] = $release_date->format('M d, Y');
-        $data['crack_date'] = $crack_date->format('M d, Y');
+            if ($model->crack_date == null)
+                $daysDifference = now()->diffInDays($release_date);
+
+            $data['days_diff'] = $daysDifference;
+            $data['release_date'] = $release_date->format('M d, Y');
+            $data['crack_date'] = $crack_date->format('M d, Y');
+        }
+        catch (\Exception){
+            $data['days_diff'] = null;
+            $data['release_date'] = null;
+            $data['crack_date'] = null;
+        }
 
         return $data;
     }

@@ -41,16 +41,16 @@ abstract class ApiResource
     function collect(): array
     {
         $data = [];
-        foreach ($this->data as $game) {
-            $data[] = $this->resource($game);
+        foreach ($this->data as $model) {
+            $data[] = $this->resource($model);
         }
         return $data;
     }
     function paginate()
     {
         $data = [];
-        foreach ($this->data->items() as $game) {
-            $data[] = $this->resource($game);
+        foreach ($this->data->items() as $model) {
+            $data[] = $this->resource($model);
         }
         $this->result = $data;
         $data = $this->data->toArray();
