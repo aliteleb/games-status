@@ -80,6 +80,7 @@ class GameController extends Controller
         $validatedData['header'] = $header;
         $validatedData['poster'] = $poster;
         $validatedData['cover'] = $cover;
+        $validatedData['need_crack'] = true;
 
         $game = Game::create($validatedData);
 

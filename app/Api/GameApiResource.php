@@ -2,9 +2,7 @@
 
 namespace App\Api;
 
-use App\Http\Resources\ProtectionResource;
 use App\Http\Resources\StatusResource;
-use App\Models\Status;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 

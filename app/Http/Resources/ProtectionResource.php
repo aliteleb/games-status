@@ -22,10 +22,6 @@ class ProtectionResource extends JsonResource
             'games_count' => $this->games_count,
         ];
 
-        // Check if 'games_count' exists before adding it to the array
-//        if ($this->games_count !== null)  $data['games_count'] = $this->games_count;
-
-
         return $data;
     }
 }

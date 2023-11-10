@@ -40,7 +40,8 @@
 
                         <div id="cover-container" class="d-flex flex-column justify-center align-items-center mb-3 col col-10">
                             <label for="cover">{{ __('ui.game_cover') }}
-                                <img id="preview-image" src="{{ isset($game) ? storage('media', 'images/games/covers/'.$game->cover) : asset('assets/images/game-placeholder.jpg') }}"
+                                <img id="preview-image"
+                                     src="{{ isset($game) ? storage('media', 'images/games/covers/'.$game->cover) : asset('assets/images/game-placeholder.jpg') }}"
                                      data-modal-selection="single" data-modal-field="id" width="800" height="150" class="settings-img" alt="">
                             </label>
                             <input type="file" class="d-none" id="cover" name="cover">
@@ -110,8 +111,28 @@
                         </div>
                     </div>
 
+                    <div class="row justify-content-between">
+                        <div class="col-md-6">
+                            <div class="form-group trigger">
+                                <label class="form-check-label" for="need_crack">{{ __('ui.need_crack') }}</label>
+                                <input type="checkbox" class="form-check-input" id="need_crack"
+                                           name="need_crack" {{ old('need_crack', isset($game) && $game->need_crack ? 'checked' : '') }}>
+                                <label for="need_crack" class="col-form-label trigger-label"></label>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group trigger">
+                                <label class="form-check-label" for="status">{{ __('ui.status') }}</label>
+                                <input type="checkbox" class="form-check-input" id="status" name="status" {{ old('status', isset($game) && $game->status ? 'checked' : '') }}>
+                                <label for="status" class="col-form-label trigger-label"></label>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
+
                 <div class="col col-3 text-center post-side pt-4">
 
                     <div class="mb-5">

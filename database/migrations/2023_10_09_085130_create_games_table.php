@@ -37,7 +37,7 @@ return new class extends Migration
             $table->text('notes')->nullable();
 
             $table->integer('game_status_id')->nullable();
-            $table->boolean('status')->nullable();
+            $table->boolean('status')->default(true);
 
             $table->timestamps();
         });
