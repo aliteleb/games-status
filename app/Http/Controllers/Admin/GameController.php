@@ -25,6 +25,7 @@ class GameController extends Controller
 
         $query = $datatable->Selection(['is_hot' => 'desc']);
         $query->where('need_crack', true);
+        $query->orderBy('ordering', 'asc');
         $query->orderBy('id', 'desc');
 
         // Ajax datatable request
