@@ -46,7 +46,7 @@ class Game extends Model
     public static function datatable(): AdvancedDataTable
     {
         $datatable = new AdvancedDataTable(Game::class);
-        $datatable->columns = ['name', 'status.name', 'release_date', 'crack_date', 'is_hot'];
+        $datatable->columns = ['name', 'status.name', 'release_date', 'crack_date', 'is_hot', 'ordering'];
         $datatable->extra_selection = ['game_status_id'];
         $datatable->actions = [
             'edit_item' => [
