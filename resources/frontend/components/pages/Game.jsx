@@ -31,6 +31,7 @@ function Game() {
             ApiClient()
                 .get(`/game/${slug}`)
                 .then((res) => {
+                    // console.log(res);
                     setGame(res.data.data);
                     setComments(res.data.data.comments);
                     setFollow(res.data.data.is_following);

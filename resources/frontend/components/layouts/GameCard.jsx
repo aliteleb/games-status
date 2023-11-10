@@ -54,6 +54,7 @@ const GameCard = (props) => {
         ApiClient()
             .post(`/games/${game.id}/${action}`)
             .then((response) => {
+                console.log(response);
                 if (response.data.status === "success") {
                     action === "follow" ? toast.success(response.data.message) : toast(response.data.message);
                 } else {
@@ -73,7 +74,7 @@ const GameCard = (props) => {
         <div className={"grid grid-cols-[1fr_30px] md:grid-cols-[1fr_40px] game-card"}>
             <div className={"px-2 py-1"}>
                 <h1 className={"text-gray-200"}>
-                    {game.title || <Skeleton width={"100%"} height={"14px"} baseColor={"#27282e"} highlightColor={"#424349"} borderRadius={0} />}
+                    {game.name || <Skeleton width={"100%"} height={"14px"} baseColor={"#27282e"} highlightColor={"#424349"} borderRadius={0} />}
                 </h1>
                 <div className="flex flex-wrap">
                     <h2 className={"w-full text-sm text-" + color}>

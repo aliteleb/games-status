@@ -19,8 +19,9 @@ const Protection = () => {
             setIsLoading(true);
             ApiClient().get(pageUrl)
                 .then((res) => {
-                    setGames((prevGames) => [...prevGames, ...res.data.data.games]);
-                    setNextPage(res.data.data.next_page_url);
+                    console.log(res.data.data.games);
+                    setGames((prevGames) => [...prevGames, ...res.data.data.games.data]);
+                    setNextPage(res.data.data.games.next_page_url);
                     setResponse(res.data)
                     setIsLoading(false);
                     setTimeout(refreshPageSize, 50)
@@ -31,6 +32,7 @@ const Protection = () => {
                 });
         }
     };
+
 
     React.useEffect(() => {
         loadGames(`/protection/${slug}`);
@@ -54,10 +56,11 @@ const Protection = () => {
         };
     }, [nextPage, isLoading]);
 
-    const showGames = games?.map((drm, index) => (
-        <GameCard animate={true} info={drm} key={index}/>
+    const showGames = games?.map((game, index) => (
+        <GameCard animate={true} info={game} key={index}/>
     ));
 
+    // console.log(games);
 
     const placeholders = [];
     for (let i = 0; i < 12; i++) {
