@@ -11,14 +11,17 @@
 @section('content')
     <div class="container f-w">
 
-        <form class="game-form" action="{{ isset($game) ? route('admin.games.update', $game) : route('admin.games.store') }}" method="{{ isset($game) ? 'PUT' : 'POST' }}">
+        <form class="game-form" action="{{ isset($game) ? route('admin.games.update', $game) : route('admin.games.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @if(isset($game))
+                <input name="_method" type="hidden" value="PUT">
+            @endif
             <div class="d-flex flex-wrap">
                 <div class="col col-9 p-2">
                     <div class=" mb-3">
                         <input type="text" name="name" value="{{ old('name', isset($game) ? $game->name : '') }}" class="form-control form-control-lg"
                                placeholder="{{ __('ui.game_title') }}">
-                        @error('title')
+                        @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -37,10 +40,10 @@
 
                         <div id="cover-container" class="d-flex flex-column justify-center align-items-center mb-3 col col-10">
                             <label for="cover">{{ __('ui.game_cover') }}
-                                <img id="preview-image" src="{{ asset('assets/images/game-placeholder.jpg') }}"
-                                    data-modal-selection="single" data-modal-field="id" width="800" height="150" class="settings-img" alt="">
+                                <img id="preview-image" src="{{ isset($game) ? storage('media', 'images/games/covers/'.$game->cover) : asset('assets/images/game-placeholder.jpg') }}"
+                                     data-modal-selection="single" data-modal-field="id" width="800" height="150" class="settings-img" alt="">
                             </label>
-                            <input type="file" class="d-none" id="cover" name="cover" value="{{ isset($game) ? $game->featured_image : '' }}">
+                            <input type="file" class="d-none" id="cover" name="cover">
                             @error('cover')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -50,11 +53,11 @@
                             <label for="poster">{{ __('ui.game_poster') }}
                                 <img
                                     id="poster-preview"
-                                    src="{{ asset('assets/images/game-placeholder.jpg') }}"
+                                    src="{{ isset($game) ? storage('media', 'images/games/posters/'.$game->poster) : asset('assets/images/game-placeholder.jpg') }}"
                                     data-modal-selection="single" data-modal-field="id" width="100" height="150" class="settings-img" alt="">
                             </label>
 
-                            <input type="file" class="d-none" id="poster" name="poster" value="{{ isset($game) ? $game->featured_image : '' }}">
+                            <input type="file" class="d-none" id="poster" name="poster">
                             @error('poster')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -66,7 +69,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="release_date">{{ __('ui.release_date') }}</label>
-                                <input type="date" id="release_date" name="release_date" class="form-control" value="{{ old('release_date', isset($game) ? $game->release_date : '') }}">
+                                <input type="date" id="release_date" name="release_date" class="form-control"
+                                       value="{{ old('release_date', isset($game) ? $game->release_date : '') }}">
                                 @error('release_date')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -87,7 +91,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="meta_score">{{ __('ui.meta_score') }}</label>
-                                <input id="meta_score" type="number" name="meta_score" class="form-control" min="0" max="100" value="{{ old('meta_score', isset($game) ? $game->meta_score : '0') }}">
+                                <input id="meta_score" type="number" name="meta_score" class="form-control" min="0" max="100"
+                                       value="{{ old('meta_score', isset($game) ? $game->meta_score : '0') }}">
                                 @error('meta_score')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -96,15 +101,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="user_score">{{ __('ui.user_score') }}</label>
-                                <input id="user_score" type="number" name="user_score" class="form-control" min="0" max="100" value="{{ old('user_score', isset($game) ? $game->user_score : '0') }}">
+                                <input id="user_score" type="number" name="user_score" class="form-control" min="0" max="100"
+                                       value="{{ old('user_score', isset($game) ? $game->user_score : '0') }}">
                                 @error('user_score')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                     </div>
-
-
 
 
                 </div>
@@ -116,12 +120,12 @@
 
                     <div id="header-container" class="d-flex flex-column justify-center align-items-center mb-3">
                         <label class="d-flex flex-column" for="header">{{ __('ui.game_header') }}
-                            <img 
-                                 id="header-preview"
-                                 src="{{ asset('assets/images/game-placeholder.jpg') }}"
-                                 data-modal-selection="single" data-modal-field="id" width="260" height="140" class="settings-img" alt="">
+                            <img
+                                id="header-preview"
+                                src="{{ isset($game) ? storage('media', 'images/games/headers/'.$game->header) : asset('assets/images/game-placeholder.jpg') }}"
+                                data-modal-selection="single" data-modal-field="id" width="260" height="140" class="settings-img" alt="">
                         </label>
-                        <input type="file" class="d-none" id="header" name="header" value="{{ isset($game) ? $game->featured_image : '' }}">
+                        <input type="file" class="d-none" id="header" name="header">
                         @error('header')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -129,13 +133,14 @@
 
                     <div class="mb-5">
                         <label for="genres">{{ __('ui.genres') }}</label>
-                        <select id="genres" name="genres" class="form-control form-control-lg select2" multiple>
+                        <select id="genres" name="genres[]" class="form-control form-control-lg select2" multiple>
                             @foreach ($genres as $genreId => $genreName)
-                                <option value="{{ $genreId }}"{{ (old('genres', isset($game) ? $game->genres : null) == $genreId) ? ' selected' : '' }}>
+                                <option value="{{ $genreId }}"{{ (in_array($genreId, old('genres', $selectedGenres ?? []))) ? ' selected' : '' }}>
                                     {{ $genreName }}
                                 </option>
                             @endforeach
                         </select>
+
                         @error('genres')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -143,10 +148,10 @@
 
                     <div class="mb-5">
                         <label for="protections">{{ __('ui.protections') }}</label>
-                        <select id="protections" name="protections" class="form-control form-control-lg select2" multiple>
-                            @foreach ($protections as $protectionId => $protectionsName)
-                                <option value="{{ $protectionId }}"{{ (old('protections', isset($game) ? $game->protections : null) == $protectionId) ? ' selected' : '' }}>
-                                    {{ $protectionsName }}
+                        <select id="protections" name="protections[]" class="form-control form-control-lg select2" multiple>
+                            @foreach ($protections as $protectionId => $protectionName)
+                                <option value="{{ $protectionId }}"{{ (in_array($protectionId, old('protections', $selectedProtections ?? []))) ? ' selected' : '' }}>
+                                    {{ $protectionName }}
                                 </option>
                             @endforeach
                         </select>
@@ -157,9 +162,9 @@
 
                     <div class="mb-5">
                         <label for="groups">{{ __('ui.groups') }}</label>
-                        <select id="groups" name="groups" class="form-control form-control-lg select2" multiple>
+                        <select id="groups" name="groups[]" class="form-control form-control-lg select2" multiple>
                             @foreach ($groups as $groupId => $groupName)
-                                <option value="{{ $groupId }}"{{ (old('groups', isset($game) ? $game->groups : null) == $groupId) ? ' selected' : '' }}>
+                                <option value="{{ $groupId }}"{{ (in_array($groupId, old('groups', $selectedGroups ?? []))) ? ' selected' : '' }}>
                                     {{ $groupName }}
                                 </option>
                             @endforeach
@@ -173,7 +178,7 @@
                         <label for="status_name">{{ __('ui.status_name') }}</label>
                         <select id="status_name" name="game_status_id" class="form-control form-control-lg select2">
                             @foreach ($statuses as $statusId => $statusName)
-                                <option value="{{ $statusId }}"{{ (old('status', isset($game) ? $game->status : null) == $statusId) ? ' selected' : '' }}>
+                                <option value="{{ $statusId }}"{{ (old('status', isset($game) ? $game->game_status_id : null) == $statusId) ? ' selected' : '' }}>
                                     {{ $statusName }}
                                 </option>
                             @endforeach
@@ -189,20 +194,20 @@
 
         <script>
 
-          $("select.select2").select2({
-            "language": {
-              "noResults": function() {
-                return "@lang('messages.no_results_found')";
+            $("select.select2").select2({
+                "language": {
+                    "noResults": function() {
+                        return "@lang('messages.no_results_found')";
                     }
                 }
             });
 
 
-                // Define imgInp to represent the file input element
-            const imgInp = document.getElementById('cover'); // Change 'cover' to the ID of your file input
+            // Define imgInp to represent the file input element
+            const imgInp = document.getElementById("cover"); // Change 'cover' to the ID of your file input
 
             // Define blah to represent the image element where you want to display the preview
-            const blah = document.getElementById('preview-image'); // Change 'preview-image' to the ID of your image element
+            const blah = document.getElementById("preview-image"); // Change 'preview-image' to the ID of your image element
 
             imgInp.onchange = evt => {
                 const [file] = imgInp.files;
@@ -212,9 +217,9 @@
                 }
             };
 
-                // Initialize the image preview for the poster image
-            const posterImgInp = document.getElementById('poster');
-            const posterBlah = document.getElementById('poster-preview');
+            // Initialize the image preview for the poster image
+            const posterImgInp = document.getElementById("poster");
+            const posterBlah = document.getElementById("poster-preview");
 
             posterImgInp.onchange = evt => {
                 const [file] = posterImgInp.files;
@@ -224,8 +229,8 @@
             };
 
             // Initialize the image preview for the header image
-            const headerImgInp = document.getElementById('header');
-            const headerBlah = document.getElementById('header-preview');
+            const headerImgInp = document.getElementById("header");
+            const headerBlah = document.getElementById("header-preview");
 
             headerImgInp.onchange = evt => {
                 const [file] = headerImgInp.files;
@@ -243,7 +248,8 @@
                 color: #999;
                 font-size: 1.5rem;
             }
-            .game-form img{
+
+            .game-form img {
                 object-fit: cover;
             }
         </style>

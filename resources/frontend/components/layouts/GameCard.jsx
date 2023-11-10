@@ -68,7 +68,7 @@ const GameCard = (props) => {
     };
 
     const card = (<>
-        <img className={customStyles + "pointer-events-none border-b-4 border-" + color} style={{ aspectRatio: "16/9" }} src={game.image || "/assets/images/game-placeholder.jpg"}
+        <img className={customStyles + "pointer-events-none border-b-4 border-" + color} style={{ aspectRatio: "16/9" }} src={game.header || "/assets/images/game-placeholder.jpg"}
              alt={"game"} />
         <div className={"grid grid-cols-[1fr_30px] md:grid-cols-[1fr_40px] game-card"}>
             <div className={"px-2 py-1"}>

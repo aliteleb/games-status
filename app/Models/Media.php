@@ -147,6 +147,53 @@ class Media extends Model
 
     }
 
+    public static function uploadFile($file, $path, $size = [null, null], $keep_same_file_name = false, $resize_type = 'fit')
+    {
+        // Create the 'media' directory if it doesn't exist
+        Storage::disk('public')->makeDirectory('media');
+        Storage::disk('media')->makeDirectory($path);
+
+        $file_save_name = round(microtime(true) * 1000) . '.webp';
+
+        if ($keep_same_file_name) {
+            // Determine the default values for alt and title
+            $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+            $file_save_name = $file_name . '.webp';
+
+            // Check if the file already exists, if so, add a number to the name
+            $counter = 1;
+
+            while (Storage::disk('media')->exists($path . $file_save_name)) {
+                $file_save_name = $file_name . '_' . $counter . '.webp';
+                $counter++;
+            }
+        }
+
+        // Quality
+        $quality = 100;
+
+        Storage::disk('media')->makeDirectory($path);
+
+        $image = Image::make($file)->encode('webp', $quality);
+
+        if ($size[0] || $size[1]) {
+
+            if ($resize_type == 'fit') {
+                $image = $image->fit($size[0], $size[1]);
+            } else {
+                $image = $image->resize($size[0], $size[1], function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+
+        }
+
+        Storage::disk('media')->put($path . $file_save_name, $image->stream());
+
+        return $file_save_name;
+    }
+
     public function getSizesAttribute()
     {
         $sizes = explode(',', $this->prefix);
@@ -156,10 +203,10 @@ class Media extends Model
         }
         return $result;
     }
+
     public function getPreviewAttribute()
     {
-        if ($this->sizes && count($this->sizes) > 0)
-        {
+        if ($this->sizes && count($this->sizes) > 0) {
             return array_values($this->sizes)[0];
         }
         return "";

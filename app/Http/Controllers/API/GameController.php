@@ -10,6 +10,7 @@ use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -95,8 +96,8 @@ class GameController extends Controller
         if ($user)
             $user_id = $user->id;
 
-        $game = Game::select(['id', 'name', 'slug', 'release_date', 'crack_date', 'steam_appid'])
-            ->with(['protections:id,name,slug', 'groups:id,name,slug',
+        $game = Game::select(['id', 'name', 'slug', 'release_date', 'crack_date', 'steam_appid', 'header', 'cover', 'poster', 'game_status_id'])
+            ->with(['protections:id,name,slug', 'groups:id,name,slug', 'status:id,name',
                 'comments' => function ($query) {
                     $query->with(['user', 'replies', 'reactions'])
                         ->whereNull('reply_to')
@@ -108,7 +109,6 @@ class GameController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-        //return $this->refactComments($game->comments);
 
         $game->comments = Comment::refactComments($game->comments);
         $game->comments->map(function ($comment) use ($user_id) {
@@ -120,8 +120,6 @@ class GameController extends Controller
             unset($comment->reactions);
             unset($comment->user);
         });
-
-
 
         $release_date = Carbon::parse($game->release_date);
         $crack_date = Carbon::parse($game->crack_date);
@@ -143,9 +141,22 @@ class GameController extends Controller
 
         $game->status_text = $statusText;
         $game->days_diff = $daysDifference;
-        $game->header = 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $game->steam_appid . '/header.jpg';
-        $game->poster = 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $game->steam_appid . '/library_600x900.jpg';
-        $game->cover = 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $game->steam_appid . '/library_hero.jpg';
+
+        if(!$game->header)
+            $game->header = 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $game->steam_appid . '/header.jpg';
+        else
+            $game->header = Storage::disk('media')->url('/images/games/headers/'.$game->header);
+
+        if(!$game->poster)
+            $game->poster = 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $game->steam_appid . '/library_600x900.jpg';
+        else
+            $game->poster = Storage::disk('media')->url('/images/games/posters/'.$game->poster);
+
+        if(!$game->cover)
+            $game->cover = 'https://cdn.cloudflare.steamstatic.com/steam/apps/' . $game->steam_appid . '/library_hero.jpg';
+        else
+            $game->cover = Storage::disk('media')->url('/images/games/covers/'.$game->cover);
+
         $game->is_following = $is_following;
         $game->release_date = $release_date->format('M d, Y');
         $game->crack_date = $crack_date->format('M d, Y');

@@ -54,7 +54,7 @@ function Game() {
     game.status_color = game?.status_text
         ? game?.status_text.toLowerCase()
         : "gray-600";
-    const statusText = game.status_text || "";
+    const statusText = game?.status_text || "";
 
     switch (statusText) {
         case "CRACKED":
@@ -330,7 +330,7 @@ function Game() {
                         METACRITIC
                         <span className="font-bold">94</span>
                     </div>
-                    <a  
+                    <a
                         onClick={setTimeout( ()=> {
                             document.getElementById('comment').focus()
                         }, 1000 )}

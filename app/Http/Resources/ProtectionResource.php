@@ -14,10 +14,18 @@ class ProtectionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        $data = [
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
+            'games' => GameResource::collection($this->whenLoaded('games')),
         ];
+
+        // Check if 'games_count' exists before adding it to the array
+        if ($this->games_count !== null) {
+            $data['games_count'] = $this->games_count;
+        }
+
+        return $data;
     }
 }

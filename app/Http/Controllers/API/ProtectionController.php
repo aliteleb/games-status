@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GameResource;
+use App\Http\Resources\ProtectionResource;
 use App\Models\Protection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -50,7 +51,8 @@ class ProtectionController extends Controller
     public function show($slug)
     {
         $protection = Protection::with(['games'=> function ($query) {
-            return $query->paginate(12);
+            return $query->with('status:id,name')
+                ->paginate(12);
         }])->withCount('games')
             ->where('slug', $slug)
             ->firstOrFail();
@@ -68,13 +70,14 @@ class ProtectionController extends Controller
             $next_page_url = route('api.protection', $slug).'?page='.$next_page;
 
         return response()->api(
-            data: [
+            data: new ProtectionResource($protection),
+            /*data: [
                 'name' => $protection->name,
                 'games' => GameResource::collection($protection->games),
                 'games_count' => $protection->games_count,
                 'last_page' => $total_pages,
                 'next_page_url' => $next_page_url,
-            ],
+            ],*/
             message: $protection->name.__(" Games")
         );
     }
