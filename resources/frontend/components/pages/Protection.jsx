@@ -19,7 +19,6 @@ const Protection = () => {
             setIsLoading(true);
             ApiClient().get(pageUrl)
                 .then((res) => {
-                    console.log(res.data.data.games);
                     setGames((prevGames) => [...prevGames, ...res.data.data.games.data]);
                     setNextPage(res.data.data.games.next_page_url);
                     setResponse(res.data)
@@ -32,7 +31,6 @@ const Protection = () => {
                 });
         }
     };
-
 
     React.useEffect(() => {
         loadGames(`/protection/${slug}`);

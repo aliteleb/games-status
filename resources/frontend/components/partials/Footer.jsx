@@ -30,7 +30,7 @@ function Footer() {
                             <Link to="/terms-conditions" className="hover:text-gray-300">Terms & Conditions</Link>
                         </li>
                         <li>
-                            <Link to="/frequency-questions" className="hover:text-gray-300">Frequency Questions</Link>
+                            <Link to="/frequency-questions" className="hover:text-gray-300">FAQ</Link>
                         </li>
                     </ul>
                 </div>

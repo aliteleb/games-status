@@ -118,4 +118,8 @@ return [
     'release_date' => 'تايرخ الإطلاق',
     'user_score' => 'تقييم المستخدمين',
     'meta_score' => 'تقييم موقع Meta',
+
+    'status' => 'الحالة',
+    'need_crack' => 'مهم',
+    'is_hot' => 'عرض فى الصفحة الرئيسية'
 ];

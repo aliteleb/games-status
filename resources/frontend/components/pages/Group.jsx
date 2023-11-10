@@ -52,10 +52,9 @@ const Group = () => {
         };
     }, [nextPage, isLoading]);
 
-    const showGames = games?.map((drm, index) => (
-        <GameCard animate={true} info={drm} key={index}/>
+    const showGames = games?.map((game, index) => (
+        <GameCard animate={true} info={game} key={index}/>
     ));
-
 
     const placeholders = [];
     for (let i = 0; i < 12; i++) {
