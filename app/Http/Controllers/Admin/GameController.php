@@ -187,7 +187,7 @@ class GameController extends Controller
         if ($game->poster && $request->hasFile('poster')) {
             if($game->poster)
             {
-                $file = public_path('media/images/games/headers/'.$game->header);
+                $file = public_path('media/images/games/poster/'.$game->header);
                 if (file_exists($file))
                     unlink($file);
             }
@@ -199,7 +199,7 @@ class GameController extends Controller
         if ($game->cover && $request->hasFile('cover')) {
             if($game->cover)
             {
-                $file = public_path('media/images/games/headers/'.$game->header);
+                $file = public_path('media/images/games/cover/'.$game->header);
                 if (file_exists($file))
                     unlink($file);
             }
