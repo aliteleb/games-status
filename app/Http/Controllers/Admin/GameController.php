@@ -171,29 +171,36 @@ class GameController extends Controller
         // Handle file uploads and update filenames
         if ($request->hasFile('header')) {
 
-            $file = public_path('media/images/games/headers/'.$game->header);
-            if ($file)
-                unlink($file);
+            if($game->header)
+            {
+                $file = public_path('media/images/games/headers/'.$game->header);
+                if (file_exists($file))
+                    unlink($file);
+            }
 
             $header = Media::uploadFile(file: $request->file('header'), path: "/images/games/headers/", size: [450, 300]);
             $game->header = $header;
         }
 
-        if ($request->hasFile('poster')) {
-
-            $file = public_path('media/images/games/posters/'.$game->poster);
-            if ($file)
-                unlink($file);
+        if ($game->poster && $request->hasFile('poster')) {
+            if($game->poster)
+            {
+                $file = public_path('media/images/games/headers/'.$game->header);
+                if (file_exists($file))
+                    unlink($file);
+            }
 
             $poster = Media::uploadFile(file: $request->file('poster'), path: "/images/games/posters/", size: [300, 450]);
             $game->poster = $poster;
         }
 
-        if ($request->hasFile('cover')) {
-
-            $file = public_path('media/images/games/covers/'.$game->cover);
-            if ($file)
-                unlink($file);
+        if ($game->cover && $request->hasFile('cover')) {
+            if($game->cover)
+            {
+                $file = public_path('media/images/games/headers/'.$game->header);
+                if (file_exists($file))
+                    unlink($file);
+            }
 
             $cover = Media::uploadFile(file: $request->file('cover'), path: "/images/games/covers/", size: [1920, 620]);
             $game->cover = $cover;
