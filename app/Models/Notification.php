@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Api\GameApiResource;
 use App\Http\Resources\GameResource;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -45,7 +46,7 @@ class Notification extends Model
 
         $notifications->each(function ($notification) {
             if ($notification->game !== null) {
-                $notification->game_info = new GameResource($notification->game);
+                $notification->game_info = (new GameApiResource($notification->game));
                 unset($notification->game);
             }
             Carbon::setLocale('en');

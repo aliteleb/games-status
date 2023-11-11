@@ -120,12 +120,15 @@ class CommentController extends Controller
                 'comment_id' => $comment->id,
                 'type' => $vote_type,
             ]);
-            Notification::create([
-                'type' => $vote_type."-vote",
-                'user_id' => $comment->user_id,
-                'comment_id' => $comment->id,
-                'game_id' => $comment->game_id,
-            ]);
+            if($user->id === $comment->user_id)
+            {
+                Notification::create([
+                    'type' => $vote_type."-vote",
+                    'user_id' => $comment->user_id,
+                    'comment_id' => $comment->id,
+                    'game_id' => $comment->game_id,
+                ]);
+            }
         }
 
         $comments = Comment::latest_comments($comment->game_id);
