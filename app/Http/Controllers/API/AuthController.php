@@ -39,13 +39,15 @@ class AuthController extends Controller
         // Retrieve the uploaded files
         $avatar = $request->file('avatar');
 
+        $avatar = Media::uploadFile(file: $request->file('avatar'), path: "/images/users/avatars/", size: [200, 200]);
+
         $user = User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => $data['password'],
             'gender' => $data['gender'],
             'country_code' => $data['country_code'],
-            'media_id' => $media->id,
+            'avatar' => $avatar,
         ]);
 
         return response()->api(

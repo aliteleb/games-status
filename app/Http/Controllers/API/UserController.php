@@ -157,7 +157,6 @@ class UserController extends Controller
                 unlink($file);
         }
 
-
         $avatar = Media::uploadFile(file: $request->file('avatar'), path: "/images/users/avatars/", size: [200, 200]);
 
         $user->avatar = $avatar;
