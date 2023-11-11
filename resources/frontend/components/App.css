@@ -207,3 +207,28 @@ input.custom-input:-webkit-autofill:hover {
         opacity: 0.3;
     }
 }
+
+/* .typing-animation {
+    border-right: 2px solid;
+    width: 768.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    animation:
+        typing 4s steps(88),
+        cursor 0.4s step-end infinite alternate;
+}
+
+@keyframes cursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 768.5px;
+    }
+} */
