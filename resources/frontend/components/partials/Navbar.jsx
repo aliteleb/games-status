@@ -72,11 +72,11 @@ function Navbar() {
                         <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer transition hover:text-[#ff0000]">PROTECTIONS</NavLink>
                     </div>
                     <div className="mx-3 md:mx-6">
-                        <NavLink onClick={collapseSidebar} to="/" className="relative">
-                            <img src="/assets/images/logo.png" className="animate-glow relative top-5 h-16 w-16" alt="Logo" />
+                        <NavLink onClick={collapseSidebar} to="/" className="relative h-[50px]">
+                            <img src="/public/assets/images/1.png" className="animate-glow relative top-4 object-cover h-16 w-20" alt="Logo" />
                             <div className="absolute h-[10rem] w-[10rem] cursor-auto bg-app-black/70" style={{
                                 top: "-100%",
-                                left: "-75%",
+                                left: "-50%",
                                 zIndex: "-1",
                                 clipPath: "polygon(90% 80%, 70% 100%, 30% 100%, 10% 80%)"
                             }}></div>
