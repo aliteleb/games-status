@@ -41,7 +41,7 @@ class Notification extends Model
         }
         $notifications_response = new \stdClass();
         $notifications = Notification::with(['game' => function ($query) {
-            return $query->with('groups');
+            return $query->with(['groups', 'status']);
         }, 'comment'])->where('user_id', $user->id)->latest()->get();
 
         $notifications->each(function ($notification) {
