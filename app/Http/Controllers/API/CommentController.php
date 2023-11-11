@@ -72,7 +72,7 @@ class CommentController extends Controller
         $user = auth()->user();
         if($parent && $parent->user_id !== $user->id)
         {
-            $notification = Notification::create([
+            Notification::create([
                 'type' => 'reply',
                 'user_id' => $parent->user_id,
                 'comment_id' => $comment->id,
@@ -116,7 +116,7 @@ class CommentController extends Controller
             }
         } else {
             Reaction::create([
-                'user_id' => auth()->user()->id,
+                'user_id' => $user->id,
                 'comment_id' => $comment->id,
                 'type' => $vote_type,
             ]);
@@ -126,6 +126,7 @@ class CommentController extends Controller
                     'type' => $vote_type."-vote",
                     'user_id' => $comment->user_id,
                     'comment_id' => $comment->id,
+                    'from_user' => $user->id,
                     'game_id' => $comment->game_id,
                 ]);
             }

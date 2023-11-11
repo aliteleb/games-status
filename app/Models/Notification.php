@@ -8,12 +8,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Notification extends Model
 {
-    use HasFactory;
 
-    protected $fillable = ['type', 'user_id', 'game_id', 'comment_id', 'is_read'];
+    protected $fillable = ['type', 'user_id', 'game_id', 'comment_id', 'from_user', 'is_read'];
     protected $casts = [
         'is_read' => 'boolean',
     ];
@@ -33,6 +33,11 @@ class Notification extends Model
         return $this->belongsTo(Comment::class, 'comment_id');
     }
 
+    public function from_user(): HasOne
+    {
+        return $this->hasOne(User::class, 'from_user');
+    }
+
     public static function latest_notifications()
     {
         $user = auth()->user();
@@ -41,7 +46,7 @@ class Notification extends Model
         }
         $notifications_response = new \stdClass();
         $notifications = Notification::with(['game' => function ($query) {
-            return $query->with(['groups', 'status']);
+            return $query->with(['groups', 'status', 'from_user']);
         }, 'comment'])->where('user_id', $user->id)->latest()->get();
 
         $notifications->each(function ($notification) {
