@@ -18,6 +18,12 @@ class HomeController extends Controller
             ->limit(7)
             ->get();
 
+        $latest_cracked_games = Game::with('status:id,name')->select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid', 'header', 'game_status_id'])
+            ->where('is_hot', false)
+            ->orderBy('id', 'desc')
+            ->limit(8)
+            ->get();
+
         $notes = Note::select(['body'])
             ->latest()
             ->orderBy('ordering')
@@ -28,7 +34,8 @@ class HomeController extends Controller
         return response()->api(
             data: [
                 'notes' => $notes,
-                'hot_games' => GameApiResource::parse($hot_games)
+                'hot_games' => GameApiResource::parse($hot_games),
+                'latest_cracked_games' => GameApiResource::parse($latest_cracked_games)
             ],
             message: __("Home page")
         );
