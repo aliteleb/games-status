@@ -1,6 +1,7 @@
 import React from "react";
 import GameNotification from "../Notifications/GameNotification";
 import ReplyNotification from "../Notifications/ReplyNotifications";
+import VoteNotification from "../Notifications/VoteNotification";
 import ApiClient from "../../services/ApiClient";
 import { useAuth } from "../api/AuthContext";
 
@@ -48,7 +49,12 @@ function Notifications(props) {
                 notifications?.map((item, index) => item.type === "reply" ?
                     <ReplyNotification setShowNotificationPopup={props.setShowNotificationPopup} setNotifications={setNotifications}
                                        setUnReadNotificationsCount={props.setUnReadNotificationsCount} key={index} info={item} /> :
+                                       item.type === "game_status" ?
+                                       
                     <GameNotification setShowNotificationPopup={props.setShowNotificationPopup} setNotifications={setNotifications}
+                                      setUnReadNotificationsCount={props.setUnReadNotificationsCount} key={index} info={item} /> :
+
+                    <VoteNotification setShowNotificationPopup={props.setShowNotificationPopup} setNotifications={setNotifications}
                                       setUnReadNotificationsCount={props.setUnReadNotificationsCount} key={index} info={item} />)
             }
         </div>

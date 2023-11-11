@@ -38,6 +38,8 @@ function GameNotification(props) {
 
     let color = props?.info.game_info.status_text ? props?.info.game_info.status_text.toLowerCase() : "gray-600";
 
+    
+
     return (
         <div
             onMouseEnter={() => setIsHovered(true)}
@@ -52,7 +54,7 @@ function GameNotification(props) {
                     <img className="h-24" src={props?.info.game_info.poster} alt="" />
 
                     <div className="mx-3 flex flex-col">
-                        <p className="font-bold text-xl text-gray-300">{props?.info.game_info.title}</p>
+                        <p className="font-bold text-xl text-gray-300">{props?.info.game_info.name}</p>
                         <Link to={`/group/${props.info.game_info.groups[0].slug}`} className=" text-gray-400 hover:text-gray-300 transition">{props.info.game_info.groups[0].name}</Link>
                         <div className="flex items-center">
                             <p className={`text-${color} font-bold text-2xl`}>{props?.info.game_info.status_text}</p>
