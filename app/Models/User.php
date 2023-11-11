@@ -23,7 +23,6 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'display_name',
-        'media_id',
         'email',
         'country_code',
         'gender',
@@ -120,7 +119,6 @@ class User extends Authenticatable
     {
         $datatable = new AdvancedDataTable(User::class);
         $datatable->columns = ['avatar_html', 'username', 'email', 'role.name', 'status'];
-        $datatable->extra_selection = ['media_id'];
         $datatable->modal_fields = [
             'avatar_src' => 'media|80x80',
             'username' => 'text',
