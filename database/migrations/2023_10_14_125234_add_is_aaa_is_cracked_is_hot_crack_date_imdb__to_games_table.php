@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('imdb')->nullable()->after('gog_id');
             $table->string('crack_date')->nullable()->after('gog_id');
             $table->boolean('is_cracked')->nullable()->after('gog_id');
-            $table->boolean('is_hot')->nullable()->after('gog_id');
-            $table->boolean('is_aaa')->nullable()->after('gog_id');
+            $table->boolean('is_hot')->default(0)->after('gog_id');
+            $table->boolean('is_aaa')->default(0)->after('gog_id');
         });
     }
 
