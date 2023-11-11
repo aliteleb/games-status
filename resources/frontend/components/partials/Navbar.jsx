@@ -114,7 +114,7 @@ function Navbar() {
                             setShowProfilePopup(!showProfilePopup);
                         }} id="user-dropdown"
                              className={`border-2 hover:border-gray-400 transition w-10 h-10 rounded-full cursor-pointer ${showProfilePopup ? "border-gray-400" : "border-gray-600"}`}
-                             src={`${user.avatar.sizes.medium}`} alt={"avatar"} width={100} height={100} />
+                             src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
                     }
                     {!user &&
                         <Link to="/login">

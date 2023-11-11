@@ -48,7 +48,7 @@ function ReplyNotification(props) {
 
             <div className='flex-co flex w-9/12'>
                 <div className="flex items-center px-1">
-                    <img className="h-9 w-9 rounded-full" src={props?.info.comment.user.avatar.sizes.small} alt="" />
+                    <img className="h-9 w-9 rounded-full" src={props?.info.comment.user.avatar} alt="" />
 
                     <div className="mx-2 py-4">
                         <p className="text-gray-300">Your comment received a reply from <Link to={`/user/${props.info.comment.username}`} className="font-bold text-red-500 hover:text-red-700 transition">{props?.info.comment.username}</Link></p>

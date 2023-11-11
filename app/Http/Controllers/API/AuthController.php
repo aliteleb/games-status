@@ -36,26 +36,22 @@ class AuthController extends Controller
         }
         $data = $validator->validate();
 
+        // Retrieve the uploaded files
+        $avatar = $request->file('avatar');
 
+        $user = User::create([
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+            'gender' => $data['gender'],
+            'country_code' => $data['country_code'],
+            'media_id' => $media->id,
+        ]);
 
-            // Retrieve the uploaded files
-            $avatar = $request->file('avatar');
-            $media = Media::upload($avatar, '/images/user', User::$media_sizes);
-
-            $user = User::create([
-                'username' => $data['username'],
-                'email' => $data['email'],
-                'password' => $data['password'],
-                'gender' => $data['gender'],
-                'country_code' => $data['country_code'],
-                'media_id' => $media->id,
-            ]);
-
-            return response()->api(
-                data: new UserResource($user),
-                message: __("User registered successfully.")
-            );
-
+        return response()->api(
+            data: new UserResource($user),
+            message: __("User registered successfully.")
+        );
 
     }
 

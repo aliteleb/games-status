@@ -171,12 +171,13 @@ class UserController extends Controller
             );
         }
 
-        // Retrieve the uploaded files
-        $avatar = $request->file('avatar');
+        $file = public_path('media/images/users/avatars/'.$user->avatar);
+        if (file_exists($file))
+            unlink($file);
 
-        $media = Media::upload($avatar, '/images/user', User::$media_sizes);
+        $avatar = Media::uploadFile(file: $request->file('avatar'), path: "/images/users/avatars/", size: [200, 200]);
 
-        $user->media_id = $media->id;
+        $user->avatar = $avatar;
         $user->save();
 
         return response()->api(

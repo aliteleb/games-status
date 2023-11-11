@@ -80,7 +80,7 @@ function User() {
                     { response &&
                         <img
                             className={`col-span-2 border-2 border-gray-600 rounded-full sm:col-auto w-[100px] h-[100px] object-cover`}
-                            src={response ? response.avatar.sizes.large : ''}
+                            src={response ? response.avatar : ''}
                             alt=''
                         />
                     }

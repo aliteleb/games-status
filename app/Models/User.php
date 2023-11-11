@@ -15,12 +15,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public static array $media_sizes = [
-        "large" => [200, 200],
-        "medium" => [100, 100],
-        "small" => [50, 50],
-    ];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -34,6 +28,7 @@ class User extends Authenticatable
         'country_code',
         'gender',
         'password',
+        'avatar',
     ];
 
     /**
@@ -57,14 +52,7 @@ class User extends Authenticatable
         'status' => 'boolean',
     ];
 
-    protected $with = [
-        'avatar:id,file,path,prefix',
-    ];
-
     protected $appends = [
-        'large_avatar',
-        'medium_avatar',
-        'small_avatar',
         'avatar_html',
         'avatar_src'
     ];
@@ -126,11 +114,6 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
-    }
-
-    public function avatar()
-    {
-        return $this->hasOne(Media::class, 'id', 'media_id');
     }
 
     public static function datatable(): AdvancedDataTable
@@ -196,7 +179,7 @@ class User extends Authenticatable
 
     protected function getAvatarSrcAttribute()
     {
-        if ($this->avatar && count($this->avatar->sizes) > 0)
+        if ($this->avatar && isset($this->avatar->sizes) && count($this->avatar->sizes) > 0)
         {
             return array_values($this->avatar->sizes)[0];
         }

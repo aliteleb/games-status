@@ -12,7 +12,6 @@ class Comment extends Model
 
     protected $fillable = ['user_id', 'game_id', 'body', 'reply_to', 'mention'];
     protected $appends = ['time', 'username', 'display_name', 'user_image', 'votes', 'voted'];
-    protected $hidden = ['created_at', 'updated_at'];
 
     protected $with = ['user:id,username,display_name,media_id', 'reactions', 'replies'];
     protected $withCount = ['reactions'];

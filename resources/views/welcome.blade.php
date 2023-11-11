@@ -17,7 +17,7 @@
     <script>
         @php $user = auth()->user(); @endphp
         window.appData = {};
-        window.appData.auth = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => $user]) !!};
+        window.appData.auth = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => \App\Api\UserApiResource::parse($user)]) !!};
         window.appData.notifications = {!! json_encode($notifications) !!};
     </script>
     @viteReactRefresh
