@@ -22,7 +22,8 @@ class HomeController extends Controller
             ->where('is_hot', false)
             ->whereHas('status', function ($query) {
                 $query->where('name', 'CRACKED');
-            })            ->orderBy('id', 'desc')
+            })
+            ->orderBy('id', 'desc')
             ->limit(8)
             ->get();
 
