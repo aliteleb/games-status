@@ -35,7 +35,7 @@ class Notification extends Model
 
     public function from_user(): HasOne
     {
-        return $this->hasOne(User::class, 'from_user');
+        return $this->hasOne(User::class, 'id','from_user');
     }
 
     public static function latest_notifications()
