@@ -20,7 +20,9 @@ class HomeController extends Controller
 
         $latest_cracked_games = Game::with('status:id,name')->select(['id', 'name', 'slug','release_date', 'crack_date', 'steam_appid', 'header', 'game_status_id'])
             ->where('is_hot', false)
-            ->orderBy('id', 'desc')
+            ->whereHas('status', function ($query) {
+                $query->where('name', 'CRACKED');
+            })            ->orderBy('id', 'desc')
             ->limit(8)
             ->get();
 
