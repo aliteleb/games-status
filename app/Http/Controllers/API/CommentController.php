@@ -120,7 +120,7 @@ class CommentController extends Controller
                 'comment_id' => $comment->id,
                 'type' => $vote_type,
             ]);
-            if($user->id === $comment->user_id)
+            if($user->id !== $comment->user_id)
             {
                 Notification::create([
                     'type' => $vote_type."-vote",
