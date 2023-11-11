@@ -49,7 +49,7 @@ function VoteNotification(props) {
 
             <div className='flex-co flex w-9/12'>
                 <div className="flex items-center px-1">
-                    <img className="h-9 w-9 rounded-full" src={props.info.from_user?.small_avatar} alt="" />
+                    <img className="h-9 w-9 rounded-full" src={props.info.from_user?.avatar} alt="" />
 
                     <div className="mx-2 py-4">
                         <p className="text-gray-300"> <Link to={`/user/${props.info.from_user?.username}`} className="font-bold text-red-500 hover:text-red-700 transition">{props.info.from_user?.username}</Link> found your comment worth a {props.info.type === "up-vote" ? "vote up!" : "vote down!"}</p>

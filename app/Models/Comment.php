@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Api\CommentApiResource;
 use App\Helpers\AdvancedDataTable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,9 +12,9 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = ['user_id', 'game_id', 'body', 'reply_to', 'mention'];
-    protected $appends = ['time', 'username', 'display_name', 'user_image', 'votes', 'voted'];
+    protected $appends = ['username', 'display_name', 'user_image', 'votes', 'voted'];
 
-    protected $with = ['user:id,username,display_name,media_id', 'reactions', 'replies'];
+    protected $with = ['user:id,username,display_name,avatar', 'reactions', 'replies'];
     protected $withCount = ['reactions'];
 
     public function user()
@@ -37,18 +38,6 @@ class Comment extends Model
     public function parentComment()
     {
         return $this->belongsTo(Comment::class, 'reply_to');
-    }
-
-    public function getTimeAttribute()
-    {
-        try {
-            if($this->created_at)
-                return $this->created_at->diffForHumans();
-            else
-                return 'N/A';
-        } catch (\Exception $e) {
-            return 'N/A';
-        }
     }
 
     public function getUsernameAttribute()
@@ -112,7 +101,8 @@ class Comment extends Model
         $comments = Comment::where('game_id', $game_id)
             ->whereNull('reply_to')
             ->with(['user', 'replies', 'reactions'])
-            ->latest()->get();
+            ->latest()
+            ->get();
 
         $comments = Comment::refactComments($comments);
 

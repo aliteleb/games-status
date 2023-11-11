@@ -18,7 +18,7 @@ function User() {
             setIsLoading(true);
             ApiClient().get(pageUrl)
                 .then((res) => {
-                    setGames((prevGames) => [...prevGames, ...res.data.data.games]);
+                    setGames((prevGames) => [...prevGames, ...res.data.data.games.data]);
                     setNextPage(res.data.data.next_page_url);
                     setResponse(res.data.data)
                     setIsLoading(false);

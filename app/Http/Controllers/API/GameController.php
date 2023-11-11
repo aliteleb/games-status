@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Api\CommentApiResource;
 use App\Api\GameApiResource;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
@@ -92,19 +93,12 @@ class GameController extends Controller
     public function show(Request $request, $slug)
     {
         $game = Game::select(['id', 'name', 'slug', 'release_date', 'crack_date', 'steam_appid', 'header', 'cover', 'poster', 'game_status_id'])
-            ->with(['protections:id,name,slug', 'groups:id,name,slug', 'status:id,name',
-                'comments' => function ($query) {
-                    $query->with(['user', 'replies', 'reactions'])
-                        ->whereNull('reply_to')
-                        ->latest();
-                    return $query;
-                }
-            ])
+            ->with(['protections:id,name,slug', 'groups:id,name,slug', 'status:id,name',])
             ->withCount('users as followers_count')
             ->where('slug', $slug)
             ->firstOrFail();
 
-        $game->comments = Comment::latest_comments($game->id);
+        $game->comments = CommentApiResource::parse(collect(Comment::latest_comments($game->id)));
 
         $user = auth()->user();
         $is_following = false;

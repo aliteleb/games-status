@@ -31,14 +31,14 @@ function GameNotification(props) {
     };
 
     let navigateToTheGame = () => {
-        navigate(`/game/${props.info.game_info.slug}`)
+        navigate(`/game/${props.info.game.slug}`)
         props.setShowNotificationPopup(false)
     }
 
 
-    let color = props?.info.game_info.status_text ? props?.info.game_info.status_text.toLowerCase() : "gray-600";
+    let color = props?.info.game.status_text ? props?.info.game.status_text.toLowerCase() : "gray-600";
 
-    
+
 
     return (
         <div
@@ -51,14 +51,14 @@ function GameNotification(props) {
 
             <div className="flex w-9/12 flex-col">
                 <div className="flex items-center">
-                    <img className="h-24" src={props?.info.game_info.poster} alt="" />
+                    <img className="h-24" src={props?.info.game.poster} alt="" />
 
                     <div className="mx-3 flex flex-col">
-                        <p className="font-bold text-xl text-gray-300">{props?.info.game_info.name}</p>
-                        <Link to={`/group/${props.info.game_info.groups[0].slug}`} className=" text-gray-400 hover:text-gray-300 transition">{props.info.game_info.groups[0].name}</Link>
+                        <p className="font-bold text-xl text-gray-300">{props?.info.game.name}</p>
+                        <Link to={`/group/${props.info.game.groups[0].slug}`} className=" text-gray-400 hover:text-gray-300 transition">{props.info.game.groups[0].name}</Link>
                         <div className="flex items-center">
-                            <p className={`text-${color} font-bold text-2xl`}>{props?.info.game_info.status_text}</p>
-                            <span className={`mx-2 text-${color} text-[13px]`}>AFTER {props.info.game_info.days_diff} DAYS</span>
+                            <p className={`text-${color} font-bold text-2xl`}>{props?.info.game.status_text}</p>
+                            <span className={`mx-2 text-${color} text-[13px]`}>AFTER {props.info.game.days_diff} DAYS</span>
                         </div>
                     </div>
                 </div>

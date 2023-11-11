@@ -137,8 +137,6 @@ function Profile() {
         }).then((res) => {
             setAvatarFormErrors(null);
             updateUser(null);
-            res.data.data.avatar += "?" + new Date().getTime();
-            res.data.data.small_avatar += "?" + new Date().getTime();
             updateUser(res.data.data);
             toast.success(res.data.message);
             setAvatarLoading(false)

@@ -15,7 +15,9 @@ class UserApiResource extends ApiResource
             'email' => $model['email'] ?? null,
             'gender' => $model['gender'] ?? null,
             'country_code' => $model['country_code'] ?? null,
-            'avatar' => Storage::disk('media')->url('images/users/avatars/'.$model['avatar']) ?? null,
+            'avatar' => Storage::disk('media')->url('images/users/avatars/'.($model['avatar'] ?? '')) ?? null,
+            'games' => GameApiResource::parse($model['games'] ?? null),
+
 
         ];
     }
