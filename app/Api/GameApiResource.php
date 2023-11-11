@@ -24,9 +24,9 @@ class GameApiResource extends ApiResource
             'comments' => $model['comments'] ?? null,
             'status_text' => $model['status']['name'],
             'days_diff' => 0,
-            'protections' => (new ProtectionApiResource(isset($model['protections']) ? collect($model['protections']) : null))->get(),
-            'groups' => (new GroupApiResource(isset($model['groups']) ? collect($model['groups']) : null))->get(),
-            'status' => (new StatusApiResource($model['status'] ?: null))->get(),
+            'protections' => ProtectionApiResource::parse(isset($model['protections']) ? collect($model['protections']) : null),
+            'groups' => GroupApiResource::parse(isset($model['groups']) ? collect($model['groups']) : null),
+            'status' => StatusApiResource::parse($model['status'] ?: null),
         ];
 
         if (isset($model['header']))
@@ -39,7 +39,7 @@ class GameApiResource extends ApiResource
             $data['poster'] = Storage::disk('media')->url('/images/games/posters/' . $model['poster']);
 
         if (isset($model->status))
-            $data['status'] = new StatusResource($model->status);
+            $data['status'] = StatusApiResource::parse($model->status);
 
         if (isset($data['status']))
             $data['status_text'] = $data['status']['name'] ?? null;

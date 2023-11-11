@@ -112,7 +112,7 @@ class GameController extends Controller
             $is_following = auth()->user()->following->contains($game->id);
 
         $game->is_following = $is_following;
-        $game = (new GameApiResource($game))->get();
+        $game = GameApiResource::parse($game);
 
         return response()->api(
             data: $game,

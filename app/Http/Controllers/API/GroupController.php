@@ -62,8 +62,8 @@ class GroupController extends Controller
         // Retrieve only the id and name columns for the associated games
         $games = $group->games()->with('status')->paginate(12);
 
-        $group->games = (new GameApiResource($games))->get();
-        $group = (new GroupApiResource($group))->get();
+        $group->games = GameApiResource::parse($games);
+        $group = GroupApiResource::parse($group);
 
         return response()->api(
             data: $group,

@@ -28,7 +28,7 @@ class HomeController extends Controller
         return response()->api(
             data: [
                 'notes' => $notes,
-                'hot_games' => (new GameApiResource($hot_games))->get()
+                'hot_games' => GameApiResource::parse($hot_games)
             ],
             message: __("Home page")
         );

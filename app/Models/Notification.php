@@ -46,7 +46,7 @@ class Notification extends Model
 
         $notifications->each(function ($notification) {
             if ($notification->game !== null) {
-                $notification->game_info = (new GameApiResource($notification->game))->get();
+                $notification->game_info = GameApiResource::parse($notification->game);
                 unset($notification->game);
             }
             Carbon::setLocale('en');

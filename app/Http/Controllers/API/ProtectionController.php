@@ -57,8 +57,8 @@ class ProtectionController extends Controller
 
         $games = $protection->games()->with('status')->paginate(12);
 
-        $protection->games = (new GameApiResource($games))->get();
-        $protection = (new ProtectionApiResource($protection))->get();
+        $protection->games = GameApiResource::parse($games);
+        $protection = ProtectionApiResource::parse($protection);
 
         return response()->api(
             data: $protection,

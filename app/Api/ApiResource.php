@@ -90,4 +90,11 @@ abstract class ApiResource
     {
         return $this->result;
     }
+
+    public static function parse($data)
+    {
+        $class = get_called_class();
+        $obj = new $class($data);
+        return $obj->get();
+    }
 }
