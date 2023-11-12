@@ -68,12 +68,12 @@ function Navbar() {
 
                 <div className="grid h-[4rem] grid-cols-[auto_1fr_auto] items-center justify-center sm:grid-cols-[1fr_auto_1fr]">
                     <div className="hidden text-end sm:block">
-                        <NavLink onClick={()=> setSidebarPopup(false)} to="/games" className="mx-2 hidden cursor-pointer transition hover:text-[#ff0000] xl:inline-block">GAMES</NavLink>
-                        <NavLink onClick={()=> setSidebarPopup(false)} to="/groups" className="mx-2 hidden cursor-pointer transition hover:text-[#ff0000] lg:inline-block">GROUPS</NavLink>
-                        <NavLink onClick={()=> setSidebarPopup(false)} to="/protections" className="mx-2 cursor-pointer transition hover:text-[#ff0000]">PROTECTIONS</NavLink>
+                        <NavLink to="/games" className="mx-2 hidden cursor-pointer transition hover:text-[#ff0000] xl:inline-block">GAMES</NavLink>
+                        <NavLink to="/groups" className="mx-2 hidden cursor-pointer transition hover:text-[#ff0000] lg:inline-block">GROUPS</NavLink>
+                        <NavLink to="/protections" className="mx-2 cursor-pointer transition hover:text-[#ff0000]">PROTECTIONS</NavLink>
                     </div>
                     <div className="mx-3 md:mx-6">
-                        <NavLink onClick={()=> setSidebarPopup(false)} to="/" className="relative h-[50px]">
+                        <NavLink to="/" className="relative h-[50px]">
                             <img src="/public/assets/images/1.png" className="animate-glow relative top-4 object-cover h-16 w-20" alt="Logo" />
                             <div className="absolute h-[10rem] w-[10rem] cursor-auto bg-app-black/70" style={{
                                 top: "-100%",
@@ -84,9 +84,9 @@ function Navbar() {
                         </NavLink>
                     </div>
                     <div className="hidden sm:block">
-                        <span onClick={()=> setSidebarPopup(false)} className="mx-2 cursor-not-allowed font-bold transition">FREE GAMES</span>
-                        <span onClick={()=> setSidebarPopup(false)} className="mx-2 hidden cursor-not-allowed font-bold transition lg:inline-block">POINTS</span>
-                        <span onClick={()=> setSidebarPopup(false)} className="mx-2 hidden cursor-not-allowed font-bold xl:inline-block">MARKET</span>
+                        <span className="mx-2 cursor-not-allowed font-bold transition">FREE GAMES</span>
+                        <span className="mx-2 hidden cursor-not-allowed font-bold transition lg:inline-block">POINTS</span>
+                        <span className="mx-2 hidden cursor-not-allowed font-bold xl:inline-block">MARKET</span>
                     </div>
                 </div>
 
