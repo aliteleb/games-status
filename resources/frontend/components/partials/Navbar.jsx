@@ -4,7 +4,7 @@ import { BsSearch } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RiNotification2Line } from "react-icons/ri";
 import { BiUserCircle } from "react-icons/bi";
-import Sidebar, { collapseSidebar } from "./Sidebar.jsx";
+import Sidebar from "./Sidebar.jsx";
 import { useAuth } from "../api/AuthContext.jsx";
 import { Toaster } from "react-hot-toast";
 import { HiOutlineMail } from "react-icons/hi";
@@ -20,6 +20,12 @@ function Navbar() {
     const [showNotificationPopup, setShowNotificationPopup] = React.useState(false);
     const [notificationsCount, setNotificationsCount] = React.useState(null);
     const [unReadNotificationsCount, setUnReadNotificationsCount] = React.useState(null);
+    const [sidebarPopup, setSidebarPopup] = React.useState(false)
+
+    
+    const toggleSidebar = () => {
+        setSidebarPopup(!sidebarPopup)
+    }
 
 
     React.useEffect(() => {
@@ -32,14 +38,12 @@ function Navbar() {
                 !document.getElementsByClassName("avatar-popup")[0].contains(event.target)
             )
                 setShowProfilePopup(false);
-
             if (
                 showNotificationPopup &&
                 !document.getElementById("notification-dropdown").contains(event.target) &&
                 !document.getElementsByClassName("notification-popup")[0].contains(event.target)
             )
                 setShowNotificationPopup(false);
-
         };
 
         // Add the event listener when the component mounts
@@ -49,16 +53,13 @@ function Navbar() {
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };
-    }, [showProfilePopup], [notificationsCount]);
+    }, [showProfilePopup, showNotificationPopup]);
 
     return (
         <>
             <nav className="fixed z-50 grid w-full grid-cols-[1fr_auto_1fr] items-center bg-app-black/70 px-1 text-white backdrop-blur-xl md:px-6">
-                <div className="flex items-center" id="left-nav">
-                    <RxHamburgerMenu onClick={() => {
-                        document.getElementById("sidebar").style.left = "0";
-                        document.getElementById("left-nav").style.opacity = "0";
-                    }} className={"h-6 w-6 cursor-pointer transition hover:text-gray-400"} />
+                <div className={`flex items-center ${sidebarPopup && 'opacity-0 pointer-events-none'}`} id="left-nav">
+                    <RxHamburgerMenu id="sidebar-menu-icon" onClick={()=> setSidebarPopup(true)} className={"h-6 w-6 cursor-pointer transition hover:text-gray-400"} />
                     <Link to="/games">
                         <BsSearch className={"mx-4 h-6 w-6 cursor-pointer transition hover:text-gray-400"} />
                     </Link>
@@ -67,12 +68,12 @@ function Navbar() {
 
                 <div className="grid h-[4rem] grid-cols-[auto_1fr_auto] items-center justify-center sm:grid-cols-[1fr_auto_1fr]">
                     <div className="hidden text-end sm:block">
-                        <NavLink onClick={collapseSidebar} to="/games" className="mx-2 hidden cursor-pointer transition hover:text-[#ff0000] xl:inline-block">GAMES</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/groups" className="mx-2 hidden cursor-pointer transition hover:text-[#ff0000] lg:inline-block">GROUPS</NavLink>
-                        <NavLink onClick={collapseSidebar} to="/protections" className="mx-2 cursor-pointer transition hover:text-[#ff0000]">PROTECTIONS</NavLink>
+                        <NavLink onClick={()=> setSidebarPopup(false)} to="/games" className="mx-2 hidden cursor-pointer transition hover:text-[#ff0000] xl:inline-block">GAMES</NavLink>
+                        <NavLink onClick={()=> setSidebarPopup(false)} to="/groups" className="mx-2 hidden cursor-pointer transition hover:text-[#ff0000] lg:inline-block">GROUPS</NavLink>
+                        <NavLink onClick={()=> setSidebarPopup(false)} to="/protections" className="mx-2 cursor-pointer transition hover:text-[#ff0000]">PROTECTIONS</NavLink>
                     </div>
                     <div className="mx-3 md:mx-6">
-                        <NavLink onClick={collapseSidebar} to="/" className="relative h-[50px]">
+                        <NavLink onClick={()=> setSidebarPopup(false)} to="/" className="relative h-[50px]">
                             <img src="/public/assets/images/1.png" className="animate-glow relative top-4 object-cover h-16 w-20" alt="Logo" />
                             <div className="absolute h-[10rem] w-[10rem] cursor-auto bg-app-black/70" style={{
                                 top: "-100%",
@@ -83,9 +84,9 @@ function Navbar() {
                         </NavLink>
                     </div>
                     <div className="hidden sm:block">
-                        <span onClick={collapseSidebar} className="mx-2 cursor-not-allowed font-bold transition">FREE GAMES</span>
-                        <span onClick={collapseSidebar} className="mx-2 hidden cursor-not-allowed font-bold transition lg:inline-block">POINTS</span>
-                        <span onClick={collapseSidebar} className="mx-2 hidden cursor-not-allowed font-bold xl:inline-block">MARKET</span>
+                        <span onClick={()=> setSidebarPopup(false)} className="mx-2 cursor-not-allowed font-bold transition">FREE GAMES</span>
+                        <span onClick={()=> setSidebarPopup(false)} className="mx-2 hidden cursor-not-allowed font-bold transition lg:inline-block">POINTS</span>
+                        <span onClick={()=> setSidebarPopup(false)} className="mx-2 hidden cursor-not-allowed font-bold xl:inline-block">MARKET</span>
                     </div>
                 </div>
 
@@ -172,7 +173,7 @@ function Navbar() {
                 </div>
 
             </div>
-            <Sidebar />
+            <Sidebar toggleSidebar={toggleSidebar} setSidebarPopup={setSidebarPopup}  sidebarPopup={sidebarPopup}/>
             <Toaster containerStyle={{ top: 100 }} toastOptions={{
                 position: "top-center",
                 className: "",
