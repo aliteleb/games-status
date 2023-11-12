@@ -1,13 +1,31 @@
 import React, { useEffect, useState } from "react";
 
-export const refreshPageSize = (id = "") => {
+const refreshPageSizeProcess = (id = "") => {
     const root = document.getElementById("root");
     const height = Math.max(root.scrollHeight, root.offsetHeight);
     let blurredBg = document.getElementById("blurred-bg" + id);
-    if (blurredBg) blurredBg.style.height = height + "px";
+    if (blurredBg)
+        blurredBg.style.height = height + "px";
 
     let blurredBgDef = document.getElementById("blurred-bg");
-    if (blurredBgDef) blurredBgDef.style.height = height + "px";
+    if (blurredBgDef)
+        blurredBgDef.style.height = height + "px";
+
+};
+export const refreshPageSize = (id = "") => {
+    refreshPageSizeProcess(id);
+    setTimeout(() => {
+        refreshPageSizeProcess(id);
+    }, 0);
+    setTimeout(() => {
+        refreshPageSizeProcess(id);
+    }, 50);
+    setTimeout(() => {
+        refreshPageSizeProcess(id);
+    }, 100);
+    setTimeout(() => {
+        refreshPageSizeProcess(id);
+    }, 1000);
 };
 
 function BlurredBackground(props) {

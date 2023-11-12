@@ -7,6 +7,7 @@ import Select from "react-select";
 import { countriesOptions, inputValidation } from "../helpers/General.jsx";
 import { useAuth } from '../api/AuthContext.jsx';
 import { useNavigate } from "react-router-dom";
+import { refreshPageSize } from "../core/BlurredBackground.jsx";
 
 export default function SignUp() {
 
@@ -52,8 +53,9 @@ export default function SignUp() {
                 "Content-Type": "multipart/form-data"
             }
         }).then((res) => {
-            setResponse(res);
-            toast.success(response.data.message);
+            setResponse(res.data);
+            refreshPageSize()
+            toast.success(res.data.message);
             setLoading(false);
         }).catch(err => {
             setFormErrors(err.response.data.data);
@@ -123,12 +125,12 @@ export default function SignUp() {
 
     return (
         <>
-            {response === undefined && <div className="mx-2 my-6 text-center text-xl text-gray-200"> Create new account</div>}
+            <div className={`mx-2 my-6 text-center text-xl text-gray-200 ${(response && response.status === "success") ? "hidden" : ""}`}> Create new account</div>
 
-            <header className="border-b-[1px] border-[#494a4f] pb-2 text-xl font-bold">Sign Up</header>
+            <header className={`border-b-[1px] border-[#494a4f] pb-2 text-xl font-bold ${(response && response.status === "success") ? "hidden" : ""}`}>Sign Up</header>
             <div className={`p-6 mt-4 bg-app-black/50 rounded-md text-gray-300 overflow-hidden`}>
                 <form onSubmit={handleSubmit} encType="multipart/form-data">
-                    <div className={(response && response.data.status === "success") ? "hidden" : ""}>
+                    <div className={(response && response.status === "success") ? "hidden" : ""}>
 
                         <style dangerouslySetInnerHTML={{ __html: styles }} />
 
@@ -253,7 +255,7 @@ export default function SignUp() {
                     </div>
                 </form>
                 {
-                    ((response && response.data.status === "success") &&
+                    ((response && response.status === "success") &&
                         <div className="my-10 flex flex-col items-center justify-center">
                             <MdDoneOutline className="h-20 w-20 rounded-full bg-emerald-700 p-3" />
                             <h2 className="mt-12 text-2xl text-gray-400">Success!</h2>
