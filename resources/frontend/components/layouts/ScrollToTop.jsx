@@ -6,7 +6,6 @@ function ScrollToTop() {
     const location = useLocation();
 
     refreshPageSize()
-    setTimeout(refreshPageSize, 0)
 
     useEffect(() => {
         // Scroll to the top of the page when the route changes

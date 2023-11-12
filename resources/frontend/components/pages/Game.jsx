@@ -43,8 +43,6 @@ function Game() {
         setInterval(fetchGame, 10000);
     }, []);
 
-    refreshPageSize("games");
-
     let handleChange = (e) => {
         setCreateComment((prevComment) => ({
             ...prevComment,
@@ -128,6 +126,8 @@ function Game() {
                 toast.error(error.response.data.message);
             });
     };
+
+    refreshPageSize("games");
 
     return (
         <>
