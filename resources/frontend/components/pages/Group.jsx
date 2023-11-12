@@ -21,7 +21,7 @@ const Group = () => {
             ApiClient().get(pageUrl)
                 .then((res) => {
                     setGames((prevGames) => [...prevGames, ...res.data.data.games.data]);
-                    setNextPage(res.data.data.next_page_url);
+                    setNextPage(res.data.data.games.next_page_url);
                     setResponse(res.data)
                     setIsLoading(false);
                 })
