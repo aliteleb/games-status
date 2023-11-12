@@ -9,7 +9,7 @@ function Footer() {
             <div className="mx-auto w-full max-w-screen-xl p-4 md:py-4">
                 <div className="flex flex-wrap items-center justify-between gap-x-2">
                     <div className='flex gap-x-3 py-1 text-gray-400'>
-                        <Link to="#">
+                        <Link to="https://www.facebook.com/profile.php?id=61553123203881" target='_blank'>
                             <BsFacebook className='h-5 w-5 transition hover:text-facebook'/>
                         </Link>
                         <Link to="#">
