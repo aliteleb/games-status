@@ -3,6 +3,7 @@ import ApiClient from "../../services/ApiClient";
 import { BsArrowRight } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
 import {Link} from 'react-router-dom'
+import {BsArrowUpCircle, BsArrowDownCircle} from 'react-icons/bs'
 
 function VoteNotification(props) {
 
@@ -50,9 +51,12 @@ function VoteNotification(props) {
             <div className='flex-co flex w-9/12'>
                 <div className="flex items-center px-1">
                     <img className="h-9 w-9 rounded-full" src={props.info.from_user?.avatar} alt="" />
-
-                    <div className="mx-2 py-4">
-                        <p className="text-gray-300"> <Link to={`/user/${props.info.from_user?.username}`} className="font-bold text-red-500 hover:text-red-700 transition">{props.info.from_user?.username}</Link> found your comment worth a {props.info.type === "up-vote" ? "vote up!" : "vote down!"}</p>
+                    {props.info.type === "up-vote" ?
+                    <BsArrowUpCircle className="mx-2 text-green-600 w-5 h-5"/> :
+                    <BsArrowDownCircle className="mx-2 text-red-600 w-5 h-5"/>
+                    }
+                    <div className="py-4">
+                        <p className="text-gray-300 font-light">Your comment has received a {props.info.type === "up-vote" ? "thumbs up!" : "thumbs down!"} from <Link to={`/user/${props.info.from_user?.username}`} className="font-bold text-gray-300 hover:text-gray-400 transition">{props.info.from_user?.username}</Link></p>
                     </div>
                 </div>
             </div>

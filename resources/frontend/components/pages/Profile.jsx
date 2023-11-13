@@ -234,7 +234,7 @@ function Profile() {
                                     <span className="mx-3 text-sm text-gray-500"> jpg, png, gif </span>
                                 </label>
                                 <img
-                                    className={`mt-4 h-28 w-28 rounded-full border-2 border-dashed cursor-pointer hover:border-gray-300 ${isDragOver ? "border-gray-300" : "border-gray-500"}`}
+                                    className={`mt-4 h-28 w-28 object-cover rounded-full border-2 border-dashed cursor-pointer hover:border-gray-300 ${isDragOver ? "border-gray-300" : "border-gray-500"}`}
                                     onDragOver={(e) => {
                                         setIsDragOver(true);
                                         e.preventDefault();
@@ -249,7 +249,7 @@ function Profile() {
                                         document.getElementById("avatar").click();
                                     }}
                                 />
-                                <div className="text-sm py-3 text-gray-400">100px <span className="text-gray-500 font-bold">x</span> 100px</div>
+                                <div className="text-sm py-3 text-gray-400">200px <span className="text-gray-500 font-bold">x</span> 200px</div>
                                 <label
                                     htmlFor="avatar"
                                     className={` cursor-pointer w-max mt-6 text-gray-100 bg-red-700 hover:bg-red-600 transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2`}>
