@@ -22,7 +22,7 @@ function Navbar() {
     const [unReadNotificationsCount, setUnReadNotificationsCount] = React.useState(null);
     const [sidebarPopup, setSidebarPopup] = React.useState(false)
 
-    
+
     const toggleSidebar = () => {
         setSidebarPopup(!sidebarPopup)
     }
@@ -59,9 +59,11 @@ function Navbar() {
         <>
             <nav className="fixed z-50 grid w-full grid-cols-[1fr_auto_1fr] items-center bg-app-black/70 px-1 text-white backdrop-blur-xl md:px-6">
                 <div className={`flex items-center ${sidebarPopup && 'opacity-0 pointer-events-none'}`} id="left-nav">
-                    <RxHamburgerMenu id="sidebar-menu-icon" onClick={()=> setSidebarPopup(true)} className={"h-6 w-6 cursor-pointer transition hover:text-gray-400"} />
+                    <button id="sidebar-menu-icon" className="px-2" onClick={()=> setSidebarPopup(true)}>
+                        <RxHamburgerMenu className={"h-6 w-6 cursor-pointer transition hover:text-gray-400"} />
+                    </button>
                     <Link to="/games">
-                        <BsSearch className={"mx-4 h-6 w-6 cursor-pointer transition hover:text-gray-400"} />
+                        <BsSearch className={"mx-2 h-6 w-6 cursor-pointer transition hover:text-gray-400"} />
                     </Link>
 
                 </div>

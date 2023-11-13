@@ -22,11 +22,12 @@ function Sidebar(props) {
 
         // Function to handle clicks on the document
         const handleClickOutside = (event) => {
+            console.log(event.target);
             if (
                 props.sidebarPopup &&
                 !document.getElementById("sidebar-slide").contains(event.target) &&
                 !document.getElementsByClassName("sidebar-popup")[0].contains(event.target) &&
-                document.getElementById("sidebar-menu-icon") !== event.target
+                !document.getElementById("sidebar-menu-icon").contains(event.target)
             )
                 props.setSidebarPopup(false);
         };
@@ -40,8 +41,8 @@ function Sidebar(props) {
         };
     }, [props.sidebarPopup]);
 
-    return ( 
-        
+    return (
+
             <div id='sidebar-slide' ref={sidebarRef} className={`fixed top-0 ${props.sidebarPopup ? 'left-0' : '-left-72'} sidebar-popup flex h-screen w-64 flex-col pt-6 transition-all z-[51] xl:w-72`}>
                 <div className='mb-4 w-full px-6'>
                     <HiXMark onClick={props.toggleSidebar} className='w-6 h-6 text-white cursor-pointer'/>
@@ -53,7 +54,7 @@ function Sidebar(props) {
                             {user &&
                                 <NavLink onClick={()=> props.setSidebarPopup(false)} to="/profile" className="transition group-hover:text-[#ff0000]">PROFILE</NavLink>
                             }
-    
+
                             {!user &&
                                 <div>
                                     <NavLink onClick={()=> props.setSidebarPopup(false)} className="transition hover:text-[#ff0000]" to="/login">LOGIN</NavLink>
@@ -63,42 +64,42 @@ function Sidebar(props) {
                             }
                         </div>
                     </div>
-    
+
                     <NavLink onClick={()=> props.setSidebarPopup(false)} className='flex items-center gap-x-4 transform hover:translate-x-2 transition group' to="/">
                         <AiOutlineHome className='h-10 w-8 text-red-800'/>
                         <span className='transition group-hover:text-[#ff0000]'>HOME</span>
                     </NavLink>
-    
+
                     <NavLink onClick={()=> props.setSidebarPopup(false)} className='flex items-center gap-x-4 transform hover:translate-x-2 transition group' to="/games">
                         <IoGameControllerOutline className='h-10 w-8 text-red-800'/>
                         <span className='transition group-hover:text-[#ff0000]'>GAMES</span>
                     </NavLink>
-    
+
                     <NavLink onClick={()=> props.setSidebarPopup(false)} className='flex items-center gap-x-4 transform hover:translate-x-2 transition group' to="/groups">
                         <GiPirateFlag className='h-10 w-8 text-red-800'/>
                         <span className='transition group-hover:text-[#ff0000]'>GROUPS</span>
                     </NavLink>
-    
+
                     <NavLink onClick={()=> props.setSidebarPopup(false)} className='flex items-center gap-x-4 transform hover:translate-x-2 transition group' to="/protections">
                         <BsShieldExclamation className='h-10 w-8 text-red-800'/>
                         <span className='transition group-hover:text-[#ff0000]'>PROTECTIONS</span>
                     </NavLink>
-    
+
                     <div className='flex items-center gap-x-4 cursor-not-allowed hover:text-red-[#ff0000] group' to="/markets">
                         <HiOutlineShoppingBag className='h-10 w-8 text-red-800'/>
                         <span className='transition font-bold'>MARKETS</span>
                     </div>
-    
+
                     <div className='flex items-center gap-x-4 cursor-not-allowed hover:text-red-[#ff0000] group' to="/markets">
                         <BsGift className="h-10 w-8 text-red-800"/>
                         <span className='transition font-bold'>FREE GAMES</span>
                     </div>
-    
+
                     <div className='flex items-center gap-x-4 cursor-not-allowed hover:text-red-[#ff0000] group' to="/markets">
                         <GiCreditsCurrency className='h-10 w-8 text-red-800'/>
                         <span className='transition font-bold'>POINTS</span>
                     </div>
-    
+
                     {user &&
                         <NavLink className='mt-auto mb-2 flex transform hover:translate-x-2 transition items-center gap-x-4 group' to="/logout">
                             <FiLogOut className='h-10 text-red-800 w-[30px]'/>
@@ -108,9 +109,9 @@ function Sidebar(props) {
                 </nav>
             </div>
         )
-            
-            
-    
+
+
+
 }
 
 export default Sidebar
