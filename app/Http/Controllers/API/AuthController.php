@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Api\UserApiResource;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Media;
@@ -51,7 +52,7 @@ class AuthController extends Controller
         ]);
 
         return response()->api(
-            data: new UserResource($user),
+            data: UserApiResource::parse($user),
             message: __("User registered successfully.")
         );
 
@@ -66,7 +67,7 @@ class AuthController extends Controller
             $user = Auth::user();
             $user->notifications = Notification::latest_notifications();
             return response()->api(
-                data: new UserResource($user),
+                data: UserApiResource::parse($user),
                 message: __("Login successful.")
             );
 
@@ -84,7 +85,7 @@ class AuthController extends Controller
     {
         $user = auth()->user();
         return response()->api(
-            data: new UserResource($user),
+            data: UserApiResource::parse($user),
             message: __("Current user")
         );
     }
