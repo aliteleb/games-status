@@ -65,6 +65,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{route('admin.genres.index')}}">
+                            <i class="sicon-skull-crossbones"></i>
+                            <span>@lang('sidebar.genres')</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{route('admin.statuses.index')}}">
                             <i class="sicon-alert"></i>
                             <span>@lang('sidebar.status')</span>

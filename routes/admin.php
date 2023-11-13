@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\{CommentController,
     DashboardController,
     GameController,
+    GenreController,
     GroupController,
     MediaController,
     NoteController,
@@ -32,6 +33,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::resource('/games', GameController::class); // CRUD routes for protections
 Route::resource('/protections', ProtectionController::class); // CRUD routes for protections
 Route::resource('/groups', GroupController::class); // CRUD routes for groups
+Route::resource('/genres', GenreController::class); // CRUD routes for genres
 Route::resource('/statuses', StatusController::class); // CRUD routes for statuses
 Route::resource('/comments', CommentController::class); // CRUD routes for comments
 Route::resource('/notes', NoteController::class); // CRUD routes for notes
