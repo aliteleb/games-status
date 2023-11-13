@@ -29,7 +29,12 @@ function Comment(props) {
         if (props.replies)
             setReplies(props.replies)
 
+        setTimeout( ()=>{
+            scrollToComment()
+        },0) 
+
     }, [props.info])
+
     refreshPageSize()
 
     let formRef = React.useRef(null)
@@ -105,6 +110,26 @@ function Comment(props) {
         showDropMenu.current.classList.toggle("hidden");
     }
 
+    const scrollToComment = () => {
+              // Get the query parameters from the URL
+      const queryParams = new URLSearchParams(window.location.search);
+      
+      // Check if the "comment" parameter exists in the URL
+      if (queryParams.has('comment')) {
+        // Get the comment ID from the URL
+        const commentIdFromURL = queryParams.get('comment');
+        
+        // Find the comment element with the corresponding ID
+        const commentElement = document.getElementById(`comment-${commentIdFromURL}`);
+        
+        // Check if the comment element exists before scrolling
+        if (commentElement) {
+          // Scroll to the comment element
+          commentElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+
     let removeComment = () => {
         ApiClient().delete("/comment/delete/" + comment.id)
             .then(res => {
@@ -119,10 +144,19 @@ function Comment(props) {
         toggleClass()
     }
 
+    const commentRef = React.useRef(null);
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const commentIdFromURL = queryParams.get('comment');
+
+
+
+    console.log(props.info);
 
     return (
         <div className={props.className}>
-            <article className="rounded-lg text-base my-1 pb-1 group">
+            {/* <article ref={commentRef} id={`${commentIdFromURL}`} className="rounded-lg text-base my-1 pb-1 group"> */}
+            <article ref={commentRef} id={`comment-${comment?.id}`} className="rounded-lg text-base my-1 pb-1 group">
                 <div className='grid grid-cols-[auto_1fr]'>
                     {comment?.votes !== null &&
                         <div className='flex flex-col items-center'>

@@ -37,6 +37,9 @@ function ReplyNotification(props) {
         navigate(`/game/${props.info.game_info.slug}`)
     }
 
+    // console.log(props.info?.comment.id);
+    // console.log();
+
     return (
         <div
             onMouseEnter={() => setIsHovered(true)}
@@ -56,7 +59,10 @@ function ReplyNotification(props) {
                 </div>
             </div>
             <div className="bottom-1 px-2 py-1 text-right text-xs text-gray-400">{props?.info.time}</div>
-            {isHovered && <BsArrowRight onClick={navigateToTheGame} className="animate-slide-left-slow mx-2 h-9 w-9 p-1 text-gray-500 transition hover:text-gray-300"/>}
+            {isHovered &&
+            <Link to={`/game/${props.info.game.slug}?comment=${props.info?.comment.id}`}>
+                <BsArrowRight onClick={navigateToTheGame} className="animate-slide-left-slow mx-2 h-9 w-9 p-1 text-gray-500 transition hover:text-gray-300"/>
+            </Link>}
         </div>
     );
 }
