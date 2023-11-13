@@ -9,6 +9,7 @@ export default function Home() {
 
     const [gamesData, setGamesData] = React.useState([]);
     const [latestCrackedGames, setLatestCrackedGames] = React.useState([]);
+    const [upcomingGames, setUpcomingGames] = React.useState([]);
     const [showText, setShowText] = React.useState('');
 
     React.useEffect(() => {
@@ -16,6 +17,7 @@ export default function Home() {
             .then((res) => {
                 setGamesData(res.data)
                 setLatestCrackedGames(res.data)
+                setUpcomingGames(res.data)
             }).catch(err => console.log(err))
 
     }, [])
@@ -35,6 +37,13 @@ export default function Home() {
     let latest_cracked_games = null
     if(latestCrackedGames.data && latestCrackedGames.data.latest_cracked_games){
         latest_cracked_games = latestCrackedGames.data.latest_cracked_games.map(game => (
+            <GameCard key={game.id} info={game} animate={true}/>
+        ));
+    }
+
+    let upcomin_Games = null
+    if(upcomingGames.data && upcomingGames.data.latest_unreleased_games){
+        upcomin_Games = upcomingGames.data.latest_unreleased_games.map(game => (
             <GameCard key={game.id} info={game} animate={true}/>
         ));
     }
@@ -101,6 +110,27 @@ export default function Home() {
                 <div className='h-[1px] bg-[#494a4f] mb-2 mt-1'/>
                     <div className="mt-2 grid gap-2 sm:grid-cols-[1fr_1fr] md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr] md:mt-0">
                         {latest_cracked_games ||
+                            <>
+                                <GameCard/>
+                                <GameCard/>
+                                <GameCard/>
+                                <GameCard/>
+                                <GameCard/>
+                                <GameCard/>
+                                <GameCard/>
+                                <GameCard/>
+                            </>
+                        }
+                    </div>
+            </div>
+
+            <div className="mt-16">
+                <div className='flex flex-wrap justify-between mt-8'>
+                    <div className='text-white text-lg font-bold'>Upcoming Games</div>
+                </div>
+                <div className='h-[1px] bg-[#494a4f] mb-2 mt-1'/>
+                    <div className="mt-2 grid gap-2 sm:grid-cols-[1fr_1fr] md:grid-cols-[1fr_1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr] md:mt-0">
+                        {upcomin_Games ||
                             <>
                                 <GameCard/>
                                 <GameCard/>
