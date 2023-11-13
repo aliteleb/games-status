@@ -93,7 +93,7 @@
                             <div class="form-group">
                                 <label for="meta_score">{{ __('ui.meta_score') }}</label>
                                 <input id="meta_score" type="number" name="meta_score" class="form-control" min="0" max="100"
-                                       value="{{ old('meta_score', isset($game) ? $game->meta_score : '0') }}">
+                                       value="{{ old('meta_score', isset($game) ? $game->meta_score : '0.00') }}">
                                 @error('meta_score')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -102,8 +102,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="user_score">{{ __('ui.user_score') }}</label>
-                                <input id="user_score" type="number" name="user_score" class="form-control" min="0" max="100"
-                                       value="{{ old('user_score', isset($game) ? $game->user_score : '0') }}">
+                                <input id="user_score" type="number" name="user_score" class="form-control" min="0.0" max="10.0" step=".01"
+                                       value="{{ old('user_score', isset($game) ? $game->user_score : '0.00') }}">
                                 @error('user_score')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -112,7 +112,28 @@
                     </div>
 
                     <div class="row justify-content-between">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="ordering">{{ __('ui.ordering') }}</label>
+                                <input id="ordering" type="number" name="ordering" class="form-control" value="{{ old('ordering', isset($game) ? $game->ordering : '0') }}">
+                                @error('ordering')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="price">{{ __('ui.price') }}</label>
+                                <input id="price" type="number" name="price" class="form-control" value="{{ old('ordering', isset($game) ? $game->price : '60') }}">
+                                @error('price')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-between">
+                        <div class="col-md-6">
                             <div class="form-group trigger">
                                 <label class="form-check-label" for="status">{{ __('ui.status') }}</label>
                                 <input type="checkbox" class="form-check-input" id="status" name="status" {{ old('status', isset($game) && $game->status ? 'checked' : '') }}>
@@ -122,7 +143,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group trigger">
                                 <label class="form-check-label" for="is_hot">{{ __('ui.is_hot') }}</label>
                                 <input type="checkbox" class="form-check-input" id="is_hot" name="is_hot" {{ old('is_hot', isset($game) && $game->is_hot ? 'checked' : '') }}>
@@ -132,18 +153,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="ordering">{{ __('ui.ordering') }}</label>
-                                <input id="ordering" type="number" name="ordering" class="form-control" value="{{ old('ordering', isset($game) ? $game->ordering : '0') }}">
-                                @error('ordering')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
                     </div>
-
-
                 </div>
 
                 <div class="col col-3 text-center post-side pt-4">
