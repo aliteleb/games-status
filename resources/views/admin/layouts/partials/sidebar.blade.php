@@ -66,7 +66,7 @@
                     </li>
                     <li>
                         <a href="{{route('admin.genres.index')}}">
-                            <i class="sicon-skull-crossbones"></i>
+                            <i class="sicon-border-all"></i>
                             <span>@lang('sidebar.genres')</span>
                         </a>
                     </li>

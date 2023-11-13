@@ -118,6 +118,7 @@ return [
     'release_date' => 'تايرخ الإطلاق',
     'user_score' => 'تقييم المستخدمين',
     'meta_score' => 'تقييم موقع Meta',
+    'price' => 'السعر',
 
     'status' => 'الحالة',
     'need_crack' => 'مهم',
