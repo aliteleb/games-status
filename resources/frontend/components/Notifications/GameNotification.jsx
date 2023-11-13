@@ -55,7 +55,10 @@ function GameNotification(props) {
 
                     <div className="mx-3 flex flex-col">
                         <p className="font-bold text-xl text-gray-300">{props?.info.game.name}</p>
-                        <Link to={`/group/${props.info.game.groups[0].slug}`} className=" text-gray-400 hover:text-gray-300 transition">{props.info.game.groups[0].name}</Link>
+                        <div>
+                            <span className="text-gray-500">Scene Groups: </span>
+                            <Link to={`/group/${props.info.game.groups[0].slug}`} className=" text-gray-400 hover:text-gray-300 transition">{props.info.game.groups[0].name}</Link>
+                        </div>
                         <div className="flex items-center">
                             <p className={`text-${color} font-bold text-2xl`}>{props?.info.game.status_text}</p>
                             <span className={`mx-2 text-${color} text-[13px]`}>AFTER {props.info.game.days_diff} DAYS</span>
