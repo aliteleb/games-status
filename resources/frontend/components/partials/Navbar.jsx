@@ -59,7 +59,7 @@ function Navbar() {
     return (
         <>
             <nav className="fixed z-50 grid w-full grid-cols-[1fr_auto_1fr] items-center bg-app-black/70 px-1 text-white backdrop-blur-xl md:px-6">
-                <div className={`flex items-center ${sidebarPopup && 'opacity-0 pointer-events-none'}`} id="left-nav">
+                <div className={`flex items-center mx-[-5px] ${sidebarPopup && 'opacity-0 pointer-events-none'}`} id="left-nav">
                     <button id="sidebar-menu-icon" className="px-2" onClick={()=> setSidebarPopup(true)}>
                         <RxHamburgerMenu className={"h-6 w-6 cursor-pointer transition hover:text-gray-400"} />
                     </button>
