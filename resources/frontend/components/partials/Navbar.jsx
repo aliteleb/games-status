@@ -55,6 +55,7 @@ function Navbar() {
         };
     }, [showProfilePopup, showNotificationPopup]);
 
+
     return (
         <>
             <nav className="fixed z-50 grid w-full grid-cols-[1fr_auto_1fr] items-center bg-app-black/70 px-1 text-white backdrop-blur-xl md:px-6">

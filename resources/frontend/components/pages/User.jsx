@@ -64,7 +64,6 @@ function User() {
         placeholders.push(<GameCard key={i}/>);
     }
 
-
     return (
         <>
             <div className='relative flex w-full justify-between overflow-hidden rounded-md h-[22rem]'>
@@ -95,12 +94,12 @@ function User() {
                     <div className='text-2xl font-extralight text-gray-400'>{response ? "GAMES" :
                         <Skeleton width={'25%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}</div>
                     <div className='my-2 text-2xl font-bold'>
-                        {response ? response.games_count : <Skeleton width={'15%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                        {response ? response?.games.data.length : <Skeleton width={'15%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                     </div>
                 </div>
             </div>
             <div className='my-6 flex flex-col justify-between'>
-                <div className="border-b border-gray-500/50 pb-2 text-xl">{response && `Games (${response.games_count})`}</div>
+                <div className="border-b border-gray-500/50 pb-2 text-xl">{response && `Games (${response?.games.data.length})`}</div>
                 <div className="mt-3 grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {!response && placeholders}
                     {showGames}
