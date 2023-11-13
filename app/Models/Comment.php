@@ -122,7 +122,7 @@ class Comment extends Model
             unset($comment->user);
         });
 
-        return $comments;
+        return CommentApiResource::parse(collect($comments));
     }
 
     public static function refactComments($comments){

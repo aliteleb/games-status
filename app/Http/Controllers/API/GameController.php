@@ -98,7 +98,7 @@ class GameController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-        $game->comments = CommentApiResource::parse(collect(Comment::latest_comments($game->id)));
+        $game->comments = Comment::latest_comments($game->id);
 
         $user = auth()->user();
         $is_following = false;

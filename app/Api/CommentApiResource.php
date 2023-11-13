@@ -27,8 +27,9 @@ class CommentApiResource extends ApiResource
             'user_image' => $model['user_image'] ?? null,
             'votes' => $model['votes'] ?? null,
             'voted' => $model['voted'] ?? null,
+            'mention' => $model['mention'] ?? null,
             'user' => isset($model['user']) ? UserApiResource::parse($model['user']) : null,
-            'replies' => isset($model['replies']) ? CommentApiResource::parse($model['replies']) : null,
+            'replies' => isset($model['replies']) ? CommentApiResource::parse(collect($model['replies'])) : null,
         ];
     }
 
