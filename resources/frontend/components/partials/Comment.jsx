@@ -152,7 +152,7 @@ function Comment(props) {
                             <div className="mx-2 sm:mx-6 flex flex-wrap items-center">
                                 <Link to={`/user/${comment?.username}`} className="mr-3 inline-flex cursor-pointer items-center text-sm font-semibold text-gray-200">
                                     <img className="mr-2 h-6 w-6 rounded-full"
-                                         src={comment?.user.avatar ? comment?.user.avatar : "https://t4.ftcdn.net/jpg/04/43/35/29/240_F_443352949_1eX3IagFInYtf3d3tkXDSQkymM2HfSXq.jpg"}
+                                         src={comment?.user?.avatar ? comment?.user.avatar : "https://t4.ftcdn.net/jpg/04/43/35/29/240_F_443352949_1eX3IagFInYtf3d3tkXDSQkymM2HfSXq.jpg"}
                                          alt={comment?.username}/>
                                     {comment?.display_name && comment.display_name}
                                     {!(comment?.username) &&
