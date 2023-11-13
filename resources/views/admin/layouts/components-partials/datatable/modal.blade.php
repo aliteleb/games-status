@@ -47,6 +47,7 @@
                                 @break
                             @case('select')
                                 @php
+
                                     if(count($data) == 2)
                                     {
                                         $options = explode(',', $data[1]);
@@ -55,8 +56,8 @@
                                         {
                                             $select_data[$option] = __('fields.'.$option);
                                         }
-                                    }else{
-                                        $select_data = $data[1] ?? '';
+                                    }else if($data[1] == "relation"){
+                                        $select_data = $data[2] ?? '';
                                         $model = explode(',', $select_data)[0];
                                         $field = explode(',', $select_data)[1];
                                         $select_data = $model::pluck($field, 'id')->toArray();
@@ -66,12 +67,14 @@
                                     <!-- Handle select field -->
                                 <div class="form-group">
                                     <label for="{{ $name }}" class="col-form-label">{{ __('datatable.' . $datatable->name . '.' . $name) }}:</label>
-                                    <select name="{{ $name }}" id="{{ $name }}" class="form-control {{ $required }}" data-value-field="{{ $value}}"
+                                    <select name="{{ $name }}" id="{{ $name }}" class="form-control" data-value-field="{{ $value }}"
                                             placeholder="{{ __('ui.choose_item') }}">
+                                        <option value="" selected>{{ __('ui.choose_item') }}</option>
                                         @foreach ($select_data as $optionValue => $optionLabel)
                                             <option value="{{ $optionValue }}">{{ $optionLabel }}</option>
                                         @endforeach
                                     </select>
+
 
                                 </div>
                                 @break

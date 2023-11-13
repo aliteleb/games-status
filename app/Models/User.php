@@ -28,6 +28,8 @@ class User extends Authenticatable
         'gender',
         'password',
         'avatar',
+        'role_id',
+        'status',
     ];
 
     /**
@@ -123,9 +125,8 @@ class User extends Authenticatable
             'avatar_src' => 'media|80x80',
             'username' => 'text',
             'email' => 'email',
-            'description' => 'textarea',
             'password' => 'password',
-            'role_id' => 'select|' . Role::class . ',name',
+            'role_id' => 'select|relation|' . Role::class . ',name',
             'status' => 'boolean',
         ];
         $datatable->appends = ['image_src' => 'image'];
@@ -146,12 +147,11 @@ class User extends Authenticatable
     public static function validate($user = null): array
     {
         $rules = [
-            'name' => 'required|string|min:3|max:255',
+            'username' => 'required|string|min:3|max:255',
             'image' => 'nullable|numeric',
             'email' => 'required|email|unique:users,email',
-            'slug' => 'required|alpha_dash|unique:users,slug',
             'description' => 'nullable|string|min:3|max:255',
-            'role_id' => 'required|numeric',
+            'role_id' => 'nullable|numeric',
             'password' => 'required|min:8|max:32',
             'status' => 'required|in:0,1',
         ];
@@ -160,6 +160,8 @@ class User extends Authenticatable
         if ($user && request()->has('role_id')) {
 
             $role = Role::find($user->role_id);
+            if(!$role)
+                $role = new Role();
 
             // Only superuser left
             $isOnlySuperUser = $role->super_user && User::where('role_id', $role->id)->count() === 1;
