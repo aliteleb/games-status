@@ -114,11 +114,15 @@ function Navbar() {
                     }
 
                     {user &&
-                        <img onClick={() => {
-                            setShowProfilePopup(!showProfilePopup);
-                        }} id="user-dropdown"
-                             className={`border-2 hover:border-gray-400 transition w-10 h-10 rounded-full cursor-pointer ${showProfilePopup ? "border-gray-400" : "border-gray-600"}`}
-                             src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
+                        <div className="cursor-pointer"
+                             id="user-dropdown"
+                             onClick={() => {
+                             setShowProfilePopup(!showProfilePopup);
+                        }}>
+                            <img 
+                                 className={`border-2 hover:border-gray-400 transition w-10 h-10 rounded-full cursor-pointer ${showProfilePopup ? "border-gray-400" : "border-gray-600"}`}
+                                 src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
+                        </div>
                     }
                     {!user &&
                         <Link to="/login">

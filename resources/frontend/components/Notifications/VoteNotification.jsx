@@ -35,9 +35,8 @@ function VoteNotification(props) {
 
     let navigateToTheGame = () => {
         props.setShowNotificationPopup(false)
-        navigate(`/game/${props.info.game_info.slug}`)
+        navigate(`/game/${props.info.game.slug}`)
     }
-
 
     return (
         <div
