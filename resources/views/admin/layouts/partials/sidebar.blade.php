@@ -88,12 +88,6 @@
                             <span>@lang('sidebar.notes')</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{route('admin.media.index')}}">
-                            <i class="sicon-film-strip"></i>
-                            <span>@lang('sidebar.media')</span>
-                        </a>
-                    </li>
                     <li class="navigation-header">
                         <span>@lang('sidebar.users')</span>
                     </li>
