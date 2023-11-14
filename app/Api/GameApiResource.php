@@ -27,6 +27,8 @@ class GameApiResource extends ApiResource
             'protections' => ProtectionApiResource::parse(isset($model['protections']) ? collect($model['protections']) : null),
             'groups' => GroupApiResource::parse(isset($model['groups']) ? collect($model['groups']) : null),
             'status' => StatusApiResource::parse($model['status'] ?: null),
+            'meta_score' => $model['meta_score'] ?? null,
+            'price' => $model['price'] ?? null,
         ];
 
         if (isset($model['header']))

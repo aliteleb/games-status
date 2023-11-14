@@ -31,7 +31,6 @@ function Game() {
             ApiClient()
                 .get(`/game/${slug}`)
                 .then((res) => {
-                    // console.log(res);
                     setGame(res.data.data);
                     setComments(res.data.data.comments);
                     setFollow(res.data.data.is_following);
@@ -324,12 +323,12 @@ function Game() {
                     <div className="flex h-14 w-full flex-wrap items-center justify-between rounded bg-black/30 px-3 text-gray-300 transition hover:bg-black/40 md:w-1/3">
                         <AiOutlineDollarCircle className="h-8 w-16 text-gray-300" />
                         PRICE
-                        <span className="font-bold">70$</span>
+                        <span className="font-bold">${game.price}</span>
                     </div>
                     <div className="flex h-14 w-full items-center justify-between rounded bg-black/30 px-3 text-gray-300 transition hover:bg-black/40 md:w-1/3">
                         <MdOutlineStarRate className="h-8 w-16 text-gray-300" />
                         METACRITIC
-                        <span className="font-bold">94</span>
+                        <span className="font-bold">{game.meta_score}</span>
                     </div>
                     <div
                         className="flex h-14 w-full cursor-pointer items-center justify-between rounded bg-black/30 px-3 text-gray-300 transition hover:bg-black/40 md:w-1/3">
