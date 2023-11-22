@@ -22,7 +22,6 @@ function Sidebar(props) {
 
         // Function to handle clicks on the document
         const handleClickOutside = (event) => {
-            console.log(event.target);
             if (
                 props.sidebarPopup &&
                 !document.getElementById("sidebar-slide").contains(event.target) &&

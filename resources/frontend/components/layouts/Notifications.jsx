@@ -18,15 +18,15 @@ function Notifications(props) {
                 props.setNotificationsCount(res.data.data.notifications_count);
                 props.setUnReadNotificationsCount(res.data.data.unread_notifications);
             })
-            .catch(err => console.log(err));
-        
+            .catch(err => {});
+
     };
 
 
     React.useEffect(() => {
 
         const interval = setInterval(() => {
-            if(user) 
+            if(user)
                 updateNotifications()
         }, 5000);
 
@@ -40,7 +40,7 @@ function Notifications(props) {
             // Cleanup the interval when the component unmounts or when the user becomes null
             clearInterval(interval);
         };
-        
+
     }, [user]);
 
     return (
@@ -50,7 +50,7 @@ function Notifications(props) {
                     <ReplyNotification setShowNotificationPopup={props.setShowNotificationPopup} setNotifications={setNotifications}
                                        setUnReadNotificationsCount={props.setUnReadNotificationsCount} key={index} info={item} /> :
                                        item.type === "game_status" ?
-                                       
+
                     <GameNotification setShowNotificationPopup={props.setShowNotificationPopup} setNotifications={setNotifications}
                                       setUnReadNotificationsCount={props.setUnReadNotificationsCount} key={index} info={item} /> :
 

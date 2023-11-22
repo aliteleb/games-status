@@ -13,7 +13,7 @@ const Group = () => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [nextPage, setNextPage] = React.useState(null);
 
-    
+
 
     const loadGames = (pageUrl) => {
         if (pageUrl) {
@@ -27,7 +27,6 @@ const Group = () => {
                 })
                 .catch((err) => {
                     setIsLoading(false);
-                    console.log('Failed to get the data', err);
                 });
         }
     };

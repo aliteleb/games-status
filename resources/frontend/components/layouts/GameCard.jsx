@@ -54,7 +54,6 @@ const GameCard = (props) => {
         ApiClient()
             .post(`/games/${game.id}/${action}`)
             .then((response) => {
-                console.log(response);
                 if (response.data.status === "success") {
                     action === "follow" ? toast.success(response.data.message) : toast(response.data.message);
                 } else {

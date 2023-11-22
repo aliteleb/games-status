@@ -31,7 +31,7 @@ function Comment(props) {
 
         setTimeout( ()=>{
             scrollToComment()
-        },0) 
+        },0)
 
     }, [props.info])
 
@@ -113,15 +113,15 @@ function Comment(props) {
     const scrollToComment = () => {
               // Get the query parameters from the URL
       const queryParams = new URLSearchParams(window.location.search);
-      
+
       // Check if the "comment" parameter exists in the URL
       if (queryParams.has('comment')) {
         // Get the comment ID from the URL
         const commentIdFromURL = queryParams.get('comment');
-        
+
         // Find the comment element with the corresponding ID
         const commentElement = document.getElementById(`comment-${commentIdFromURL}`);
-        
+
         // Check if the comment element exists before scrolling
         if (commentElement) {
           // Scroll to the comment element
@@ -148,8 +148,6 @@ function Comment(props) {
 
     const queryParams = new URLSearchParams(window.location.search);
     const commentIdFromURL = queryParams.get('comment');
-
-
 
     return (
         <div className={props.className}>
@@ -280,7 +278,6 @@ function Comment(props) {
                 <form onSubmit={handleReplySubmit} ref={formRef} className="ml-20 flex flex-wrap animate-slide-down">
                     <div className='relative flex w-full items-center'>
                         <input
-                            disabled={`${loading ? "disabled" : ""}`}
                             onChange={handleChange}
                             name='body'
                             value={replyInput.body}
@@ -288,13 +285,12 @@ function Comment(props) {
                             autoComplete='one-time-code'
                             id={`reply_input_${comment.id}`}
                             placeholder='Your reply ...'
-                            className={`bg-transparent w-full ${loading ? "caret-transparent pointer-events-none cursor-not-allowed ring-gray-400/20 text-gray-500" : ""} text-sm md:text-xs ${mention ? "h-[4.5rem]" : "h-10"} transition ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 pl-4 pr-12 ${mention && "pt-6"} mb-4 mt-2 rounded-md`}
+                            className={`bg-transparent w-full text-sm md:text-xs ${mention ? "h-[4.5rem]" : "h-10"} transition ring-1 ring-gray-400/50 focus:ring-gray-500 focus:outline-none text-gray-200 pl-4 pr-12 ${mention && "pt-6"} mb-4 mt-2 rounded-md`}
                         />
                         {mention && <span
                             className="absolute left-2 mr-2 rounded-full bg-gray-100 text-xs font-medium text-gray-800 top-[1rem] px-2.5 py-0.5 dark:bg-gray-700 dark:text-gray-300">@{mention}</span>}
                         <input type="hidden" name='reply_to' value={comment.id}/>
-                        <RiSendPlane2Fill onClick={handleReplySubmit}
-                                          className={`${loading ? "text-gray-600" : ""} relative mt-2 mb-4 cursor-pointer text-gray-400 transition right-[2rem] hover:text-gray-300`}/>
+                        <RiSendPlane2Fill onClick={handleReplySubmit} className='relative mt-2 mb-4 cursor-pointer text-gray-400 transition right-[2rem] hover:text-gray-300'/>
                     </div>
 
                 </form>

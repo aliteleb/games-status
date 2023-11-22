@@ -28,7 +28,6 @@ function VoteNotification(props) {
             })
             .catch(err => {
                     setReplyStatus(false);
-                    console.log(err);
                 }
             );
     };
