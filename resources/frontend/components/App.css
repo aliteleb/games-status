@@ -207,7 +207,3 @@ input.custom-input:-webkit-autofill:hover {
         opacity: 0.3;
     }
 }
-
-img {
-    pointer-events: none;
-}

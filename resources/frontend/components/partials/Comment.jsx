@@ -151,8 +151,6 @@ function Comment(props) {
 
 
 
-    console.log(props.info);
-
     return (
         <div className={props.className}>
             {/* <article ref={commentRef} id={`${commentIdFromURL}`} className="rounded-lg text-base my-1 pb-1 group"> */}

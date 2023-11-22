@@ -138,7 +138,7 @@ function Game() {
                     style={{ boxShadow: "rgb(0, 0, 0) 0px 0px 10px" }}
                 >
                     <img
-                        className={`absolute w-full h-full z-[-1] object-cover`}
+                        className={`absolute w-full h-full z-[-1] object-cover pointer-events-none`}
                         src={game.cover && game.cover}
                         style={{ aspectRatio: "1920/620" }}
                         alt=""
@@ -146,7 +146,7 @@ function Game() {
 
                     <div className="grid w-full grid-cols-1 justify-items-center bg-black/80 sm:grid-cols-[1fr_1fr] md:grid-cols-[250px_2fr_1fr]">
                         <img
-                            className={`col-span-2 sm:col-auto w-full object-cover h-[22rem] ${
+                            className={`col-span-2 sm:col-auto w-full object-cover h-[22rem] pointer-events-none ${
                                 game.poster && "animate-fade-in"
                             }`}
                             src={

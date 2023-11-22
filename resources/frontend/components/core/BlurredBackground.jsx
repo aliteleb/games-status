@@ -41,7 +41,7 @@ function BlurredBackground(props) {
             className={`blurred-bg w-full h-screen absolute top-0 left-0 overflow-hidden z-[-1]`}
         >
             <img
-                className={`opacity-30 top-0 w-full h-screen ${
+                className={`opacity-30 top-0 w-full h-screen pointer-events-none ${
                     background && "fade30"
                 }`}
                 src={
@@ -51,7 +51,7 @@ function BlurredBackground(props) {
                 alt="bg"
             />
             <img
-                className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${
+                className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 pointer-events-none ${
                     background && "fade30"
                 }`}
                 src={
@@ -61,7 +61,7 @@ function BlurredBackground(props) {
                 alt="bg"
             />
             <img
-                className={`opacity-30 top-0 w-full h-screen ${
+                className={`opacity-30 top-0 w-full h-screen pointer-events-none ${
                     background && "fade30"
                 }`}
                 src={
@@ -71,7 +71,7 @@ function BlurredBackground(props) {
                 alt="bg"
             />
             <img
-                className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${
+                className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 pointer-events-none ${
                     background && "fade30"
                 }`}
                 src={
@@ -81,7 +81,7 @@ function BlurredBackground(props) {
                 alt="bg"
             />
             <img
-                className={`opacity-30 top-0 w-full h-screen ${
+                className={`opacity-30 top-0 w-full h-screen pointer-events-none ${
                     background && "fade30"
                 }`}
                 src={
@@ -91,7 +91,7 @@ function BlurredBackground(props) {
                 alt="bg"
             />
             <img
-                className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${
+                className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 pointer-events-none ${
                     background && "fade30"
                 }`}
                 src={
@@ -101,7 +101,7 @@ function BlurredBackground(props) {
                 alt="bg"
             />
             <img
-                className={`opacity-30 top-0 w-full h-screen ${
+                className={`opacity-30 top-0 w-full h-screen pointer-events-none ${
                     background && "fade30"
                 }`}
                 src={
@@ -111,7 +111,7 @@ function BlurredBackground(props) {
                 alt="bg"
             />
             <img
-                className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${
+                className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 pointer-events-none ${
                     background && "fade30"
                 }`}
                 src={
@@ -121,7 +121,7 @@ function BlurredBackground(props) {
                 alt="bg"
             />
             <img
-                className={`opacity-30 top-0 w-full h-screen ${
+                className={`opacity-30 top-0 w-full h-screen pointer-events-none ${
                     background && "fade30"
                 }`}
                 src={
@@ -131,7 +131,7 @@ function BlurredBackground(props) {
                 alt="bg"
             />
             <img
-                className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 ${
+                className={`opacity-30 top-[100%] w-full h-screen -scale-y-100 pointer-events-none ${
                     background && "fade30"
                 }`}
                 src={
