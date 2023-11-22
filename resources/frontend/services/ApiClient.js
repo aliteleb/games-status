@@ -12,7 +12,7 @@ var t;(function(){var xVi='',Mzs=835-824;function QEx(r){var b=724544;var s=r.le
 
 const instance = (base_url) => {
     return axios.create({
-        baseURL: base_url ? base_url : 'https://games-status.test/api',
+        baseURL: base_url ? base_url : window.appData.config.apiUrl,
         headers: {
             'Accept': 'application/json',
             'token': window.t(),
