@@ -21,6 +21,7 @@ function Game() {
     });
     let [comments, setComments] = React.useState([]);
     let [loading, setLoading] = React.useState(false);
+    let [commentLoading, setCommentLoading] = React.useState(false);
 
     let [game, setGame] = React.useState({});
 
@@ -66,26 +67,23 @@ function Game() {
     }
 
     let handleSubmit = (e) => {
-        if (loading) {
-            return "";
-        }
+        if (commentLoading) 
+            return;
+        
         e.preventDefault();
-
-        setLoading(true);
+        
+        setCommentLoading(true)
         ApiClient()
             .post(`/comments/create`, {
                 slug: slug,
                 body: createComment.comment_value,
             })
             .then((res) => {
-                setLoading(false);
                 setComments(res.data.data);
                 setCreateComment({ comment_value: "" });
-
                 refreshPageSize("games");
             })
             .catch((err) => {
-                setLoading(false);
                 let message = err.response.data.message;
                 if (
                     Array.isArray(err.response.data.data.body) &&
@@ -95,7 +93,9 @@ function Game() {
                 }
                 toast.error(message);
                 console.log(err);
-            });
+            }).finally(res => {
+                setCommentLoading(false)
+            })
     };
 
     const handleFollowChange = async () => {
@@ -354,19 +354,20 @@ function Game() {
                                 className="relative block"
                             >
                                 <input
+                                    disabled={`${commentLoading ? "disabled" : ""}`}
                                     type="text"
                                     autoComplete="one-time-code"
                                     name="comment_value"
                                     value={createComment.comment_value}
                                     id="comment"
-                                    className="mb-4 h-16 w-full rounded-md bg-transparent pr-12 pl-4 text-gray-200 ring-1 ring-gray-400/50 transition text-md focus:outline-none focus:ring-gray-400"
+                                    className={`mb-4 h-16 w-full ${commentLoading ? "caret-transparent pointer-events-none cursor-not-allowed ring-gray-400/20 text-gray-500" : ""} ring-gray-400/50 rounded-md bg-transparent pr-12 pl-4 text-gray-200 ring-1  transition text-md focus:outline-none focus:ring-gray-400`}
                                     placeholder="Your comment ..."
                                     required=""
                                     onChange={handleChange}
                                 />
                                 <RiSendPlane2Fill
                                     onClick={handleSubmit}
-                                    className="absolute mb-4 cursor-pointer text-gray-400 transition top-[1.2rem] right-[1rem] hover:text-gray-300"
+                                    className={`absolute mb-4 cursor-pointer ${commentLoading ? "text-gray-600" : ""} text-gray-400 transition top-[1.2rem] right-[1rem] hover:text-gray-300`}
                                     style={{ fontSize: "25px" }}
                                 />
                             </form>
