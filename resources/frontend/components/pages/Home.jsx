@@ -18,7 +18,7 @@ export default function Home() {
                 setGamesData(res.data)
                 setLatestCrackedGames(res.data)
                 setUpcomingGames(res.data)
-            }).catch(err => console.log(err))
+            }).catch(err => {})
 
     }, [])
 
@@ -56,7 +56,7 @@ export default function Home() {
             for(let i=0; i<text.length; i++){
                 setTimeout ( ()=> {
                     setShowText(prev => prev + text[i])
-                }, i*30 ) 
+                }, i*30 )
             }
         }
     }, [gamesData] )
@@ -66,7 +66,7 @@ export default function Home() {
     return (
         <>
             <div>
-                { gamesData?.data?.notes[0].body ? 
+                { gamesData?.data?.notes[0].body ?
                 <div className="flex flex-col md:flex-row justify-between items-center bg-black/50 px-3 rounded">
                     <img className="w-16 h-16" src="../../../../public/assets/images/1.png" alt="" />
                     <p className="tracking-normal w-[80%] text-md px-2 text-center md:text-left text-gray-300 mt-2 md:mt-0 md:mx-2">{showText}</p>

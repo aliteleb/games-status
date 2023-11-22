@@ -36,7 +36,7 @@ function Game() {
                     setComments(res.data.data.comments);
                     setFollow(res.data.data.is_following);
                 })
-                .catch((err) => console.log("Failed to get data", err));
+                .catch((err) => {});
         };
 
         fetchGame();
@@ -67,11 +67,11 @@ function Game() {
     }
 
     let handleSubmit = (e) => {
-        if (commentLoading) 
+        if (commentLoading)
             return;
-        
+
         e.preventDefault();
-        
+
         setCommentLoading(true)
         ApiClient()
             .post(`/comments/create`, {
@@ -92,7 +92,6 @@ function Game() {
                     message = err.response.data.data.body[0];
                 }
                 toast.error(message);
-                console.log(err);
             }).finally(res => {
                 setCommentLoading(false)
             })

@@ -24,8 +24,7 @@ function GameNotification(props) {
                 props.setUnReadNotificationsCount(res.data.data.unread_notifications);
             })
             .catch(err => {
-                    setReplyStatus(false),
-                        console.log(err);
+                    setReplyStatus(false)
                 }
             );
     };

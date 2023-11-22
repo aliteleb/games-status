@@ -21,7 +21,6 @@ export default function Protections() {
                 })
                 .catch((err) => {
                     setIsLoading(false);
-                    console.log('Failed to get the data', err);
                 });
         }
     };

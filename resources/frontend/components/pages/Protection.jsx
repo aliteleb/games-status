@@ -27,7 +27,6 @@ const Protection = () => {
                 })
                 .catch((err) => {
                     setIsLoading(false);
-                    console.log('Failed to get the data', err);
                 });
         }
     };
@@ -57,8 +56,6 @@ const Protection = () => {
     const showGames = games?.map((game, index) => (
         <GameCard animate={true} info={game} key={index}/>
     ));
-
-    // console.log(games);
 
     const placeholders = [];
     for (let i = 0; i < 12; i++) {
