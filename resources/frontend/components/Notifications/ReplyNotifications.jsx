@@ -47,16 +47,16 @@ function ReplyNotification(props) {
 
             <div className='flex-co flex w-9/12'>
                 <div className="flex items-center px-1">
-                    <img className="h-9 w-9 rounded-full" src={props?.info.comment.user.avatar} alt="" />
+                    <img className="h-9 w-9 rounded-full" src={props?.info?.comment?.user?.avatar} alt="" />
 
                     <div className="mx-2 py-4">
-                        <p className="text-gray-300">Your comment received a reply from <Link to={`/user/${props.info.comment.username}`} className="font-bold text-red-500 hover:text-red-700 transition">{props?.info.comment.username}</Link></p>
+                        <p className="text-gray-300">Your comment received a reply from <Link to={`/user/${props?.info?.comment?.username}`} className="font-bold text-red-500 hover:text-red-700 transition">{props?.info?.comment?.username}</Link></p>
                     </div>
                 </div>
             </div>
-            <div className="bottom-1 px-2 py-1 text-right text-xs text-gray-400">{props?.info.time}</div>
+            <div className="bottom-1 px-2 py-1 text-right text-xs text-gray-400">{props?.info?.time}</div>
             {isHovered &&
-            <Link to={`/game/${props.info.game.slug}?comment=${props.info?.comment.id}`}>
+            <Link to={`/game/${props?.info?.game?.slug}?comment=${props?.info?.comment?.id}`}>
                 <BsArrowRight onClick={navigateToTheGame} className="animate-slide-left-slow mx-2 h-9 w-9 p-1 text-gray-500 transition hover:text-gray-300"/>
             </Link>}
         </div>
