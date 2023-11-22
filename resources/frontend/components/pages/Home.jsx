@@ -70,7 +70,7 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row justify-between items-center bg-black/50 px-3 rounded">
                     <img className="w-16 h-16" src="../../../../public/assets/images/1.png" alt="" />
                     <p className="tracking-normal w-[80%] text-md px-2 text-center md:text-left text-gray-300 mt-2 md:mt-0 md:mx-2">{showText}</p>
-                    <Link to="/terms-conditions" type="button" class="text-gray-300 bg-white/5 hover:bg-white/10 my-2 md:py-2 px-2 md:text-center py-3 px-3 font-medium rounded text-sm xl:px-3 xl:py-3 transition">Terms & Conditions</Link>
+                    <Link to="/terms-conditions" type="button" className="text-gray-300 bg-white/5 hover:bg-white/10 my-2 md:py-2 px-2 md:text-center py-3 px-3 font-medium rounded text-sm xl:px-3 xl:py-3 transition">Terms & Conditions</Link>
                 </div> :
                 <div className="animate-skeleton h-32 md:h-16 flex justify-between items-center bg-black/50 px-4 py-2 rounded"></div>}
 
