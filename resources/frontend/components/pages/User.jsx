@@ -86,10 +86,10 @@ function User() {
                         <Skeleton width={100} height={100} baseColor={'#27282e99'} circle={true} highlightColor={'#424349'}/>
                     }
 
-                    <h1 className='mt-3 text-xl'>{response ? response.display_name :
+                    <h1 className='mt-3 text-lg sm:text-xl'>{response ? response.display_name :
                         <Skeleton width={150} height={20} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}</h1>
                 </div>
-                <div className='col-span-2 m-auto w-full border-t border-gray-300 pt-3 text-center md:col-span-1 md:border-0'>
+                <div className='col-span-2 m-auto w-full pt-3 text-center md:col-span-1 md:border-0'>
                     <div className='text-2xl font-extralight text-gray-400'>{response ? "GAMES" :
                         <Skeleton width={'25%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}</div>
                     <div className='my-2 text-2xl font-bold'>
@@ -98,7 +98,7 @@ function User() {
                 </div>
             </div>
             <div className='my-6 flex flex-col justify-between'>
-                <div className="border-b border-gray-500/50 pb-2 text-xl">{response && `Games (${response?.games.data.length})`}</div>
+                <div className="border-b border-gray-500/50 pb-2 text-xl">{response && `Games (${response?.games.total})`}</div>
                 <div className="mt-3 grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {!response && placeholders}
                     {showGames}

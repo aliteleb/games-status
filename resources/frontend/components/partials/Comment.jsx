@@ -207,7 +207,7 @@ function Comment(props) {
                             <div ref={showDropMenu} onClick={removeComment}
                                  className={`hidden w-44 z-10 bg-black/20 rounded overflow-hidden divide-y shadow absolute mt-[90px] animate-slide-down`}
                                  style={{right: '10px'}}>
-                                <ul className="text-sm text-gray-300 y-200">
+                                <ul className="text-sm text-gray-300 backdrop-blur-md">
                                     <li>
                                         <button disabled="disabled" className="flex w-full cursor-pointer items-center py-2 transition disabled:cursor-default disabled:opacity-50">
                                             <GoReport className='mx-2 text-lg'/>
