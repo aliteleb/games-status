@@ -32,7 +32,6 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        sleep(1);
         $user = Auth::user();
 
         // Validate the request data
@@ -65,7 +64,6 @@ class UserController extends Controller
     }
     public function updatePassword(Request $request)
     {
-        sleep(1);
         $user = Auth::user();
 
         // Validate the request data
@@ -106,7 +104,6 @@ class UserController extends Controller
     }
     public function updateEmail(Request $request)
     {
-        sleep(1);
         $user = Auth::user();
 
         // Validate the request data

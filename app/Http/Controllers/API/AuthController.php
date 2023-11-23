@@ -94,7 +94,6 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        sleep(1);
         auth()->logout();
         return response()->api([
             'message' => __('Logout successful.'),

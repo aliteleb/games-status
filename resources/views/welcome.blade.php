@@ -6,7 +6,7 @@
     <meta name="csrf_token" content="{{ session()->get('token') !== null? base64_decode(session()->get('token')) : csrf_token() }}"/>
     <link rel="icon" type="image/svg+xml" href="/assets/images/logo.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Crack Watcher</title>
+    <title>Crack Watch</title>
 
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
