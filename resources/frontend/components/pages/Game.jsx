@@ -223,7 +223,7 @@ function Game() {
                                 </div>
                                 <div>
                                     <div className="text-[#dddddd99] font-extralight">
-                                        DRM PROTECTIONS
+                                        DRM
                                     </div>
                                     <div className="text-xl">
                                         {game.protections?.map((drm, index) => (
@@ -289,7 +289,7 @@ function Game() {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-span-2 m-auto border-t border-gray-300 pt-3 text-center w-[80%] md:col-span-1 md:border-0">
+                        <div className="col-span-2 m-auto border-t border-white/70 pt-3 text-center w-full md:col-span-1 md:border-0">
                             <div className="text-xl">FOLLOWERS</div>
                             <div className="my-2 text-2xl">
                                 {game.name ? (
@@ -304,7 +304,7 @@ function Game() {
                                     />
                                 )}
                             </div>
-                            <div className="flex flex-wrap justify-center rounded py-2">
+                            <div className="flex flex-wrap justify-center rounded pb-6">
                                 <input
                                     checked={follow}
                                     onChange={handleFollowChange}

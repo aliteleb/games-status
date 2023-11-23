@@ -246,11 +246,11 @@ function SearchGames() {
                         value={formData.search_text}
                         onChange={handleSearchChange}
                     />
-                    <div className='mt-2 flex w-full flex-col items-center justify-between md:flex md:flex-row md:gap-x-12 xl:gap-x-24'>
+                    <div className='mt-2 flex w-full flex-col md:items-center justify-between md:flex md:flex-row md:gap-x-12 xl:gap-x-24'>
                         <Select
                             options={crackStatus}
                             placeholder="Select Status..."
-                            className='mt-2 w-2/3 uppercase react-select-container md:w-1/3'
+                            className='mt-2 md:w-2/3 uppercase react-select-container md:w-1/3'
                             classNamePrefix="react-select"
                             value={crackStatus.find(option => option.value === formData.crack_status)}
                             onChange={(selectedOption) => handleSingleSelectChange('crack_status', selectedOption)}
@@ -258,7 +258,7 @@ function SearchGames() {
                         <Select
                             options={releaseStatus}
                             placeholder="Release Status..."
-                            className='mt-2 w-2/3 uppercase react-select-container md:w-1/3'
+                            className='mt-2 md:w-2/3 uppercase react-select-container md:w-1/3'
                             classNamePrefix="react-select"
                             value={releaseStatus.find(option => option.value === formData.release_status)}
                             onChange={(selectedOption) => handleSingleSelectChange('release_status', selectedOption)}
@@ -266,7 +266,7 @@ function SearchGames() {
                         <Select
                             options={genres}
                             placeholder="Select Genres..."
-                            className='mt-2 w-2/3 uppercase react-select-container md:w-1/3'
+                            className='mt-2 md:w-2/3 uppercase react-select-container md:w-1/3'
                             classNamePrefix="react-select"
                             isMulti
                             value={formData.selected_genres.map(genre => genres.find(option => option.value === genre))}
