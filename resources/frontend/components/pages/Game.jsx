@@ -289,7 +289,7 @@ function Game() {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-span-2 m-auto border-t border-white/70 pt-3 text-center w-full md:col-span-1 md:border-0">
+                        <div className="col-span-2 m-auto border-t border-white/30 pt-3 text-center w-full md:col-span-1 md:border-0">
                             <div className="text-xl">FOLLOWERS</div>
                             <div className="my-2 text-2xl">
                                 {game.name ? (

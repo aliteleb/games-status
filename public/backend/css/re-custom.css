@@ -1359,34 +1359,6 @@ pr {
     unicode-bidi: plaintext;
 }
 
-.text-gray-100 {
-    color: #f2f5f7 !important;
-}
-
-.text-gray-200 {
-    color: #eee !important;
-}
-
-.text-gray-300 {
-    color: #ddd !important;
-}
-
-.text-dark-100 {
-    color: #999 !important;
-}
-
-.text-dark-200 {
-    color: #666 !important;
-}
-
-.text-dark-300 {
-    color: #444 !important;
-}
-
-.text-dark-400 {
-    color: #333 !important;
-}
-
 .text-success {
     color: #00af6c;
 }

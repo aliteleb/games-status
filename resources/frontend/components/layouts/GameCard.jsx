@@ -73,7 +73,7 @@ const GameCard = (props) => {
              alt={"game"} />
         <div className={"grid grid-cols-[1fr_30px] md:grid-cols-[1fr_40px] game-card"}>
             <div className={"px-2 py-1"}>
-                <h1 className={"text-gray-200"}>
+                <h1 className={"text-gray-200 text-sm sm:text-lg"}>
                     {game.name || <Skeleton width={"100%"} height={"14px"} baseColor={"#27282e"} highlightColor={"#424349"} borderRadius={0} />}
                 </h1>
                 <div className="flex flex-wrap">

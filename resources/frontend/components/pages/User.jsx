@@ -74,26 +74,39 @@ function User() {
                      style={{ clipPath: "polygon(0 0px, 66.6666% 0%, 33.3333% 100%, 0 100%)",
                 }}
                 />
-                <div className='flex w-full flex-col items-center justify-center'>
-                    { response &&
-                        <img
-                            className={`col-span-2 border-2 border-gray-600 rounded-full sm:col-auto w-[100px] h-[100px] object-cover`}
-                            src={response ? response.avatar : ''}
-                            alt=''
-                        />
-                    }
-                    { !response &&
-                        <Skeleton width={100} height={100} baseColor={'#27282e99'} circle={true} highlightColor={'#424349'}/>
-                    }
+                <div className='flex flex-col justify-center w-full overflow-hidden rounded-md'>
+                    <div className='flex justify-between'>
+                        <div className='flex w-full flex-col items-center justify-center'>
+                            { response &&
+                                <img
+                                    className={`col-span-2 border-2 border-gray-600 rounded-full sm:col-auto w-[100px] h-[100px] object-cover`}
+                                    src={response ? response.avatar : ''}
+                                    alt=''
+                                />
+                            }
+                            { !response &&
+                                <Skeleton width={100} height={100} baseColor={'#27282e99'} circle={true} highlightColor={'#424349'}/>
+                            }
 
-                    <h1 className='mt-3 text-lg sm:text-xl'>{response ? response.display_name :
-                        <Skeleton width={150} height={20} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}</h1>
-                </div>
-                <div className='col-span-2 m-auto w-full pt-3 text-center md:col-span-1 md:border-0'>
-                    <div className='text-2xl font-extralight text-gray-400'>{response ? "GAMES" :
-                        <Skeleton width={'25%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}</div>
-                    <div className='my-2 text-2xl font-bold'>
-                        {response ? response?.games.data.length : <Skeleton width={'15%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                            <h1 className='mt-3 text-lg sm:text-xl'>{response ? response.display_name :
+                                <Skeleton width={150} height={20} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}</h1>
+                        </div>
+                        <div className='col-span-2 m-auto w-full pt-3 text-center md:col-span-1 md:border-0'>
+                            <div className='text-2xl font-extralight text-gray-400'>{response ? "GAMES" :
+                                <Skeleton width={'25%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                            </div>
+                            <div className='my-2 text-2xl font-bold'>
+                                {response ? response?.games.total : <Skeleton width={'15%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                            </div>
+                        </div>
+                    </div>
+                    <div className='text-center mt-16 text-gray-300 flex justify-center items-center'>
+                        <div className='text-2xl font-extralight text-gray-400'>{response ? "Member since:" :
+                            <Skeleton width={'25%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                        </div>
+                        <div className='my-2 mx-3 text-2xl font-bold'>
+                            {response ? response?.member_since : <Skeleton width={'15%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
+                        </div>
                     </div>
                 </div>
             </div>
