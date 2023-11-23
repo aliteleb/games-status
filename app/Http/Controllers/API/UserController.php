@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     public function show($username)
     {
-        $user = User::select(['id', 'username', 'display_name', 'avatar'])
+        $user = User::select(['id', 'username', 'display_name', 'avatar', 'created_at'])
             ->withCount('games')
             ->where('username', $username)
             ->firstOrFail();
