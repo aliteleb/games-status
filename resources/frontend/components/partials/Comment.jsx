@@ -207,7 +207,7 @@ function Comment(props) {
                             <div ref={showDropMenu} onClick={removeComment}
                                  className={`hidden w-44 z-10 bg-black/20 rounded overflow-hidden divide-y shadow absolute mt-[90px] animate-slide-down`}
                                  style={{right: '10px'}}>
-                                <ul className="text-sm text-gray-300 backdrop-blur-md">
+                                <ul className="text-sm text-gray-300 backdrop-blur-md bg-black/70">
                                     <li>
                                         <button disabled="disabled" className="flex w-full cursor-pointer items-center py-2 transition disabled:cursor-default disabled:opacity-50">
                                             <GoReport className='mx-2 text-lg'/>
@@ -250,7 +250,7 @@ function Comment(props) {
                                         refreshPageSize();
 
                                     }} type="button"
-                                            className="flex items-center text-xs text-gray-500 hover:text-gray-400 opacity-0 group-hover:opacity-100">
+                                            className="flex items-center text-xs text-gray-500 hover:text-gray-400 md:opacity-0 md:group-hover:opacity-100">
                                         <svg className="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                                   d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>

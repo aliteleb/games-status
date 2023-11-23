@@ -224,8 +224,8 @@ function Profile() {
                 Edit Profile
             </h1>
             <div className="mt-4 gap-x-4">
-                <div className="flex justify-between gap-x-3">
-                    <form className="flex w-1/3 max-w-screen-xl flex-col rounded-md p-6 text-gray-300 bg-app-black/50">
+                <div className="md:flex justify-between gap-x-3">
+                    <form className="flex md:w-1/3 max-w-screen-xl flex-col rounded-md p-6 text-gray-300 bg-app-black/50">
                         <h1 className="border-b-[1px] border-[#494a4f] pb-3 text-lg font-bold"> Profile Picture </h1>
                         <div className="flex flex-col justify-between h-full">
                             <div className="mt-6 flex flex-col items-center">
@@ -249,7 +249,6 @@ function Profile() {
                                         document.getElementById("avatar").click();
                                     }}
                                 />
-                                <div className="text-sm py-3 text-gray-400">200px <span className="text-gray-500 font-bold">x</span> 200px</div>
                                 <label
                                     htmlFor="avatar"
                                     className={` cursor-pointer w-max mt-6 text-gray-100 bg-red-700 hover:bg-red-600 transition font-medium rounded-lg text-sm px-5 py-2.5 mb-2`}>
@@ -269,7 +268,7 @@ function Profile() {
                             </div>
                             <button
                                 onClick={handleAvatarSubmit}
-                                className={`self-start app-btn disabled:hover:bg-red-700 ${
+                                className={`self-center app-btn disabled:hover:bg-red-700 ${
                                     avatarLoading ? "disabled-button hover:bg-[#282c39]" : ""
                                 }`}
                                 disabled={avatarLoading}>
@@ -281,7 +280,7 @@ function Profile() {
                         </div>
 
                     </form>
-                    <form className="w-2/3 max-w-screen-xl rounded-md p-6 text-gray-300 bg-app-black/50">
+                    <form className="md:w-2/3 mt-8 md:mt-0 max-w-screen-xl rounded-md p-6 text-gray-300 bg-app-black/50">
                         <h1 className="border-b-[1px] border-[#494a4f] pb-3 text-lg font-bold"> General </h1>
                         <div className="relative mt-12 flex flex-col">
                             <label htmlFor="display_name">Display Name</label>
@@ -363,8 +362,8 @@ function Profile() {
                     </form>
                 </div>
 
-                <div className="flex gap-x-3">
-                    <form className="mx-auto mt-6 w-1/2 max-w-screen-xl rounded-md p-6 text-gray-300 bg-app-black/50">
+                <div className="md:flex gap-x-3">
+                    <form className="mx-auto mt-6 md:w-1/2 max-w-screen-xl rounded-md p-6 text-gray-300 bg-app-black/50">
                         <h1 className="border-b-[1px] border-[#494a4f] pb-3 text-lg font-bold"> Change Email </h1>
                         <div className="relative mt-6 flex flex-col">
                             <label>New Email Address (No Spam!)</label>
@@ -393,7 +392,7 @@ function Profile() {
                             )}
                         </button>
                     </form>
-                    <form className="mx-auto mt-6 w-1/2 max-w-screen-xl rounded-md p-6 text-gray-300 bg-app-black/50">
+                    <form className="mx-auto mt-6 md:w-1/2 max-w-screen-xl rounded-md p-6 text-gray-300 bg-app-black/50">
                         <h1 className="border-b-[1px] border-[#494a4f] pb-3 text-lg font-bold"> Change Password </h1>
                         <div className="relative mt-12 flex flex-col">
                             <label htmlFor="password">Current Password</label>

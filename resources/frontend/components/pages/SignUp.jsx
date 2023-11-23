@@ -204,7 +204,7 @@ export default function SignUp() {
 
                         </div>
                         <div className="mt-6 flex flex-col">
-                            <label htmlFor="upload">Profile Picture <span className="mx-3 text-xs text-gray-500">[jpg, png, gif] - (100x100)</span></label>
+                            <label htmlFor="upload">Profile Picture <span className="mx-3 text-xs text-gray-500">jpg, png, gif</span></label>
                             <label
                                 onDragOver={(e) => {
                                     setIsDragOver(true);
