@@ -109,7 +109,7 @@ class Comment extends Model
         $comments->map(function ($comment) use ($user) {
             $comment->voted = null;
             $comment->reactions->map(function ($reaction) use ($comment, $user) {
-                if ($reaction->user_id == $user->id)
+                if ($reaction->user_id == $user?->id)
                     $comment->voted = $reaction->type;
             });
 
