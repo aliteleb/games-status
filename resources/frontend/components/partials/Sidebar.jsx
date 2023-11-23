@@ -42,11 +42,11 @@ function Sidebar(props) {
 
     return (
 
-            <div id='sidebar-slide' ref={sidebarRef} className={`fixed top-0 ${props.sidebarPopup ? 'left-0' : '-left-72'} sidebar-popup flex h-screen w-64 flex-col pt-6 transition-all z-[51] xl:w-72`}>
-                <div className='mb-4 w-full px-6'>
+            <div id='sidebar-slide' ref={sidebarRef} className={`fixed top-0 ${props.sidebarPopup ? 'left-0' : '-left-72'} bg-app-black/70 backdrop-blur-lg sidebar-popup flex h-screen w-64 flex-col pt-6 transition-all z-[51] xl:w-72`}>
+                <div className='mb-4 w-full px-6 '>
                     <HiXMark onClick={props.toggleSidebar} className='w-6 h-6 text-white cursor-pointer'/>
                 </div>
-                <nav  className="flex h-screen flex-col gap-y-3 px-6 text-white bg-app-black/70">
+                <nav  className="flex h-screen flex-col gap-y-3 px-6 text-white">
                     <div className={`flex items-center gap-x-4 transform hover:translate-x-2 transition ${user ? 'group cursor-pointer' : ''}`}>
                         <BiUserCircle className='w-8 h-8 text-red-800'/>
                         <div>
