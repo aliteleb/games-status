@@ -74,7 +74,7 @@ function User() {
                      style={{ clipPath: "polygon(0 0px, 66.6666% 0%, 33.3333% 100%, 0 100%)",
                 }}
                 />
-                <div className='flex flex-col justify-center w-full overflow-hidden rounded-md'>
+                <div className='flex flex-col justify-around pt-16 w-full overflow-hidden rounded-md'>
                     <div className='flex justify-between'>
                         <div className='flex w-full flex-col items-center justify-center'>
                             { response &&
@@ -100,18 +100,18 @@ function User() {
                             </div>
                         </div>
                     </div>
-                    <div className='text-center mt-16 text-gray-300 flex justify-center items-center'>
-                        <div className='text-2xl font-extralight text-gray-400'>{response ? "Member since:" :
+                    <div className='text-center flex justify-center items-center text-lg text-gray-300'>
+                        <div>{response ? "Member since" :
                             <Skeleton width={'25%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                         </div>
-                        <div className='my-2 mx-3 text-2xl font-bold'>
+                        <div className='my-2 mx-3'>
                             {response ? response?.member_since : <Skeleton width={'15%'} height={'20px'} baseColor={'#27282e99'} highlightColor={'#424349'} borderRadius={20}/>}
                         </div>
                     </div>
                 </div>
             </div>
             <div className='my-6 flex flex-col justify-between'>
-                <div className="border-b border-gray-500/50 pb-2 text-xl">{response && `Games (${response?.games.total})`}</div>
+                <div className="border-b border-gray-500/50 pb-2 text-xl">{response && `Favourite Games (${response?.games.total})`}</div>
                 <div className="mt-3 grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {!response && placeholders}
                     {showGames}

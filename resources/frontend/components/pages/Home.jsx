@@ -87,7 +87,7 @@ export default function Home() {
 
                     {mainGame || <GameCard size='large'/>}
 
-                    <div className="mt-2 grid gap-2 grid-cols-[1fr_1fr] md:mt-0">
+                    <div className="mt-2 grid gap-2 grid-cols-1 sm:grid-cols-[1fr_1fr] md:mt-0">
                         {sideGames ||
                             <>
                                 <GameCard/>
