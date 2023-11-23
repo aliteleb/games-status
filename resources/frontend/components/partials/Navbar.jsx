@@ -79,8 +79,8 @@ function Navbar() {
                         <NavLink to="/" className="relative h-[50px]">
                             <img src="/public/assets/images/1.png" className="animate-glow relative top-4 object-cover h-16 w-20" alt="Logo" />
                             <div className="absolute h-[10rem] w-[10rem] cursor-auto bg-app-black/70" style={{
-                                top: "-100%",
-                                left: "-50%",
+                                top: "-64px",
+                                left: "-40px",
                                 zIndex: "-1",
                                 clipPath: "polygon(90% 80%, 70% 100%, 30% 100%, 10% 80%)"
                             }}></div>
@@ -119,7 +119,7 @@ function Navbar() {
                              onClick={() => {
                              setShowProfilePopup(!showProfilePopup);
                         }}>
-                            <img 
+                            <img
                                  className={`border-2 hover:border-gray-400 transition w-10 h-10 rounded-full cursor-pointer ${showProfilePopup ? "border-gray-400" : "border-gray-600"}`}
                                  src={`${user.avatar}`} alt={"avatar"} width={100} height={100} />
                         </div>
