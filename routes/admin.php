@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Admin\{CommentController,
     DashboardController,
     GameController,
@@ -28,6 +29,9 @@ use Illuminate\Support\Facades\Route;
 
 // Basic Routes
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // Handle the logout action
 
 // Resource Routes
 Route::resource('/games', GameController::class); // CRUD routes for protections

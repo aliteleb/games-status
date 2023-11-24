@@ -35,7 +35,7 @@ class AdminMiddleware
         $permission = $controller . '.' . $method; // Construct the permission string
 
         // Allow if no controller
-        if($controller == "Redirect")
+        if($controller == "Redirect" || $controller == "Login")
             return $next($request);
 
         // Retrieve the user's role permissions from session

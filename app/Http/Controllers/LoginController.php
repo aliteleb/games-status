@@ -44,6 +44,7 @@ class LoginController extends Controller
 
     public function logout()
     {
+
         // Logout the user
         if(Auth::check())
             Auth::logout();

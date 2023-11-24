@@ -28,9 +28,6 @@ Route::middleware('guest')->prefix('/admin')->as('admin.')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login'); // Display the login form
     Route::post('/login', [LoginController::class, 'login']); // Handle the login form submission
 
-    // Logout
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // Handle the logout action
-
 });
 
 
