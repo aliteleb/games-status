@@ -159,7 +159,7 @@ function Comment(props) {
                             <button
                                 data-vote="up"
                                 onClick={() => handleVote("up")}
-                                className={`${comment?.voted === "up" ? "text-green-700" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}
+                                className={`${comment?.voted === "up" ? "text-green-600" : ""} cursor-pointer hover:text-opacity-60 text-2xl text-gray-300`}
                             >
                                 <IoIosArrowUp/>
                             </button>
