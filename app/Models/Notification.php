@@ -58,7 +58,6 @@ class Notification extends Model
                 $notification->game_info = GameApiResource::parse($notification->game);
                 unset($notification->game);
             }
-            Carbon::setLocale('en');
             $time = Carbon::parse($notification->created_at)->diffForHumans();
             $notification->time = $time;
         });

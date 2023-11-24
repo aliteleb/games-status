@@ -9,7 +9,6 @@ class NotificationApiResource extends ApiResource
 {
     protected function resource($model): array
     {
-        Carbon::setLocale('en');
 
         return [
             'id' => $model['id'] ?? null,

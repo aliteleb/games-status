@@ -10,7 +10,6 @@ class UserApiResource extends ApiResource
 {
     protected function resource($model): array
     {
-        Carbon::setLocale('en');
 
         return [
             'username' => $model['username'] ?? null,

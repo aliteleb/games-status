@@ -9,7 +9,6 @@ class CommentApiResource extends ApiResource
 {
     protected function resource($model): array
     {
-        Carbon::setLocale('en');
         $time = null;
         if(isset($model['created_at']))
             $time = Carbon::parse($model['created_at'])->diffForHumans();
