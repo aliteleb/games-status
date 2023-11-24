@@ -77,7 +77,7 @@ function Navbar() {
                     </div>
                     <div className="mx-3 md:mx-6">
                         <NavLink to="/" className="relative h-[50px]">
-                            <img src="/public/assets/images/1.png" className="animate-glow relative top-4 object-cover h-16 w-20" alt="Logo" />
+                            <img src="/public/assets/images/logo.png" className="animate-glow relative top-4 object-cover h-16 w-20" alt="Logo" />
                             <div className="absolute h-[10rem] w-[10rem] cursor-auto bg-app-black/70" style={{
                                 top: "-64px",
                                 left: "-40px",
