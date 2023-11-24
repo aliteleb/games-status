@@ -47,7 +47,7 @@ function Game() {
             clearInterval(interval);
         };
 
-    }, []);
+    }, [slug]);
 
     let handleChange = (e) => {
         setCreateComment((prevComment) => ({

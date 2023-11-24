@@ -32,7 +32,7 @@ function User() {
 
     React.useEffect(() => {
         loadGames(`/user/${username}`);
-    }, []); // Load initial data
+    }, [username]); // Load initial data
 
 
     const scrollListener = React.useRef(null);
