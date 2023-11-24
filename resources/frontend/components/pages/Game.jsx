@@ -40,7 +40,13 @@ function Game() {
         };
 
         fetchGame();
-        setInterval(fetchGame, 10000);
+        const interval = setInterval(fetchGame, 10000);
+
+        return () => {
+            // Cleanup the interval when the component unmounts or when the user becomes null
+            clearInterval(interval);
+        };
+
     }, []);
 
     let handleChange = (e) => {
