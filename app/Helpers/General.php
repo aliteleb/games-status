@@ -151,6 +151,7 @@ function without_accessors($model): Collection
  */
 function validate_rules($rules, $model, $request): array
 {
+    App::setLocale("ar");
     // Check if the request method is 'put'
     if (request()->isMethod('put')) {
 
