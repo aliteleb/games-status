@@ -29,7 +29,7 @@
             <div class="card-wrapper">
                 <div class="brand">
                     <a href="#" target="_blank">
-                        <img src="{{ asset('backend/auth/images/logo.jpg') }}" alt="logo" height="50">
+                        <img src="{{ asset('backend/auth/images/1.png') }}" alt="logo" width="100" height="100">
                     </a>
                 </div>
                 <div class="card fat">

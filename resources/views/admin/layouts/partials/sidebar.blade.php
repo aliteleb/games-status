@@ -13,7 +13,7 @@
                 <div class="media-left no-padding" id="store_avatar">
                     <div class="store-img-wrapper">
                         <img id="store_avatar_img" class="store-img img-circle img-sm" alt=""
-                             src="../../../../../public/assets/images/logo.png"/>
+                             src="../../../../../public/assets/images/1.png"/>
                     </div>
                     <div class="store-name-plan">
                         <h6 class="store-name-side font-regular">
