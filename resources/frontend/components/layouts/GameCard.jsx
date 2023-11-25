@@ -1,8 +1,8 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import React, { useEffect, useState } from "react";
-import {BiSolidTimeFive} from 'react-icons/bi'
-import {AiFillCheckCircle} from 'react-icons/ai'
+import { BiSolidTimeFive } from "react-icons/bi";
+import { AiFillCheckCircle } from "react-icons/ai";
 import { IoMdRemoveCircle } from "react-icons/io";
 import ApiClient from "../../services/ApiClient.js";
 import toast from "react-hot-toast";
@@ -102,8 +102,36 @@ const GameCard = (props) => {
             {game.slug ? <Link className="flex h-full w-full flex-col" to={`/game/${game.slug}`}>{card}</Link> : card}
 
             {props.size === "large" && <div className="flex h-full flex-wrap justify-around">
-                <div className="w-full">
-                    <Skeleton width={"100%"} height={"100%"} baseColor={"#27282e"} highlightColor={"#424349"} borderRadius={0} />
+                <div className="w-full flex justify-center bg-white/10">
+                    {/*<Skeleton width={"100%"} height={"100%"} baseColor={"#27282e"} highlightColor={"#424349"} borderRadius={0} />*/}
+                    <main className="anim-container">
+                        <section className="name">
+                            <span className="letter letter--0">A</span>
+                            <span className="letter letter--1">d</span>
+                            <span className="letter letter--2">s</span>
+                            <span className="letter letter--2"></span>
+                            <span className="letter letter--3">A</span>
+                            <span className="letter letter--4">r</span>
+                            <span className="letter letter--5">e</span>
+                            <span className="letter letter--6">a</span>
+
+                        </section>
+                        <section className="surname">
+                            <span className="letter letter--0">C</span>
+                            <span className="letter letter--1">R</span>
+                            <span className="letter letter--2">A</span>
+                            <span className="letter letter--3">C</span>
+                            <span className="letter letter--4">K</span>
+                            <span className="letter letter--5"> </span>
+                            <span className="letter letter--6">W</span>
+                            <span className="letter letter--7">A</span>
+                            <span className="letter letter--8">T</span>
+                            <span className="letter letter--9">C</span>
+                            <span className="letter letter--10">H</span>
+                        </section>
+                    </main>
+
+
                 </div>
             </div>}
         </div>
