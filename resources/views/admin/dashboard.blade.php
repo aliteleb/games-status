@@ -167,6 +167,12 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        .dark .card{
+            border-color: #333333;
+            background-color: #212121;
+            box-shadow: 0 4px 6px #1e1e1e;
+        }
+
         .card-title {
             font-size: 1.25rem;
             margin-bottom: 10px;
