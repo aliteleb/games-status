@@ -15,7 +15,7 @@ function Footer() {
                         <Link to="#">
                             <RiTwitterXFill className='h-5 w-5 transition hover:text-twitter'/>
                         </Link>
-                        <Link to="#">
+                        <Link to="https://www.instagram.com/crackwatch_info/" target='_blank'>
                             <BsInstagram className='h-5 w-5 transition hover:text-pink-500'/>
                         </Link>
                     </div>
