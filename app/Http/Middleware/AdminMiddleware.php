@@ -32,6 +32,12 @@ class AdminMiddleware
         // Determine the current controller and method being accessed
         $controller = str_replace('Controller', '', class_basename(Route::current()->controller));
         $method = Route::current()->getActionMethod();
+
+        if($method === "create")
+            $method = "store";
+        if($method === "edit")
+            $method = "update";
+
         $permission = $controller . '.' . $method; // Construct the permission string
 
         // Allow if no controller
