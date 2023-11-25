@@ -221,15 +221,11 @@ input.custom-input:-webkit-autofill:hover {
 .name {
     animation: blink 3s infinite linear alternate;
     color: #fff;
-    font-size: 5rem;
     font-weight: 700;
     text-align: center;
     text-transform: math-auto;
     font-family: monospace;
     text-shadow: 0 0 5px #ff7bac, 0 0 10px #ff7bac, 0 0 20px #ff7bac, 0 0 40px #ff7bac, 0 0 80px #ff7bac, 0 0 100px #ff7bac, 0 0 120px #ff7bac;
-}
-.name > .letter {
-    margin: 0 9px;
 }
 
 @keyframes blink {
@@ -252,9 +248,6 @@ input.custom-input:-webkit-autofill:hover {
     text-align: center;
     text-transform: uppercase;
     text-shadow: #a48ff2 2px 2px 10px;
-}
-.surname > .letter {
-    margin: 0 20px;
 }
 .surname > .letter--0 {
     animation: flickr 6s ease-in-out 4.21s infinite alternate both;
