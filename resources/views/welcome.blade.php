@@ -20,7 +20,7 @@
         window.appData.auth = {!! json_encode(['isAuthenticated' => auth()->check(), 'user' => \App\Api\UserApiResource::parse($user)]) !!};
         window.appData.notifications = {!! json_encode($notifications) !!};
         window.appData.config = {};
-        window.appData.config.apiUrl = "{{ env('API_CLIENT') }}";
+        window.appData.config.apiUrl = "{{ env('API_CLIENT', url('/api')) }}";
     </script>
     @viteReactRefresh
     @vite('resources/frontend/index.jsx')
