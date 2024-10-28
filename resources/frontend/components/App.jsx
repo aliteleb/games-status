@@ -31,6 +31,7 @@ import { useAuth } from "./api/AuthContext.jsx";
 
 export default function App() {
 
+    // Test Conflect Comment
     const { user } = useAuth();
 
     window.ondragstart = () => false;
@@ -69,6 +70,9 @@ export default function App() {
                     <Route path="/protections" element={<Protections />} />
                     <Route path="/markets" element={<Markets />} />
                     <Route path="/free-keys" element={<FreeKeys />} />
+                    
+                    // Test Conflect Comment
+
                     <Route path="/forum" element={<Forum />} />
                     <Route path="/messages" element={<Messages />} />
                     <Route path="/signup" element={user ? <Navigate to="/" /> : <SignUp />} />
@@ -94,3 +98,5 @@ export default function App() {
         </BrowserRouter>
     );
 }
+
+// Test Conflect Comment
