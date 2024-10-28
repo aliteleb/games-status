@@ -1,24 +1,3 @@
-### ```mysql many to many relationship```
-```mysql
-WITH GameCounts AS (
-    SELECT drm_protections.id AS drm_id, COUNT(game_drm_protection.game_id) AS games_count
-    FROM drm_protections
-             JOIN game_drm_protection ON drm_protections.id = game_drm_protection.drm_protection_id
-    GROUP BY drm_protections.id
-)
-
-SELECT dp.id, dp.name, dp.slug, gc.games_count, lg.game_id, g.name, g.slug
-FROM drm_protections dp
-         JOIN (
-    SELECT gdp.drm_protection_id, MAX(gdp.game_id) AS game_id
-    FROM game_drm_protection gdp
-    GROUP BY gdp.drm_protection_id
-) AS lg ON dp.id = lg.drm_protection_id
-         JOIN games g ON lg.game_id = g.id
-         JOIN GameCounts gc ON dp.id = gc.drm_id
-WHERE g.type = 'game';
-```
-
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
